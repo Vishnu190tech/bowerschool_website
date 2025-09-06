@@ -1,0 +1,14 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="devicon:figma" clip-path="url(#clip0_2107_58785)">
+<path id="Vector" d="M5.6875 10.9004H8.22461V13.4375C8.22461 14.8422 7.09216 15.9746 5.6875 15.9746C4.28284 15.9746 3.15039 14.8422 3.15039 13.4375C3.15039 12.0328 4.28284 10.9004 5.6875 10.9004Z" fill="var(--fill-0, white)" stroke="var(--stroke-0, #FF8829)" stroke-width="0.3"/>
+<path id="Vector_2" d="M5.6875 5.52539H8.22461V10.5996H5.6875C4.28284 10.5996 3.15039 9.46716 3.15039 8.0625C3.15039 6.65784 4.28284 5.52539 5.6875 5.52539Z" fill="var(--fill-0, white)" stroke="var(--stroke-0, #FF8829)" stroke-width="0.3"/>
+<path id="Vector_3" d="M5.6875 0.150391H8.22461V5.22461H5.6875C4.28284 5.22461 3.15039 4.09216 3.15039 2.6875C3.15039 1.28284 4.28284 0.150391 5.6875 0.150391Z" fill="var(--fill-0, white)" stroke="var(--stroke-0, #FF8829)" stroke-width="0.3"/>
+<path id="Vector_4" d="M11.0625 0.150391C12.4672 0.150391 13.5996 1.28284 13.5996 2.6875C13.5996 4.09216 12.4672 5.22461 11.0625 5.22461H8.52539V0.150391H11.0625Z" fill="var(--fill-0, white)" stroke="var(--stroke-0, #FF8829)" stroke-width="0.3"/>
+<path id="Vector_5" d="M11.0625 5.52539C12.4672 5.52539 13.5996 6.65784 13.5996 8.0625C13.5996 9.46716 12.4672 10.5996 11.0625 10.5996C9.65784 10.5996 8.52539 9.46716 8.52539 8.0625C8.52539 6.65784 9.65784 5.52539 11.0625 5.52539Z" fill="var(--fill-0, white)" stroke="var(--stroke-0, #FF8829)" stroke-width="0.3"/>
+</g>
+<defs>
+<clipPath id="clip0_2107_58785">
+<rect width="16" height="16" fill="white"/>
+</clipPath>
+</defs>
+</svg>

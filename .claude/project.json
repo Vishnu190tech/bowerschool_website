@@ -1,0 +1,11 @@
+{
+    "name": "Figma to Tailwind Converter",
+    "agents": [
+      ".claude/agents/figma-agent.md"
+    ],
+    "commands": [
+      ".claude/commands/figma-convert.md"
+    ],
+    "defaultPrompt": "Use the figma-agent to convert designs",
+    "autoExecute": true
+  }
