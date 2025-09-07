@@ -22,6 +22,37 @@ import ApplicationBanner from "@/components/ApplicationBanner";
 import WhyPartnerSection from "@/components/WhyPartnerSection";
 import EntrepreneurshipHero from "@/components/EntrepreneurshipHero";
 import TrustedBySchools from "@/components/TrustedBySchools";
+import FAQSection from "@/components/FAQSection";
+import SkillsSection from "@/components/SkillsSection";
+import CertificateSection from "@/components/CertificateSection";
+import CourseFeeSection from "@/components/CourseFeeSection";
+import FindCourseSection from "@/components/FindCourseSection";
+import NumbersSection from "@/components/NumbersSection";
+import LogoTicker from "@/components/LogoTicker";
+import LearningExecutionSection from "@/components/LearningExecutionSection";
+import AlumniNetworkSection from "@/components/AlumniNetworkSection";
+import BowerNetworkSection from "@/components/BowerNetworkSection";
+import AlumniCTASection from "@/components/AlumniCTASection";
+import JoinAlumniSection from "@/components/JoinAlumniSection";
+import AlumniVoicesSection from "@/components/AlumniVoicesSection";
+import BenefitsSection from "@/components/BenefitsSection";
+import FacilitiesSection from "@/components/FacilitiesSection";
+import WellnessSection from "@/components/WellnessSection";
+import CampusTourSection from "@/components/CampusTourSection";
+import MakeYourselfAtHomeSection from "@/components/MakeYourselfAtHomeSection";
+import GuestSpeakerSection from "@/components/GuestSpeakerSection";
+import BuildDayHeroSection from "@/components/BuildDayHeroSection";
+import PastEventsSection from "@/components/PastEventsSection";
+import EventGallerySection from "@/components/EventGallerySection";
+import TestimonialQuoteSection from "@/components/TestimonialQuoteSection";
+import EventStatsSection from "@/components/EventStatsSection";
+import OtherEventsSection from "@/components/OtherEventsSection";
+import PartnershipSection from "@/components/PartnershipSection";
+import PartnerCTASection from "@/components/PartnerCTASection";
+import ContactFormSection from "@/components/ContactFormSection";
+import VideoCarouselSection from "@/components/VideoCarouselSection";
+import LearningComparisonSection from "@/components/LearningComparisonSection";
+import MentorshipHeroSection from "@/components/MentorshipHeroSection";
 
 export default function Home() {
   // Force recompile
@@ -37,12 +68,44 @@ export default function Home() {
       <MentorshipSection />
       <OverviewSection />
       <HowItWorks />
+      <BenefitsSection />
+      <FacilitiesSection />
+      <WellnessSection />
+      <LearningExecutionSection />
+      <SkillsSection />
+      <NumbersSection />
       <WhyPartnerSection />
       <Testimonials />
       <ProfileCard />
+      <CertificateSection />
+      <CourseFeeSection />
+      <FindCourseSection />
+      <FAQSection />
       <ApplicationBanner />
 
+      <LogoTicker />
+      <BowerNetworkSection />
+      <AlumniVoicesSection />
+      <AlumniNetworkSection />
+      <AlumniCTASection />
+      <JoinAlumniSection />
+      
       <main className="flex-1 bg-gray-50">
+        <CampusTourSection />
+        <MakeYourselfAtHomeSection />
+        <GuestSpeakerSection />
+        <BuildDayHeroSection />
+        <PastEventsSection />
+        <EventGallerySection />
+        <TestimonialQuoteSection />
+        <EventStatsSection />
+        <OtherEventsSection />
+        <PartnershipSection />
+        <PartnerCTASection />
+        <ContactFormSection />
+        <VideoCarouselSection />
+        <LearningComparisonSection />
+        <MentorshipHeroSection />
         <CampusVideoSection />
         <VideoShowcaseSection />
 
