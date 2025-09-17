@@ -56,9 +56,9 @@ const NumbersSection = () => {
   ]
 
   return (
-    <div className="relative bg-[#fbede3] py-20 md:py-24 overflow-hidden">
-      {/* Background Decorative Elements */}
-      <div className="absolute inset-0">
+    <div className="relative bg-[#fbede3] py-12 md:py-16 lg:py-20 xl:py-24 overflow-hidden">
+      {/* Background Decorative Elements - Hidden on mobile */}
+      <div className="absolute inset-0 hidden lg:block">
         {/* Top Right Circle */}
         <div className="absolute top-1/4 right-0 translate-x-1/3">
           <Image
@@ -81,28 +81,28 @@ const NumbersSection = () => {
         </div>
       </div>
 
-      <motion.div 
-        className="relative z-10 container mx-auto px-8 md:px-20"
+      <motion.div
+        className="relative z-10 container mx-auto px-4 md:px-10 lg:px-20"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
         viewport={{ once: true }}
       >
-        <div className="flex flex-col lg:flex-row gap-16 lg:gap-20 items-center">
-          
+        <div className="flex flex-col lg:flex-row gap-8 md:gap-12 lg:gap-16 xl:gap-20 items-center">
+
           {/* Left Content */}
-          <motion.div 
-            className="flex-1 max-w-[500px]"
+          <motion.div
+            className="flex-1 max-w-[500px] text-center lg:text-left"
             variants={itemVariants}
           >
-            <h2 className="text-[38px] md:text-[44px] font-semibold text-[#2c360d] mb-6 leading-tight tracking-[-1.76px] capitalize">
+            <h2 className="text-[28px] md:text-[34px] lg:text-[38px] xl:text-[44px] font-semibold text-[#2c360d] mb-4 md:mb-6 leading-tight tracking-[-1.12px] md:tracking-[-1.36px] lg:tracking-[-1.52px] xl:tracking-[-1.76px] capitalize">
               Numbers Are Telling Our Story
             </h2>
-            <p className="text-[18px] md:text-[20px] text-[#2d2d2d] leading-[30px] mb-8 text-justify">
+            <p className="text-[16px] md:text-[18px] lg:text-[18px] xl:text-[20px] text-[#2d2d2d] leading-[24px] md:leading-[27px] lg:leading-[27px] xl:leading-[30px] mb-6 md:mb-8 text-center lg:text-justify">
               Unlock your child&apos;s inner innovator through this hands-on program that blends entrepreneurship, AI, and finance. Students will identify real-world problems, design and build tech-based solutions, and pitch their ventures — all while understanding how money moves in the real world.
             </p>
             <motion.button
-              className="px-6 py-3 bg-[#ff8829] text-white font-medium text-[18px] rounded-lg shadow-[0px_0px_0px_1px_#e67320,0px_1px_3px_0px_rgba(0,0,0,0.1)] hover:bg-[#e67320] transition-colors"
+              className="px-4 md:px-6 py-2.5 md:py-3 bg-[#ff8829] text-white font-medium text-[16px] md:text-[18px] rounded-lg shadow-[0px_0px_0px_1px_#e67320,0px_1px_3px_0px_rgba(0,0,0,0.1)] hover:bg-[#e67320] transition-colors"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -111,36 +111,36 @@ const NumbersSection = () => {
           </motion.div>
 
           {/* Right Stats Card */}
-          <motion.div 
+          <motion.div
             className="flex-1 max-w-[700px] w-full"
             variants={statsVariants}
             initial="hidden"
             animate="visible"
             viewport={{ once: true }}
           >
-            <div className="backdrop-blur-[22px] bg-white/70 rounded-[10px] border border-white p-6 md:p-8">
+            <div className="backdrop-blur-[22px] bg-white/70 rounded-[10px] border border-white p-4 md:p-6 lg:p-8">
               {stats.map((stat, index) => (
-                <motion.div 
+                <motion.div
                   key={index}
                   variants={itemVariants}
                 >
-                  <div className="py-8 first:pt-0 last:pb-0">
+                  <div className="py-6 md:py-8 first:pt-0 last:pb-0">
                     {/* Number */}
-                    <div className="text-[40px] md:text-[48px] font-medium text-[#2d2d2d] mb-5">
+                    <div className="text-[32px] md:text-[40px] lg:text-[48px] font-medium text-[#2d2d2d] mb-3 md:mb-4 lg:mb-5">
                       {stat.number}
                     </div>
-                    
+
                     {/* Title */}
-                    <div className="text-[20px] md:text-[24px] font-medium text-[#161616] mb-2">
+                    <div className="text-[18px] md:text-[20px] lg:text-[24px] font-medium text-[#161616] mb-2">
                       {stat.title}
                     </div>
-                    
+
                     {/* Description */}
-                    <div className="text-[16px] md:text-[18px] text-[#5a5a5a] leading-[27px]">
+                    <div className="text-[14px] md:text-[16px] lg:text-[18px] text-[#5a5a5a] leading-[21px] md:leading-[24px] lg:leading-[27px]">
                       {stat.description}
                     </div>
                   </div>
-                  
+
                   {/* Divider */}
                   {index < stats.length - 1 && (
                     <div className="border-t border-[#c4c4c4]" />

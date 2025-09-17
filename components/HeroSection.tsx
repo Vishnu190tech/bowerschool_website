@@ -25,12 +25,12 @@ const HeroSection = () => {
   ]
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+    <div className="relative  overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900  h-full ">
       {/* Grid background pattern */}
       <div className="absolute inset-0 opacity-30" style={{
         backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='grid' width='60' height='60' patternUnits='userSpaceOnUse'%3E%3Cpath d='M 60 0 L 0 0 0 60' fill='none' stroke='rgba(255,255,255,0.05)' stroke-width='1'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23grid)'/%3E%3C/svg%3E")`
       }} />
-      
+
       {/* Gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-t from-purple-900/50 via-transparent to-transparent" />
 
@@ -40,8 +40,8 @@ const HeroSection = () => {
           key={avatar.id}
           className={`absolute ${avatar.className} ${avatar.size} rounded-full overflow-hidden border-2 border-white/20 shadow-2xl`}
           initial={{ opacity: 0, scale: 0 }}
-          animate={{ 
-            opacity: 1, 
+          animate={{
+            opacity: 1,
             scale: 1,
             y: [0, -20, 0],
           }}
@@ -52,7 +52,7 @@ const HeroSection = () => {
               duration: 4,
               repeat: Infinity,
               repeatType: "reverse",
-              ease: "easeInOut",
+              ease: "easeInOut" as const,
               delay: avatar.delay
             }
           }}
@@ -67,7 +67,7 @@ const HeroSection = () => {
       ))}
 
       {/* Main Content */}
-      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4">
+      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen lg:min-h-[80vh]  xl:min-h-[90vh] px-4">
         <motion.div
           className="text-center max-w-5xl mx-auto"
           initial={{ opacity: 0, y: 20 }}

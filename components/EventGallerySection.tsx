@@ -44,24 +44,20 @@ const EventGallerySection = () => {
   ];
 
   return (
-    <section className="w-full bg-[#f4f4ff] px-20 py-10">
+    <section className="w-full bg-[#f4f4ff] px-4 py-8 md:px-10 md:py-10 lg:px-20">
       <div className="max-w-[1440px] mx-auto">
         {/* Header Section */}
-        <div className="flex flex-col gap-3 mb-8">
-          <div className="flex gap-16">
+        <div className="flex flex-col gap-3 mb-6 md:mb-8">
+          <div className="flex flex-col lg:flex-row gap-4 md:gap-8 lg:gap-16">
             {/* Title */}
-            <div className="w-[608px]">
+            <div className="w-full lg:w-[608px]">
               <motion.h2
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="text-[#111827]"
+                className="text-[#111827] text-[24px] md:text-[32px] lg:text-[40px] font-semibold leading-tight tracking-[-1.6px]"
                 style={{
                   fontFamily: 'var(--font-plus-jakarta)',
-                  fontSize: '40px',
-                  fontWeight: 600,
-                  lineHeight: '40px',
-                  letterSpacing: '-1.6px'
                 }}
               >
                 Concluded on June 10, 2025
@@ -74,12 +70,9 @@ const EventGallerySection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
-                className="text-[#4b5563]"
+                className="text-[#4b5563] text-[16px] md:text-[18px] lg:text-[20px] leading-relaxed"
                 style={{
                   fontFamily: 'var(--font-plus-jakarta)',
-                  fontSize: '20px',
-                  fontWeight: 400,
-                  lineHeight: '30px'
                 }}
               >
                 Join us for an exhilarating day of innovation and collaboration as startups sprint towards their goals. Discover the achievements and breakthroughs from the event.
@@ -91,14 +84,14 @@ const EventGallerySection = () => {
         {/* Image Gallery */}
         <div className="flex flex-col">
           {/* First Row */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex gap-[52px] py-8"
+            className="flex flex-col md:flex-row gap-4 md:gap-8 lg:gap-[52px] py-4 md:py-6 lg:py-8"
           >
             {/* Large image on left */}
-            <div className="flex-1 relative h-[664px] rounded-2xl overflow-hidden border-2 border-white">
+            <div className="flex-1 relative h-[250px] md:h-[400px] lg:h-[664px] rounded-xl lg:rounded-2xl overflow-hidden border-2 border-white">
               <Image
                 src={images[0].src}
                 alt={images[0].alt}
@@ -109,7 +102,7 @@ const EventGallerySection = () => {
             </div>
 
             {/* Smaller image on right */}
-            <div className="flex-1 relative h-[443px] rounded-2xl overflow-hidden border-2 border-white">
+            <div className="flex-1 relative h-[200px] md:h-[300px] lg:h-[443px] rounded-xl lg:rounded-2xl overflow-hidden border-2 border-white md:self-end">
               <Image
                 src={images[1].src}
                 alt={images[1].alt}
@@ -121,13 +114,13 @@ const EventGallerySection = () => {
           </motion.div>
 
           {/* Second Row - Centered Large Image */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="flex justify-end py-8"
+            className="flex justify-center md:justify-end py-4 md:py-6 lg:py-8"
           >
-            <div className="w-[1008px] h-[672px] relative rounded-2xl overflow-hidden border-2 border-white">
+            <div className="w-full md:w-[90%] lg:w-[1008px] h-[250px] md:h-[450px] lg:h-[672px] relative rounded-xl lg:rounded-2xl overflow-hidden border-2 border-white">
               <Image
                 src={images[2].src}
                 alt={images[2].alt}
@@ -139,14 +132,14 @@ const EventGallerySection = () => {
           </motion.div>
 
           {/* Third Row */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="flex gap-[52px] py-8"
+            className="flex flex-col md:flex-row gap-4 md:gap-8 lg:gap-[52px] py-4 md:py-6 lg:py-8"
           >
             {/* Smaller image on left */}
-            <div className="flex-1 relative h-[443px] rounded-2xl overflow-hidden border-2 border-white">
+            <div className="flex-1 relative h-[200px] md:h-[300px] lg:h-[443px] rounded-xl lg:rounded-2xl overflow-hidden border-2 border-white md:self-end">
               <Image
                 src={images[3].src}
                 alt={images[3].alt}
@@ -157,7 +150,7 @@ const EventGallerySection = () => {
             </div>
 
             {/* Large image on right */}
-            <div className="flex-1 relative h-[664px] rounded-2xl overflow-hidden border-2 border-white">
+            <div className="flex-1 relative h-[250px] md:h-[400px] lg:h-[664px] rounded-xl lg:rounded-2xl overflow-hidden border-2 border-white">
               <Image
                 src={images[4].src}
                 alt={images[4].alt}

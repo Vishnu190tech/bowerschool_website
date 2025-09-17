@@ -33,7 +33,7 @@ const PartnershipSection = () => {
   ];
 
   return (
-    <section className="w-full bg-[#f4f4ff] px-[60px] py-10">
+    <section className="w-full bg-[#f4f4ff] px-4 py-8 md:px-10 md:py-10 lg:px-[60px]">
       <div className="max-w-[1440px] mx-auto">
         {/* Header */}
         <motion.div 
@@ -42,25 +42,21 @@ const PartnershipSection = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-8"
         >
-          <h2 
-            className="text-[#111827] capitalize mb-3"
+          <h2
+            className="text-[#111827] capitalize mb-3 text-[28px] md:text-[36px] lg:text-[44px] leading-tight"
             style={{
               fontFamily: 'var(--font-plus-jakarta)',
-              fontSize: '44px',
               fontWeight: 600,
-              lineHeight: '44px',
               letterSpacing: '-1.76px'
             }}
           >
             Shape the Future with Us
           </h2>
-          <p 
-            className="text-[#4b5563]"
+          <p
+            className="text-[#4b5563] text-[16px] md:text-[18px] lg:text-[20px] leading-[1.5] px-0 md:px-8 lg:px-0"
             style={{
               fontFamily: 'var(--font-plus-jakarta)',
-              fontSize: '20px',
-              fontWeight: 400,
-              lineHeight: '30px'
+              fontWeight: 400
             }}
           >
             Partnerships fuel our classrooms, power our labs, and unlock new possibilities for every student.
@@ -68,21 +64,21 @@ const PartnershipSection = () => {
         </motion.div>
 
         {/* Cards Container */}
-        <div className="bg-white/10 backdrop-blur-[60px] rounded-3xl p-6 border-2 border-white shadow-[4px_4px_12px_0px_rgba(0,0,0,0.06)]">
-          <div className="grid grid-cols-2 gap-4">
+        <div className="bg-white/10 backdrop-blur-[60px] rounded-2xl lg:rounded-3xl p-3 md:p-4 lg:p-6 border-2 border-white shadow-[4px_4px_12px_0px_rgba(0,0,0,0.06)]">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
             {cards.map((card, index) => (
               <motion.div
                 key={card.id}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-[#f9faff] rounded-3xl p-2 h-[600px] flex flex-col gap-4 relative"
+                className="bg-[#f9faff] rounded-2xl lg:rounded-3xl p-2 h-[400px] md:h-[500px] lg:h-[600px] flex flex-col gap-3 md:gap-4 relative"
               >
                 {/* White border */}
-                <div className="absolute inset-[-2px] border-2 border-white rounded-[26px] pointer-events-none" />
+                <div className="absolute inset-[-2px] border-2 border-white rounded-[18px] md:rounded-[22px] lg:rounded-[26px] pointer-events-none" />
                 
                 {/* Image */}
-                <div className="relative w-full aspect-[612/442] bg-white rounded-2xl overflow-hidden">
+                <div className="relative w-full aspect-[612/442] bg-white rounded-xl lg:rounded-2xl overflow-hidden">
                   <Image
                     src={card.image}
                     alt={card.title}
@@ -93,26 +89,22 @@ const PartnershipSection = () => {
                 </div>
 
                 {/* Text Content */}
-                <div className="px-4 flex-1 flex flex-col gap-4">
-                  <h3 
-                    className="text-[#111827]"
+                <div className="px-3 md:px-4 flex-1 flex flex-col gap-2 md:gap-3 lg:gap-4">
+                  <h3
+                    className="text-[#111827] text-[18px] md:text-[20px] lg:text-[24px] leading-tight"
                     style={{
                       fontFamily: 'var(--font-plus-jakarta)',
-                      fontSize: '24px',
                       fontWeight: 600,
-                      lineHeight: '24px',
                       letterSpacing: '-0.96px'
                     }}
                   >
                     {card.title}
                   </h3>
-                  <p 
-                    className="text-[#4b5563]"
+                  <p
+                    className="text-[#4b5563] text-[14px] md:text-[16px] lg:text-[18px] leading-[1.5]"
                     style={{
                       fontFamily: 'var(--font-plus-jakarta)',
-                      fontSize: '18px',
-                      fontWeight: 400,
-                      lineHeight: '27px'
+                      fontWeight: 400
                     }}
                   >
                     {card.description}

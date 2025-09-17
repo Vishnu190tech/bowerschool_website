@@ -53,9 +53,9 @@ const ProfileCard = () => {
   }
 
   return (
-    <div className="relative min-h-screen bg-black overflow-hidden">
-      {/* Background Light Effects */}
-      <div className="absolute top-[-473px] left-[262px] w-[1693.86px] h-[1401.86px] mix-blend-hard-light">
+    <div className="relative  bg-black overflow-hidden">
+      {/* Background Light Effects - Hidden on Mobile */}
+      <div className="hidden md:block absolute top-[-473px] left-[262px] w-[1693.86px] h-[1401.86px] mix-blend-hard-light">
         <Image
           src="/c4fa6ab598b6d21695881e931d07c75d081b489e.svg"
           alt="Light effect"
@@ -63,7 +63,7 @@ const ProfileCard = () => {
           className="object-cover"
         />
       </div>
-      <div className="absolute top-[371px] left-[-735px] w-[1693.86px] h-[1401.86px] mix-blend-hard-light">
+      <div className="hidden md:block absolute top-[371px] left-[-735px] w-[1693.86px] h-[1401.86px] mix-blend-hard-light">
         <Image
           src="/c4fa6ab598b6d21695881e931d07c75d081b489e.svg"
           alt="Light effect"
@@ -73,28 +73,28 @@ const ProfileCard = () => {
       </div>
 
       {/* Main Card Container */}
-      <div className="relative z-10 flex items-center justify-center min-h-screen p-8">
+      <div className="relative z-10 flex items-center justify-center p-4 md:p-6 lg:p-8">
         <motion.div
-          className="bg-[#161616] rounded-3xl w-full max-w-[1280px] shadow-[150px_166px_63px_0px_rgba(0,0,0,0.01),96px_106px_57px_0px_rgba(0,0,0,0.04),54px_60px_48px_0px_rgba(0,0,0,0.14),24px_27px_36px_0px_rgba(0,0,0,0.23),6px_7px_20px_0px_rgba(0,0,0,0.27)]"
+          className="bg-[#161616] rounded-2xl md:rounded-3xl w-full max-w-[1280px] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.3)] md:shadow-[150px_166px_63px_0px_rgba(0,0,0,0.01),96px_106px_57px_0px_rgba(0,0,0,0.04),54px_60px_48px_0px_rgba(0,0,0,0.14),24px_27px_36px_0px_rgba(0,0,0,0.23),6px_7px_20px_0px_rgba(0,0,0,0.27)]"
           initial="hidden"
           animate="visible"
           variants={containerVariants}
         >
-          <div className="p-8 md:p-12">
+          <div className="p-6 md:p-8 lg:p-12">
             {/* Header */}
-            <motion.h1 
-              className="text-[#ff8829] text-3xl md:text-[44px] font-semibold capitalize tracking-[-1.76px] mb-9"
+            <motion.h1
+              className="text-[#ff8829] text-[24px] md:text-3xl lg:text-[44px] font-semibold capitalize tracking-[-1px] md:tracking-[-1.4px] lg:tracking-[-1.76px] mb-6 md:mb-9"
               variants={itemVariants}
             >
               You After Bower's Camp
             </motion.h1>
 
             {/* Profile Section */}
-            <motion.div 
-              className="flex items-center gap-12 mb-9"
+            <motion.div
+              className="flex flex-col md:flex-row items-center gap-4 md:gap-8 lg:gap-12 mb-6 md:mb-9"
               variants={itemVariants}
             >
-              <div className="relative w-[123px] h-[123px] rounded-full overflow-hidden">
+              <div className="relative w-[80px] h-[80px] md:w-[100px] md:h-[100px] lg:w-[123px] lg:h-[123px] rounded-full overflow-hidden flex-shrink-0">
                 <Image
                   src="/6794569b1ec7c714d7c310e2b90d160269fb175f.png"
                   alt="Aadithya Iyer"
@@ -102,17 +102,17 @@ const ProfileCard = () => {
                   className="object-cover"
                 />
               </div>
-              <div className="flex flex-col gap-1">
-                <h2 className="text-white text-[32px] font-semibold">
+              <div className="flex flex-col gap-1 text-center md:text-left">
+                <h2 className="text-white text-[20px] md:text-[26px] lg:text-[32px] font-semibold">
                   Aadithya Iyer
                 </h2>
-                <p className="text-[#6a6a6a] text-2xl">
+                <p className="text-[#6a6a6a] text-[16px] md:text-xl lg:text-2xl">
                   Young Entrepreneur
                 </p>
-                <div className="flex gap-2 mt-2">
-                  <motion.a 
-                    href="#" 
-                    className="w-10 h-10"
+                <div className="flex gap-2 mt-2 justify-center md:justify-start">
+                  <motion.a
+                    href="#"
+                    className="w-8 h-8 md:w-10 md:h-10"
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
                   >
@@ -123,9 +123,9 @@ const ProfileCard = () => {
                       height={40}
                     />
                   </motion.a>
-                  <motion.a 
-                    href="#" 
-                    className="w-[47px] h-[47px]"
+                  <motion.a
+                    href="#"
+                    className="w-[38px] h-[38px] md:w-[47px] md:h-[47px]"
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
                   >
@@ -141,24 +141,24 @@ const ProfileCard = () => {
             </motion.div>
 
             {/* Details Grid */}
-            <motion.div 
-              className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-9"
+            <motion.div
+              className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 lg:gap-12 mb-6 md:mb-9"
               variants={itemVariants}
             >
               {/* Left Column */}
-              <div className="flex flex-col gap-9">
+              <div className="flex flex-col gap-6 md:gap-9">
                 {/* School Info */}
                 <div className="flex flex-col gap-2">
-                  <p className="text-[#6a6a6a] text-base">School</p>
-                  <p className="text-white text-2xl font-semibold">
+                  <p className="text-[#6a6a6a] text-sm md:text-base">School</p>
+                  <p className="text-white text-[18px] md:text-xl lg:text-2xl font-semibold">
                     Bower School of Entrepreneurship
                   </p>
                 </div>
-                
+
                 {/* Education Info */}
                 <div className="flex flex-col gap-2">
-                  <p className="text-[#6a6a6a] text-base">Education</p>
-                  <p className="text-white text-2xl font-semibold">
+                  <p className="text-[#6a6a6a] text-sm md:text-base">Education</p>
+                  <p className="text-white text-[18px] md:text-xl lg:text-2xl font-semibold">
                     Grade 3
                   </p>
                 </div>
@@ -166,12 +166,12 @@ const ProfileCard = () => {
 
               {/* Right Column - Projects */}
               <div className="flex flex-col gap-2">
-                <p className="text-[#6a6a6a] text-base">Projects</p>
-                <ul className="flex flex-col gap-3">
+                <p className="text-[#6a6a6a] text-sm md:text-base">Projects</p>
+                <ul className="flex flex-col gap-2 md:gap-3">
                   {projects.map((project, index) => (
                     <motion.li
                       key={index}
-                      className="text-white text-2xl font-semibold list-disc ml-9"
+                      className="text-white text-[16px] md:text-xl lg:text-2xl font-semibold list-disc ml-6 md:ml-9"
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.3 + index * 0.1 }}
@@ -184,18 +184,18 @@ const ProfileCard = () => {
             </motion.div>
 
             {/* Skills Section */}
-            <motion.div 
-              className="grid grid-cols-1 lg:grid-cols-2 gap-12"
+            <motion.div
+              className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 lg:gap-12"
               variants={itemVariants}
             >
               {/* Hard Skills */}
               <div className="flex flex-col gap-2">
-                <p className="text-[#6a6a6a] text-base mb-2">Hard Skills</p>
-                <div className="flex flex-wrap gap-3">
+                <p className="text-[#6a6a6a] text-sm md:text-base mb-2">Hard Skills</p>
+                <div className="flex flex-wrap gap-2 md:gap-3">
                   {hardSkills.map((skill, index) => (
                     <motion.div
                       key={index}
-                      className="bg-[rgba(255,136,41,0.1)] border border-[#ff8829] rounded-full px-3 py-1.5 flex items-center gap-2.5"
+                      className="bg-[rgba(255,136,41,0.1)] border border-[#ff8829] rounded-full px-2 py-1 md:px-3 md:py-1.5 flex items-center gap-1.5 md:gap-2.5"
                       initial={{ opacity: 0, scale: 0 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ delay: 0.5 + index * 0.05 }}
@@ -207,9 +207,10 @@ const ProfileCard = () => {
                           alt=""
                           width={16}
                           height={16}
+                          className="w-3 h-3 md:w-4 md:h-4"
                         />
                       )}
-                      <span className="text-white text-base whitespace-nowrap">
+                      <span className="text-white text-xs md:text-sm lg:text-base whitespace-nowrap">
                         {skill.name}
                       </span>
                     </motion.div>
@@ -219,18 +220,18 @@ const ProfileCard = () => {
 
               {/* Soft Skills */}
               <div className="flex flex-col gap-2">
-                <p className="text-[#6a6a6a] text-base mb-2">Soft Skills</p>
-                <div className="flex flex-wrap gap-3">
+                <p className="text-[#6a6a6a] text-sm md:text-base mb-2">Soft Skills</p>
+                <div className="flex flex-wrap gap-2 md:gap-3">
                   {softSkills.map((skill, index) => (
                     <motion.div
                       key={index}
-                      className="bg-[rgba(255,136,41,0.1)] border border-[#ff8829] rounded-full px-3 py-1.5"
+                      className="bg-[rgba(255,136,41,0.1)] border border-[#ff8829] rounded-full px-2 py-1 md:px-3 md:py-1.5"
                       initial={{ opacity: 0, scale: 0 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ delay: 0.7 + index * 0.05 }}
                       whileHover={{ scale: 1.05, backgroundColor: 'rgba(255,136,41,0.2)' }}
                     >
-                      <span className="text-white text-base whitespace-nowrap">
+                      <span className="text-white text-xs md:text-sm lg:text-base whitespace-nowrap">
                         {skill}
                       </span>
                     </motion.div>

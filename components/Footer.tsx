@@ -12,15 +12,15 @@ export default function Footer() {
             {/* Top Links */}
             <div className="flex flex-col gap-4">
               <div className="flex flex-wrap items-center gap-2 text-xl text-gray-300 font-normal">
-                <Link href="/for-schools" className="hover:text-white transition-colors">
+                <Link href="/programs/k12-school" className="hover:text-white transition-colors">
                   For Schools
                 </Link>
                 <span>/</span>
-                <Link href="/for-businesses" className="hover:text-white transition-colors">
+                <Link href="/partnership" className="hover:text-white transition-colors">
                   For Businesses
                 </Link>
                 <span>/</span>
-                <Link href="/for-partners" className="hover:text-white transition-colors">
+                <Link href="/partnership" className="hover:text-white transition-colors">
                   For Partners
                 </Link>
               </div>
@@ -33,10 +33,17 @@ export default function Footer() {
                   <div className="flex flex-col gap-6">
                     <h3 className="text-sm font-medium text-white">Info</h3>
                     <ul className="flex flex-col gap-2">
-                      {['About us', 'Campus Life', 'Events', 'Partners', 'FAQs', 'Scholarships'].map((item) => (
-                        <li key={item}>
-                          <Link href="#" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">
-                            {item}
+                      {[
+                        { name: 'About us', href: '/about-us' },
+                        { name: 'Campus Life', href: '/campus-life' },
+                        { name: 'Events', href: '/events' },
+                        { name: 'Partners', href: '/partnership' },
+                        { name: 'FAQs', href: '#' },
+                        { name: 'Scholarships', href: '#' }
+                      ].map((item) => (
+                        <li key={item.name}>
+                          <Link href={item.href} className="text-sm font-medium text-gray-300 hover:text-white transition-colors">
+                            {item.name}
                           </Link>
                         </li>
                       ))}
@@ -47,10 +54,16 @@ export default function Footer() {
                   <div className="flex flex-col gap-6">
                     <h3 className="text-sm font-medium text-white">Additional</h3>
                     <ul className="flex flex-col gap-1.5">
-                      {['Open Day', 'Alumni connect', 'Become a mentor', 'News', 'Blogs'].map((item) => (
-                        <li key={item}>
-                          <Link href="#" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">
-                            {item}
+                      {[
+                        { name: 'Open Day', href: '/open-day' },
+                        { name: 'Alumni connect', href: '/alumni-connect' },
+                        { name: 'Become a mentor', href: '/mentors' },
+                        { name: 'News', href: '#' },
+                        { name: 'Blogs', href: '#' }
+                      ].map((item) => (
+                        <li key={item.name}>
+                          <Link href={item.href} className="text-sm font-medium text-gray-300 hover:text-white transition-colors">
+                            {item.name}
                           </Link>
                         </li>
                       ))}
@@ -61,10 +74,15 @@ export default function Footer() {
                   <div className="flex flex-col gap-6">
                     <h3 className="text-sm font-medium text-white">Programs</h3>
                     <ul className="flex flex-col gap-1.5">
-                      {['K-12 Seed program', 'UG Program', 'PG Programs', 'Masterclasses'].map((item) => (
-                        <li key={item}>
-                          <Link href="#" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">
-                            {item}
+                      {[
+                        { name: 'K-12 Seed program', href: '/programs/k12-seed' },
+                        { name: 'UG Program', href: '/programs/ug' },
+                        { name: 'PG Programs', href: '/programs/lead' },
+                        { name: 'Masterclasses', href: '/programs/masterclasses' }
+                      ].map((item) => (
+                        <li key={item.name}>
+                          <Link href={item.href} className="text-sm font-medium text-gray-300 hover:text-white transition-colors">
+                            {item.name}
                           </Link>
                         </li>
                       ))}
@@ -167,15 +185,15 @@ export default function Footer() {
         <div className="lg:hidden">
           {/* Top Links Mobile */}
           <div className="flex flex-wrap items-center gap-2 text-sm text-gray-300 font-normal mb-8">
-            <Link href="/for-schools" className="hover:text-white transition-colors">
+            <Link href="/programs/k12-school" className="hover:text-white transition-colors">
               For Schools
             </Link>
             <span>/</span>
-            <Link href="/for-businesses" className="hover:text-white transition-colors">
+            <Link href="/partnership" className="hover:text-white transition-colors">
               For Businesses
             </Link>
             <span>/</span>
-            <Link href="/for-partners" className="hover:text-white transition-colors">
+            <Link href="/partnership" className="hover:text-white transition-colors">
               For Partners
             </Link>
           </div>
@@ -197,10 +215,17 @@ export default function Footer() {
                 <span className="group-open:rotate-180 transition-transform">▼</span>
               </summary>
               <ul className="mt-4 space-y-2">
-                {['Why Bower', 'Campus Life', 'Events', 'Partners', 'FAQs', 'Scholarships'].map((item) => (
-                  <li key={item}>
-                    <Link href="#" className="text-sm text-gray-300 hover:text-white block py-1">
-                      {item}
+                {[
+                  { name: 'About us', href: '/about-us' },
+                  { name: 'Campus Life', href: '/campus-life' },
+                  { name: 'Events', href: '/events' },
+                  { name: 'Partners', href: '/partnership' },
+                  { name: 'FAQs', href: '#' },
+                  { name: 'Scholarships', href: '#' }
+                ].map((item) => (
+                  <li key={item.name}>
+                    <Link href={item.href} className="text-sm text-gray-300 hover:text-white block py-1">
+                      {item.name}
                     </Link>
                   </li>
                 ))}
@@ -214,10 +239,16 @@ export default function Footer() {
                 <span className="group-open:rotate-180 transition-transform">▼</span>
               </summary>
               <ul className="mt-4 space-y-2">
-                {['Open Day', 'Alumni connect', 'Become a mentor', 'News', 'Blogs'].map((item) => (
-                  <li key={item}>
-                    <Link href="#" className="text-sm text-gray-300 hover:text-white block py-1">
-                      {item}
+                {[
+                  { name: 'Open Day', href: '/open-day' },
+                  { name: 'Alumni connect', href: '/alumni-connect' },
+                  { name: 'Become a mentor', href: '/mentors' },
+                  { name: 'News', href: '#' },
+                  { name: 'Blogs', href: '#' }
+                ].map((item) => (
+                  <li key={item.name}>
+                    <Link href={item.href} className="text-sm text-gray-300 hover:text-white block py-1">
+                      {item.name}
                     </Link>
                   </li>
                 ))}
@@ -231,10 +262,15 @@ export default function Footer() {
                 <span className="group-open:rotate-180 transition-transform">▼</span>
               </summary>
               <ul className="mt-4 space-y-2">
-                {['K-12 Seed program', 'UG Program', 'PG Programs', 'Masterclasses'].map((item) => (
-                  <li key={item}>
-                    <Link href="#" className="text-sm text-gray-300 hover:text-white block py-1">
-                      {item}
+                {[
+                  { name: 'K-12 Seed program', href: '/programs/k12-seed' },
+                  { name: 'UG Program', href: '/programs/ug' },
+                  { name: 'PG Programs', href: '/programs/lead' },
+                  { name: 'Masterclasses', href: '/programs/masterclasses' }
+                ].map((item) => (
+                  <li key={item.name}>
+                    <Link href={item.href} className="text-sm text-gray-300 hover:text-white block py-1">
+                      {item.name}
                     </Link>
                   </li>
                 ))}

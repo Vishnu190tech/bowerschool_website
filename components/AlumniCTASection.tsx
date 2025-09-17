@@ -19,9 +19,9 @@ const AlumniCTASection = () => {
     visible: {
       opacity: 1,
       y: 0,
-      transition: { 
+      transition: {
         duration: 0.6,
-        ease: "easeOut"
+        ease: "easeOut" as const
       }
     }
   }

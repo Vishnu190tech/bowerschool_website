@@ -4,83 +4,51 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 
 const partnerLogos = [
-  { name: 'CRED', logo: '/cred-logo.svg', width: 60 },
-  { name: 'Unity', logo: '/unity-logo.svg', width: 60 },
-  { name: 'CRED', logo: '/cred-logo.svg', width: 60 },
-  { name: 'Airbnb', logo: '/airbnb-logo.svg', width: 80 },
-  { name: 'Unity', logo: '/unity-logo.svg', width: 60 },
-  { name: 'Airbnb', logo: '/airbnb-logo.svg', width: 80 },
-  { name: 'Google', text: 'Google', width: 80 },
-  { name: 'Netflix', text: 'NETFLIX', width: 80 }
+  { name: 'CRED', logo: '/22d761ba44c7c2babc8bb51b802e086cc1339998.png', width: 65, height: 24 },
+  { name: 'Unity', logo: '/ff93379a9ca517e9a293ef7ad09a123c9296dc33.png', width: 42, height: 24 },
+  { name: 'CRED2', logo: '/22d761ba44c7c2babc8bb51b802e086cc1339998.png', width: 66, height: 24 },
+  { name: 'Airbnb', logo: '/6f161c58539e1ac4fb9bbf145a1c2938d5636702.png', width: 73, height: 24 },
+  { name: 'Unity2', logo: '/ff93379a9ca517e9a293ef7ad09a123c9296dc33.png', width: 42, height: 24 },
+  { name: 'Airbnb2', logo: '/6f161c58539e1ac4fb9bbf145a1c2938d5636702.png', width: 72, height: 24 },
+  { name: 'Google', logo: '/c53e882f3a3f2d1c237564546b2e2940e85e99c2.svg', width: 45, height: 16 },
+  { name: 'Netflix', logo: '/f5ea92c4a038730c0618608c3e3379943709d55b.svg', width: 55, height: 16 }
 ];
 
 export default function Hero() {
   return (
-    <div className="relative  bg-gradient-to-br from-[#0a0a1f] via-[#1a1a3e] to-[#0a0a1f] overflow-hidden">
-      {/* Grid Background Pattern */}
-      <div className="absolute inset-0 opacity-20">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `
-              linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
-              linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px)
-            `,
-            backgroundSize: '40px 40px'
-          }}
+    <div className="relative   overflow-hidden">
+      {/* Desktop Background */}
+      <div className="hidden sm:block absolute inset-0">
+        <Image
+          src="/bg-hero.png"
+          alt=""
+          fill
+          className="object-cover"
+          priority
         />
       </div>
 
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0">
-        {/* Gradient Orbs */}
-        <motion.div
-          animate={{
-            x: [0, 100, 0],
-            y: [0, -100, 0],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "linear"
-          }}
-          className="absolute top-20 right-20 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl"
-        />
-        <motion.div
-          animate={{
-            x: [0, -100, 0],
-            y: [0, 100, 0],
-          }}
-          transition={{
-            duration: 25,
-            repeat: Infinity,
-            ease: "linear"
-          }}
-          className="absolute bottom-20 left-20 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl"
-        />
-        <motion.div
-          animate={{
-            x: [0, 50, 0],
-            y: [0, 50, 0],
-          }}
-          transition={{
-            duration: 15,
-            repeat: Infinity,
-            ease: "linear"
-          }}
-          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl"
+      {/* Mobile Background */}
+      <div className="sm:hidden absolute inset-0">
+        <Image
+          src="/bg-hero-mobile.png"
+          alt=""
+          fill
+          className="object-cover"
+          priority
         />
       </div>
+
 
       {/* Hero Content */}
-      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-20 pt-24 sm:pt-32 pb-16 sm:pb-32">
+      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-20 pt-28 sm:pt-32 pb-12 sm:pb-32">
         <div className="max-w-4xl mx-auto lg:mx-0">
           {/* Badge - Hidden on mobile */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="hidden sm:inline-block mb-8"
+            className="  mb-8"
           >
             <span className="px-4 py-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full text-sm text-white">
               Bower school
@@ -92,7 +60,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white mb-8 sm:mb-6 leading-tight text-center sm:text-left"
+            className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white mb-8 sm:mb-6  leading-tight text-center sm:text-left"
           >
             Entrepreneurship<br />
             Begins Here
@@ -103,7 +71,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="flex flex-col sm:flex-row gap-4 mb-12 sm:mb-20"
+            className="flex flex-col sm:flex-row gap-4 mb-8"
           >
             <motion.button
               whileHover={{ scale: 1.05 }}
@@ -123,72 +91,96 @@ export default function Hero() {
               Download Brochure
             </motion.button>
           </motion.div>
-
-          {/* Partner Logos Section */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="mt-12 sm:mt-20"
-          >
-            <p className="text-white/60 text-xs sm:text-sm mb-4 sm:mb-6">Learn from the Best</p>
-            <div className="grid grid-cols-3 sm:flex sm:flex-wrap items-center gap-4 sm:gap-8">
-              {partnerLogos.map((partner, index) => (
-                <div key={index} className={`${index >= 6 ? 'hidden sm:block' : ''}`}>
-                  {partner.logo ? (
-                    <Image
-                      src={partner.logo}
-                      alt={partner.name}
-                      width={partner.width}
-                      height={30}
-                      className="opacity-80 hover:opacity-100 transition-opacity"
-                    />
-                  ) : (
-                    <div className="text-white/80 font-bold text-sm sm:text-xl text-center sm:text-left">
-                      {partner.text}
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-          </motion.div>
         </div>
       </div>
 
-      {/* Floating Elements */}
+      {/* Partner Logos Section - Full Width */}
       <motion.div
-        animate={{
-          y: [0, -20, 0],
-        }}
-        transition={{
-          duration: 4,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-        className="absolute top-40 right-40 w-20 h-20 bg-gradient-to-br from-blue-400 to-purple-600 rounded-2xl opacity-50 blur-sm"
-      />
-      <motion.div
-        animate={{
-          y: [0, 20, 0],
-        }}
-        transition={{
-          duration: 5,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-        className="absolute bottom-40 right-60 w-16 h-16 bg-gradient-to-br from-purple-400 to-pink-600 rounded-full opacity-50 blur-sm"
-      />
-      <motion.div
-        animate={{
-          rotate: [0, 360],
-        }}
-        transition={{
-          duration: 20,
-          repeat: Infinity,
-          ease: "linear"
-        }}
-        className="absolute top-60 left-40 w-24 h-24 bg-gradient-to-br from-indigo-400 to-blue-600 rounded-3xl opacity-30 blur-sm"
-      />
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.3 }}
+        className="relative -mt-8 sm:-mt-12 mb-16 sm:mb-20"
+      >
+        {/* Full-width glossy background strip */}
+        <div className="relative backdrop-blur-lg bg-[rgba(37,37,37,0.3)] h-16 sm:h-20 overflow-hidden">
+
+          <div className="container mx-auto px-4 sm:px-6 lg:px-20 h-full relative">
+            {/* "Learn from the Best" with solid background to mask logos */}
+            <div className="absolute left-0 top-0 bottom-0 z-20 flex items-center">
+              <div className="bg-[rgba(37,37,37,0.95)] backdrop-blur-xl pl-4 sm:pl-6 lg:pl-20 pr-8 sm:pr-16 h-full flex items-center">
+                <p
+                  className="text-[#f0f0ff] text-sm sm:text-[14px] font-medium whitespace-nowrap"
+                  style={{
+                    fontFamily: 'var(--font-plus-jakarta)',
+                    lineHeight: '20px'
+                  }}
+                >
+                  Learn from the Best
+                </p>
+              </div>
+              {/* Gradient fade on the right edge of text background */}
+              <div
+                className="absolute right-0 top-0 bottom-0 w-16 pointer-events-none"
+                style={{
+                  background: 'linear-gradient(to right, rgba(37,37,37,0.95) 0%, transparent 100%)'
+                }}
+              />
+            </div>
+
+            {/* Scrolling logos container */}
+            <div className="absolute inset-0 flex items-center">
+              <motion.div
+                className="flex items-center gap-12 sm:gap-20 pl-[200px] sm:pl-[300px] lg:pl-[400px]"
+                animate={{
+                  x: ["0%", "-50%"]
+                }}
+                transition={{
+                  x: {
+                    repeat: Infinity,
+                    repeatType: "loop",
+                    duration: 25,
+                    ease: "linear",
+                  },
+                }}
+              >
+                {/* First set of logos */}
+                {partnerLogos.map((partner, index) => (
+                  <div key={`first-${index}`} className="flex-shrink-0">
+                    <Image
+                      src={partner.logo}
+                      alt={partner.name}
+                      width={partner.width * 1.5}
+                      height={partner.height * 1.5}
+                      className="h-6 sm:h-8 w-auto object-contain opacity-80"
+                    />
+                  </div>
+                ))}
+                {/* Duplicate set for seamless scroll */}
+                {partnerLogos.map((partner, index) => (
+                  <div key={`second-${index}`} className="flex-shrink-0">
+                    <Image
+                      src={partner.logo}
+                      alt={partner.name}
+                      width={partner.width * 1.5}
+                      height={partner.height * 1.5}
+                      className="h-6 sm:h-8 w-auto object-contain opacity-80"
+                    />
+                  </div>
+                ))}
+              </motion.div>
+            </div>
+
+            {/* Right edge fade */}
+            <div
+              className="absolute right-0 top-0 bottom-0 w-32 pointer-events-none z-10"
+              style={{
+                background: 'linear-gradient(to left, rgba(37,37,37,0.3) 0%, transparent 100%)'
+              }}
+            />
+          </div>
+        </div>
+      </motion.div>
+
     </div>
   );
 }

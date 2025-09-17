@@ -33,23 +33,19 @@ const OtherEventsSection = () => {
   ];
 
   return (
-    <section className="w-full bg-gradient-to-b from-[#1e1b4b] to-[#0f0e29] px-20 py-10">
+    <section className="w-full bg-gradient-to-b from-[#1e1b4b] to-[#0f0e29] px-4 py-8 md:px-10 md:py-10 lg:px-20">
       <div className="max-w-[1440px] mx-auto">
         {/* Header */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-9"
+          className="text-center mb-6 md:mb-8 lg:mb-9"
         >
-          <h2 
-            className="text-white capitalize"
+          <h2
+            className="text-white capitalize text-[28px] md:text-[36px] lg:text-[44px] font-semibold leading-tight tracking-[-1.76px]"
             style={{
               fontFamily: 'var(--font-plus-jakarta)',
-              fontSize: '44px',
-              fontWeight: 600,
-              lineHeight: '44px',
-              letterSpacing: '-1.76px'
             }}
           >
             Other Events ByBower
@@ -57,10 +53,10 @@ const OtherEventsSection = () => {
         </motion.div>
 
         {/* Events Container */}
-        <div className="relative backdrop-blur-[60px] rounded-3xl h-[431px] border-2 border-white shadow-[4px_4px_12px_0px_rgba(0,0,0,0.06)]">
+        <div className="relative backdrop-blur-[60px] rounded-2xl lg:rounded-3xl min-h-[500px] md:min-h-[450px] lg:h-[431px] border-2 border-white shadow-[4px_4px_12px_0px_rgba(0,0,0,0.06)] p-3 md:p-4 lg:p-0">
           {/* Background decorative circles */}
-          <div className="absolute inset-0 overflow-hidden rounded-3xl">
-            <div className="absolute -top-[200px] -left-[200px] w-[738px] h-[738px]">
+          <div className="absolute inset-0 overflow-hidden rounded-2xl lg:rounded-3xl">
+            <div className="absolute -top-[100px] -left-[100px] md:-top-[150px] md:-left-[150px] lg:-top-[200px] lg:-left-[200px] w-[300px] h-[300px] md:w-[500px] md:h-[500px] lg:w-[738px] lg:h-[738px]">
               <Image
                 src="/aa95ca462609d629ea62a1e467f24a780613ed64.svg"
                 alt=""
@@ -68,7 +64,7 @@ const OtherEventsSection = () => {
                 className="object-contain"
               />
             </div>
-            <div className="absolute -bottom-[200px] -right-[200px] w-[738px] h-[738px]">
+            <div className="absolute -bottom-[100px] -right-[100px] md:-bottom-[150px] md:-right-[150px] lg:-bottom-[200px] lg:-right-[200px] w-[300px] h-[300px] md:w-[500px] md:h-[500px] lg:w-[738px] lg:h-[738px]">
               <Image
                 src="/8364c15fd75f52cb16654eef802935ed0c26e3ed.svg"
                 alt=""
@@ -79,14 +75,14 @@ const OtherEventsSection = () => {
           </div>
 
           {/* Events Grid */}
-          <div className="relative z-10 h-full flex items-center justify-center px-6">
-            <div className="flex gap-[18px] w-[1248px]">
+          <div className="relative z-10 h-full flex items-center justify-center lg:px-6">
+            <div className="flex flex-col md:flex-row gap-3 md:gap-4 lg:gap-[18px] w-full lg:w-[1248px]">
               {/* Large Event Card */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5 }}
-                className="relative w-[600px] h-[400px] rounded-2xl overflow-hidden group cursor-pointer"
+                className="relative w-full md:w-[55%] lg:w-[600px] h-[250px] md:h-[350px] lg:h-[400px] rounded-xl lg:rounded-2xl overflow-hidden group cursor-pointer"
                 style={{
                   backgroundImage: `url('${events[0].mainImage}')`,
                   backgroundSize: 'cover',
@@ -107,27 +103,20 @@ const OtherEventsSection = () => {
                 )}
 
                 {/* Info Card */}
-                <div className="absolute bottom-3 left-3 bg-[#26262b] backdrop-blur-3xl rounded-xl border border-[#303038] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)]">
-                  <div className="p-3">
-                    <h3 
-                      className="text-white mb-2"
+                <div className="absolute bottom-2 left-2 md:bottom-3 md:left-3 bg-[#26262b] backdrop-blur-3xl rounded-lg md:rounded-xl border border-[#303038] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)]">
+                  <div className="p-2 md:p-3">
+                    <h3
+                      className="text-white mb-1 md:mb-2 text-[16px] md:text-[20px] lg:text-[24px] font-semibold leading-tight tracking-[-0.96px]"
                       style={{
                         fontFamily: 'var(--font-plus-jakarta)',
-                        fontSize: '24px',
-                        fontWeight: 600,
-                        lineHeight: '24px',
-                        letterSpacing: '-0.96px'
                       }}
                     >
                       {events[0].title}
                     </h3>
-                    <p 
-                      className="text-gray-300"
+                    <p
+                      className="text-gray-300 text-[12px] md:text-[14px] lg:text-[16px] leading-relaxed"
                       style={{
                         fontFamily: 'var(--font-plus-jakarta)',
-                        fontSize: '16px',
-                        fontWeight: 400,
-                        lineHeight: '24px'
                       }}
                     >
                       {events[0].date}
@@ -136,14 +125,15 @@ const OtherEventsSection = () => {
                 </div>
               </motion.div>
 
-              {/* Smaller Event Cards */}
-              {events.slice(1).map((event, index) => (
-                <motion.div
-                  key={event.id}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5, delay: 0.1 * (index + 1) }}
-                  className="relative flex-1 h-[400px] rounded-2xl overflow-hidden group cursor-pointer"
+              {/* Smaller Event Cards Container */}
+              <div className="flex flex-col md:flex-1 gap-3 md:gap-4 lg:gap-[18px]">
+                {events.slice(1).map((event, index) => (
+                  <motion.div
+                    key={event.id}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.5, delay: 0.1 * (index + 1) }}
+                    className="relative w-full h-[200px] md:h-[167px] lg:h-[191px] rounded-xl lg:rounded-2xl overflow-hidden group cursor-pointer"
                   style={{
                     backgroundImage: event.overlayImage 
                       ? `url('${event.mainImage}'), url('${event.overlayImage}')`
@@ -152,36 +142,30 @@ const OtherEventsSection = () => {
                     backgroundPosition: 'center'
                   }}
                 >
-                  {/* Info Card */}
-                  <div className="absolute bottom-3 left-3 bg-[#26262b] backdrop-blur-3xl rounded-xl border border-[#303038] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)]">
-                    <div className="p-3">
-                      <h3 
-                        className="text-white mb-2"
-                        style={{
-                          fontFamily: 'var(--font-plus-jakarta)',
-                          fontSize: '24px',
-                          fontWeight: 600,
-                          lineHeight: '24px',
-                          letterSpacing: '-0.96px'
-                        }}
-                      >
-                        {event.title}
-                      </h3>
-                      <p 
-                        className="text-gray-300"
-                        style={{
-                          fontFamily: 'var(--font-plus-jakarta)',
-                          fontSize: '16px',
-                          fontWeight: 400,
-                          lineHeight: '24px'
-                        }}
-                      >
-                        {event.date}
-                      </p>
+                    {/* Info Card */}
+                    <div className="absolute bottom-2 left-2 md:bottom-3 md:left-3 bg-[#26262b] backdrop-blur-3xl rounded-lg md:rounded-xl border border-[#303038] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)]">
+                      <div className="p-2 md:p-3">
+                        <h3
+                          className="text-white mb-1 md:mb-2 text-[14px] md:text-[18px] lg:text-[24px] font-semibold leading-tight tracking-[-0.96px]"
+                          style={{
+                            fontFamily: 'var(--font-plus-jakarta)',
+                          }}
+                        >
+                          {event.title}
+                        </h3>
+                        <p
+                          className="text-gray-300 text-[12px] md:text-[14px] lg:text-[16px] leading-relaxed"
+                          style={{
+                            fontFamily: 'var(--font-plus-jakarta)',
+                          }}
+                        >
+                          {event.date}
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                </motion.div>
-              ))}
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </div>
         </div>

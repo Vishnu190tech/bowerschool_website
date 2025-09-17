@@ -13,27 +13,28 @@ const OverviewSection = () => {
       transition: {
         delay: i * 0.1,
         duration: 0.5,
-        ease: "easeOut"
+        ease: "easeOut" as const
       }
     })
   }
 
   return (
-    <div className="bg-[#f8eee7] box-border flex flex-col gap-9 items-start justify-start px-8 md:px-20 py-10 relative w-full">
-      {/* Header Section */}
-      <motion.div 
-        className="flex gap-16 items-start justify-start relative w-full"
-        initial={{ opacity: 0, x: -30 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.6 }}
-      >
-        <h2 className="font-semibold leading-none relative text-[#252525] text-3xl md:text-[44px] tracking-[-1.76px]">
-          Overview
-        </h2>
-      </motion.div>
+    <div className="bg-[#f8eee7] py-10 relative w-full">
+      <div className="max-w-[1440px] mx-auto px-8 md:px-20 flex flex-col gap-9 items-start justify-start">
+        {/* Header Section */}
+        <motion.div
+          className="flex gap-16 items-start justify-start relative w-full"
+          initial={{ opacity: 0, x: -30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <h2 className="font-semibold leading-none relative text-[#252525] text-3xl md:text-[44px] tracking-[-1.76px]">
+            Overview
+          </h2>
+        </motion.div>
 
-      {/* Main Container with Cards */}
-      <div className="box-border flex flex-col lg:flex-row gap-[18px] items-stretch justify-start relative w-full">
+        {/* Main Container with Cards */}
+        <div className="box-border flex flex-col lg:flex-row gap-[18px] items-stretch justify-start relative w-full">
         {/* Left Card - Who? */}
         <motion.div 
           className="flex-1 bg-white rounded-2xl relative min-h-[200px]"
@@ -42,7 +43,7 @@ const OverviewSection = () => {
           animate="visible"
           variants={cardVariants}
           whileHover={{ scale: 1.02 }}
-          transition={{ type: "spring", stiffness: 300 }}
+          transition={{ type: "spring" as const, stiffness: 300 }}
         >
           <div className="box-border flex flex-col items-start justify-between p-6 relative h-full">
             <h3 className="font-semibold text-[#6a6a6a] text-xl md:text-2xl mb-4">
@@ -71,7 +72,7 @@ const OverviewSection = () => {
               animate="visible"
               variants={cardVariants}
               whileHover={{ scale: 1.02 }}
-              transition={{ type: "spring", stiffness: 300 }}
+              transition={{ type: "spring" as const, stiffness: 300 }}
             >
               <div className="box-border flex flex-col items-start justify-end overflow-hidden p-6 relative h-full">
                 <div className="flex flex-col gap-3 w-full">
@@ -103,7 +104,7 @@ const OverviewSection = () => {
               animate="visible"
               variants={cardVariants}
               whileHover={{ scale: 1.02 }}
-              transition={{ type: "spring", stiffness: 300 }}
+              transition={{ type: "spring" as const, stiffness: 300 }}
             >
               <div className="box-border flex flex-col items-start justify-end overflow-hidden p-6 relative h-full">
                 <div className="flex flex-col gap-3 w-full">
@@ -138,7 +139,7 @@ const OverviewSection = () => {
               animate="visible"
               variants={cardVariants}
               whileHover={{ scale: 1.02 }}
-              transition={{ type: "spring", stiffness: 300 }}
+              transition={{ type: "spring" as const, stiffness: 300 }}
             >
               <div className="box-border flex flex-col items-start justify-end overflow-hidden p-6 relative h-full">
                 <div className="flex flex-col gap-3 w-full">
@@ -170,7 +171,7 @@ const OverviewSection = () => {
               animate="visible"
               variants={cardVariants}
               whileHover={{ scale: 1.02 }}
-              transition={{ type: "spring", stiffness: 300 }}
+              transition={{ type: "spring" as const, stiffness: 300 }}
             >
               <div className="box-border flex flex-col items-start justify-end overflow-hidden p-6 relative h-full">
                 <div className="flex flex-col gap-3 w-full">
@@ -195,13 +196,14 @@ const OverviewSection = () => {
             </motion.div>
           </div>
         </div>
+        </div>
       </div>
 
       {/* Subtle shadow effect for depth */}
       <style jsx>{`
         @media (min-width: 1024px) {
           .box-border > div {
-            box-shadow: 
+            box-shadow:
               133px 208px 69px 0px rgba(255,136,41,0.01),
               85px 133px 63px 0px rgba(255,136,41,0.01),
               48px 75px 53px 0px rgba(255,136,41,0.02),

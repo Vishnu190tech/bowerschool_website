@@ -192,24 +192,24 @@ const LearningExecutionSection = () => {
   }
 
   return (
-    <div className="bg-white py-16 md:py-20">
-      <motion.div 
-        className="container mx-auto px-8 md:px-20"
+    <div className="bg-white py-12 md:py-16 lg:py-20">
+      <motion.div
+        className="container mx-auto px-4 md:px-10 lg:px-20"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
         viewport={{ once: true }}
       >
         {/* Header */}
-        <motion.div 
-          className="flex items-center justify-between mb-12"
+        <motion.div
+          className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 md:gap-0 mb-8 md:mb-12"
           variants={itemVariants}
         >
-          <h2 className="text-[38px] md:text-[44px] font-bold text-[#2c360d] leading-tight">
+          <h2 className="text-[28px] md:text-[34px] lg:text-[38px] xl:text-[44px] font-bold text-[#2c360d] leading-tight">
             Where Learning Meets Execution
           </h2>
           <motion.button
-            className="px-6 py-3 bg-[#ff8829] text-white font-medium text-[18px] rounded-lg shadow-[0px_0px_0px_1px_#e67320,0px_1px_3px_0px_rgba(0,0,0,0.1)] hover:bg-[#e67320] transition-colors"
+            className="px-4 md:px-6 py-2.5 md:py-3 bg-[#ff8829] text-white font-medium text-[16px] md:text-[18px] rounded-lg shadow-[0px_0px_0px_1px_#e67320,0px_1px_3px_0px_rgba(0,0,0,0.1)] hover:bg-[#e67320] transition-colors"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -218,19 +218,19 @@ const LearningExecutionSection = () => {
         </motion.div>
 
         {/* Content Container */}
-        <motion.div 
-          className="backdrop-blur-[60px] bg-white/10 rounded-3xl border-2 border-white shadow-[8px_8px_24px_0px_rgba(0,0,0,0.06)] p-6 md:p-8"
+        <motion.div
+          className="backdrop-blur-[60px] bg-white/10 rounded-3xl border-2 border-white shadow-[8px_8px_24px_0px_rgba(0,0,0,0.06)] p-4 md:p-6 lg:p-8"
           variants={itemVariants}
         >
           {/* Section Title */}
-          <div className="mb-6">
-            <h3 className="text-[28px] md:text-[30px] font-semibold text-[#2c360d] tracking-[-1.2px]">
+          <div className="mb-4 md:mb-6">
+            <h3 className="text-[22px] md:text-[26px] lg:text-[28px] xl:text-[30px] font-semibold text-[#2c360d] tracking-[-0.88px] md:tracking-[-1.04px] lg:tracking-[-1.12px] xl:tracking-[-1.2px]">
               Leadership Foundation
             </h3>
           </div>
 
           {/* Month Tabs */}
-          <div className="flex gap-3 mb-8">
+          <div className="flex flex-wrap gap-2 md:gap-3 mb-6 md:mb-8">
             {months.map((month) => (
               <button
                 key={month.id}
@@ -238,7 +238,7 @@ const LearningExecutionSection = () => {
                   setActiveMonth(month.id)
                   setCurrentSlide(0)
                 }}
-                className={`px-6 py-2.5 rounded-full text-[16px] font-medium transition-all duration-300 ${
+                className={`px-4 md:px-6 py-2 md:py-2.5 rounded-full text-[14px] md:text-[16px] font-medium transition-all duration-300 ${
                   activeMonth === month.id
                     ? 'bg-[rgba(255,136,41,0.05)] border border-[#2c360d] text-[#2c360d]'
                     : 'border border-gray-300 text-gray-600 hover:border-gray-400'
@@ -251,8 +251,8 @@ const LearningExecutionSection = () => {
 
           {/* Content Cards */}
           <div className="relative overflow-hidden">
-            <motion.div 
-              className="flex gap-4 transition-transform duration-500"
+            <motion.div
+              className="flex gap-3 md:gap-4 transition-transform duration-500"
               style={{
                 transform: `translateX(-${currentSlide * (100 / cardsPerView)}%)`
               }}
@@ -260,36 +260,36 @@ const LearningExecutionSection = () => {
               {currentContent.map((content) => (
                 <motion.div
                   key={content.id}
-                  className="flex-shrink-0 w-full md:w-[calc(33.333%-11px)]"
+                  className="flex-shrink-0 w-full md:w-[calc(50%-6px)] lg:w-[calc(33.333%-11px)]"
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.4 }}
                 >
-                  <div className="bg-white rounded-2xl border-2 border-white shadow-[4px_4px_44px_0px_rgba(20,32,0,0.08)] p-6 h-[350px] flex flex-col relative overflow-hidden">
+                  <div className="bg-white rounded-2xl border-2 border-white shadow-[4px_4px_44px_0px_rgba(20,32,0,0.08)] p-4 md:p-6 h-[300px] md:h-[350px] flex flex-col relative overflow-hidden">
                     {/* Background Gradient */}
-                    <div 
+                    <div
                       className="absolute inset-0 opacity-30"
                       style={{
                         background: 'linear-gradient(145.539deg, rgba(255, 255, 255, 0.2) 2.6545%, rgba(255, 255, 255, 0) 44.796%), linear-gradient(88.1012deg, rgba(255, 136, 41, 0.1) 0.1095%, rgba(255, 136, 41, 0.04) 63.8%)'
                       }}
                     />
-                    
+
                     {/* Content */}
                     <div className="relative z-10 flex flex-col h-full">
                       {/* Category */}
-                      <span className="text-[14px] font-medium text-[#6a6a6a] mb-6">
+                      <span className="text-[12px] md:text-[14px] font-medium text-[#6a6a6a] mb-4 md:mb-6">
                         {content.category}
                       </span>
-                      
+
                       {/* Title */}
-                      <h4 className="text-[22px] md:text-[24px] font-semibold text-[#2c360d] mb-4 tracking-[-0.96px]">
+                      <h4 className="text-[18px] md:text-[20px] lg:text-[22px] xl:text-[24px] font-semibold text-[#2c360d] mb-3 md:mb-4 tracking-[-0.72px] md:tracking-[-0.8px] lg:tracking-[-0.88px] xl:tracking-[-0.96px]">
                         {content.title}
                       </h4>
-                      
+
                       {/* Points */}
-                      <ul className="list-disc list-inside space-y-2 text-[15px] md:text-[16px] text-[#6a6a6a] flex-1">
+                      <ul className="list-disc list-inside space-y-1.5 md:space-y-2 text-[13px] md:text-[14px] lg:text-[15px] xl:text-[16px] text-[#6a6a6a] flex-1">
                         {content.points.map((point, index) => (
-                          <li key={index} className="leading-[24px]">
+                          <li key={index} className="leading-[20px] md:leading-[22px] lg:leading-[24px]">
                             {point}
                           </li>
                         ))}
@@ -302,28 +302,28 @@ const LearningExecutionSection = () => {
           </div>
 
           {/* Navigation */}
-          <div className="flex gap-6 items-center justify-end mt-8">
+          <div className="flex gap-4 md:gap-6 items-center justify-center md:justify-end mt-6 md:mt-8">
             <button
               onClick={handlePrevious}
               disabled={currentSlide === 0}
               className={`p-2 rounded-full transition-all ${
-                currentSlide === 0 
-                  ? 'opacity-50 cursor-not-allowed' 
+                currentSlide === 0
+                  ? 'opacity-50 cursor-not-allowed'
                   : 'hover:bg-gray-100'
               }`}
             >
-              <ChevronLeftIcon className="w-6 h-6 text-gray-700" />
+              <ChevronLeftIcon className="w-5 h-5 md:w-6 md:h-6 text-gray-700" />
             </button>
             <button
               onClick={handleNext}
               disabled={currentSlide === maxSlide}
               className={`p-2 rounded-full transition-all ${
-                currentSlide === maxSlide 
-                  ? 'opacity-50 cursor-not-allowed' 
+                currentSlide === maxSlide
+                  ? 'opacity-50 cursor-not-allowed'
                   : 'hover:bg-gray-100'
               }`}
             >
-              <ChevronRightIcon className="w-6 h-6 text-gray-700" />
+              <ChevronRightIcon className="w-5 h-5 md:w-6 md:h-6 text-gray-700" />
             </button>
           </div>
         </motion.div>

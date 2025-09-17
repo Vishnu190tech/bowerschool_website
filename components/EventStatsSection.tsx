@@ -13,34 +13,37 @@ const EventStatsSection = () => {
   ];
 
   return (
-    <section className="relative w-full bg-[#f4f4ff] px-20 py-10">
+    <section className="relative w-full bg-[#f4f4ff] px-4 py-8 md:px-10 md:py-10 lg:px-20 overflow-hidden">
       {/* Background decorative element */}
-      <div className="absolute top-1/2 right-1/3 -translate-y-1/2" style={{ transform: 'rotate(247.852deg)' }}>
+      <div
+        className="absolute top-1/2 right-[-50px] md:right-10 lg:right-1/3 w-[150px] md:w-[350px] lg:w-[530px] pointer-events-none"
+        style={{
+          transform: 'translateY(-50%) rotate(247.852deg)',
+          zIndex: 1
+        }}
+      >
         <Image
           src="/7e3c70dd952387f3185e4702eb809fca93ffa068.svg"
           alt=""
           width={530}
           height={696}
-          className="opacity-50"
+          className="opacity-20 md:opacity-30 lg:opacity-50 w-full h-auto"
         />
       </div>
 
-      <div className="relative z-10 flex gap-20 items-center">
+      <div className="relative z-10 flex flex-col lg:flex-row gap-6 md:gap-10 lg:gap-20 items-center max-w-[1440px] mx-auto">
         {/* Title */}
-        <motion.div 
-          initial={{ opacity: 0, x: -30 }}
-          whileInView={{ opacity: 1, x: 0 }}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="w-[500px] shrink-0"
+          viewport={{ once: true }}
+          className="w-full lg:w-[500px] lg:shrink-0 text-center lg:text-left"
         >
-          <h2 
-            className="text-[#111827] capitalize"
+          <h2
+            className="text-[#111827] capitalize text-[28px] md:text-[36px] lg:text-[44px] font-semibold leading-tight tracking-[-1.76px]"
             style={{
               fontFamily: 'var(--font-plus-jakarta)',
-              fontSize: '44px',
-              fontWeight: 600,
-              lineHeight: '44px',
-              letterSpacing: '-1.76px'
             }}
           >
             Event Stats & Metrics
@@ -48,45 +51,44 @@ const EventStatsSection = () => {
         </motion.div>
 
         {/* Stats Card */}
-        <motion.div 
-          initial={{ opacity: 0, x: 30 }}
-          whileInView={{ opacity: 1, x: 0 }}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="w-[700px] bg-white/40 backdrop-blur-[22px] rounded-[10px] border border-white p-6"
+          viewport={{ once: true }}
+          className="w-full lg:w-[700px] bg-white/40 backdrop-blur-[22px] rounded-[10px] border border-white p-4 md:p-5 lg:p-6"
         >
-          <div className="grid grid-cols-2 gap-[33px]">
+          <div className="grid grid-cols-2 gap-4 md:gap-6 lg:gap-[33px]">
             {stats.map((stat, index) => (
-              <motion.div 
+              <div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
-                className="w-[300px] flex flex-col gap-5"
+                className="w-full flex flex-col gap-1 md:gap-2 lg:gap-5"
               >
-                <div 
-                  className="text-[#111827] capitalize"
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
+                  viewport={{ once: true }}
+                  className="text-[#111827] capitalize text-[24px] md:text-[32px] lg:text-[44px] font-semibold leading-[1.1] tracking-[-1.76px]"
                   style={{
                     fontFamily: 'var(--font-plus-jakarta)',
-                    fontSize: '44px',
-                    fontWeight: 600,
-                    lineHeight: '44px',
-                    letterSpacing: '-1.76px'
                   }}
                 >
                   {stat.value}
-                </div>
-                <div 
-                  className="text-[#4b5563]"
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ duration: 0.4, delay: 0.4 + index * 0.1 }}
+                  viewport={{ once: true }}
+                  className="text-[#4b5563] text-[14px] md:text-[16px] lg:text-[18px] leading-[1.5]"
                   style={{
                     fontFamily: 'var(--font-plus-jakarta)',
-                    fontSize: '18px',
-                    fontWeight: 400,
-                    lineHeight: '27px'
                   }}
                 >
                   {stat.label}
-                </div>
-              </motion.div>
+                </motion.div>
+              </div>
             ))}
           </div>
         </motion.div>

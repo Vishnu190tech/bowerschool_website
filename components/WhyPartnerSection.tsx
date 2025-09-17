@@ -195,7 +195,7 @@ const WhyPartnerSection = () => {
         transition={{
           duration: 3,
           repeat: Infinity,
-          ease: "easeInOut"
+          ease: "easeInOut" as const
         }}
       />
       <motion.div
@@ -207,7 +207,7 @@ const WhyPartnerSection = () => {
         transition={{
           duration: 4,
           repeat: Infinity,
-          ease: "easeInOut"
+          ease: "easeInOut" as const
         }}
       />
     </div>

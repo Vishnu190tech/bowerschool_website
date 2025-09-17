@@ -4,7 +4,12 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 
-const LogoTicker = () => {
+interface LogoTickerProps {
+  heading?: string;
+  subheading?: string;
+}
+
+const LogoTicker = ({ heading, subheading }: LogoTickerProps) => {
   const logos = [
     {
       id: 1,
@@ -48,11 +53,37 @@ const LogoTicker = () => {
 
   return (
     <div className="relative bg-white py-8 md:py-12 overflow-hidden">
+      {/* Header - Only render if heading or subheading is provided */}
+      {(heading || subheading) && (
+        <div className="text-center mb-12">
+          {heading && (
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="text-3xl md:text-4xl lg:text-[44px] font-bold text-black mb-3 tracking-[-1.76px]"
+            >
+              {heading}
+            </motion.h2>
+          )}
+          {subheading && (
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="text-lg md:text-xl text-gray-800 max-w-3xl mx-auto"
+            >
+              {subheading}
+            </motion.p>
+          )}
+        </div>
+      )}
       <div className="relative">
+
         {/* Gradient overlays for fade effect */}
         <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white to-transparent z-10" />
         <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white to-transparent z-10" />
-        
+
         {/* Logo ticker container */}
         <div className="flex items-center">
           <motion.div

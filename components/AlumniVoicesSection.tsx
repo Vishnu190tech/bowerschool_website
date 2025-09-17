@@ -62,7 +62,7 @@ const AlumniVoicesSection = () => {
       scale: 1,
       transition: { 
         duration: 0.5,
-        type: "spring",
+        type: "spring" as const,
         stiffness: 100
       }
     }
@@ -88,7 +88,7 @@ const AlumniVoicesSection = () => {
   const stars = generateStars(100)
 
   return (
-    <div className="relative bg-[#0f0f1f] py-20 md:py-24 overflow-hidden min-h-screen">
+    <div className="relative bg-[#0f0f1f] py-12 md:py-20 lg:py-24 overflow-hidden min-h-screen">
       {/* Animated Stars Background */}
       <div className="absolute inset-0">
         {stars.map((star) => (
@@ -109,48 +109,48 @@ const AlumniVoicesSection = () => {
               duration: star.duration,
               delay: star.delay,
               repeat: Infinity,
-              ease: "easeInOut"
+              ease: "easeInOut" as const
             }}
           />
         ))}
       </div>
 
       {/* Gradient Orbs */}
-      <div className="absolute top-20 right-0 w-[600px] h-[600px] bg-purple-600/10 rounded-full blur-[120px]" />
-      <div className="absolute bottom-0 left-0 w-[800px] h-[800px] bg-blue-600/10 rounded-full blur-[120px]" />
+      <div className="absolute top-20 right-0 w-[300px] md:w-[450px] lg:w-[600px] h-[300px] md:h-[450px] lg:h-[600px] bg-purple-600/10 rounded-full blur-[80px] md:blur-[100px] lg:blur-[120px]" />
+      <div className="absolute bottom-0 left-0 w-[400px] md:w-[600px] lg:w-[800px] h-[400px] md:h-[600px] lg:h-[800px] bg-blue-600/10 rounded-full blur-[80px] md:blur-[100px] lg:blur-[120px]" />
 
-      <motion.div 
-        className="relative z-10 container mx-auto px-8 md:px-20"
+      <motion.div
+        className="relative z-10 container mx-auto px-4 md:px-8 lg:px-20"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
         viewport={{ once: true }}
       >
         {/* Header */}
-        <motion.h2 
-          className="text-[38px] md:text-[44px] font-bold text-white mb-16"
+        <motion.h2
+          className="text-[28px] md:text-[38px] lg:text-[44px] font-bold text-white mb-8 md:mb-12 lg:mb-16"
           variants={itemVariants}
         >
           Voices Of Bower: From Our Alumni
         </motion.h2>
 
         {/* Testimonials Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5 lg:gap-6">
           {/* Top Row */}
           <motion.div
             variants={cardVariants}
-            className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-gray-900/50 to-gray-800/30 backdrop-blur-sm border border-gray-700/50 h-[500px]"
+            className="group relative overflow-hidden rounded-xl md:rounded-2xl bg-gradient-to-br from-gray-900/50 to-gray-800/30 backdrop-blur-sm border border-gray-700/50 h-[300px] md:h-[400px] lg:h-[500px]"
           >
             <div 
               className="absolute inset-0 bg-cover bg-center opacity-60 group-hover:opacity-70 transition-opacity duration-500"
               style={{ backgroundImage: `url(${testimonials[0].image})` }}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent" />
-            <div className="absolute bottom-0 left-0 right-0 p-8">
-              <h3 className="text-2xl font-semibold text-white mb-2">
+            <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 lg:p-8">
+              <h3 className="text-lg md:text-xl lg:text-2xl font-semibold text-white mb-1 md:mb-2">
                 {testimonials[0].title}
               </h3>
-              <p className="text-gray-300">
+              <p className="text-sm md:text-base text-gray-300">
                 -{testimonials[0].author}
               </p>
             </div>
@@ -158,18 +158,18 @@ const AlumniVoicesSection = () => {
 
           <motion.div
             variants={cardVariants}
-            className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-gray-900/50 to-gray-800/30 backdrop-blur-sm border border-gray-700/50 h-[500px]"
+            className="group relative overflow-hidden rounded-xl md:rounded-2xl bg-gradient-to-br from-gray-900/50 to-gray-800/30 backdrop-blur-sm border border-gray-700/50 h-[300px] md:h-[400px] lg:h-[500px]"
           >
             <div 
               className="absolute inset-0 bg-cover bg-center opacity-60 group-hover:opacity-70 transition-opacity duration-500"
               style={{ backgroundImage: `url(${testimonials[1].image})` }}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent" />
-            <div className="absolute bottom-0 left-0 right-0 p-8">
-              <h3 className="text-2xl font-semibold text-white mb-2">
+            <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 lg:p-8">
+              <h3 className="text-lg md:text-xl lg:text-2xl font-semibold text-white mb-1 md:mb-2">
                 {testimonials[1].title}
               </h3>
-              <p className="text-gray-300">
+              <p className="text-sm md:text-base text-gray-300">
                 -{testimonials[1].author}
               </p>
             </div>
@@ -178,18 +178,18 @@ const AlumniVoicesSection = () => {
           {/* Bottom Row */}
           <motion.div
             variants={cardVariants}
-            className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-gray-900/50 to-gray-800/30 backdrop-blur-sm border border-gray-700/50 h-[500px]"
+            className="group relative overflow-hidden rounded-xl md:rounded-2xl bg-gradient-to-br from-gray-900/50 to-gray-800/30 backdrop-blur-sm border border-gray-700/50 h-[300px] md:h-[400px] lg:h-[500px]"
           >
             <div 
               className="absolute inset-0 bg-cover bg-center opacity-60 group-hover:opacity-70 transition-opacity duration-500"
               style={{ backgroundImage: `url(${testimonials[2].image})` }}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent" />
-            <div className="absolute bottom-0 left-0 right-0 p-8">
-              <h3 className="text-2xl font-semibold text-white mb-2">
+            <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 lg:p-8">
+              <h3 className="text-lg md:text-xl lg:text-2xl font-semibold text-white mb-1 md:mb-2">
                 {testimonials[2].title}
               </h3>
-              <p className="text-gray-300">
+              <p className="text-sm md:text-base text-gray-300">
                 -{testimonials[2].author}
               </p>
             </div>
@@ -197,18 +197,18 @@ const AlumniVoicesSection = () => {
 
           <motion.div
             variants={cardVariants}
-            className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-gray-900/50 to-gray-800/30 backdrop-blur-sm border border-gray-700/50 h-[500px]"
+            className="group relative overflow-hidden rounded-xl md:rounded-2xl bg-gradient-to-br from-gray-900/50 to-gray-800/30 backdrop-blur-sm border border-gray-700/50 h-[300px] md:h-[400px] lg:h-[500px]"
           >
             <div 
               className="absolute inset-0 bg-cover bg-center opacity-60 group-hover:opacity-70 transition-opacity duration-500"
               style={{ backgroundImage: `url(${testimonials[3].image})` }}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent" />
-            <div className="absolute bottom-0 left-0 right-0 p-8">
-              <h3 className="text-2xl font-semibold text-white mb-2">
+            <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 lg:p-8">
+              <h3 className="text-lg md:text-xl lg:text-2xl font-semibold text-white mb-1 md:mb-2">
                 {testimonials[3].title}
               </h3>
-              <p className="text-gray-300">
+              <p className="text-sm md:text-base text-gray-300">
                 -{testimonials[3].author}
               </p>
             </div>

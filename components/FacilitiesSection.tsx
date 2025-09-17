@@ -53,7 +53,7 @@ const FacilitiesSection = () => {
       scale: 1,
       transition: { 
         duration: 0.5,
-        type: "spring",
+        type: "spring" as const,
         stiffness: 100
       }
     }

@@ -63,7 +63,7 @@ const Testimonials = () => {
   }
 
   return (
-    <div className="relative bg-gradient-to-b from-gray-950 to-black min-h-screen overflow-hidden">
+    <div className="relative bg-gradient-to-b from-gray-950 to-black overflow-hidden">
       {/* Starfield Background */}
       <div className="absolute inset-0">
         {Array(100).fill(null).map((_, i) => (
@@ -82,7 +82,7 @@ const Testimonials = () => {
               duration: ((i * 8642) % 30) / 10 + 2,
               repeat: Infinity,
               delay: ((i * 1357) % 50) / 10,
-              ease: "easeInOut"
+              ease: "easeInOut" as const
             }}
           />
         ))}
@@ -95,7 +95,7 @@ const Testimonials = () => {
       {/* Main Content */}
       <div className="relative z-10 container mx-auto px-8 md:px-20 py-20">
         {/* Header */}
-        <motion.h2 
+        <motion.h2
           className="text-white text-4xl md:text-5xl font-bold text-center mb-20"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -107,7 +107,7 @@ const Testimonials = () => {
         {/* Testimonials Carousel */}
         <div className="relative">
           <AnimatePresence mode="wait">
-            <motion.div 
+            <motion.div
               key={currentPage}
               className="grid grid-cols-1 md:grid-cols-3 gap-8"
               initial={{ opacity: 0, x: 100 }}
@@ -126,15 +126,15 @@ const Testimonials = () => {
                 >
                   {/* Quote Icon */}
                   <div className="text-orange-500 text-5xl mb-4 font-serif">"</div>
-                  
+
                   {/* Testimonial Text */}
                   <p className="text-gray-300 text-base leading-relaxed mb-8">
                     {testimonial.text}
                   </p>
-                  
+
                   {/* Divider */}
                   <div className="border-t border-gray-700 mb-4" />
-                  
+
                   {/* Author Info */}
                   <div className="flex items-center gap-4">
                     <div className="relative w-14 h-14 rounded-full overflow-hidden border-2 border-orange-500/30">
@@ -204,7 +204,7 @@ const Testimonials = () => {
         transition={{
           duration: 4,
           repeat: Infinity,
-          ease: "easeInOut"
+          ease: "easeInOut" as const
         }}
       />
       <motion.div
@@ -216,7 +216,7 @@ const Testimonials = () => {
         transition={{
           duration: 5,
           repeat: Infinity,
-          ease: "easeInOut"
+          ease: "easeInOut" as const
         }}
       />
     </div>

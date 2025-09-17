@@ -92,8 +92,8 @@ export default function UpcomingEventsSection() {
   const [expandedSections, setExpandedSections] = useState<string[]>(['Meetups']);
 
   const toggleSection = (section: string) => {
-    setExpandedSections(prev => 
-      prev.includes(section) 
+    setExpandedSections(prev =>
+      prev.includes(section)
         ? prev.filter(s => s !== section)
         : [...prev, section]
     );
@@ -126,7 +126,7 @@ export default function UpcomingEventsSection() {
                 <span className="md:hidden">Stay ahead of the curve with business workshops, talks, hackathons, and community mixers happening all year round.</span>
               </motion.p>
             </div>
-            
+
             <motion.button
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -148,11 +148,10 @@ export default function UpcomingEventsSection() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: 0.1 * index }}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-                index === 0 
-                  ? 'bg-[#4242ff] text-white' 
-                  : 'bg-white border border-gray-300 text-gray-700 hover:border-[#4242ff] hover:text-[#4242ff]'
-              }`}
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${index === 0
+                ? 'bg-[#4242ff] text-white'
+                : 'bg-white border border-gray-300 text-gray-700 hover:border-[#4242ff] hover:text-[#4242ff]'
+                }`}
             >
               {filter}
             </motion.button>
@@ -368,7 +367,7 @@ export default function UpcomingEventsSection() {
           {categories.map((category) => {
             const categoryEvents = events.filter(e => e.category === category);
             const isExpanded = expandedSections.includes(category);
-            
+
             return (
               <div key={category} className="bg-white rounded-xl overflow-hidden">
                 <button
@@ -382,7 +381,7 @@ export default function UpcomingEventsSection() {
                     <ChevronDownIcon className="w-5 h-5 text-gray-500" />
                   )}
                 </button>
-                
+
                 {isExpanded && (
                   <motion.div
                     initial={{ height: 0, opacity: 0 }}
@@ -429,13 +428,14 @@ export default function UpcomingEventsSection() {
 
           {/* Mobile View All Button */}
           <div className="flex justify-center mt-6">
-            <motion.button
+            <motion.a
+              href='/events/test'
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="px-6 py-2 text-[#4242ff] border-2 border-[#4242ff] rounded-full font-medium hover:bg-[#4242ff] hover:text-white transition-colors"
             >
               View All
-            </motion.button>
+            </motion.a>
           </div>
         </div>
       </div>

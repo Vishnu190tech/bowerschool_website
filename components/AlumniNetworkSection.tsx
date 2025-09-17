@@ -62,9 +62,9 @@ const AlumniNetworkSection = () => {
     visible: {
       opacity: 1,
       scale: 1,
-      transition: { 
+      transition: {
         duration: 0.6,
-        type: "spring",
+        type: "spring" as const,
         stiffness: 100
       }
     }
@@ -82,7 +82,7 @@ const AlumniNetworkSection = () => {
         />
       </div>
 
-      <motion.div 
+      <motion.div
         className="relative z-10 container mx-auto px-8 md:px-24"
         variants={containerVariants}
         initial="hidden"
@@ -90,7 +90,7 @@ const AlumniNetworkSection = () => {
         viewport={{ once: true }}
       >
         {/* Header */}
-        <motion.div 
+        <motion.div
           className="text-center mb-16"
           variants={itemVariants}
         >
@@ -115,7 +115,7 @@ const AlumniNetworkSection = () => {
             >
               <div className="backdrop-blur-[22px] bg-[#1c1b1e] rounded-3xl border-2 border-white p-6 md:p-8 h-[500px] relative overflow-hidden">
                 {/* Background Gradient */}
-                <div 
+                <div
                   className="absolute inset-0 opacity-20"
                   style={{
                     background: 'radial-gradient(circle at 50% 100%, rgba(1,1,39,1) 0%, rgba(1,1,75,1) 25.5%, rgba(0,0,111,1) 51%, rgba(1,1,75,1) 75.5%, rgba(1,1,39,1) 100%)'
@@ -160,9 +160,9 @@ const AlumniNetworkSection = () => {
                         className="object-cover"
                       />
                     )}
-                    
+
                     {/* Hover Effect */}
-                    <motion.div 
+                    <motion.div
                       className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                     />
                   </div>

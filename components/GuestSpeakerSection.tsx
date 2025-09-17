@@ -32,7 +32,7 @@ const GuestSpeakerSection = () => {
             transition={{
               duration: 6,
               repeat: Infinity,
-              ease: "easeInOut"
+              ease: "easeInOut" as const
             }}
             className="absolute top-10 right-20 w-32 h-32 opacity-60"
           >
@@ -47,7 +47,7 @@ const GuestSpeakerSection = () => {
             transition={{
               duration: 5,
               repeat: Infinity,
-              ease: "easeInOut"
+              ease: "easeInOut" as const
             }}
             className="absolute bottom-20 left-10 w-24 h-24 opacity-50"
           >
@@ -62,7 +62,7 @@ const GuestSpeakerSection = () => {
             transition={{
               duration: 7,
               repeat: Infinity,
-              ease: "easeInOut"
+              ease: "easeInOut" as const
             }}
             className="absolute top-1/3 left-1/4 w-20 h-20 opacity-40"
           >
@@ -78,7 +78,7 @@ const GuestSpeakerSection = () => {
             transition={{
               duration: 4,
               repeat: Infinity,
-              ease: "easeInOut"
+              ease: "easeInOut" as const
             }}
             className="absolute bottom-1/3 right-1/3 w-16 h-16"
           >
@@ -94,7 +94,7 @@ const GuestSpeakerSection = () => {
             const top = ((i * 17) % 100);
             const delay = ((i * 11) % 30) / 10;
             const duration = ((i * 7) % 20) / 10 + 2;
-            
+
             return (
               <div
                 key={`star-${i}`}
@@ -118,7 +118,7 @@ const GuestSpeakerSection = () => {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Left Content */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
@@ -179,7 +179,7 @@ const GuestSpeakerSection = () => {
           </motion.div>
 
           {/* Right Image */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -199,7 +199,7 @@ const GuestSpeakerSection = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
               </div>
             </div>
-            
+
             {/* Decorative element */}
             <motion.div
               animate={{
@@ -209,7 +209,7 @@ const GuestSpeakerSection = () => {
               transition={{
                 duration: 5,
                 repeat: Infinity,
-                ease: "easeInOut"
+                ease: "easeInOut" as const
               }}
               className="absolute -top-4 -right-4 w-24 h-24 rounded-full bg-gradient-to-br from-purple-500/20 to-purple-700/20 blur-xl"
             />

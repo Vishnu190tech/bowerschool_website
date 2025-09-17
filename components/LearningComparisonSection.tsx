@@ -60,7 +60,7 @@ const LearningComparisonSection = () => {
   ];
 
   return (
-    <section className="relative w-full bg-[#252525] p-20 overflow-hidden">
+    <section className="relative w-full bg-[#252525] px-4 py-8 md:px-10 md:py-12 lg:p-20 overflow-hidden">
       {/* Background decorations */}
       {/* Stars background */}
       <div className="absolute -left-full -right-full top-1/2 -translate-y-1/2 h-[1438px]">
@@ -73,7 +73,7 @@ const LearningComparisonSection = () => {
       </div>
 
       {/* Light effects */}
-      <div className="absolute -top-[131px] -left-[127px] w-[1694px] h-[1402px] mix-blend-hard-light rotate-180">
+      <div className="absolute -top-[131px] -left-[127px] w-[1694px] h-[1402px] mix-blend-hard-light rotate-180 hidden lg:block">
         <Image
           src="/c961e125d0f2717ccbf62a39d126334738c7df5d.svg"
           alt=""
@@ -97,31 +97,27 @@ const LearningComparisonSection = () => {
       {/* Content */}
       <div className="relative z-10 max-w-[1440px] mx-auto">
         {/* Header */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           className="mb-8"
         >
-          <h2 
-            className="text-white capitalize mb-1"
+          <h2
+            className="text-white capitalize mb-1 text-[28px] md:text-[36px] lg:text-[44px] leading-tight"
             style={{
               fontFamily: 'var(--font-plus-jakarta)',
-              fontSize: '44px',
               fontWeight: 600,
-              lineHeight: '44px',
               letterSpacing: '-1.76px'
             }}
           >
             Rewriting The Future of Learning
           </h2>
-          <p 
-            className="text-[#aaaab9]"
+          <p
+            className="text-[#aaaab9] text-[16px] md:text-[18px] lg:text-[20px] leading-[1.5]"
             style={{
               fontFamily: 'var(--font-plus-jakarta)',
-              fontSize: '20px',
-              fontWeight: 400,
-              lineHeight: '30px'
+              fontWeight: 400
             }}
           >
             We're not just following the old playbook—we're rewriting it for today's learners.
@@ -129,21 +125,19 @@ const LearningComparisonSection = () => {
         </motion.div>
 
         {/* Comparison Cards */}
-        <div className="flex gap-4">
+        <div className="flex flex-col lg:flex-row gap-4">
           {/* Regular School Curriculum */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
-            className="flex-1 bg-[#202020] rounded-3xl p-6 border-2 border-transparent"
+            className="flex-1 bg-[#202020] rounded-2xl lg:rounded-3xl p-4 md:p-5 lg:p-6 border-2 border-transparent"
           >
-            <h3 
-              className="text-[#f0f0ff] mb-8"
+            <h3
+              className="text-[#f0f0ff] mb-4 md:mb-6 lg:mb-8 text-[24px] md:text-[28px] lg:text-[30px] leading-tight"
               style={{
                 fontFamily: 'var(--font-plus-jakarta)',
-                fontSize: '30px',
                 fontWeight: 600,
-                lineHeight: '30px',
                 letterSpacing: '-1.2px'
               }}
             >
@@ -151,14 +145,14 @@ const LearningComparisonSection = () => {
             </h3>
             <div className="flex flex-col gap-4">
               {regularSchoolItems.map((item, index) => (
-                <motion.div 
+                <motion.div
                   key={index}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: index * 0.1 }}
                   className="bg-[#232323] rounded-xl p-3 border border-white/20"
                 >
-                  <h4 
+                  <h4
                     className="text-[#f0f0ff] mb-3"
                     style={{
                       fontFamily: 'var(--font-plus-jakarta)',
@@ -169,7 +163,7 @@ const LearningComparisonSection = () => {
                   >
                     {item.title}
                   </h4>
-                  <p 
+                  <p
                     className="text-[#aaaab9]"
                     style={{
                       fontFamily: 'var(--font-plus-jakarta)',
@@ -186,25 +180,23 @@ const LearningComparisonSection = () => {
           </motion.div>
 
           {/* Bower */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
-            className="flex-1 rounded-3xl p-6 border-2 border-[#4242ff]/60 backdrop-blur-[30px]"
+            className="flex-1 rounded-2xl lg:rounded-3xl p-4 md:p-5 lg:p-6 border-2 border-[#4242ff]/60 backdrop-blur-[30px]"
             style={{
-              background: `linear-gradient(133.203deg, rgba(255, 255, 255, 0.2) 2.6545%, rgba(255, 255, 255, 0) 44.796%), 
+              background: `linear-gradient(133.203deg, rgba(255, 255, 255, 0.2) 2.6545%, rgba(255, 255, 255, 0) 44.796%),
                           radial-gradient(ellipse at center, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.3) 73.997%, rgba(0, 0, 0, 0) 100%),
                           linear-gradient(90deg, #4242ff 0%, #4242ff 100%)`,
               backgroundColor: 'rgba(32, 32, 32, 0.2)'
             }}
           >
-            <h3 
-              className="text-white mb-8"
+            <h3
+              className="text-white mb-4 md:mb-6 lg:mb-8 text-[24px] md:text-[28px] lg:text-[30px] leading-tight"
               style={{
                 fontFamily: 'var(--font-plus-jakarta)',
-                fontSize: '30px',
                 fontWeight: 600,
-                lineHeight: '30px',
                 letterSpacing: '-1.2px'
               }}
             >
@@ -212,14 +204,14 @@ const LearningComparisonSection = () => {
             </h3>
             <div className="flex flex-col gap-4">
               {bowerItems.map((item, index) => (
-                <motion.div 
+                <motion.div
                   key={index}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: index * 0.1 }}
                   className="bg-[#232323] rounded-xl p-3 border border-white/20"
                 >
-                  <h4 
+                  <h4
                     className="text-[#f0f0ff] mb-3"
                     style={{
                       fontFamily: 'var(--font-plus-jakarta)',
@@ -230,7 +222,7 @@ const LearningComparisonSection = () => {
                   >
                     {item.title}
                   </h4>
-                  <p 
+                  <p
                     className="text-[#aaaab9]"
                     style={{
                       fontFamily: 'var(--font-plus-jakarta)',

@@ -86,8 +86,8 @@ const MakeYourselfAtHomeSection = () => {
   ];
 
   return (
-    <section 
-      className="relative w-full overflow-hidden py-20 md:py-32"
+    <section
+      className="relative w-full overflow-hidden py-12 md:py-20 lg:py-32"
       style={{
         background: 'linear-gradient(180deg, #1e1b4b 0%, #312e81 50%, #1e1b4b 100%)'
       }}
@@ -129,18 +129,14 @@ const MakeYourselfAtHomeSection = () => {
 
       {/* Main Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <div className="text-center mb-8 md:mb-12 lg:mb-16">
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="mb-4"
+            className="mb-3 md:mb-4 text-[32px] md:text-[56px] lg:text-[80px] font-bold leading-[1.1] tracking-[-1px] md:tracking-[-2px] lg:tracking-[-3px] text-white"
             style={{
-              fontFamily: 'var(--font-plus-jakarta)',
-              fontSize: '80px',
-              fontWeight: 700,
-              lineHeight: '80px',
-              color: '#ffffff'
+              fontFamily: 'var(--font-plus-jakarta)'
             }}
           >
             Make yourself at home
@@ -149,21 +145,71 @@ const MakeYourselfAtHomeSection = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-[16px] md:text-[20px] lg:text-[24px] font-semibold md:font-medium lg:font-semibold leading-[1.3] text-white/90 px-4 md:px-0"
             style={{
-              fontFamily: 'var(--font-plus-jakarta)',
-              fontSize: '24px',
-              fontWeight: 600,
-              lineHeight: '24px',
-              color: '#ffffff',
-              opacity: 0.9
+              fontFamily: 'var(--font-plus-jakarta)'
             }}
           >
             Find like minded people, create a life you&apos;ll never forget
           </motion.p>
         </div>
 
-        {/* Floating Polaroid Images */}
-        <div className="relative h-[600px] md:h-[700px] lg:h-[800px]">
+        {/* Floating Polaroid Images - Mobile Grid */}
+        <div className="block md:hidden">
+          <div className="grid grid-cols-2 gap-4">
+            {polaroidImages.slice(0, 4).map((image, index) => (
+              <motion.div
+                key={image.id}
+                initial={{
+                  opacity: 0,
+                  scale: 0.8
+                }}
+                whileInView={{
+                  opacity: 1,
+                  scale: 1
+                }}
+                transition={{
+                  duration: 0.6,
+                  delay: index * 0.1,
+                  type: "spring" as const,
+                  stiffness: 100
+                }}
+                viewport={{ once: true }}
+                className="relative"
+              >
+                {/* Polaroid Frame */}
+                <div
+                  className="bg-white rounded-xl p-2 shadow-xl"
+                  style={{
+                    transform: `rotate(${index % 2 === 0 ? -5 : 5}deg)`,
+                    transition: 'transform 0.3s ease'
+                  }}
+                >
+                  {/* Image */}
+                  <div className="relative bg-gray-200 rounded-lg overflow-hidden aspect-square">
+                    <Image
+                      src={image.src}
+                      alt={image.caption}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 50vw"
+                    />
+                  </div>
+
+                  {/* Caption */}
+                  <p className="mt-2 text-center text-xs font-medium text-gray-700" style={{
+                    fontFamily: 'var(--font-plus-jakarta)'
+                  }}>
+                    {image.caption}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        {/* Floating Polaroid Images - Desktop */}
+        <div className="hidden md:block relative h-[600px] md:h-[700px] lg:h-[800px]">
           {polaroidImages.map((image, index) => (
             <motion.div
               key={image.id}
@@ -180,7 +226,7 @@ const MakeYourselfAtHomeSection = () => {
               transition={{ 
                 duration: 0.6,
                 delay: image.delay,
-                type: "spring",
+                type: "spring" as const,
                 stiffness: 100
               }}
               whileHover={{ 
@@ -197,8 +243,8 @@ const MakeYourselfAtHomeSection = () => {
               }}
             >
               {/* Polaroid Frame */}
-              <div 
-                className="bg-white rounded-2xl p-3 shadow-2xl"
+              <div
+                className="bg-white rounded-xl md:rounded-2xl p-2 md:p-3 shadow-xl md:shadow-2xl"
                 style={{
                   transform: `rotate(${image.rotation}deg)`,
                   transition: 'transform 0.3s ease'
@@ -216,7 +262,7 @@ const MakeYourselfAtHomeSection = () => {
                 </div>
                 
                 {/* Caption */}
-                <p className="mt-3 text-center text-sm font-medium text-gray-700" style={{
+                <p className="mt-2 md:mt-3 text-center text-xs md:text-sm font-medium text-gray-700" style={{
                   fontFamily: 'var(--font-plus-jakarta)'
                 }}>
                   {image.caption}
@@ -237,7 +283,7 @@ const MakeYourselfAtHomeSection = () => {
           transition={{
             duration: 8,
             repeat: Infinity,
-            ease: "easeInOut"
+            ease: "easeInOut" as const
           }}
           className="absolute top-20 left-10 w-2 h-2 bg-white rounded-full opacity-60"
         />
@@ -249,7 +295,7 @@ const MakeYourselfAtHomeSection = () => {
           transition={{
             duration: 6,
             repeat: Infinity,
-            ease: "easeInOut"
+            ease: "easeInOut" as const
           }}
           className="absolute bottom-20 right-10 w-3 h-3 bg-white rounded-full opacity-40"
         />

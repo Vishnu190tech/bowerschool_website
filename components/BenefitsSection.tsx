@@ -67,7 +67,7 @@ const BenefitsSection = () => {
               key={benefit.id}
               variants={itemVariants}
               whileHover={{ scale: 1.03 }}
-              transition={{ type: "spring", stiffness: 300 }}
+              transition={{ type: "spring" as const, stiffness: 300 }}
               className="group"
             >
               <div className="relative bg-white/10 backdrop-blur-sm rounded-2xl p-6 h-full border border-white shadow-[2px_2px_12px_0px_rgba(66,66,255,0.12)] hover:shadow-[4px_4px_20px_0px_rgba(66,66,255,0.2)] transition-all duration-300">

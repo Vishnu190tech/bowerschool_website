@@ -47,14 +47,14 @@ const BowerNetworkSection = () => {
       scale: 1,
       transition: { 
         duration: 0.6,
-        type: "spring",
+        type: "spring" as const,
         stiffness: 100
       }
     }
   }
 
   return (
-    <div className="relative bg-[#f4f4ff] py-20 md:py-24 overflow-hidden">
+    <div className="relative bg-[#f4f4ff] py-12 md:py-20 lg:py-24 overflow-hidden">
       {/* Background Decorative Element */}
       <div className="absolute inset-0">
         <div className="absolute top-1/2 right-0 translate-x-1/4 -translate-y-1/2 rotate-[-112deg]">
@@ -68,21 +68,21 @@ const BowerNetworkSection = () => {
         </div>
       </div>
 
-      <motion.div 
-        className="relative z-10 container mx-auto px-8 md:px-20"
+      <motion.div
+        className="relative z-10 container mx-auto px-4 md:px-8 lg:px-20"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
         viewport={{ once: true }}
       >
-        <div className="flex flex-col lg:flex-row gap-16 lg:gap-20 items-center">
+        <div className="flex flex-col lg:flex-row gap-8 md:gap-12 lg:gap-20 items-center">
           
           {/* Left Content */}
           <motion.div 
             className="flex-1 max-w-[500px]"
             variants={itemVariants}
           >
-            <h2 className="text-[38px] md:text-[44px] font-semibold text-gray-900 leading-tight tracking-[-1.76px] capitalize">
+            <h2 className="text-[28px] md:text-[38px] lg:text-[44px] font-semibold text-gray-900 leading-tight tracking-[-1px] md:tracking-[-1.4px] lg:tracking-[-1.76px] capitalize">
               Inside The Bower Network
             </h2>
           </motion.div>
@@ -92,20 +92,20 @@ const BowerNetworkSection = () => {
             className="flex-1 max-w-[700px] w-full"
             variants={cardVariants}
           >
-            <div className="backdrop-blur-[22px] bg-white/40 rounded-[10px] border border-white p-6 md:p-8">
+            <div className="backdrop-blur-[22px] bg-white/40 rounded-[8px] md:rounded-[10px] border border-white p-4 md:p-6 lg:p-8">
               {stats.map((stat, index) => (
                 <motion.div 
                   key={index}
                   variants={itemVariants}
                 >
-                  <div className="py-8 first:pt-0 last:pb-0">
+                  <div className="py-4 md:py-6 lg:py-8 first:pt-0 last:pb-0">
                     {/* Title */}
-                    <h3 className="text-[22px] md:text-[24px] font-semibold text-gray-900 mb-5 tracking-[-0.96px]">
+                    <h3 className="text-[18px] md:text-[22px] lg:text-[24px] font-semibold text-gray-900 mb-3 md:mb-4 lg:mb-5 tracking-[-0.72px] md:tracking-[-0.88px] lg:tracking-[-0.96px]">
                       {stat.title}
                     </h3>
                     
                     {/* Description */}
-                    <p className="text-[16px] md:text-[18px] text-gray-600 leading-[27px]">
+                    <p className="text-[14px] md:text-[16px] lg:text-[18px] text-gray-600 leading-[21px] md:leading-[24px] lg:leading-[27px]">
                       {stat.description}
                     </p>
                   </div>

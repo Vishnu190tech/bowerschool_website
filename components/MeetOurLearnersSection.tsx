@@ -129,7 +129,7 @@ export default function MeetOurLearnersSection() {
 
         {/* Desktop Carousel */}
         <div className="hidden lg:block relative">
-          <div 
+          <div
             ref={scrollRef}
             className="flex gap-4 overflow-x-hidden scroll-smooth mb-8"
           >
@@ -142,13 +142,13 @@ export default function MeetOurLearnersSection() {
                 className="learner-card flex-shrink-0 relative group"
                 style={{ width: 'calc(25% - 12px)' }} // 4 cards visible with gaps
               >
-                <div 
+                <div
                   className="relative h-[500px] rounded-2xl overflow-hidden bg-cover bg-center"
                   style={{ backgroundImage: `url('${learner.image}')` }}
                 >
                   {/* Gradient overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
-                  
+
                   {/* Content */}
                   <div className="absolute bottom-0 left-0 right-0 p-6">
                     <div className="backdrop-blur-xl bg-gradient-to-br from-white/10 to-white/5 rounded-xl p-5 border border-white/20">
@@ -162,7 +162,7 @@ export default function MeetOurLearnersSection() {
                         <button className="w-full bg-white text-gray-900 px-4 py-2.5 rounded-lg font-medium hover:bg-gray-100 transition-all duration-200 flex items-center justify-center gap-2 group">
                           <span>Connect</span>
                           <svg className="w-5 h-5 text-[#0077b5]" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                           </svg>
                         </button>
                       )}
@@ -180,7 +180,7 @@ export default function MeetOurLearnersSection() {
               <div className="w-10 h-px bg-white" />
               <span className="text-2xl font-semibold text-white">{totalPages}</span>
             </div>
-            
+
             <div className="flex items-center gap-4">
               <button
                 onClick={handlePrevious}
@@ -209,7 +209,7 @@ export default function MeetOurLearnersSection() {
                 <motion.div
                   key={learner.id}
                   initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ 
+                  animate={{
                     opacity: index === currentIndex ? 1 : 0,
                     scale: index === currentIndex ? 1 : 0.9,
                     display: index === currentIndex ? 'block' : 'none'
@@ -217,13 +217,13 @@ export default function MeetOurLearnersSection() {
                   transition={{ duration: 0.3 }}
                   className="absolute inset-0"
                 >
-                  <div 
+                  <div
                     className="relative h-full rounded-3xl overflow-hidden bg-cover bg-center shadow-2xl"
                     style={{ backgroundImage: `url('${learner.image}')` }}
                   >
                     {/* Gradient overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent" />
-                    
+
                     {/* Content */}
                     <div className="absolute bottom-0 left-0 right-0 p-6">
                       <div className="backdrop-blur-2xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-2xl p-6 border border-white/30">
@@ -233,7 +233,7 @@ export default function MeetOurLearnersSection() {
                           </h3>
                           {learner.hasConnectButton && (
                             <svg className="w-6 h-6 text-[#0077b5]" viewBox="0 0 24 24" fill="currentColor">
-                              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                             </svg>
                           )}
                         </div>
@@ -255,7 +255,7 @@ export default function MeetOurLearnersSection() {
               <div className="w-12 h-[2px] bg-white" />
               <span className="text-2xl font-medium text-white">{learners.length}</span>
             </div>
-            
+
             <div className="flex items-center gap-3">
               <button
                 onClick={handlePrevious}

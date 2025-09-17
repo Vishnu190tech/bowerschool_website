@@ -6,12 +6,13 @@ import { motion } from 'framer-motion';
 
 const PartnerCTASection = () => {
   return (
-    <section className="w-full bg-[#e3e3ff] p-20">
-      <div className="relative h-[465px] w-full">
+    <section className="w-full bg-[#e3e3ff]">
+      <div className="max-w-[1440px] mx-auto px-4 py-8 md:px-10 md:py-12 lg:p-20">
+        <div className="relative h-[280px] md:h-[380px] lg:h-[465px] w-full">
         {/* Background Container */}
-        <div className="absolute inset-0 bg-[#3232e6] rounded-[30px] border-4 border-white overflow-hidden">
+        <div className="absolute inset-0 bg-[#3232e6] rounded-[20px] md:rounded-[25px] lg:rounded-[30px] border-2 md:border-3 lg:border-4 border-white overflow-hidden">
           {/* Right side decorative elements */}
-          <div className="absolute right-0 top-0 bottom-0 w-1/2">
+          <div className="absolute right-0 top-0 bottom-0 w-1/2 hidden md:block">
             {/* Masked shapes and decorative elements */}
             <div className="absolute inset-0">
               {/* Bottom left circle */}
@@ -86,18 +87,14 @@ const PartnerCTASection = () => {
           </div>
 
           {/* Text Content */}
-          <div className="relative z-10 flex flex-col justify-between h-full p-11">
+          <div className="relative z-10 flex flex-col justify-between h-full p-6 md:p-8 lg:p-11">
             <motion.h2
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
-              className="text-white max-w-[735px]"
+              className="text-white max-w-full md:max-w-[600px] lg:max-w-[735px] text-[32px] md:text-[56px] lg:text-[80px] font-bold leading-[1.1] tracking-[-2px] md:tracking-[-3px] lg:tracking-[-4px]"
               style={{
                 fontFamily: 'var(--font-plus-jakarta)',
-                fontSize: '80px',
-                fontWeight: 700,
-                lineHeight: '80px',
-                letterSpacing: '-4px'
               }}
             >
               Become an Industry Partner Today
@@ -109,14 +106,12 @@ const PartnerCTASection = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="bg-white text-[#3232e6] px-4 py-1 rounded-lg w-[200px] h-11 flex items-center justify-center border border-[#4242ff] shadow-[0px_1px_3px_0px_rgba(0,0,0,0.1)] transition-all duration-300 hover:shadow-lg"
+              className="bg-white text-[#3232e6] px-4 py-1 rounded-lg w-[160px] md:w-[180px] lg:w-[200px] h-10 md:h-11 flex items-center justify-center border border-[#4242ff] shadow-[0px_1px_3px_0px_rgba(0,0,0,0.1)] transition-all duration-300 hover:shadow-lg"
             >
               <span
+                className="text-[16px] md:text-[17px] lg:text-[18px] font-medium"
                 style={{
                   fontFamily: 'var(--font-plus-jakarta)',
-                  fontSize: '18px',
-                  fontWeight: 500,
-                  lineHeight: '27px'
                 }}
               >
                 Connect
@@ -124,6 +119,7 @@ const PartnerCTASection = () => {
             </motion.button>
           </div>
         </div>
+      </div>
       </div>
     </section>
   );

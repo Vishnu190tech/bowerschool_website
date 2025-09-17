@@ -92,7 +92,7 @@ const SkillsSection = () => {
               duration: star.duration,
               delay: star.delay,
               repeat: Infinity,
-              ease: "easeInOut"
+              ease: "easeInOut" as const
             }}
           />
         ))}
@@ -126,7 +126,7 @@ const SkillsSection = () => {
               className="group relative"
               variants={itemVariants}
               whileHover={{ scale: 1.02 }}
-              transition={{ type: "spring", stiffness: 300 }}
+              transition={{ type: "spring" as const, stiffness: 300 }}
             >
               {/* Card */}
               <div className="relative bg-gradient-to-br from-gray-900/50 to-gray-800/30 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-8 h-full overflow-hidden">

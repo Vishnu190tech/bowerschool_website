@@ -35,8 +35,8 @@ const TrustedBySchools = () => {
   }
 
   return (
-    <div className="bg-[#fffcf9] py-16 md:py-20 px-8 md:px-20 overflow-hidden">
-      <motion.div 
+    <div className="bg-[#fffcf9] py-8 md:py-16 lg:py-20 px-4 md:px-8 lg:px-20 overflow-hidden">
+      <motion.div
         className="max-w-7xl mx-auto"
         variants={containerVariants}
         initial="hidden"
@@ -44,8 +44,8 @@ const TrustedBySchools = () => {
         viewport={{ once: true }}
       >
         {/* Title Section */}
-        <motion.h2 
-          className="text-3xl md:text-[40px] font-semibold text-center mb-16 tracking-[-1.6px] leading-tight"
+        <motion.h2
+          className="text-[24px] md:text-3xl lg:text-[40px] font-semibold text-center mb-8 md:mb-12 lg:mb-16 tracking-[-0.8px] md:tracking-[-1.2px] lg:tracking-[-1.6px] leading-tight px-4 md:px-0"
           variants={itemVariants}
         >
           <span className="text-[#6a6a6a]">You Trusted by</span>
@@ -57,42 +57,40 @@ const TrustedBySchools = () => {
 
         {/* Logo Carousel Container */}
         <div className="relative">
-          {/* First Row of Logos */}
-          <motion.div 
-            className="flex items-center justify-center gap-8 md:gap-20 mb-12 md:mb-20 flex-wrap"
+          {/* First Row of Logos - Hidden on Mobile */}
+          <motion.div
+            className="hidden md:flex items-center justify-center gap-8 lg:gap-20 mb-8 md:mb-12 lg:mb-20 flex-wrap"
             variants={itemVariants}
           >
             {logos.map((logo) => (
               <motion.div
                 key={logo.id}
-                className="h-12 flex items-center justify-center"
-                style={{ width: `${logo.width}px` }}
+                className="h-10 md:h-12 flex items-center justify-center w-auto"
                 whileHover={{ scale: 1.1 }}
-                transition={{ type: "spring", stiffness: 300 }}
+                transition={{ type: "spring" as const, stiffness: 300 }}
               >
                 <Image
                   src={logo.src}
                   alt={logo.name}
                   width={logo.width}
                   height={48}
-                  className="object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
+                  className="object-contain filter grayscale hover:grayscale-0 transition-all duration-300 max-w-[120px] md:max-w-[150px] lg:max-w-none h-full"
                 />
               </motion.div>
             ))}
           </motion.div>
 
-          {/* Second Row of Logos (Different Order) */}
-          <motion.div 
-            className="flex items-center justify-center gap-8 md:gap-20 flex-wrap"
+          {/* Second Row of Logos (Different Order) - Hidden on Mobile */}
+          <motion.div
+            className="hidden md:flex items-center justify-center gap-8 lg:gap-20 flex-wrap"
             variants={itemVariants}
           >
             {[logos[1], logos[0], logos[3], logos[4]].map((logo, index) => (
               <motion.div
                 key={`row2-${logo.id}`}
-                className="h-12 flex items-center justify-center"
-                style={{ width: `${logo.width}px` }}
+                className="h-10 md:h-12 flex items-center justify-center w-auto"
                 whileHover={{ scale: 1.1 }}
-                transition={{ type: "spring", stiffness: 300 }}
+                transition={{ type: "spring" as const, stiffness: 300 }}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -102,15 +100,15 @@ const TrustedBySchools = () => {
                   alt={logo.name}
                   width={logo.width}
                   height={48}
-                  className="object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
+                  className="object-contain filter grayscale hover:grayscale-0 transition-all duration-300 max-w-[120px] md:max-w-[150px] lg:max-w-none h-full"
                 />
               </motion.div>
             ))}
           </motion.div>
 
-          {/* Animated Background Elements */}
+          {/* Animated Background Elements - Hidden on Mobile */}
           <motion.div
-            className="absolute -top-10 -left-10 w-20 h-20 bg-gradient-to-br from-[#ff8829]/10 to-transparent rounded-full blur-2xl"
+            className="hidden md:block absolute -top-10 -left-10 w-20 h-20 bg-gradient-to-br from-[#ff8829]/10 to-transparent rounded-full blur-2xl"
             animate={{
               scale: [1, 1.2, 1],
               opacity: [0.3, 0.6, 0.3],
@@ -118,11 +116,11 @@ const TrustedBySchools = () => {
             transition={{
               duration: 4,
               repeat: Infinity,
-              ease: "easeInOut"
+              ease: "easeInOut" as const
             }}
           />
           <motion.div
-            className="absolute -bottom-10 -right-10 w-32 h-32 bg-gradient-to-br from-[#ff8829]/10 to-transparent rounded-full blur-3xl"
+            className="hidden md:block absolute -bottom-10 -right-10 w-32 h-32 bg-gradient-to-br from-[#ff8829]/10 to-transparent rounded-full blur-3xl"
             animate={{
               scale: [1, 1.3, 1],
               opacity: [0.3, 0.5, 0.3],
@@ -130,17 +128,17 @@ const TrustedBySchools = () => {
             transition={{
               duration: 5,
               repeat: Infinity,
-              ease: "easeInOut"
+              ease: "easeInOut" as const
             }}
           />
         </div>
 
-        {/* Optional: Scrolling Animation for Mobile */}
-        <div className="md:hidden mt-12 relative">
-          <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-[#fffcf9] to-transparent z-10" />
-          <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-[#fffcf9] to-transparent z-10" />
-          <motion.div 
-            className="flex gap-12"
+        {/* Scrolling Animation for Mobile */}
+        <div className="md:hidden relative overflow-hidden">
+          <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-[#fffcf9] to-transparent z-10" />
+          <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-[#fffcf9] to-transparent z-10" />
+          <motion.div
+            className="flex gap-6"
             animate={{ x: [0, -500, 0] }}
             transition={{
               duration: 20,
@@ -151,14 +149,14 @@ const TrustedBySchools = () => {
             {[...logos, ...logos].map((logo, index) => (
               <div
                 key={`mobile-${index}`}
-                className="h-10 flex-shrink-0"
-                style={{ width: `${logo.width * 0.8}px` }}
+                className="h-8 flex-shrink-0"
+                style={{ width: `${logo.width * 0.6}px` }}
               >
                 <Image
                   src={logo.src}
                   alt={logo.name}
-                  width={logo.width * 0.8}
-                  height={40}
+                  width={logo.width * 0.6}
+                  height={32}
                   className="object-contain filter grayscale"
                 />
               </div>

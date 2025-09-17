@@ -163,7 +163,7 @@ const ApplicationBanner = () => {
             transition={{
               duration: 4 + index,
               repeat: Infinity,
-              ease: "easeInOut"
+              ease: "easeInOut" as const
             }}
           >
             <Image

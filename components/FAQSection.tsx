@@ -109,8 +109,8 @@ const FAQSection = () => {
   }
 
   return (
-    <div 
-      className="relative min-h-screen bg-black overflow-hidden"
+    <div
+      className="relative  bg-black overflow-hidden"
       style={{
         backgroundImage: `
           radial-gradient(ellipse at center bottom, 
@@ -124,29 +124,28 @@ const FAQSection = () => {
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/50 to-black" />
 
       {/* Main Content */}
-      <motion.div 
-        className="relative z-10 container mx-auto px-8 md:px-20 py-20"
+      <motion.div
+        className="relative z-10 container mx-auto px-4 sm:px-6 md:px-10 lg:px-20 py-10 md:py-16 lg:py-20"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
-        <div className="flex flex-col lg:flex-row gap-16">
+        <div className="flex flex-col lg:flex-row gap-8 md:gap-12 lg:gap-16">
           {/* Sidebar */}
-          <motion.div 
-            className="lg:w-[300px] shrink-0"
+          <motion.div
+            className="w-full lg:w-[300px] lg:shrink-0"
             variants={itemVariants}
           >
-            <div className="backdrop-blur-[22px] bg-black/40 border border-[#ff8829] rounded-2xl p-6">
-              <div className="flex flex-col gap-8">
+            <div className="backdrop-blur-[22px] bg-black/40 border border-[#ff8829] rounded-xl md:rounded-2xl p-4 md:p-5 lg:p-6">
+              <div className="flex flex-row lg:flex-col gap-3 sm:gap-4 lg:gap-8 overflow-x-auto lg:overflow-visible">
                 {categories.map((category) => (
                   <button
                     key={category}
                     onClick={() => setActiveCategory(category)}
-                    className={`text-left text-xl transition-all duration-300 ${
-                      activeCategory === category
+                    className={`text-left text-[16px] sm:text-[18px] lg:text-xl whitespace-nowrap lg:whitespace-normal transition-all duration-300 ${activeCategory === category
                         ? 'text-[#f5f9ff] font-medium'
                         : 'text-[#f5f9ff]/60 font-normal hover:text-[#f5f9ff]/80'
-                    }`}
+                      }`}
                   >
                     {category}
                   </button>
@@ -156,11 +155,11 @@ const FAQSection = () => {
           </motion.div>
 
           {/* FAQ Items */}
-          <motion.div 
-            className="flex-1"
+          <motion.div
+            className="flex-1 w-full"
             variants={itemVariants}
           >
-            <div className="space-y-8">
+            <div className="space-y-4 md:space-y-6 lg:space-y-8">
               <AnimatePresence mode="wait">
                 {faqData[activeCategory as keyof typeof faqData]?.map((faq) => (
                   <motion.div
@@ -170,18 +169,18 @@ const FAQSection = () => {
                     exit={{ opacity: 0, x: -20 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <div className="border-b border-[#f5f9ff]/20 pb-8">
+                    <div className="border-b border-[#f5f9ff]/20 pb-4 md:pb-6 lg:pb-8">
                       <button
                         onClick={() => toggleExpand(faq.id)}
                         className="w-full text-left group"
                       >
                         <div className="flex items-start justify-between">
-                          <div className="flex gap-8 flex-1">
-                            <span className="text-2xl font-semibold text-[#f5f9ff]/80">
+                          <div className="flex gap-3 sm:gap-4 md:gap-6 lg:gap-8 flex-1">
+                            <span className="text-[18px] sm:text-[20px] lg:text-2xl font-semibold text-[#f5f9ff]/80 shrink-0">
                               {faq.number}
                             </span>
                             <div className="flex-1">
-                              <h3 className="text-2xl font-semibold text-[#f5f9ff] tracking-[-0.96px] group-hover:text-[#ff8829] transition-colors">
+                              <h3 className="text-[18px] sm:text-[20px] lg:text-2xl font-semibold text-[#f5f9ff] tracking-[-0.96px] group-hover:text-[#ff8829] transition-colors pr-2">
                                 {faq.question}
                               </h3>
                               <AnimatePresence>
@@ -193,7 +192,7 @@ const FAQSection = () => {
                                     transition={{ duration: 0.3 }}
                                     className="overflow-hidden"
                                   >
-                                    <p className="text-lg text-[#f5f9ff]/80 mt-4 leading-relaxed">
+                                    <p className="text-[14px] sm:text-[16px] lg:text-lg text-[#f5f9ff]/80 mt-3 lg:mt-4 leading-relaxed">
                                       {faq.answer}
                                     </p>
                                   </motion.div>
@@ -204,9 +203,9 @@ const FAQSection = () => {
                           <motion.div
                             animate={{ rotate: expandedItems.includes(faq.id) ? 180 : 0 }}
                             transition={{ duration: 0.3 }}
-                            className="ml-4"
+                            className="ml-2 sm:ml-3 lg:ml-4 shrink-0"
                           >
-                            <ChevronUpIcon className="w-6 h-6 text-[#f5f9ff] group-hover:text-[#ff8829] transition-colors" />
+                            <ChevronUpIcon className="w-5 h-5 sm:w-6 sm:h-6 text-[#f5f9ff] group-hover:text-[#ff8829] transition-colors" />
                           </motion.div>
                         </div>
                       </button>
@@ -221,7 +220,7 @@ const FAQSection = () => {
 
       {/* Decorative Elements */}
       <motion.div
-        className="absolute top-20 right-20 w-32 h-32 bg-gradient-to-br from-[#ff8829]/20 to-transparent rounded-full blur-3xl"
+        className="absolute top-10 sm:top-16 md:top-20 right-5 sm:right-10 md:right-16 lg:right-20 w-20 sm:w-24 md:w-28 lg:w-32 h-20 sm:h-24 md:h-28 lg:h-32 bg-gradient-to-br from-[#ff8829]/20 to-transparent rounded-full blur-3xl"
         animate={{
           scale: [1, 1.2, 1],
           opacity: [0.3, 0.5, 0.3],
@@ -229,11 +228,11 @@ const FAQSection = () => {
         transition={{
           duration: 5,
           repeat: Infinity,
-          ease: "easeInOut"
+          ease: "easeInOut" as const
         }}
       />
       <motion.div
-        className="absolute bottom-40 left-20 w-40 h-40 bg-gradient-to-br from-[#ffbf29]/20 to-transparent rounded-full blur-3xl"
+        className="absolute bottom-20 sm:bottom-32 lg:bottom-40 left-5 sm:left-10 md:left-16 lg:left-20 w-24 sm:w-32 lg:w-40 h-24 sm:h-32 lg:h-40 bg-gradient-to-br from-[#ffbf29]/20 to-transparent rounded-full blur-3xl"
         animate={{
           scale: [1, 1.3, 1],
           opacity: [0.3, 0.5, 0.3],
@@ -241,7 +240,7 @@ const FAQSection = () => {
         transition={{
           duration: 6,
           repeat: Infinity,
-          ease: "easeInOut"
+          ease: "easeInOut" as const
         }}
       />
     </div>

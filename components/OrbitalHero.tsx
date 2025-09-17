@@ -60,7 +60,7 @@ const OrbitalHero = () => {
             duration: star.duration,
             delay: star.delay,
             repeat: Infinity,
-            ease: "easeInOut"
+            ease: "easeInOut" as const
           }}
         />
       ))}
@@ -103,7 +103,7 @@ const OrbitalHero = () => {
               transition={{ 
                 duration: 1, 
                 delay: ring * 0.1,
-                ease: "easeOut"
+                ease: "easeOut" as const
               }}
             />
           ))}
@@ -120,7 +120,7 @@ const OrbitalHero = () => {
               transition={{
                 duration: 4,
                 repeat: Infinity,
-                ease: "easeInOut"
+                ease: "easeInOut" as const
               }}
               style={{
                 left: '50%',
@@ -139,7 +139,7 @@ const OrbitalHero = () => {
               transition={{
                 duration: 3,
                 repeat: Infinity,
-                ease: "easeInOut"
+                ease: "easeInOut" as const
               }}
               style={{
                 left: '50%',
@@ -157,7 +157,7 @@ const OrbitalHero = () => {
               transition={{
                 duration: 2,
                 repeat: Infinity,
-                ease: "easeInOut"
+                ease: "easeInOut" as const
               }}
             >
               <div className="absolute inset-0 bg-gradient-to-br from-blue-400 via-blue-500 to-purple-600" />
@@ -171,7 +171,7 @@ const OrbitalHero = () => {
                 transition={{
                   duration: 2,
                   repeat: Infinity,
-                  ease: "easeInOut"
+                  ease: "easeInOut" as const
                 }}
               />
             </motion.div>
@@ -196,7 +196,7 @@ const OrbitalHero = () => {
                   duration: 3,
                   delay: ring * 1,
                   repeat: Infinity,
-                  ease: "easeOut"
+                  ease: "easeOut" as const
                 }}
               />
             ))}
@@ -263,7 +263,7 @@ const OrbitalHero = () => {
                           duration: 2,
                           delay: index * 0.2,
                           repeat: Infinity,
-                          ease: "easeInOut"
+                          ease: "easeInOut" as const
                         }
                       }}
                     >
