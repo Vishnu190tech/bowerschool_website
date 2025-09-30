@@ -29,7 +29,7 @@ export default function StartupInvestorSection() {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
-              className="flex flex-col gap-10 max-w-[660px] z-10"
+              className="flex flex-col gap-30 max-w-[660px] z-10"
             >
               {/* Header */}
               <div className="flex flex-col gap-3">
@@ -54,11 +54,7 @@ export default function StartupInvestorSection() {
                   Know More
                 </span>
                 <ChevronRightIcon className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                <div className="absolute inset-0 rounded-lg pointer-events-none"
-                  style={{
-                    boxShadow: 'inset 0px 1px 0.75px 0px rgba(255,255,255,0.12), inset 0px -1px 0px 0px #4242ff'
-                  }}
-                />
+
               </motion.button>
             </motion.div>
 
@@ -67,7 +63,7 @@ export default function StartupInvestorSection() {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="absolute right-0 top-1/2 -translate-y-1/2 w-[694px] h-[534px]"
+              className="absolute right-[-150px] top-1/2 -translate-y-1/2 w-[694px] h-[534px]"
             >
               <Image
                 src="/c8580380a166b075e9a372b58144d24b1a5dc939.png"

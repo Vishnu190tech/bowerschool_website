@@ -106,7 +106,7 @@ export default function MeetOurLearnersSection() {
 
   return (
     <section className="w-full px-4 py-12 md:px-8 md:py-16 lg:px-20 lg:py-20 bg-gradient-to-br from-gray-900 to-black">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-[1440px] mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
           <motion.h2

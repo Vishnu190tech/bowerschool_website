@@ -50,7 +50,7 @@ export default function Hero() {
             transition={{ duration: 0.5 }}
             className="  mb-8"
           >
-            <span className="px-4 py-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full text-sm text-white">
+            <span className="px-4 py-2 bg-[#3232E61A] backdrop-blur-md border border-[#3232E61A] rounded-full text-sm text-white">
               Bower school
             </span>
           </motion.div>
@@ -76,7 +76,7 @@ export default function Hero() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="w-full sm:w-auto px-8 py-4 sm:py-3 bg-[#4242ff] text-white rounded-xl sm:rounded-full font-medium hover:bg-[#3232e6] transition-colors flex items-center justify-center gap-2"
+              className="w-full sm:w-auto px-8 py-4 sm:py-3 bg-[#4242ff] text-white rounded-xl sm:rounded-xl font-medium hover:bg-[#3232e6] transition-colors flex items-center justify-center gap-2"
             >
               Apply Now
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -86,7 +86,14 @@ export default function Hero() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="w-full sm:w-auto px-8 py-4 sm:py-3 bg-transparent text-white border border-white/30 rounded-xl sm:rounded-full font-medium hover:bg-white/10 transition-colors"
+              className="w-full sm:w-auto px-4 py-2 text-white border border-white/50 rounded-lg font-medium transition-all relative overflow-hidden"
+              style={{
+                background: 'radial-gradient(ellipse at center, rgba(50,50,230,0.4) 0%, rgba(50,50,230,0) 100%), linear-gradient(to right, rgba(17,24,39,0.05), rgba(17,24,39,0.05))',
+                backdropFilter: 'blur(32px)',
+                fontSize: '18px',
+                lineHeight: '27px',
+                fontFamily: 'var(--font-plus-jakarta)',
+              }}
             >
               Download Brochure
             </motion.button>

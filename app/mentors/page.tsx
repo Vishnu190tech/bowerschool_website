@@ -4,14 +4,10 @@ import PartnershipSection from "@/components/PartnershipSection";
 import VideoCarouselSection from "@/components/VideoCarouselSection";
 import PartnerCTASection from "@/components/PartnerCTASection";
 import Testimonials from "@/components/Testimonials";
-import ContactFormSection from "@/components/ContactFormSection";
-import LearningComparisonSection from "@/components/LearningComparisonSection";
 import FAQSection from "@/components/FAQSection";
 import ScholarshipFormSection from "@/components/ScholarshipFormSection";
 import MeetOurLearnersSection from "@/components/MeetOurLearnersSection";
 import MentorshipHeroSection from "@/components/MentorshipHeroSection";
-import CampusVideoSection from "@/components/CampusVideoSection";
-import CampusTourSection from "@/components/CampusTourSection";
 import StudentPitchSection from "@/components/StudentPitchSection";
 
 export default function mentorsPage() {

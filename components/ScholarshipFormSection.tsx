@@ -26,7 +26,7 @@ export default function ScholarshipFormSection() {
     const timer = setInterval(() => {
       setTimeLeft(prevTime => {
         let { days, hours, minutes, seconds } = prevTime;
-        
+
         if (seconds > 0) {
           seconds--;
         } else if (minutes > 0) {
@@ -42,7 +42,7 @@ export default function ScholarshipFormSection() {
           minutes = 59;
           seconds = 59;
         }
-        
+
         return { days, hours, minutes, seconds };
       });
     }, 1000);
@@ -72,10 +72,10 @@ export default function ScholarshipFormSection() {
         <div className="relative min-h-[800px] p-4 md:p-6 lg:p-10 overflow-hidden">
           {/* Grid Background */}
           <div className="absolute inset-0 hidden lg:block">
-            <Image 
-              src="/c0f15af3eb0c36bfc7aa78a457af6257c6d3bded.svg" 
-              alt="Grid background" 
-              fill 
+            <Image
+              src="/c0f15af3eb0c36bfc7aa78a457af6257c6d3bded.svg"
+              alt="Grid background"
+              fill
               className="object-cover opacity-10"
             />
           </div>
@@ -85,7 +85,7 @@ export default function ScholarshipFormSection() {
             <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 h-full">
               {/* Left Content - Desktop Only */}
               <div className="hidden lg:flex flex-col justify-between w-[700px]">
-                <motion.h2 
+                <motion.h2
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   className="text-[44px] font-semibold leading-tight text-gray-900 tracking-[-1.76px] capitalize"
@@ -94,7 +94,7 @@ export default function ScholarshipFormSection() {
                 </motion.h2>
 
                 {/* Desktop Countdown Timer */}
-                <motion.div 
+                <motion.div
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.2 }}
@@ -106,7 +106,7 @@ export default function ScholarshipFormSection() {
                     { value: timeLeft.minutes.toString().padStart(2, '0'), label: 'Min' },
                     { value: timeLeft.seconds.toString().padStart(2, '0'), label: 'Sec' }
                   ].map((item, index) => (
-                    <div 
+                    <div
                       key={index}
                       className="w-[150px] h-[150px] rounded-3xl backdrop-blur-md bg-white/40 border border-gray-100 flex flex-col items-center justify-center"
                     >
@@ -135,13 +135,12 @@ export default function ScholarshipFormSection() {
                     { value: timeLeft.seconds.toString().padStart(2, '0'), label: 'Sec', order: 'third' },
                     { value: timeLeft.minutes.toString().padStart(2, '0'), label: 'Min', order: 'fourth' }
                   ].map((item, index) => (
-                    <div 
+                    <div
                       key={index}
-                      className={`bg-gray-50 rounded-2xl p-3 flex flex-col items-center justify-center ${
-                        item.order === 'first' ? 'order-1' :
+                      className={`bg-gray-50 rounded-2xl p-3 flex flex-col items-center justify-center ${item.order === 'first' ? 'order-1' :
                         item.order === 'second' ? 'order-2' :
-                        item.order === 'third' ? 'order-3' : 'order-4'
-                      }`}
+                          item.order === 'third' ? 'order-3' : 'order-4'
+                        }`}
                     >
                       <span className="text-2xl md:text-3xl font-semibold text-[#4242ff]">
                         {item.value}
@@ -155,7 +154,7 @@ export default function ScholarshipFormSection() {
               </div>
 
               {/* Form - Responsive */}
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.3 }}
@@ -165,26 +164,24 @@ export default function ScholarshipFormSection() {
                   {/* Form Stepper */}
                   <div className="flex items-center justify-between w-full">
                     <div className="flex items-center gap-2 lg:flex-col lg:gap-4">
-                      <div className={`w-8 h-8 lg:w-6 lg:h-6 rounded-full flex items-center justify-center text-sm lg:text-base border ${
-                        currentStep === 1 
-                          ? 'bg-[#4242ff]/10 border-[#4242ff] text-[#4242ff]' 
-                          : 'border-gray-400 text-gray-400'
-                      }`}>
+                      <div className={`w-8 h-8 lg:w-6 lg:h-6 rounded-full flex items-center justify-center text-sm lg:text-base border ${currentStep === 1
+                        ? 'bg-[#4242ff]/10 border-[#4242ff] text-[#4242ff]'
+                        : 'border-gray-400 text-gray-400'
+                        }`}>
                         1
                       </div>
                       <span className={`text-sm lg:text-base ${currentStep === 1 ? 'text-[#4242ff]' : 'text-gray-400'}`}>
                         Contact
                       </span>
                     </div>
-                    
+
                     <div className="flex-1 h-0 border-t border-dashed border-gray-300 mx-4"></div>
-                    
+
                     <div className="flex items-center gap-2 lg:flex-col lg:gap-4">
-                      <div className={`w-8 h-8 lg:w-6 lg:h-6 rounded-full flex items-center justify-center text-sm lg:text-base border ${
-                        currentStep === 2 
-                          ? 'bg-[#4242ff]/10 border-[#4242ff] text-[#4242ff]' 
-                          : 'border-gray-400 text-gray-400'
-                      }`}>
+                      <div className={`w-8 h-8 lg:w-6 lg:h-6 rounded-full flex items-center justify-center text-sm lg:text-base border ${currentStep === 2
+                        ? 'bg-[#4242ff]/10 border-[#4242ff] text-[#4242ff]'
+                        : 'border-gray-400 text-gray-400'
+                        }`}>
                         2
                       </div>
                       <span className={`text-sm lg:text-base ${currentStep === 2 ? 'text-[#4242ff]' : 'text-gray-400'}`}>
@@ -205,7 +202,7 @@ export default function ScholarshipFormSection() {
                         className="w-full h-12 lg:h-[54px] px-4 py-2 bg-gray-50 border border-gray-300 rounded-xl text-sm text-gray-900 placeholder-gray-500 focus:outline-none focus:border-[#4242ff] transition-colors"
                         required
                       />
-                      
+
                       <input
                         type="email"
                         name="email"
@@ -215,7 +212,7 @@ export default function ScholarshipFormSection() {
                         className="w-full h-12 lg:h-[54px] px-4 py-2 bg-gray-50 border border-gray-300 rounded-xl text-sm text-gray-900 placeholder-gray-500 focus:outline-none focus:border-[#4242ff] transition-colors"
                         required
                       />
-                      
+
                       <input
                         type="tel"
                         name="mobile"

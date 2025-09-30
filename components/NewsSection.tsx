@@ -63,7 +63,7 @@ export default function NewsSection() {
         </motion.h2>
 
         {/* Desktop Grid - Hidden on mobile */}
-        <div className="hidden lg:grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="hidden p-6 bg-gradient-to-b from-white via-white to-blue-300/10 rounded-3xl lg:grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Featured Article - Left Column */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -71,34 +71,27 @@ export default function NewsSection() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="group cursor-pointer"
           >
-            <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
+            <div className="  overflow-hidden hover:rounded-3xl hover:shadow-xl transition-shadow">
               {/* Featured Image */}
-              <div className="relative h-[300px] md:h-[400px] overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10" />
+              <div className="relative h-[300px] md:h-[360px] overflow-hidden">
                 <Image
                   src={newsItems[0].image}
                   alt={newsItems[0].title}
                   fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  className="object-cover rounded-3xl group-hover:scale-105 transition-transform duration-500"
                 />
-                {/* Fringe Badge */}
-                <div className="absolute top-4 left-4 z-20">
-                  <div className="bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full">
-                    <span className="text-xs font-semibold text-gray-900">Fringe</span>
-                  </div>
-                </div>
-                {/* Content Overlay */}
-                <div className="absolute bottom-0 left-0 right-0 p-6 z-20">
-                  <div className="flex items-center gap-2 text-white/80 text-sm mb-2">
-                    <span className="uppercase font-medium">Economic Times</span>
-                  </div>
-                  <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">
-                    Changes in entrepreneurial landscape in india
-                  </h3>
-                  <div className="flex items-center gap-2 text-white/70 text-sm">
-                    <CalendarIcon className="w-4 h-4" />
-                    <span>22 August, 2024</span>
-                  </div>
+              </div>
+              {/* Content - Below the image */}
+              <div className="p-6">
+                <span className="text-xs text-gray-500 uppercase font-medium tracking-wider">
+                  {newsItems[0].category}
+                </span>
+                <h3 className="text-xl font-semibold text-gray-900 mt-2 mb-3 line-clamp-2">
+                  {newsItems[0].title}
+                </h3>
+                <div className="flex items-center gap-2 text-sm text-gray-500">
+                  <CalendarIcon className="w-4 h-4" />
+                  <span>{newsItems[0].date}</span>
                 </div>
               </div>
             </div>
@@ -153,7 +146,7 @@ export default function NewsSection() {
           <div className="overflow-x-auto pb-4 -mx-4 px-4">
             <div className="flex gap-4 w-max">
               {/* Featured Card */}
-              <motion.div
+              {/* <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5 }}
@@ -180,39 +173,41 @@ export default function NewsSection() {
                     </div>
                   </div>
                 </div>
-              </motion.div>
+              </motion.div> */}
 
               {/* Regular Cards */}
-              {newsItems.filter(item => item.type === 'regular').map((item, index) => (
-                <motion.div
-                  key={item.id}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5, delay: 0.1 * (index + 1) }}
-                  className="w-[280px] flex-shrink-0"
-                >
-                  <div className="bg-white rounded-xl overflow-hidden shadow-lg h-full">
-                    <div className="relative h-[200px]">
-                      <Image
-                        src={item.image}
-                        alt={item.title}
-                        fill
-                        className="object-cover"
-                      />
-                    </div>
-                    <div className="p-4">
-                      <span className="text-xs text-gray-500 uppercase">{item.category}</span>
-                      <h3 className="text-base font-semibold text-gray-900 mt-1 line-clamp-2">
-                        {item.title}
-                      </h3>
-                      <div className="flex items-center gap-1 text-xs text-gray-500 mt-3">
-                        <CalendarIcon className="w-3 h-3" />
-                        <span>{item.date}</span>
+              {newsItems
+                // .filter(item => item.type === 'regular')
+                .map((item, index) => (
+                  <motion.div
+                    key={item.id}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.5, delay: 0.1 * (index + 1) }}
+                    className="w-[280px] flex-shrink-0"
+                  >
+                    <div className="bg-white rounded-xl overflow-hidden shadow-lg h-full">
+                      <div className="relative h-[200px]">
+                        <Image
+                          src={item.image}
+                          alt={item.title}
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                      <div className="p-4">
+                        <span className="text-xs text-gray-500 uppercase">{item.category}</span>
+                        <h3 className="text-base font-semibold text-gray-900 mt-1 line-clamp-2">
+                          {item.title}
+                        </h3>
+                        <div className="flex items-center gap-1 text-xs text-gray-500 mt-3">
+                          <CalendarIcon className="w-3 h-3" />
+                          <span>{item.date}</span>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </motion.div>
-              ))}
+                  </motion.div>
+                ))}
             </div>
           </div>
 
@@ -221,7 +216,7 @@ export default function NewsSection() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-3 bg-white text-[#4242ff] border-2 border-[#4242ff] rounded-full font-medium hover:bg-[#4242ff] hover:text-white transition-colors"
+              className="px-8 py-3 bg-white text-[#4242ff] border-2 border-[#4242ff] rounded-xl font-medium hover:bg-[#4242ff] hover:text-white transition-colors"
             >
               View All
             </motion.button>

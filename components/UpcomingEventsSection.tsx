@@ -21,7 +21,7 @@ const events: Event[] = [
   {
     id: 1,
     image: '/vr-event.jpg',
-    type: 'Events',
+    type: 'Events Type',
     date: '4. Sept. 2025',
     title: 'Innovations and Tech Meetup',
     description: 'Lorem ipsum dolor sit amet consectetur adipiscing elit Ut et massa mi. Aliquam in hendrerit urna. Pellentesque sit amet sapien.',
@@ -120,7 +120,7 @@ export default function UpcomingEventsSection() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.05 }}
-                className="text-sm md:text-base text-[#6b7280] max-w-2xl mx-auto lg:mx-0"
+                className="text-sm md:text-base text-[#6b7280]  mx-auto lg:mx-0"
               >
                 <span className="hidden md:inline">Stay ahead of the curve with workshops, talks, hackathons, and community mixers happening all year round.</span>
                 <span className="md:hidden">Stay ahead of the curve with business workshops, talks, hackathons, and community mixers happening all year round.</span>
@@ -133,7 +133,7 @@ export default function UpcomingEventsSection() {
               transition={{ duration: 0.5, delay: 0.1 }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="hidden lg:inline-flex px-6 py-2 text-[#4242ff] border-2 border-[#4242ff] rounded-full font-medium hover:bg-[#4242ff] hover:text-white transition-colors"
+              className="hidden lg:inline-flex px-6 py-2 text-[#4242ff] border-2 border-[#4242ff] rounded-xl font-medium hover:bg-[#4242ff] hover:text-white transition-colors"
             >
               View All
             </motion.button>
@@ -149,7 +149,7 @@ export default function UpcomingEventsSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.3, delay: 0.1 * index }}
               className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${index === 0
-                ? 'bg-[#4242ff] text-white'
+                ? 'bg-[#4242ff]/10 text-[#4242ff] border border-[#4242ff]'
                 : 'bg-white border border-gray-300 text-gray-700 hover:border-[#4242ff] hover:text-[#4242ff]'
                 }`}
             >
@@ -159,34 +159,34 @@ export default function UpcomingEventsSection() {
         </div>
 
         {/* Desktop Masonry Grid */}
-        <div className="hidden lg:grid grid-cols-3 gap-6">
+        <div className="hidden lg:grid grid-cols-3 gap-6 border border-white p-6 rounded-2xl">
           {/* Column 1 */}
           <div className="space-y-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow group cursor-pointer"
+              className=" rounded-2xl overflow-hidden  hover:shadow-xl transition-shadow group cursor-pointer"
             >
               <div className="relative h-[320px] overflow-hidden">
                 <Image
                   src={events[0].image}
                   alt={events[0].title}
                   fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  className="object-cover rounded-2xl border border-amber-300/30 group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
               <div className="p-6">
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="text-xs uppercase font-semibold text-[#4242ff]">{events[0].type}</span>
-                  <span className="text-xs text-[#9ca3af]">•</span>
-                  <span className="text-xs text-[#9ca3af]">{events[0].date}</span>
+                <div className="flex items-center gap-2 mb-3 w-full justify-between">
+                  <span className="text-xs uppercase font-semibold text-[#9ca3af]">{events[0].type}</span>
+                  {/* <span className="text-xs text-[#9ca3af]">•</span> */}
+                  <span className="text-xs font-bold  text-[#4242ff]">{events[0].date}</span>
                 </div>
                 <h3 className="text-xl font-bold text-[#111827] mb-2">{events[0].title}</h3>
                 <p className="text-sm text-[#4b5563] mb-4 line-clamp-2">{events[0].description}</p>
                 <div className="flex flex-wrap gap-2">
                   {events[0].tags.map((tag, i) => (
-                    <span key={i} className="px-3 py-1 bg-gray-100 text-xs text-gray-600 rounded-full">
+                    <span key={i} className="px-3 py-1 border border-gray-200 text-xs text-gray-600 rounded-full">
                       {tag}
                     </span>
                   ))}
@@ -198,27 +198,26 @@ export default function UpcomingEventsSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
-              className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow group cursor-pointer"
+              className="rounded-2xl overflow-hidden hover:shadow-xl transition-shadow group cursor-pointer"
             >
               <div className="relative h-[200px] overflow-hidden">
                 <Image
                   src={events[3].image}
                   alt={events[3].title}
                   fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  className="object-cover rounded-2xl border border-amber-300/30 group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
               <div className="p-6">
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="text-xs uppercase font-semibold text-[#4242ff]">{events[3].type}</span>
-                  <span className="text-xs text-[#9ca3af]">•</span>
-                  <span className="text-xs text-[#9ca3af]">{events[3].date}</span>
+                <div className="flex items-center gap-2 mb-3 w-full justify-between">
+                  <span className="text-xs uppercase font-semibold text-[#9ca3af]">{events[3].type}</span>
+                  <span className="text-xs font-bold text-[#4242ff]">{events[3].date}</span>
                 </div>
                 <h3 className="text-xl font-bold text-[#111827] mb-2">{events[3].title}</h3>
                 <p className="text-sm text-[#4b5563] mb-4 line-clamp-2">{events[3].description}</p>
                 <div className="flex flex-wrap gap-2">
                   {events[3].tags.map((tag, i) => (
-                    <span key={i} className="px-3 py-1 bg-gray-100 text-xs text-gray-600 rounded-full">
+                    <span key={i} className="px-3 py-1 border border-gray-200 text-xs text-gray-600 rounded-full">
                       {tag}
                     </span>
                   ))}
@@ -233,27 +232,26 @@ export default function UpcomingEventsSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow group cursor-pointer"
+              className="rounded-2xl overflow-hidden hover:shadow-xl transition-shadow group cursor-pointer"
             >
               <div className="relative h-[240px] overflow-hidden">
                 <Image
                   src={events[1].image}
                   alt={events[1].title}
                   fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  className="object-cover rounded-2xl border border-amber-300/30 group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
               <div className="p-6">
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="text-xs uppercase font-semibold text-[#4242ff]">{events[1].type}</span>
-                  <span className="text-xs text-[#9ca3af]">•</span>
-                  <span className="text-xs text-[#9ca3af]">{events[1].date}</span>
+                <div className="flex items-center gap-2 mb-3 w-full justify-between">
+                  <span className="text-xs uppercase font-semibold text-[#9ca3af]">{events[1].type}</span>
+                  <span className="text-xs font-bold text-[#4242ff]">{events[1].date}</span>
                 </div>
                 <h3 className="text-xl font-bold text-[#111827] mb-2">{events[1].title}</h3>
                 <p className="text-sm text-[#4b5563] mb-4 line-clamp-2">{events[1].description}</p>
                 <div className="flex flex-wrap gap-2">
                   {events[1].tags.map((tag, i) => (
-                    <span key={i} className="px-3 py-1 bg-gray-100 text-xs text-gray-600 rounded-full">
+                    <span key={i} className="px-3 py-1 border border-gray-200 text-xs text-gray-600 rounded-full">
                       {tag}
                     </span>
                   ))}
@@ -265,27 +263,26 @@ export default function UpcomingEventsSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
-              className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow group cursor-pointer"
+              className="rounded-2xl overflow-hidden hover:shadow-xl transition-shadow group cursor-pointer"
             >
               <div className="relative h-[320px] overflow-hidden">
                 <Image
                   src={events[4].image}
                   alt={events[4].title}
                   fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  className="object-cover rounded-2xl border border-amber-300/30 group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
               <div className="p-6">
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="text-xs uppercase font-semibold text-[#4242ff]">{events[4].type}</span>
-                  <span className="text-xs text-[#9ca3af]">•</span>
-                  <span className="text-xs text-[#9ca3af]">{events[4].date}</span>
+                <div className="flex items-center gap-2 mb-3 w-full justify-between">
+                  <span className="text-xs uppercase font-semibold text-[#9ca3af]">{events[4].type}</span>
+                  <span className="text-xs font-bold text-[#4242ff]">{events[4].date}</span>
                 </div>
                 <h3 className="text-xl font-bold text-[#111827] mb-2">{events[4].title}</h3>
                 <p className="text-sm text-[#4b5563] mb-4 line-clamp-2">{events[4].description}</p>
                 <div className="flex flex-wrap gap-2">
                   {events[4].tags.map((tag, i) => (
-                    <span key={i} className="px-3 py-1 bg-gray-100 text-xs text-gray-600 rounded-full">
+                    <span key={i} className="px-3 py-1 border border-gray-200 text-xs text-gray-600 rounded-full">
                       {tag}
                     </span>
                   ))}
@@ -300,27 +297,26 @@ export default function UpcomingEventsSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.15 }}
-              className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow group cursor-pointer"
+              className="rounded-2xl overflow-hidden hover:shadow-xl transition-shadow group cursor-pointer"
             >
               <div className="relative h-[180px] overflow-hidden">
                 <Image
                   src={events[2].image}
                   alt={events[2].title}
                   fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  className="object-cover rounded-2xl border border-amber-300/30 group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
               <div className="p-6">
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="text-xs uppercase font-semibold text-[#4242ff]">{events[2].type}</span>
-                  <span className="text-xs text-[#9ca3af]">•</span>
-                  <span className="text-xs text-[#9ca3af]">{events[2].date}</span>
+                <div className="flex items-center gap-2 mb-3 w-full justify-between">
+                  <span className="text-xs uppercase font-semibold text-[#9ca3af]">{events[2].type}</span>
+                  <span className="text-xs font-bold text-[#4242ff]">{events[2].date}</span>
                 </div>
                 <h3 className="text-xl font-bold text-[#111827] mb-2">{events[2].title}</h3>
                 <p className="text-sm text-[#4b5563] mb-4 line-clamp-2">{events[2].description}</p>
                 <div className="flex flex-wrap gap-2">
                   {events[2].tags.map((tag, i) => (
-                    <span key={i} className="px-3 py-1 bg-gray-100 text-xs text-gray-600 rounded-full">
+                    <span key={i} className="px-3 py-1 border border-gray-200 text-xs text-gray-600 rounded-full">
                       {tag}
                     </span>
                   ))}
@@ -332,27 +328,26 @@ export default function UpcomingEventsSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.35 }}
-              className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow group cursor-pointer"
+              className="rounded-2xl overflow-hidden hover:shadow-xl transition-shadow group cursor-pointer"
             >
               <div className="relative h-[260px] overflow-hidden">
                 <Image
                   src={events[5].image}
                   alt={events[5].title}
                   fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  className="object-cover rounded-2xl border border-amber-300/30 group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
               <div className="p-6">
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="text-xs uppercase font-semibold text-[#4242ff]">{events[5].type}</span>
-                  <span className="text-xs text-[#9ca3af]">•</span>
-                  <span className="text-xs text-[#9ca3af]">{events[5].date}</span>
+                <div className="flex items-center gap-2 mb-3 w-full justify-between">
+                  <span className="text-xs uppercase font-semibold text-[#9ca3af]">{events[5].type}</span>
+                  <span className="text-xs font-bold text-[#4242ff]">{events[5].date}</span>
                 </div>
                 <h3 className="text-xl font-bold text-[#111827] mb-2">{events[5].title}</h3>
                 <p className="text-sm text-[#4b5563] mb-4 line-clamp-2">{events[5].description}</p>
                 <div className="flex flex-wrap gap-2">
                   {events[5].tags.map((tag, i) => (
-                    <span key={i} className="px-3 py-1 bg-gray-100 text-xs text-gray-600 rounded-full">
+                    <span key={i} className="px-3 py-1 border border-gray-200 text-xs text-gray-600 rounded-full">
                       {tag}
                     </span>
                   ))}

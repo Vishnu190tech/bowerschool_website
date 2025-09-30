@@ -52,14 +52,14 @@ export default function CommunitySection() {
           >
             From The Bower Community, For The World
           </motion.h2>
-          
+
           <motion.button
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="px-6 py-2 text-[#4242ff] border-2 border-[#4242ff] rounded-full font-medium hover:bg-[#4242ff] hover:text-white transition-colors"
+            className="px-6 py-2 text-[#4242ff] border-2 border-[#4242ff] rounded-xl font-medium hover:bg-[#4242ff] hover:text-white transition-colors"
           >
             View All
           </motion.button>
@@ -78,7 +78,7 @@ export default function CommunitySection() {
         </div>
 
         {/* Desktop Grid - Hidden on mobile */}
-        <div className="hidden lg:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="hidden p-6 bg-gradient-to-b from-white via-white to-blue-300/10 rounded-4xl lg:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {articles.map((article, index) => (
             <motion.div
               key={article.id}
@@ -87,7 +87,7 @@ export default function CommunitySection() {
               transition={{ duration: 0.5, delay: 0.1 * (index + 1) }}
               className="group cursor-pointer"
             >
-              <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow h-full">
+              <div className=" rounded-2xl overflow-hidden   hover:shadow-xl transition-shadow h-full">
                 {/* Image or Calendar */}
                 <div className="relative h-[240px] overflow-hidden bg-gray-100">
                   {article.hasCalendar ? (
@@ -181,7 +181,7 @@ export default function CommunitySection() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-3 bg-white text-[#4242ff] border-2 border-[#4242ff] rounded-full font-medium hover:bg-[#4242ff] hover:text-white transition-colors"
+              className="px-8 py-3 bg-white text-[#4242ff] border-2 border-[#4242ff] rounded-xl font-medium hover:bg-[#4242ff] hover:text-white transition-colors"
             >
               View All
             </motion.button>

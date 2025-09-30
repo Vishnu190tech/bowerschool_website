@@ -14,6 +14,7 @@ import ClubsActivitiesSection from "@/components/ClubsActivitiesSection";
 import CommunitySection from "@/components/CommunitySection";
 import NewsSection from "@/components/NewsSection";
 import ScholarshipFormSection from "@/components/ScholarshipFormSection";
+import MasterclassHighlights from "@/components/MasterclassHighlights";
 
 export default function Home() {
   return (
@@ -21,14 +22,15 @@ export default function Home() {
       <Header />
 
       <Hero />
-      {/* <MentorshipSection />
-      <OrbitalHero /> */}
+      <MentorshipSection />
+      <OrbitalHero />
       <HeroSection />
       <CampusVideoSection />
       <VideoShowcaseSection />
       <QuizCTASection />
       <MeetOurLearnersSection />
       <UpcomingEventsSection />
+
       <StartupInvestorSection />
       <ClubsActivitiesSection />
       <CommunitySection />

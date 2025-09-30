@@ -18,7 +18,7 @@ export default function ClubsActivitiesSection() {
             className="object-cover"
           />
         </div>
-        
+
         {/* Light effects */}
         <div className="absolute top-0 right-0 w-[600px] h-[600px] opacity-20">
           <Image
@@ -58,7 +58,7 @@ export default function ClubsActivitiesSection() {
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="relative bg-[#1c1b1e] border-2 border-white rounded-2xl p-6 h-[174px] overflow-hidden"
+              className="relative bg-[#1c1b1e] border-2 border-white/10 rounded-2xl p-6 h-[174px] overflow-hidden"
               style={{
                 backgroundImage: `radial-gradient(ellipse at center, rgba(1,1,75,0.2) 0%, rgba(0,0,111,0.2) 51%, rgba(1,1,39,0.2) 100%)`
               }}
@@ -70,7 +70,7 @@ export default function ClubsActivitiesSection() {
                 <h3 className="text-[30px] font-semibold text-white tracking-[-1.2px]">Trekking</h3>
               </div>
               <div className="absolute bottom-0 right-0 w-36 h-36 opacity-30">
-                <Image src="/dd05603fd63c41e6b89ca1f3273b2be01e8cb326.svg" alt="" fill className="object-contain" />
+                <Image src="/dd05603fd63c41e6b89ca1f3273b2be01e8cb326.svg" alt="" fill className="object-contain " />
               </div>
             </motion.div>
 
@@ -79,13 +79,13 @@ export default function ClubsActivitiesSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="relative h-[191px] rounded-2xl overflow-hidden border-2 border-white"
+              className="relative h-[191px] rounded-2xl overflow-hidden border-2 border-white/10"
             >
               <Image
                 src="/6b7753634c399ecf420d5ddb53ea408f38be9cd3.png"
                 alt="Global Affairs"
                 fill
-                className="object-cover"
+                className="object-cover object-top"
               />
             </motion.div>
           </div>
@@ -95,13 +95,13 @@ export default function ClubsActivitiesSection() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="relative h-[398px] rounded-2xl overflow-hidden border-2 border-white"
+            className="relative h-[398px] rounded-2xl overflow-hidden border-2 border-white/10"
           >
             <Image
               src="/b00cfde2c176bce51dba6c23e297239346fa82a6.png"
               alt="Trekking"
               fill
-              className="object-cover"
+              className="object-cover object-top"
             />
           </motion.div>
 
@@ -112,7 +112,7 @@ export default function ClubsActivitiesSection() {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
-              className="relative h-[191px] rounded-2xl overflow-hidden border-2 border-white bg-[#030303]"
+              className="relative h-[191px] rounded-2xl overflow-hidden border-2 border-white/10 bg-[#030303]"
             >
               <Image
                 src="/f70f6c69679c61e19620a4525f329128e09f3042.png"
@@ -127,7 +127,7 @@ export default function ClubsActivitiesSection() {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.5 }}
-              className="relative bg-[#1c1b1e] border-2 border-white rounded-2xl p-6 h-[174px] overflow-hidden"
+              className="relative bg-[#1c1b1e] border-2 border-white/10 rounded-2xl p-6 h-[174px] overflow-hidden"
               style={{
                 backgroundImage: `radial-gradient(ellipse at center, rgba(1,1,75,0.2) 0%, rgba(0,0,111,0.2) 51%, rgba(1,1,39,0.2) 100%)`
               }}
@@ -139,7 +139,7 @@ export default function ClubsActivitiesSection() {
                 <h3 className="text-[30px] font-semibold text-white tracking-[-1.2px]">Pickleball</h3>
               </div>
               <div className="absolute bottom-0 right-0 w-32 h-32 opacity-30">
-                <Image src="/a33146f37ccf06dbbee6079c56b7c403d0724415.svg" alt="" fill className="object-contain" />
+                <Image src="/a33146f37ccf06dbbee6079c56b7c403d0724415.svg" alt="" fill className="object-contain " />
               </div>
             </motion.div>
           </div>
@@ -149,7 +149,7 @@ export default function ClubsActivitiesSection() {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.6 }}
-            className="lg:col-span-1 relative bg-[#1c1b1e] border-2 border-white rounded-2xl p-6 h-[250px] overflow-hidden"
+            className="lg:col-span-1 relative bg-[#1c1b1e] border-2 border-white/10 rounded-2xl p-6 h-[250px] overflow-hidden"
             style={{
               backgroundImage: `radial-gradient(ellipse at center, rgba(1,1,75,0.2) 0%, rgba(0,0,111,0.2) 51%, rgba(1,1,39,0.2) 100%)`
             }}
@@ -161,7 +161,7 @@ export default function ClubsActivitiesSection() {
               <h3 className="text-[30px] font-semibold text-white tracking-[-1.2px] leading-tight">Global Affairs Guild</h3>
             </div>
             <div className="absolute bottom-0 right-0 w-36 h-36 opacity-30">
-              <Image src="/31264210ec0f8b453379f2a5fcb5f6990af98508.svg" alt="" fill className="object-contain" />
+              <Image src="/31264210ec0f8b453379f2a5fcb5f6990af98508.svg" alt="" fill className="object-contain " />
             </div>
           </motion.div>
 
@@ -169,7 +169,7 @@ export default function ClubsActivitiesSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.7 }}
-            className="lg:col-span-2 relative h-[250px] rounded-2xl overflow-hidden border-2 border-white"
+            className="lg:col-span-2 relative h-[250px] rounded-2xl overflow-hidden border-2 border-white/10"
           >
             <Image
               src="/757b70824ff90d862c4fde30ac3e4a62d0c77314.png"
@@ -184,7 +184,7 @@ export default function ClubsActivitiesSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.8 }}
-            className="lg:col-span-1 relative h-[398px] rounded-2xl overflow-hidden border-2 border-white"
+            className="lg:col-span-1 relative h-[398px] rounded-2xl overflow-hidden border-2 border-white/10"
           >
             <Image
               src="/e8e5e2f3e4effe64758833eaca314e4e63bb4272.png"
@@ -200,14 +200,14 @@ export default function ClubsActivitiesSection() {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.9 }}
-              className="relative bg-[#1c1b1e] border-2 border-white rounded-2xl p-6 h-[174px] overflow-hidden"
+              className="relative bg-[#1c1b1e] border-2 border-white/10 rounded-2xl p-6 h-[174px] overflow-hidden"
               style={{
                 backgroundImage: `radial-gradient(ellipse at center, rgba(1,1,75,0.2) 0%, rgba(0,0,111,0.2) 51%, rgba(1,1,39,0.2) 100%)`
               }}
             >
               <div className="relative z-10">
                 <div className="w-16 h-16 rounded-xl bg-black/20 border border-[#303038] shadow-lg flex items-center justify-center mb-6">
-                  <Image src="/a682377077943a7e11fef15907f96ab10c5ae780.svg" alt="Kayaking" width={32} height={32} />
+                  <Image src="/a682377077943a7e11fef15907f96ab10c5ae780.svg" alt="Kayaking" width={120} height={120} />
                 </div>
                 <h3 className="text-[30px] font-semibold text-white tracking-[-1.2px]">Kayaking</h3>
               </div>
@@ -221,7 +221,7 @@ export default function ClubsActivitiesSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 1 }}
-              className="relative h-[191px] rounded-2xl overflow-hidden border-2 border-white"
+              className="relative h-[191px] rounded-2xl overflow-hidden border-2 border-white/10"
             >
               <Image
                 src="/fe3f72d77bdcf469dfa504341db2d790728f94ec.png"
@@ -239,7 +239,7 @@ export default function ClubsActivitiesSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 1.1 }}
-              className="relative bg-[#1c1b1e] border-2 border-white rounded-2xl p-6 h-[250px] overflow-hidden"
+              className="relative bg-[#1c1b1e] border-2 border-white/10 rounded-2xl p-6 h-[250px] overflow-hidden"
               style={{
                 backgroundImage: `radial-gradient(ellipse at center, rgba(1,1,75,0.2) 0%, rgba(0,0,111,0.2) 51%, rgba(1,1,39,0.2) 100%)`
               }}
@@ -260,7 +260,7 @@ export default function ClubsActivitiesSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 1.2 }}
-              className="relative bg-[#1c1b1e] border-2 border-white rounded-2xl p-6 h-[250px] overflow-hidden"
+              className="relative bg-[#1c1b1e] border-2 border-white/10 rounded-2xl p-6 h-[250px] overflow-hidden"
               style={{
                 backgroundImage: `radial-gradient(ellipse at center, rgba(1,1,75,0.2) 0%, rgba(0,0,111,0.2) 51%, rgba(1,1,39,0.2) 100%)`
               }}
@@ -281,7 +281,7 @@ export default function ClubsActivitiesSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 1.3 }}
-              className="relative bg-[#1c1b1e] border-2 border-white rounded-2xl p-6 h-[250px] overflow-hidden"
+              className="relative bg-[#1c1b1e] border-2 border-white/10 rounded-2xl p-6 h-[250px] overflow-hidden"
               style={{
                 backgroundImage: `radial-gradient(ellipse at center, rgba(1,1,75,0.2) 0%, rgba(0,0,111,0.2) 51%, rgba(1,1,39,0.2) 100%)`
               }}
@@ -306,7 +306,7 @@ export default function ClubsActivitiesSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="relative bg-[#1c1b1e] border border-white rounded-xl p-4 h-[120px] overflow-hidden"
+            className="relative bg-[#1c1b1e] border border-white/10 rounded-xl p-4 h-[120px] overflow-hidden"
             style={{
               backgroundImage: `radial-gradient(ellipse at center, rgba(1,1,75,0.2) 0%, rgba(0,0,111,0.2) 51%, rgba(1,1,39,0.2) 100%)`
             }}
@@ -324,7 +324,7 @@ export default function ClubsActivitiesSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="relative h-[120px] rounded-xl overflow-hidden border border-white"
+            className="relative h-[120px] rounded-xl overflow-hidden border border-white/10"
           >
             <Image src="/b00cfde2c176bce51dba6c23e297239346fa82a6.png" alt="Trekking" fill className="object-cover" />
           </motion.div>
@@ -334,7 +334,7 @@ export default function ClubsActivitiesSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="relative h-[120px] rounded-xl overflow-hidden border border-white"
+            className="relative h-[120px] rounded-xl overflow-hidden border border-white/10"
           >
             <Image src="/6b7753634c399ecf420d5ddb53ea408f38be9cd3.png" alt="Global Affairs" fill className="object-cover" />
           </motion.div>
@@ -343,7 +343,7 @@ export default function ClubsActivitiesSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="relative bg-[#1c1b1e] border border-white rounded-xl p-4 h-[120px] overflow-hidden"
+            className="relative bg-[#1c1b1e] border border-white/10 rounded-xl p-4 h-[120px] overflow-hidden"
             style={{
               backgroundImage: `radial-gradient(ellipse at center, rgba(1,1,75,0.2) 0%, rgba(0,0,111,0.2) 51%, rgba(1,1,39,0.2) 100%)`
             }}
@@ -362,7 +362,7 @@ export default function ClubsActivitiesSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.5 }}
-            className="relative bg-[#1c1b1e] border border-white rounded-xl p-4 h-[120px] overflow-hidden"
+            className="relative bg-[#1c1b1e] border border-white/10 rounded-xl p-4 h-[120px] overflow-hidden"
             style={{
               backgroundImage: `radial-gradient(ellipse at center, rgba(1,1,75,0.2) 0%, rgba(0,0,111,0.2) 51%, rgba(1,1,39,0.2) 100%)`
             }}
@@ -380,7 +380,7 @@ export default function ClubsActivitiesSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.6 }}
-            className="relative h-[120px] rounded-xl overflow-hidden border border-white"
+            className="relative h-[120px] rounded-xl overflow-hidden border border-white/10"
           >
             <Image src="/757b70824ff90d862c4fde30ac3e4a62d0c77314.png" alt="Culinary" fill className="object-cover" />
           </motion.div>
@@ -390,7 +390,7 @@ export default function ClubsActivitiesSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.7 }}
-            className="relative h-[120px] rounded-xl overflow-hidden border border-white"
+            className="relative h-[120px] rounded-xl overflow-hidden border border-white/10"
           >
             <Image src="/e8e5e2f3e4effe64758833eaca314e4e63bb4272.png" alt="Brownbag" fill className="object-cover" />
           </motion.div>
@@ -400,7 +400,7 @@ export default function ClubsActivitiesSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.8 }}
-              className="relative bg-[#1c1b1e] border border-white rounded-xl p-3 h-[56px] overflow-hidden"
+              className="relative bg-[#1c1b1e] border border-white/10 rounded-xl p-3 h-[56px] overflow-hidden"
               style={{
                 backgroundImage: `radial-gradient(ellipse at center, rgba(1,1,75,0.2) 0%, rgba(0,0,111,0.2) 51%, rgba(1,1,39,0.2) 100%)`
               }}
@@ -417,7 +417,7 @@ export default function ClubsActivitiesSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.9 }}
-              className="relative h-[56px] rounded-xl overflow-hidden border border-white"
+              className="relative h-[56px] rounded-xl overflow-hidden border border-white/10"
             >
               <Image src="/fe3f72d77bdcf469dfa504341db2d790728f94ec.png" alt="Kayaking" fill className="object-cover" />
             </motion.div>
@@ -428,7 +428,7 @@ export default function ClubsActivitiesSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 1.0 }}
-            className="relative bg-[#1c1b1e] border border-white rounded-xl p-3 h-[100px] overflow-hidden"
+            className="relative bg-[#1c1b1e] border border-white/10 rounded-xl p-3 h-[100px] overflow-hidden"
             style={{
               backgroundImage: `radial-gradient(ellipse at center, rgba(1,1,75,0.2) 0%, rgba(0,0,111,0.2) 51%, rgba(1,1,39,0.2) 100%)`
             }}
@@ -446,7 +446,7 @@ export default function ClubsActivitiesSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 1.1 }}
-            className="relative bg-[#1c1b1e] border border-white rounded-xl p-3 h-[100px] overflow-hidden"
+            className="relative bg-[#1c1b1e] border border-white/10 rounded-xl p-3 h-[100px] overflow-hidden"
             style={{
               backgroundImage: `radial-gradient(ellipse at center, rgba(1,1,75,0.2) 0%, rgba(0,0,111,0.2) 51%, rgba(1,1,39,0.2) 100%)`
             }}
@@ -464,7 +464,7 @@ export default function ClubsActivitiesSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 1.2 }}
-            className="col-span-2 relative bg-[#1c1b1e] border border-white rounded-xl p-3 h-[100px] overflow-hidden"
+            className="col-span-2 relative bg-[#1c1b1e] border border-white/10 rounded-xl p-3 h-[100px] overflow-hidden"
             style={{
               backgroundImage: `radial-gradient(ellipse at center, rgba(1,1,75,0.2) 0%, rgba(0,0,111,0.2) 51%, rgba(1,1,39,0.2) 100%)`
             }}
