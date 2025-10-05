@@ -23,9 +23,9 @@ export default function EventsPage() {
           heading="Moments That Spark Action, Connection, and Change"
           subheading="From high-energy demo days to founder talks, hackathons, and mixers — Bower's events turn ambition into experience and connections into opportunities."
           primaryButtonText="Explore Upcoming Events"
-          primaryButtonLink="/events/hello"
+          primaryButtonLink="/events/upcoming/hello"
           secondaryButtonText="Past Highlights"
-          secondaryButtonLink="/events/hello"
+          secondaryButtonLink="/events/past/hello"
           backgroundImage="/49556a5f6b1bb2ee9725e2b3e7d008618e17b18b.png"
         />
         <CampusLifeGallery />

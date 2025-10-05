@@ -4,8 +4,32 @@ import React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 
-const EventGallerySection = () => {
-  const images = [
+interface EventGallerySectionProps {
+  event?: {
+    date?: string;
+    galleryImages?: string[] | any;
+  };
+}
+
+const EventGallerySection = ({ event }: EventGallerySectionProps) => {
+  // Parse gallery images if it's a JSON field
+  let galleryImages: string[] = [];
+  if (event?.galleryImages) {
+    if (Array.isArray(event.galleryImages)) {
+      galleryImages = event.galleryImages;
+    } else if (typeof event.galleryImages === 'object' && event.galleryImages !== null) {
+      // If it's a JSON object from database, extract array
+      galleryImages = Array.isArray(event.galleryImages) ? event.galleryImages : [];
+    }
+  }
+
+  // Don't render if no gallery images
+  if (galleryImages.length === 0) {
+    return null;
+  }
+
+  // Default images if no gallery images provided
+  const defaultImages = [
     {
       id: 1,
       src: '/1d7f9ce2dc89c79e42aeceaa2259b70f12128190.png',
@@ -43,6 +67,29 @@ const EventGallerySection = () => {
     }
   ];
 
+  // Use gallery images if available, otherwise use defaults
+  // Ensure we always have at least 5 images by filling with defaults
+  const processedImages = galleryImages.length > 0
+    ? galleryImages.map((src, index) => ({
+        id: index + 1,
+        src,
+        alt: 'Event gallery image',
+        height: index % 2 === 0 ? 664 : 443,
+        position: ['left', 'right', 'center'][index % 3]
+      }))
+    : [];
+
+  // If we have less than 5 images, fill with defaults
+  const images = [...processedImages];
+  for (let i = processedImages.length; i < 5; i++) {
+    images.push(defaultImages[i]);
+  }
+
+  // Format date for display
+  const eventDate = event?.date
+    ? new Date(event.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })
+    : 'June 10, 2025';
+
   return (
     <section className="w-full bg-[#f4f4ff] px-4 py-8 md:px-10 md:py-10 lg:px-20">
       <div className="max-w-[1440px] mx-auto">
@@ -60,7 +107,7 @@ const EventGallerySection = () => {
                   fontFamily: 'var(--font-plus-jakarta)',
                 }}
               >
-                Concluded on June 10, 2025
+                Concluded on {eventDate}
               </motion.h2>
             </div>
 
@@ -93,8 +140,8 @@ const EventGallerySection = () => {
             {/* Large image on left */}
             <div className="flex-1 relative h-[250px] md:h-[400px] lg:h-[664px] rounded-xl lg:rounded-2xl overflow-hidden border-2 border-white">
               <Image
-                src={images[0].src}
-                alt={images[0].alt}
+                src={images[0]?.src || defaultImages[0].src}
+                alt={images[0]?.alt || 'Event gallery image'}
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 50vw"
@@ -104,8 +151,8 @@ const EventGallerySection = () => {
             {/* Smaller image on right */}
             <div className="flex-1 relative h-[200px] md:h-[300px] lg:h-[443px] rounded-xl lg:rounded-2xl overflow-hidden border-2 border-white md:self-end">
               <Image
-                src={images[1].src}
-                alt={images[1].alt}
+                src={images[1]?.src || defaultImages[1].src}
+                alt={images[1]?.alt || 'Event gallery image'}
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 50vw"
@@ -122,8 +169,8 @@ const EventGallerySection = () => {
           >
             <div className="w-full md:w-[90%] lg:w-[1008px] h-[250px] md:h-[450px] lg:h-[672px] relative rounded-xl lg:rounded-2xl overflow-hidden border-2 border-white">
               <Image
-                src={images[2].src}
-                alt={images[2].alt}
+                src={images[2]?.src || defaultImages[2].src}
+                alt={images[2]?.alt || 'Event gallery image'}
                 fill
                 className="object-cover"
                 sizes="(max-width: 1200px) 100vw, 1008px"
@@ -141,8 +188,8 @@ const EventGallerySection = () => {
             {/* Smaller image on left */}
             <div className="flex-1 relative h-[200px] md:h-[300px] lg:h-[443px] rounded-xl lg:rounded-2xl overflow-hidden border-2 border-white md:self-end">
               <Image
-                src={images[3].src}
-                alt={images[3].alt}
+                src={images[3]?.src || defaultImages[3].src}
+                alt={images[3]?.alt || 'Event gallery image'}
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 50vw"
@@ -152,8 +199,8 @@ const EventGallerySection = () => {
             {/* Large image on right */}
             <div className="flex-1 relative h-[250px] md:h-[400px] lg:h-[664px] rounded-xl lg:rounded-2xl overflow-hidden border-2 border-white">
               <Image
-                src={images[4].src}
-                alt={images[4].alt}
+                src={images[4]?.src || defaultImages[4].src}
+                alt={images[4]?.alt || 'Event gallery image'}
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 50vw"

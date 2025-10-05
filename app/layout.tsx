@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import PageTransitionProvider from "@/components/PageTransitionProvider";
+import QueryProvider from "@/components/providers/QueryProvider";
 import "./globals.css";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
@@ -24,9 +25,11 @@ export default function RootLayout({
       <body
         className={`${plusJakartaSans.variable} font-sans antialiased`}
       >
-        <PageTransitionProvider>
-          {children}
-        </PageTransitionProvider>
+        <QueryProvider>
+          <PageTransitionProvider>
+            {children}
+          </PageTransitionProvider>
+        </QueryProvider>
       </body>
     </html>
   );

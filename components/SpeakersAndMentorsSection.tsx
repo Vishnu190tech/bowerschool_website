@@ -5,14 +5,40 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 
 interface Speaker {
-  id: number;
+  id?: number | string;
   name: string;
-  role: string;
-  image: string;
+  role?: string;
+  title?: string;
+  bio?: string;
+  image?: string;
+  imageUrl?: string;
 }
 
-const SpeakersAndMentorsSection = () => {
-  const speakers: Speaker[] = [
+interface SpeakersAndMentorsSectionProps {
+  speakers?: any[] | any;
+}
+
+const SpeakersAndMentorsSection = ({ speakers: eventSpeakers }: SpeakersAndMentorsSectionProps) => {
+  // Parse speakers if it's a JSON field
+  let parsedSpeakers: Speaker[] = [];
+  if (eventSpeakers) {
+    if (Array.isArray(eventSpeakers)) {
+      parsedSpeakers = eventSpeakers.map((speaker, index) => ({
+        id: speaker.id || index + 1,
+        name: speaker.name,
+        role: speaker.title || speaker.role || speaker.bio || 'Speaker',
+        image: speaker.imageUrl || speaker.image || '/f28be759a114615d9b38478feeac00482086f58c.png'
+      }));
+    }
+  }
+
+  // Don't render if no speakers
+  if (parsedSpeakers.length === 0) {
+    return null;
+  }
+
+  // Default speakers if none provided
+  const defaultSpeakers: Speaker[] = [
     {
       id: 1,
       name: 'Kunal Shah',
@@ -68,6 +94,8 @@ const SpeakersAndMentorsSection = () => {
       image: '/f28be759a114615d9b38478feeac00482086f58c.png'
     }
   ];
+
+  const speakers = parsedSpeakers.length > 0 ? parsedSpeakers : defaultSpeakers;
 
   // Split speakers into rows for desktop
   const firstRow = speakers.slice(0, 3);

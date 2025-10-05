@@ -5,20 +5,53 @@ import Footer from "@/components/Footer";
 import { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle login logic here
-    console.log("Login attempt with:", { email, password });
+    setIsLoading(true);
+
+    try {
+      const response = await fetch('/api/student/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        toast.success('Login successful! Redirecting...');
+        setTimeout(() => {
+          router.push('/student/dashboard'); // Redirect to student dashboard
+        }, 1500);
+      } else {
+        toast.error(data.error || 'Invalid credentials');
+      }
+    } catch (error) {
+      console.error('Login error:', error);
+      toast.error('An error occurred during login');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
     <div className="min-h-screen flex flex-col  pt-10 lg:pt-20">
+      <Toaster position="top-right" />
       <Header />
       <main className="flex-1 bg-[#181a1c]">
         <div className="bg-white rounded-b-3xl w-full">
@@ -89,7 +122,7 @@ export default function LoginPage() {
                       <h3 className="text-2xl font-semibold text-gray-900 mb-2">Sign In</h3>
                       <p className="text-gray-600">
                         Don't have an account?{" "}
-                        <Link href="/signup" className="font-medium text-[#4242ff] hover:text-[#3232e6]">
+                        <Link href="/register" className="font-medium text-[#4242ff] hover:text-[#3232e6]">
                           Sign up
                         </Link>
                       </p>
@@ -156,11 +189,12 @@ export default function LoginPage() {
                       {/* Submit Button */}
                       <motion.button
                         type="submit"
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
-                        className="w-full h-12 lg:h-[54px] bg-[#4242ff] text-white text-base lg:text-lg font-medium rounded-xl shadow-lg hover:bg-[#3232e6] transition-colors mt-4"
+                        disabled={isLoading}
+                        whileHover={{ scale: isLoading ? 1 : 1.02 }}
+                        whileTap={{ scale: isLoading ? 1 : 0.98 }}
+                        className="w-full h-12 lg:h-[54px] bg-[#4242ff] text-white text-base lg:text-lg font-medium rounded-xl shadow-lg hover:bg-[#3232e6] transition-colors mt-4 disabled:opacity-50 disabled:cursor-not-allowed"
                       >
-                        Sign In
+                        {isLoading ? 'Signing In...' : 'Sign In'}
                       </motion.button>
 
                       {/* Divider */}

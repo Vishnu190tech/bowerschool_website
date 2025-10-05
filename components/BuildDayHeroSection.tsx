@@ -4,7 +4,19 @@ import React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 
-const BuildDayHeroSection = () => {
+interface BuildDayHeroSectionProps {
+  event?: {
+    title?: string;
+    subtitle?: string;
+    date?: string;
+    category?: string;
+  };
+}
+
+const BuildDayHeroSection = ({ event }: BuildDayHeroSectionProps) => {
+  // Use event data or fallback to defaults
+  const title = event?.title || 'Build Day';
+  const subtitle = event?.subtitle || 'Startup Sprint Edition';
   return (
     <section className="relative w-full h-[800px] overflow-hidden bg-[#1e1e1e]">
       {/* Background layers */}
@@ -67,7 +79,7 @@ const BuildDayHeroSection = () => {
           transition={{ duration: 0.8 }}
           className="text-center max-w-[1063px]"
         >
-          <h1 
+          <h1
             className="text-[#f0f0ff]"
             style={{
               fontFamily: 'var(--font-plus-jakarta)',
@@ -77,8 +89,8 @@ const BuildDayHeroSection = () => {
               letterSpacing: '-4px'
             }}
           >
-            <span className="block">Build Day</span>
-            <span className="block">Startup Sprint Edition</span>
+            <span className="block">{title}</span>
+            {subtitle && <span className="block">{subtitle}</span>}
           </h1>
         </motion.div>
       </div>

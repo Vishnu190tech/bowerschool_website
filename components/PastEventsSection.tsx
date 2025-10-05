@@ -2,32 +2,33 @@
 
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
+import { usePastEvents } from '@/hooks/useEvents';
 
 const PastEventsSection = () => {
-  const events = [
-    {
-      id: 1,
-      image: '/a13ce9267499b27267124e56d44f45aac94e5d09.png',
-      title: 'Lights. Camera. Startup: Fireside Chat b/w Tharun Bhascker & Pavan Allena',
-      description: 'Understanding the often missed but starking similarities between the world of entrepreneurship & filmmaking.',
-      size: 'large'
-    },
-    {
-      id: 2,
-      image: '/d00c2b026538ec823982f0fddf18eb71a1a85e81.png',
-      title: 'Building Global Startups From Local Ideas: Masterclass with Robert Schultz',
-      description: 'Unravel how local expertise and skills can become the fulcrum of startups that reshape the global industries.',
-      size: 'small'
-    },
-    {
-      id: 3,
-      image: '/60ec8723919ebf312f295e9e1de778c186975152.png',
-      title: 'Can Schools Be For Profit: Fireside Chat b/w Aisshwarya DKS Hegde & Pavan Allena',
-      description: 'How schools can turn into startups and inspire their students to think entrepreneurially & teachers to contribute deeply.',
-      size: 'small'
-    }
-  ];
+  const { data: events = [], isLoading, error } = usePastEvents({ limit: 3 });
+
+  // Loading skeleton
+  const EventSkeleton = () => (
+    <div className="animate-pulse">
+      <div className="bg-gray-200 rounded-2xl h-[300px] md:h-[400px]"></div>
+    </div>
+  );
+
+  // Error state
+  if (error) {
+    return (
+      <section className="relative w-full bg-[#f4f4ff] px-4 py-8 md:px-10 md:py-12 lg:p-[60px]">
+        <div className="max-w-[1320px] mx-auto">
+          <div className="text-center">
+            <h2 className="text-2xl font-semibold text-gray-900 mb-4">Unable to load past events</h2>
+            <p className="text-gray-600">Please try again later.</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="relative w-full bg-[#f4f4ff] px-4 py-8 md:px-10 md:py-12 lg:p-[60px]">
@@ -55,23 +56,25 @@ const PastEventsSection = () => {
           </div>
 
           {/* View All Button */}
-          <motion.button
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            className="relative flex items-center justify-center gap-4 h-11 px-4 py-2 rounded-lg border border-[#4242ff] backdrop-blur-[32px] w-fit"
-            style={{
-              backgroundImage: `radial-gradient(circle at center, rgba(50, 50, 230, 0.1) 0%, rgba(50, 50, 230, 0) 100%)`
-            }}
-          >
-            <span
-              className="text-[#4242ff] text-[16px] lg:text-[18px] font-medium"
+          <Link href="/events/past">
+            <motion.button
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="relative flex items-center justify-center gap-4 h-11 px-4 py-2 rounded-lg border border-[#4242ff] backdrop-blur-[32px] w-fit"
               style={{
-                fontFamily: 'var(--font-plus-jakarta)',
+                backgroundImage: `radial-gradient(circle at center, rgba(50, 50, 230, 0.1) 0%, rgba(50, 50, 230, 0) 100%)`
               }}
             >
-              View All
-            </span>
-          </motion.button>
+              <span
+                className="text-[#4242ff] text-[16px] lg:text-[18px] font-medium"
+                style={{
+                  fontFamily: 'var(--font-plus-jakarta)',
+                }}
+              >
+                View All
+              </span>
+            </motion.button>
+          </Link>
         </div>
       </div>
 
@@ -100,78 +103,109 @@ const PastEventsSection = () => {
 
           {/* Events Grid */}
           <div className="relative z-10 h-full flex items-center justify-center">
-            <div className="w-full flex flex-col lg:flex-row gap-4">
-              {/* Large Event Card */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                className="relative w-full lg:w-[65%] h-[300px] md:h-[400px] lg:h-[616px] rounded-2xl lg:rounded-3xl overflow-hidden border-2 border-white group cursor-pointer"
-                style={{
-                  backgroundImage: `linear-gradient(to bottom, transparent 53.166%, #000000 100%), url('${events[0].image}')`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center'
-                }}
-              >
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-4 md:p-5 lg:p-6">
-                  <h3
-                    className="text-white mb-2 text-[18px] md:text-[20px] lg:text-[24px] font-semibold leading-tight tracking-[-0.96px]"
-                    style={{
-                      fontFamily: 'var(--font-plus-jakarta)',
-                    }}
-                  >
-                    {events[0].title}
-                  </h3>
-                  <p
-                    className="text-gray-100 text-[14px] md:text-[15px] lg:text-[16px] leading-relaxed"
-                    style={{
-                      fontFamily: 'var(--font-plus-jakarta)',
-                    }}
-                  >
-                    {events[0].description}
-                  </p>
+            {isLoading ? (
+              <div className="w-full flex flex-col lg:flex-row gap-4">
+                <div className="w-full lg:w-[65%]">
+                  <EventSkeleton />
                 </div>
-              </motion.div>
-
-              {/* Small Event Cards */}
-              <div className="flex-1 flex flex-col gap-4">
-                {events.slice(1).map((event, index) => (
-                  <motion.div
-                    key={event.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.1 * (index + 1) }}
-                    className="relative h-[250px] md:h-[280px] lg:h-[300px] rounded-2xl lg:rounded-3xl overflow-hidden border-2 border-white group cursor-pointer"
-                    style={{
-                      backgroundImage: `linear-gradient(to bottom, transparent 53.166%, #000000 100%), url('${event.image}')`,
-                      backgroundSize: 'cover',
-                      backgroundPosition: 'center'
-                    }}
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                    <div className="absolute bottom-0 left-0 right-0 p-4 md:p-5 lg:p-6">
-                      <h3
-                        className="text-white mb-2 text-[18px] md:text-[20px] lg:text-[24px] font-semibold leading-tight tracking-[-0.96px]"
-                        style={{
-                          fontFamily: 'var(--font-plus-jakarta)',
-                        }}
-                      >
-                        {event.title}
-                      </h3>
-                      <p
-                        className="text-gray-100 text-[14px] md:text-[15px] lg:text-[16px] leading-relaxed"
-                        style={{
-                          fontFamily: 'var(--font-plus-jakarta)',
-                        }}
-                      >
-                        {event.description}
-                      </p>
-                    </div>
-                  </motion.div>
-                ))}
+                <div className="flex-1 flex flex-col gap-4">
+                  <EventSkeleton />
+                  <EventSkeleton />
+                </div>
               </div>
-            </div>
+            ) : events.length > 0 ? (
+              <div className="w-full flex flex-col lg:flex-row gap-4">
+                {/* Large Event Card - First event with size "large" or first event */}
+                {events[0] && (
+                  <Link href={`/events/past/${events[0].slug}`} className="relative w-full lg:w-[65%]">
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.6 }}
+                      className="relative w-full h-[300px] md:h-[400px] lg:h-[616px] rounded-2xl lg:rounded-3xl overflow-hidden border-2 border-white group cursor-pointer"
+                      style={{
+                        backgroundImage: events[0].imageUrl
+                          ? `linear-gradient(to bottom, transparent 53.166%, #000000 100%), url('${events[0].imageUrl}')`
+                          : 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center'
+                      }}
+                    >
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                      <div className="absolute bottom-0 left-0 right-0 p-4 md:p-5 lg:p-6">
+                        <h3
+                          className="text-white mb-2 text-[18px] md:text-[20px] lg:text-[24px] font-semibold leading-tight tracking-[-0.96px]"
+                          style={{
+                            fontFamily: 'var(--font-plus-jakarta)',
+                          }}
+                        >
+                          {events[0].title}
+                        </h3>
+                        <p
+                          className="text-gray-100 text-[14px] md:text-[15px] lg:text-[16px] leading-relaxed"
+                          style={{
+                            fontFamily: 'var(--font-plus-jakarta)',
+                          }}
+                        >
+                          {events[0].description}
+                        </p>
+                      </div>
+                    </motion.div>
+                  </Link>
+                )}
+
+                {/* Small Event Cards */}
+                {events.length > 1 && (
+                  <div className="flex-1 flex flex-col gap-4">
+                    {events.slice(1).map((event, index) => (
+                      <Link
+                        href={`/events/past/${event.slug}`}
+                        key={event.id}
+                        className="block"
+                      >
+                        <motion.div
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.6, delay: 0.1 * (index + 1) }}
+                          className="relative h-[250px] md:h-[280px] lg:h-[300px] rounded-2xl lg:rounded-3xl overflow-hidden border-2 border-white group cursor-pointer"
+                          style={{
+                            backgroundImage: event.imageUrl
+                              ? `linear-gradient(to bottom, transparent 53.166%, #000000 100%), url('${event.imageUrl}')`
+                              : 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                            backgroundSize: 'cover',
+                            backgroundPosition: 'center'
+                          }}
+                        >
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                          <div className="absolute bottom-0 left-0 right-0 p-4 md:p-5 lg:p-6">
+                            <h3
+                              className="text-white mb-2 text-[18px] md:text-[20px] lg:text-[24px] font-semibold leading-tight tracking-[-0.96px]"
+                              style={{
+                                fontFamily: 'var(--font-plus-jakarta)',
+                              }}
+                            >
+                              {event.title}
+                            </h3>
+                            <p
+                              className="text-gray-100 text-[14px] md:text-[15px] lg:text-[16px] leading-relaxed"
+                              style={{
+                                fontFamily: 'var(--font-plus-jakarta)',
+                              }}
+                            >
+                              {event.description}
+                            </p>
+                          </div>
+                        </motion.div>
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ) : (
+              <div className="text-center py-12">
+                <p className="text-gray-600">No past events available.</p>
+              </div>
+            )}
           </div>
         </div>
       </div>

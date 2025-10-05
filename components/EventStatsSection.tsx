@@ -4,12 +4,30 @@ import React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 
-const EventStatsSection = () => {
+interface EventStatsSectionProps {
+  stats?: any;
+}
+
+const EventStatsSection = ({ stats: eventStats }: EventStatsSectionProps) => {
+  // Parse stats if it's a JSON field
+  let parsedStats = null;
+  if (eventStats) {
+    if (typeof eventStats === 'object' && !Array.isArray(eventStats)) {
+      parsedStats = eventStats;
+    }
+  }
+
+  // Don't render if no stats or empty stats object
+  if (!parsedStats || Object.keys(parsedStats).length === 0) {
+    return null;
+  }
+
+  // Use provided stats
   const stats = [
-    { value: '300+', label: 'Participants' },
-    { value: '42', label: 'Startups Pitched' },
-    { value: '60%', label: 'First-Time Founders' },
-    { value: '100+', label: 'Mentorship Sessions' }
+    { value: parsedStats.attendees || '300+', label: 'Participants' },
+    { value: parsedStats.speakers || '42', label: parsedStats.speakers ? 'Speakers' : 'Startups Pitched' },
+    { value: parsedStats.satisfaction || '60%', label: parsedStats.satisfaction ? 'Satisfaction' : 'First-Time Founders' },
+    { value: parsedStats.sessions || '100+', label: 'Mentorship Sessions' }
   ];
 
   return (

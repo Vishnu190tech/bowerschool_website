@@ -1,0 +1,134 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Admin model for admin login only
+model Admin {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  username  String   @unique
+  password  String
+  firstName String?
+  lastName  String?
+  isActive  Boolean  @default(true)
+  lastLogin DateTime?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Student model for student login/registration
+model Student {
+  id          String   @id @default(cuid())
+  firstName   String
+  lastName    String
+  email       String   @unique
+  password    String
+  phone       String?
+  program     String?
+  dateOfBirth DateTime?
+  isActive    Boolean  @default(true)
+  lastLogin   DateTime?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// Upcoming Event model for dynamic events
+model UpcomingEvent {
+  id               String   @id @default(cuid())
+  slug             String   @unique
+  title            String
+  subtitle         String?
+  description      String   @db.Text
+  eventType        String
+  date             DateTime
+  time             String?
+  location         String?
+  venue            String?
+  category         String   // Meetups, Webinars, Workshops
+  tags             String[] // Array of tags
+  imageUrl         String?
+  thumbnailUrl     String?
+  height           String   @default("medium") // tall, medium, short for masonry layout
+
+  // Additional fields
+  isPublished      Boolean  @default(false)
+  isFeatured       Boolean  @default(false)
+  capacity         Int?
+  registeredCount  Int      @default(0)
+  price            Float?
+  registrationLink String?
+
+  // JSON fields for complex data
+  agenda           Json?    // Schedule/agenda details
+  speakers         Json?    // Speaker information
+  sponsors         Json?    // Sponsor information
+
+  // SEO fields
+  metaTitle        String?
+  metaDescription  String?
+
+  // Timestamps
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@index([slug])
+  @@index([category])
+  @@index([date])
+  @@index([isPublished])
+}
+
+// Past Event model for historical events
+model PastEvent {
+  id               String   @id @default(cuid())
+  slug             String   @unique
+  title            String
+  subtitle         String?
+  description      String   @db.Text
+  eventType        String
+  date             DateTime
+  time             String?
+  location         String?
+  venue            String?
+  category         String   // Masterclass, Workshop, Fireside Chat, etc.
+  tags             String[] // Array of tags
+  imageUrl         String?  // Main event image URL
+  thumbnailUrl     String?  // Thumbnail for listings
+  videoUrl         String?  // Recording URL (YouTube, Vimeo, etc.)
+  galleryImages    Json?    // Array of image URLs for gallery
+
+  // Event details
+  speakers         Json?    // Speaker information with image URLs
+  agenda           Json?    // Event schedule/agenda
+  testimonials     Json?    // Attendee testimonials
+  stats            Json?    // Event statistics
+  resources        Json?    // Downloadable resources URLs
+
+  // Metadata
+  viewCount        Int      @default(0)
+  attendeeCount    Int?
+  duration         String?  // Event duration
+  isPublished      Boolean  @default(false)
+  isFeatured       Boolean  @default(false)
+  size             String   @default("small") // For grid layout: large, small
+
+  // SEO fields
+  metaTitle        String?
+  metaDescription  String?
+
+  // Timestamps
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@index([slug])
+  @@index([category])
+  @@index([date])
+  @@index([isPublished])
+}

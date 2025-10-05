@@ -3,7 +3,28 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const TestimonialQuoteSection = () => {
+interface TestimonialQuoteSectionProps {
+  testimonials?: any[] | any;
+}
+
+const TestimonialQuoteSection = ({ testimonials }: TestimonialQuoteSectionProps) => {
+  // Parse testimonials if it's a JSON field
+  let parsedTestimonials: any[] = [];
+  if (testimonials) {
+    if (Array.isArray(testimonials)) {
+      parsedTestimonials = testimonials;
+    } else if (typeof testimonials === 'object') {
+      parsedTestimonials = Array.isArray(testimonials) ? testimonials : [];
+    }
+  }
+
+  // Don't render if no testimonials
+  if (parsedTestimonials.length === 0) {
+    return null;
+  }
+
+  // Use first testimonial
+  const testimonial = parsedTestimonials[0];
   return (
     <section className="relative w-full bg-[#f4f4ff] p-20">
       {/* Top and bottom borders */}
@@ -25,9 +46,9 @@ const TestimonialQuoteSection = () => {
             letterSpacing: '-1.76px'
           }}
         >
-          "An Incredible Experience That Empowered Our Startup To Reach New Heights."
+          "{testimonial.quote}"
         </motion.h2>
-        
+
         {/* Attribution */}
         <motion.p
           initial={{ opacity: 0, y: 20 }}
@@ -42,7 +63,7 @@ const TestimonialQuoteSection = () => {
             letterSpacing: '-1.2px'
           }}
         >
-          -Kairos Ventures
+          -{testimonial.author || testimonial.role}
         </motion.p>
       </div>
     </section>
