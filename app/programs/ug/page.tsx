@@ -24,6 +24,7 @@ import Testimonials from "@/components/Testimonials";
 import HowItWorks from "@/components/HowItWorks";
 import FAQSection from "@/components/FAQSection";
 import ScholarshipFormSection from "@/components/ScholarshipFormSection";
+import SkillsProSectionTwo from "@/components/SkillsProSectionTwo";
 
 export default function UGProgramPage() {
   return (
@@ -43,21 +44,23 @@ export default function UGProgramPage() {
 
         <LearningComparisonSection />
         <StudentPitchSection />
-        <WhyPartnerWithSeedSection />
+        <WhyPartnerWithSeedSection theme="ug" />
         <MeetOurLearnersSection />
         <CurriculumSection />
         <StudentScheduleSection />
 
         <HeroSection />
-        <SkillsProSection />
-        <ProfileCard />
+        <SkillsProSection theme="ug" />
+        {/* <SkillsProSectionTwo /> */}
+
+        <ProfileCard theme="ug" />
         <ContactFormSection />
-        <BowerGlimpseSection />
-        <Testimonials />
+        <BowerGlimpseSection theme="ug" />
+        <Testimonials theme="ug" />
         <HowItWorks />
-        <CourseFeeSection />
-        <FAQSection />
-        <ScholarshipFormSection />
+        <CourseFeeSection theme="ug" />
+        <FAQSection theme="ug" />
+        <ScholarshipFormSection theme="ug" />
       </main>
       <Footer />
     </div>

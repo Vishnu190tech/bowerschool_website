@@ -82,16 +82,14 @@ export default function KnowWhatTheyLearnSection() {
           <div className="flex gap-4 md:gap-8 lg:gap-[123px] items-center w-full md:w-auto justify-center">
             <button
               onClick={() => setSelectedTrack('junior')}
-              className={`px-3 md:px-4 py-2 md:py-2.5 rounded-[30px] transition-colors flex-1 md:flex-initial ${
-                selectedTrack === 'junior'
-                  ? 'bg-[#ff8829]'
-                  : 'bg-[#ffe5cc]'
-              }`}
+              className={`px-3 md:px-4 py-2 md:py-2.5 rounded-[30px] transition-colors flex-1 md:flex-initial ${selectedTrack === 'junior'
+                ? 'bg-[#ff8829]'
+                : 'bg-[#ffe5cc]'
+                }`}
             >
               <span
-                className={`text-[16px] md:text-[20px] lg:text-[24px] font-semibold tracking-[-0.6px] md:tracking-[-0.8px] lg:tracking-[-0.96px] ${
-                  selectedTrack === 'junior' ? 'text-white' : 'text-black'
-                }`}
+                className={`text-[16px] md:text-[20px] lg:text-[24px] font-semibold tracking-[-0.6px] md:tracking-[-0.8px] lg:tracking-[-0.96px] ${selectedTrack === 'junior' ? 'text-white' : 'text-black'
+                  }`}
                 style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
               >
                 Junior Track
@@ -99,16 +97,14 @@ export default function KnowWhatTheyLearnSection() {
             </button>
             <button
               onClick={() => setSelectedTrack('senior')}
-              className={`px-3 md:px-4 py-2 md:py-2.5 rounded-[30px] transition-colors flex-1 md:flex-initial ${
-                selectedTrack === 'senior'
-                  ? 'bg-[#ff8829]'
-                  : 'bg-[#ffe5cc]'
-              }`}
+              className={`px-3 md:px-4 py-2 md:py-2.5 rounded-[30px] transition-colors flex-1 md:flex-initial ${selectedTrack === 'senior'
+                ? 'bg-[#ff8829]'
+                : 'bg-[#ffe5cc]'
+                }`}
             >
               <span
-                className={`text-[16px] md:text-[20px] lg:text-[24px] font-semibold tracking-[-0.6px] md:tracking-[-0.8px] lg:tracking-[-0.96px] ${
-                  selectedTrack === 'senior' ? 'text-white' : 'text-black'
-                }`}
+                className={`text-[16px] md:text-[20px] lg:text-[24px] font-semibold tracking-[-0.6px] md:tracking-[-0.8px] lg:tracking-[-0.96px] ${selectedTrack === 'senior' ? 'text-white' : 'text-black'
+                  }`}
                 style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
               >
                 Senior Track
@@ -149,16 +145,14 @@ export default function KnowWhatTheyLearnSection() {
                   <button
                     key={subject.id}
                     onClick={() => handleSubjectClick(subject.id)}
-                    className={`h-auto md:h-12 px-3 md:px-4 py-2 md:py-2.5 rounded-[8px] flex items-center justify-center transition-colors ${
-                      subject.isActive
-                        ? 'bg-[#ff8829]'
-                        : 'bg-[#ffe5cc] hover:bg-[#ffd9b3]'
-                    }`}
+                    className={`h-auto md:h-12 px-3 md:px-4 py-2 md:py-2.5 rounded-[8px] flex items-center justify-center transition-colors ${subject.isActive
+                      ? 'bg-[#ff8829]'
+                      : 'bg-[#ffe5cc] hover:bg-[#ffd9b3]'
+                      }`}
                   >
                     <span
-                      className={`text-[14px] md:text-[18px] lg:text-[24px] font-semibold tracking-[-0.5px] md:tracking-[-0.7px] lg:tracking-[-0.96px] text-center ${
-                        subject.isActive ? 'text-white' : 'text-black'
-                      }`}
+                      className={`text-[14px] md:text-[18px] lg:text-[24px] font-semibold tracking-[-0.5px] md:tracking-[-0.7px] lg:tracking-[-0.96px] text-center ${subject.isActive ? 'text-white' : 'text-black'
+                        }`}
                       style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
                     >
                       {subject.name}

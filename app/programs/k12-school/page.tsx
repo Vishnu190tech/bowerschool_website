@@ -44,7 +44,7 @@ export default function K12SchoolProgramPage() {
         <OurProgramsSection />
         <OverviewSection />
 
-        <SkillsProSection />
+        <SkillsProSection theme="seed" />
         <ApplicationDeadlineSection />
         <FindCourseSection />
         <EvolvingEducationSection />
@@ -55,12 +55,12 @@ export default function K12SchoolProgramPage() {
         <TrustedBySchools />
         <StudentScheduleSection />
 
-        <ProfileCard />
+        <ProfileCard theme="seed" />
 
         <NewsSection />
         <ContactFormSection />
 
-        <ScholarshipFormSection />
+        <ScholarshipFormSection theme="seed" />
 
       </main>
       <Footer />

@@ -25,14 +25,19 @@ const HeroSection = () => {
   ]
 
   return (
-    <div className="relative  overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900  h-full ">
+    <div className="relative overflow-hidden h-full" style={{ background: 'radial-gradient(circle at center, #2d4db5 0%, #1a2555 40%, #0f1535 70%, #000000 100%)' }}>
       {/* Grid background pattern */}
-      <div className="absolute inset-0 opacity-30" style={{
-        backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='grid' width='60' height='60' patternUnits='userSpaceOnUse'%3E%3Cpath d='M 60 0 L 0 0 0 60' fill='none' stroke='rgba(255,255,255,0.05)' stroke-width='1'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23grid)'/%3E%3C/svg%3E")`
-      }} />
+      <div className="absolute inset-0 -top-1/4 -bottom-1/4">
+        <Image
+          src="/39d2c8f8744f519996020faab038ed64f2942a33.svg"
+          alt=""
+          fill
+          className="object-cover opacity-30"
+        />
+      </div>
 
       {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-purple-900/50 via-transparent to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
 
       {/* Floating Avatar Images */}
       {avatars.map((avatar) => (
@@ -86,13 +91,13 @@ const HeroSection = () => {
 
         {/* Stats Section */}
         <motion.div
-          className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/30 to-transparent backdrop-blur-sm"
+          className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/30 to-transparent backdrop-blur-sm border-t-1 border-blue-200/10"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1 }}
         >
-          <div className="container mx-auto px-4 py-12 md:py-16">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+          <div className="container mx-auto px-4 py-8 md:py-16">
+            <div className="grid grid-cols-3 md:grid-cols-3 gap-8 text-center">
               {stats.map((stat, index) => (
                 <motion.div
                   key={index}
@@ -101,7 +106,7 @@ const HeroSection = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 1.2 + index * 0.1 }}
                 >
-                  <div className="text-3xl md:text-4xl font-bold mb-2">{stat.value}</div>
+                  <div className="text-2xl md:text-4xl font-bold mb-2">{stat.value}</div>
                   <div className="text-sm md:text-base text-gray-300">{stat.label}</div>
                 </motion.div>
               ))}

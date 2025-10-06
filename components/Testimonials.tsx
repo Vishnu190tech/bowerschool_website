@@ -5,53 +5,179 @@ import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline'
 
-const Testimonials = () => {
+// Theme Configuration
+type ThemeType = 'scholarship' | 'lead' | 'seed' | 'ug';
+
+interface TestimonialTheme {
+  primary: string;
+  secondary: string;
+  gradient1: string;
+  gradient2: string;
+  border: string;
+}
+
+const TESTIMONIAL_THEMES: Record<ThemeType, TestimonialTheme> = {
+  scholarship: {
+    primary: '#3232e6',
+    secondary: '#4242FF',
+    gradient1: 'rgb(50 50 230 / 0.1)',
+    gradient2: 'rgb(66 66 255 / 0.1)',
+    border: 'rgba(66, 66, 255, 0.3)',
+  },
+  lead: {
+    primary: '#A8F326',
+    secondary: '#8FD920',
+    gradient1: 'rgb(168 243 38 / 0.1)',
+    gradient2: 'rgb(143 217 32 / 0.1)',
+    border: 'rgba(168, 243, 38, 0.3)',
+  },
+  seed: {
+    primary: '#FF8829',
+    secondary: '#E77620',
+    gradient1: 'rgb(255 136 41 / 0.1)',
+    gradient2: 'rgb(231 118 32 / 0.1)',
+    border: 'rgba(255, 136, 41, 0.3)',
+  },
+  ug: {
+    primary: '#4242FF',
+    secondary: '#3232e6',
+    gradient1: 'rgb(66 66 255 / 0.1)',
+    gradient2: 'rgb(50 50 230 / 0.1)',
+    border: 'rgba(66, 66, 255, 0.3)',
+  },
+};
+
+// Testimonial Interface
+interface Testimonial {
+  id: number;
+  text: string;
+  name: string;
+  role: string;
+  program?: string;
+  image: string;
+}
+
+// Component Props Interface
+interface TestimonialsProps {
+  theme?: ThemeType;
+  testimonials?: Testimonial[];
+  title?: string;
+  itemsPerPage?: number;
+}
+
+// Default Exciting Testimonials Content
+const DEFAULT_TESTIMONIALS: Testimonial[] = [
+  {
+    id: 1,
+    text: "The mentorship program completely transformed my approach to coding. I went from struggling with basic algorithms to building full-stack applications in just 6 months. The instructors genuinely care about your success!",
+    name: "Priya Sharma",
+    role: "UG Student",
+    program: "Computer Science",
+    image: "/student1.jpg"
+  },
+  {
+    id: 2,
+    text: "As a parent, I was amazed by the personalized attention my daughter received. Her confidence skyrocketed, and she's now participating in international robotics competitions. Best investment we've made!",
+    name: "Rajesh Kumar",
+    role: "Parent",
+    program: "K12 SEED Program",
+    image: "/student2.jpg"
+  },
+  {
+    id: 3,
+    text: "The LEAD program helped me discover my passion for AI and machine learning. The project-based curriculum and industry connections landed me an internship at a top tech company!",
+    name: "Arjun Menon",
+    role: "LEAD Student",
+    program: "AI & ML Track",
+    image: "/student3.jpg"
+  },
+  {
+    id: 4,
+    text: "I never thought I'd love mathematics until I joined Bower School. The interactive teaching methods and real-world applications made everything click. Now I'm pursuing engineering with confidence!",
+    name: "Ananya Patel",
+    role: "K12 Student",
+    program: "Grade 11, Science Stream",
+    image: "/student4.jpg"
+  },
+  {
+    id: 5,
+    text: "The scholarship program gave me access to world-class education I couldn't have afforded otherwise. The mentors pushed me beyond my limits, and I graduated top of my class. Forever grateful!",
+    name: "Mohammed Ali",
+    role: "UG Graduate",
+    program: "Data Science",
+    image: "/student1.jpg"
+  },
+  {
+    id: 6,
+    text: "My son was struggling with academics and confidence. Within 3 months at Bower School, his grades improved dramatically and he's now excited about learning. The transformation is incredible!",
+    name: "Lakshmi Iyer",
+    role: "Parent",
+    program: "K12 Program",
+    image: "/student2.jpg"
+  },
+  {
+    id: 7,
+    text: "The career guidance and soft skills training were game-changers. I learned not just technical skills but also how to present myself professionally. Landed my dream job right after graduation!",
+    name: "Vikram Singh",
+    role: "UG Student",
+    program: "Full-Stack Development",
+    image: "/student3.jpg"
+  },
+  {
+    id: 8,
+    text: "The masterclasses with industry experts opened my eyes to real-world applications. The networking opportunities alone were worth it. Highly recommend to anyone serious about their career!",
+    name: "Sneha Reddy",
+    role: "LEAD Graduate",
+    program: "Product Management",
+    image: "/student4.jpg"
+  },
+  {
+    id: 9,
+    text: "As someone who switched careers at 30, I was nervous about going back to school. The supportive environment and flexible learning schedule made it possible. Best decision ever!",
+    name: "Karthik Raman",
+    role: "Career Switcher",
+    program: "UG Program",
+    image: "/student1.jpg"
+  },
+  {
+    id: 10,
+    text: "The hands-on projects and coding challenges prepared me for tech interviews better than any other program. I received multiple job offers and chose the role of my dreams!",
+    name: "Divya Krishnan",
+    role: "UG Graduate",
+    program: "Software Engineering",
+    image: "/student2.jpg"
+  },
+  {
+    id: 11,
+    text: "My daughter's creativity and problem-solving skills have flourished here. The SEED program's focus on innovation and entrepreneurship is exactly what young minds need today!",
+    name: "Amit Desai",
+    role: "Parent",
+    program: "K12 SEED",
+    image: "/student3.jpg"
+  },
+  {
+    id: 12,
+    text: "The community here is phenomenal. Study groups, hackathons, and collaborative projects made learning fun and effective. I made lifelong friends and valuable professional connections!",
+    name: "Rohan Gupta",
+    role: "LEAD Student",
+    program: "Entrepreneurship Track",
+    image: "/student4.jpg"
+  },
+];
+
+const Testimonials = ({
+  theme = 'seed',
+  testimonials = DEFAULT_TESTIMONIALS,
+  title = 'What People Had To Say',
+  itemsPerPage = 3
+}: TestimonialsProps) => {
   const [currentPage, setCurrentPage] = useState(0)
-  const testimonialsPerPage = 3
+  const currentTheme = TESTIMONIAL_THEMES[theme];
 
-  const testimonials = [
-    {
-      id: 1,
-      text: 'Awesome program. i feel super educated and my confidence built up too. the entire team is fantastic, the experience was great, i loved it. highly recommend it to others',
-      name: 'student',
-      details: 'student details',
-      image: '/student1.jpg'
-    },
-    {
-      id: 2,
-      text: 'Awesome program. i feel super educated and my confidence built up too. the entire team is fantastic, the experience was great, i loved it. highly recommend it to others',
-      name: 'student',
-      details: 'student details',
-      image: '/student2.jpg'
-    },
-    {
-      id: 3,
-      text: 'Awesome program. i feel super educated and my confidence built up too. the entire team is fantastic, the experience was great, i loved it. highly recommend it to others',
-      name: 'student',
-      details: 'student details',
-      image: '/student3.jpg'
-    },
-    {
-      id: 4,
-      text: 'Awesome program. i feel super educated and my confidence built up too. the entire team is fantastic, the experience was great, i loved it. highly recommend it to others',
-      name: 'student',
-      details: 'student details',
-      image: '/student4.jpg'
-    },
-    // Duplicate for carousel effect (24 total as shown in design)
-    ...Array(20).fill(null).map((_, i) => ({
-      id: i + 5,
-      text: 'Awesome program. i feel super educated and my confidence built up too. the entire team is fantastic, the experience was great, i loved it. highly recommend it to others',
-      name: 'student',
-      details: 'student details',
-      image: `/student${(i % 4) + 1}.jpg`
-    }))
-  ]
-
-  const totalPages = Math.ceil(testimonials.length / testimonialsPerPage)
+  const totalPages = Math.ceil(testimonials.length / itemsPerPage)
   const currentTestimonials = testimonials.slice(
-    currentPage * testimonialsPerPage,
-    (currentPage + 1) * testimonialsPerPage
+    currentPage * itemsPerPage,
+    (currentPage + 1) * itemsPerPage
   )
 
   const nextPage = () => {
@@ -89,8 +215,14 @@ const Testimonials = () => {
       </div>
 
       {/* Gradient Light Effects */}
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-orange-500/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-orange-600/10 rounded-full blur-3xl" />
+      <div
+        className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full blur-3xl"
+        style={{ backgroundColor: currentTheme.gradient1 }}
+      />
+      <div
+        className="absolute bottom-0 left-0 w-[600px] h-[600px] rounded-full blur-3xl"
+        style={{ backgroundColor: currentTheme.gradient2 }}
+      />
 
       {/* Main Content */}
       <div className="relative z-10 container mx-auto px-8 md:px-20 py-20">
@@ -101,7 +233,7 @@ const Testimonials = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          What People Had To Say
+          {title}
         </motion.h2>
 
         {/* Testimonials Carousel */}
@@ -125,7 +257,12 @@ const Testimonials = () => {
                   whileHover={{ scale: 1.02, backgroundColor: 'rgba(31, 41, 55, 0.7)' }}
                 >
                   {/* Quote Icon */}
-                  <div className="text-orange-500 text-5xl mb-4 font-serif">"</div>
+                  <div
+                    className="text-5xl mb-4 font-serif"
+                    style={{ color: currentTheme.primary }}
+                  >
+                    "
+                  </div>
 
                   {/* Testimonial Text */}
                   <p className="text-gray-300 text-base leading-relaxed mb-8">
@@ -137,7 +274,10 @@ const Testimonials = () => {
 
                   {/* Author Info */}
                   <div className="flex items-center gap-4">
-                    <div className="relative w-14 h-14 rounded-full overflow-hidden border-2 border-orange-500/30">
+                    <div
+                      className="relative w-14 h-14 rounded-full overflow-hidden border-2"
+                      style={{ borderColor: currentTheme.border }}
+                    >
                       <Image
                         src={testimonial.image}
                         alt={testimonial.name}
@@ -150,8 +290,13 @@ const Testimonials = () => {
                         {testimonial.name}
                       </h4>
                       <p className="text-gray-400 text-sm">
-                        {testimonial.details}
+                        {testimonial.role}
                       </p>
+                      {testimonial.program && (
+                        <p className="text-gray-500 text-xs mt-0.5">
+                          {testimonial.program}
+                        </p>
+                      )}
                     </div>
                   </div>
                 </motion.div>
@@ -173,7 +318,12 @@ const Testimonials = () => {
           <div className="flex items-center gap-2">
             <motion.button
               onClick={prevPage}
-              className="p-2 text-white hover:text-orange-500 transition-colors"
+              className="p-2 text-white transition-colors"
+              style={{
+                ['--hover-color' as string]: currentTheme.primary,
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = currentTheme.primary)}
+              onMouseLeave={(e) => (e.currentTarget.style.color = 'white')}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -181,7 +331,9 @@ const Testimonials = () => {
             </motion.button>
             <motion.button
               onClick={nextPage}
-              className="p-2 text-white hover:text-orange-500 transition-colors"
+              className="p-2 text-white transition-colors"
+              onMouseEnter={(e) => (e.currentTarget.style.color = currentTheme.primary)}
+              onMouseLeave={(e) => (e.currentTarget.style.color = 'white')}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -196,7 +348,8 @@ const Testimonials = () => {
 
       {/* Additional Visual Effects */}
       <motion.div
-        className="absolute top-1/2 left-10 w-2 h-2 bg-orange-400 rounded-full"
+        className="absolute top-1/2 left-10 w-2 h-2 rounded-full"
+        style={{ backgroundColor: currentTheme.primary }}
         animate={{
           y: [0, -30, 0],
           opacity: [0.5, 1, 0.5],
@@ -208,7 +361,8 @@ const Testimonials = () => {
         }}
       />
       <motion.div
-        className="absolute bottom-1/3 right-10 w-3 h-3 bg-orange-500 rounded-full"
+        className="absolute bottom-1/3 right-10 w-3 h-3 rounded-full"
+        style={{ backgroundColor: currentTheme.secondary }}
         animate={{
           y: [0, 30, 0],
           opacity: [0.5, 1, 0.5],

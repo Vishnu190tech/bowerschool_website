@@ -4,36 +4,134 @@ import React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 
-const WhyPartnerWithSeedSection = () => {
-  const cards = [
-    {
-      title: "The Big Pitch",
-      description: "Students present their ideas to real mentors and investors.",
-      number: "01",
-      rotation: -3.23
-    },
-    {
-      title: "Internship Exposure",
-      description: "Internship experiences and CESIM simulation-based learning",
-      number: "02",
-      rotation: 2
-    },
-    {
-      title: "Build Your Own Chatbot",
-      description: "Use simple AI tools to create a chatbot that helps pitch your startup.",
-      number: "03",
-      rotation: -2
-    },
-    {
-      title: "Think Like a Founder",
-      description: "Learn to spot problems, test ideas, and build real-world solutions from scratch.",
-      number: "04",
-      rotation: 2
-    }
-  ];
+// Theme Configuration
+type ThemeType = 'scholarship' | 'lead' | 'seed' | 'ug';
+
+interface PartnerTheme {
+  primary: string;
+  secondary: string;
+  darkBg: string;
+  gradientFrom: string;
+  gradientTo: string;
+  radialGradient: string;
+  overlayGradient: string;
+  cardGradient: string;
+  borderColor: string;
+}
+
+const PARTNER_THEMES: Record<ThemeType, PartnerTheme> = {
+  scholarship: {
+    primary: '#3232e6',
+    secondary: '#4242FF',
+    darkBg: '#010817',
+    gradientFrom: '#0a0d1a',
+    gradientTo: '#050812',
+    radialGradient: 'radial-gradient(ellipse at center bottom, rgba(50, 50, 230, 0.1) 0%, rgba(66, 66, 255, 0.05) 51%, transparent 100%)',
+    overlayGradient: 'linear-gradient(to bottom, transparent 0%, rgba(1, 8, 23, 0.5) 50%, #010817 100%)',
+    cardGradient: 'linear-gradient(to top, rgba(50, 50, 230, 0.2), rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1))',
+    borderColor: 'rgba(248, 242, 255, 0.2)',
+  },
+  lead: {
+    primary: '#A8F326',
+    secondary: '#8FD920',
+    darkBg: '#0a1501',
+    gradientFrom: '#0f1a05',
+    gradientTo: '#080f03',
+    radialGradient: 'radial-gradient(ellipse at center bottom, rgba(168, 243, 38, 0.1) 0%, rgba(143, 217, 32, 0.05) 51%, transparent 100%)',
+    overlayGradient: 'linear-gradient(to bottom, transparent 0%, rgba(10, 21, 1, 0.5) 50%, #0a1501 100%)',
+    cardGradient: 'linear-gradient(to top, rgba(168, 243, 38, 0.2), rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1))',
+    borderColor: 'rgba(251, 255, 243, 0.2)',
+  },
+  seed: {
+    primary: '#FF8829',
+    secondary: '#FFBF29',
+    darkBg: '#170c01',
+    gradientFrom: '#180b00',
+    gradientTo: '#120800',
+    radialGradient: 'radial-gradient(ellipse at center bottom, rgba(255, 136, 41, 0.1) 0%, rgba(255, 191, 41, 0.05) 51%, transparent 100%)',
+    overlayGradient: 'linear-gradient(to bottom, transparent 0%, rgba(23, 12, 1, 0.5) 50%, #170c01 100%)',
+    cardGradient: 'linear-gradient(to top, rgba(255, 136, 41, 0.2), rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1))',
+    borderColor: 'rgba(255, 248, 242, 0.2)',
+  },
+  ug: {
+    primary: '#4242FF',
+    secondary: '#3232e6',
+    darkBg: '#010817',
+    gradientFrom: '#0a0d1a',
+    gradientTo: '#050812',
+    radialGradient: 'radial-gradient(ellipse at center bottom, rgba(66, 66, 255, 0.1) 0%, rgba(50, 50, 230, 0.05) 51%, transparent 100%)',
+    overlayGradient: 'linear-gradient(to bottom, transparent 0%, rgba(1, 8, 23, 0.5) 50%, #010817 100%)',
+    cardGradient: 'linear-gradient(to top, rgba(66, 66, 255, 0.2), rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1))',
+    borderColor: 'rgba(248, 242, 255, 0.2)',
+  },
+};
+
+// Card Data Interface
+interface CardData {
+  title: string;
+  description: string;
+  number: string;
+  rotation: number;
+}
+
+// Component Props Interface
+interface WhyPartnerSectionProps {
+  theme?: ThemeType;
+  title?: string;
+  highlightWord?: string;
+  cards?: CardData[];
+}
+
+// Default Cards Data
+const DEFAULT_CARDS: CardData[] = [
+  {
+    title: "The Big Pitch",
+    description: "Students present their ideas to real mentors and investors.",
+    number: "01",
+    rotation: -3.23
+  },
+  {
+    title: "Internship Exposure",
+    description: "Internship experiences and CESIM simulation-based learning",
+    number: "02",
+    rotation: 2
+  },
+  {
+    title: "Build Your Own Chatbot",
+    description: "Use simple AI tools to create a chatbot that helps pitch your startup.",
+    number: "03",
+    rotation: -2
+  },
+  {
+    title: "Think Like a Founder",
+    description: "Learn to spot problems, test ideas, and build real-world solutions from scratch.",
+    number: "04",
+    rotation: 2
+  }
+];
+
+const WhyPartnerWithSeedSection = ({
+  theme = 'seed',
+  title = 'Why Partner With',
+  highlightWord = 'SEED?',
+  cards = DEFAULT_CARDS
+}: WhyPartnerSectionProps) => {
+  const currentTheme = PARTNER_THEMES[theme];
 
   return (
-    <section className="relative w-full bg-gradient-to-r from-[#180b00] to-[#120800] overflow-hidden">
+    <section
+      className="relative w-full overflow-hidden"
+      style={{
+        backgroundColor: currentTheme.darkBg,
+        backgroundImage: `${currentTheme.radialGradient}, linear-gradient(to right, ${currentTheme.gradientFrom}, ${currentTheme.gradientTo})`
+      }}
+    >
+      {/* Overlay Gradient */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{ backgroundImage: currentTheme.overlayGradient }}
+      />
+
       {/* Background Grid Pattern - Hidden on Mobile */}
       <div className="hidden md:block absolute inset-0">
         <Image
@@ -55,10 +153,10 @@ const WhyPartnerWithSeedSection = () => {
               className="text-[40px] md:text-[60px] lg:text-[80px] font-bold leading-[1.1] md:leading-[1.1] lg:leading-[80px] tracking-[-2px] md:tracking-[-3px] lg:tracking-[-4px]"
               style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
             >
-              <span className="text-white">Why Partner </span>
+              <span className="text-white">{title} </span>
               <br />
               <span className="text-white">With </span>
-              <span className="text-[#ff8829]">SEED?</span>
+              <span style={{ color: currentTheme.primary }}>{highlightWord}</span>
             </h2>
           </div>
 
@@ -81,9 +179,12 @@ const WhyPartnerWithSeedSection = () => {
                 >
                   {/* Glassmorphic Card */}
                   <div
-                    className="absolute inset-0 backdrop-blur-md backdrop-filter bg-white/10 rounded-[14px] md:rounded-[16px] lg:rounded-[18px] border border-[#fff8f2]/20"
+                    className="absolute inset-0 backdrop-blur-md backdrop-filter rounded-[14px] md:rounded-[16px] lg:rounded-[18px]"
                     style={{
-                      backgroundImage: `radial-gradient(71.178px at 208.23px 34.861px, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 55.823%, rgba(0, 0, 0, 0.3) 73.997%, rgba(0, 0, 0, 0) 100%)`
+                      backgroundImage: currentTheme.cardGradient,
+                      borderWidth: '1px',
+                      borderStyle: 'solid',
+                      borderColor: currentTheme.borderColor
                     }}
                   >
                     <div className="relative h-full px-6 md:px-7 lg:px-8 py-4 md:py-5 lg:py-6 flex flex-col gap-3 md:gap-3.5 lg:gap-4">

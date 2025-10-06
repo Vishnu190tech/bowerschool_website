@@ -46,25 +46,25 @@ export default function K12ProgramPage() {
         <OverviewSection />
         <HowItWorks />
 
-        <SkillsProSection />
+        <SkillsProSection theme="seed" />
         <StudentScheduleSection />
         <ApplicationDeadlineSection />
 
 
 
-        <WhyPartnerWithSeedSection />
+        <WhyPartnerWithSeedSection theme="seed" />
         <KnowWhatTheyLearnSection />
         <EvolvingEducationSection />
         <MeetOurLearnersSection />
         <HeroSection />
         <TrustedBySchools />
-        <ProfileCard />
-        <Testimonials />
+        <ProfileCard theme="seed" />
+        <Testimonials theme="seed" />
         <NewsSection />
         <ContactFormSection />
         <BowerGlimpseSection />
 
-        <ScholarshipFormSection />
+        <ScholarshipFormSection theme="seed" />
 
       </main>
       <Footer />

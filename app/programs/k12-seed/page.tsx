@@ -63,7 +63,7 @@ export default function K12ProgramPage() {
         <ApplicationDeadlineSection />
         {/* <ApplicationBanner /> */}
         {/* <WhyPartnerSection /> */}
-        <WhyPartnerWithSeedSection />
+        <WhyPartnerWithSeedSection theme="seed" />
         <LearningExecutionSection />
 
         <MeetOurLearnersSection />
@@ -72,13 +72,13 @@ export default function K12ProgramPage() {
         <StudentPitchVideoSection />
 
         <CertificateSection />
-        <ProfileCard />
-        <CourseFeeSection />
+        <ProfileCard theme="seed" />
+        <CourseFeeSection theme="seed" />
         <ClubsSection />
-        <Testimonials />
+        <Testimonials theme="seed" />
         <BowerGlimpseSection />
-        <FAQSection />
-        <ScholarshipFormSection />
+        <FAQSection theme="seed" />
+        <ScholarshipFormSection theme="seed" />
 
       </main>
       <Footer />

@@ -72,7 +72,7 @@ export default function Header() {
       ? 'bg-[#020101]/95 backdrop-blur-md'
       : 'bg-[#020101]/80 backdrop-blur-md lg:bg-transparent lg:backdrop-blur-none'
       }`}>
-      <div className="container mx-auto px-4 sm:px-6 lg:px-20">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-4">
         <div className="flex items-center justify-between py-2 lg:py-4 relative">
           {/* Logo */}
           <Link href="/" className="flex gap-[7px] items-center">

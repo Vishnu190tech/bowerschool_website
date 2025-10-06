@@ -39,6 +39,7 @@ export default function UGProgramPage() {
     <div className="min-h-screen flex flex-col">
       <Header />
 
+
       <main className="flex-1 bg-gray-50">
         <SeedHeroSection
           breadcrumb="Programs > PG"
@@ -59,7 +60,7 @@ export default function UGProgramPage() {
 
         {/* <ApplicationBanner /> */}
         {/* <WhyPartnerSection /> */}
-        <WhyPartnerWithSeedSection />
+        <WhyPartnerWithSeedSection theme="lead" />
         <GuestSpeakerSectionTwo />
         <MeetOurLearnersSection />
 
@@ -72,17 +73,17 @@ export default function UGProgramPage() {
         <HeroSection />
         <HowToBecomeLeaderSection />
         <CertificateSection />
-        <SkillsProSection />
-        <CourseFeeSection />
+        <SkillsProSection theme="lead" />
+        <CourseFeeSection theme="lead" />
 
 
-        <ProfileCard />
+        <ProfileCard theme="lead" />
         <ClubsSection />
 
-        <Testimonials />
-        <BowerGlimpseSection />
-        <FAQSection />
-        <ScholarshipFormSection />
+        <Testimonials theme="lead" />
+        <BowerGlimpseSection theme="lead" />
+        <FAQSection theme="lead" />
+        <ScholarshipFormSection theme="lead" />
       </main>
       <Footer />
     </div>

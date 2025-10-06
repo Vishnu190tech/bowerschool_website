@@ -48,7 +48,7 @@ const EntrepreneurshipHero = () => {
         initial="hidden"
         animate="visible"
       >
-        <div className="container mx-auto px-4 md:px-8 lg:px-12 xl:px-20 py-10 md:py-16 lg:py-20">
+        <div className="container mx-auto px-4 md:px-8 lg:px-4 xl:px-4 py-10 md:py-16 lg:py-20">
           <div className="max-w-3xl">
             {/* Breadcrumb Navigation */}
             <motion.div
@@ -74,7 +74,7 @@ const EntrepreneurshipHero = () => {
 
             {/* Main Heading */}
             <motion.h1
-              className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold text-white leading-tight mb-4 md:mb-6 lg:mb-8"
+              className="text-3xl md:text-4xl lg:text-5xl xl:text-5xl 2xl:text-5xl font-bold text-white leading-tight mb-4 md:mb-6 lg:mb-8"
               variants={itemVariants}
             >
               Early-Stage<br />

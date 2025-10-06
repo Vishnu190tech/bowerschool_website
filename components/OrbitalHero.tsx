@@ -68,7 +68,7 @@ const OrbitalHero = () => {
       ))}
 
       {/* Main Content Container */}
-      <div className="relative z-10 flex flex-col items-center justify-center bg-gradient-to-b from-gray-950/30 via-indigo-950/30 to-[#3232E6]/30 px-4 pt-16">
+      <div className="relative z-10 flex flex-col items-center justify-center bg-gradient-to-b from-gray-950/30 via-indigo-950/30 to-[#3232E6]/40 px-4 pt-16">
         {/* Header Text */}
         <motion.div
           className="text-center mb-8 md:mb-12"
@@ -310,7 +310,7 @@ const OrbitalHero = () => {
           </motion.div>
         </div>
       </div>
-      <div className="relative z-10 flex flex-col items-center justify-center bg-gradient-to-b from-[#3232E6]/30 via-white/30 to-white px-4 pb-16">
+      <div className="relative z-10 flex flex-col items-center justify-center bg-gradient-to-b from-[#3232E6]/40  to-white px-4 pb-16">
 
         {/* LEARN.BUILD.SCALE Text */}
         <motion.div
@@ -326,7 +326,7 @@ const OrbitalHero = () => {
 
         {/* Video Section */}
         <motion.div
-          className="relative w-full max-w-3xl mx-auto rounded-2xl overflow-hidden bg-gradient-to-br from-gray-800 to-gray-900 border border-white/10 shadow-2xl"
+          className="relative w-full max-w-3xl mx-auto rounded-2xl overflow-hidden bg-gradient-to-br from-blue-800 to-blue-900 border border-white/10 shadow-2xl"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.8 }}
