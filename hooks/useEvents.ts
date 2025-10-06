@@ -163,3 +163,65 @@ export function usePastEvent(slug: string) {
     enabled: !!slug,
   });
 }
+
+// Masterclass interface
+export interface Masterclass {
+  id: string;
+  slug: string;
+  title: string;
+  subtitle?: string;
+  description: string;
+  date: string;
+  time?: string;
+  category: string;
+  videoThumbnail?: string;
+  videoUrl?: string;
+  learningOutcomes?: any;
+  galleryImages?: any;
+  studentPortalConfig?: any;
+  assignmentDetails?: any;
+  registrationCode?: string;
+  instructors?: any;
+  resources?: any;
+  maxStudents?: number;
+  registeredCount: number;
+  price?: number;
+  registrationOpen: boolean;
+  registrationLink?: string;
+  isPublished: boolean;
+  isFeatured: boolean;
+  tags?: any;
+  highlights?: any;
+  testimonials?: any;
+  prerequisites?: string;
+  duration?: string;
+  level?: string;
+  metaTitle?: string;
+  metaDescription?: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+// Masterclass hooks
+export function useMasterclasses() {
+  return useQuery<Masterclass[]>({
+    queryKey: ['masterclasses'],
+    queryFn: async () => {
+      const res = await fetch('/api/masterclasses');
+      if (!res.ok) throw new Error('Failed to fetch masterclasses');
+      return res.json();
+    },
+  });
+}
+
+export function useMasterclass(slug: string) {
+  return useQuery<Masterclass>({
+    queryKey: ['masterclass', slug],
+    queryFn: async () => {
+      const res = await fetch(`/api/masterclasses/${slug}`);
+      if (!res.ok) throw new Error('Failed to fetch masterclass');
+      return res.json();
+    },
+    enabled: !!slug,
+  });
+}

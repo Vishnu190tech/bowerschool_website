@@ -12,12 +12,15 @@ interface GalleryImage {
 
 interface MasterclassGallerySectionProps {
   title?: string;
-  images?: GalleryImage[];
+  images?: GalleryImage[] | string[] | any;
 }
 
 const MasterclassGallerySection = ({
   title = 'Gallery / Recap',
-  images = [
+  images
+}: MasterclassGallerySectionProps) => {
+  // Default images if none provided
+  const defaultImages = [
     {
       src: '/4a56a7d4af350130e8e341d4f0e64a9c51be455f.png',
       alt: 'Participants listening to instructor',
@@ -63,12 +66,37 @@ const MasterclassGallerySection = ({
       alt: 'UX design discussion',
       title: 'Event Photo 9'
     }
-  ]
-}: MasterclassGallerySectionProps) => {
+  ];
+
+  // Process images - handle both string arrays and object arrays
+  const processedImages = (() => {
+    if (!images || (Array.isArray(images) && images.length === 0)) {
+      return defaultImages;
+    }
+
+    if (Array.isArray(images)) {
+      return images.map((img, index) => {
+        if (typeof img === 'string') {
+          return {
+            src: img,
+            alt: `Gallery Image ${index + 1}`,
+            title: `Event Photo ${index + 1}`
+          };
+        }
+        return {
+          src: img.src || img.url || img,
+          alt: img.alt || `Gallery Image ${index + 1}`,
+          title: img.title || `Event Photo ${index + 1}`
+        };
+      });
+    }
+
+    return defaultImages;
+  })();
   // Split images into rows of 3
   const rows = [];
-  for (let i = 0; i < images.length; i += 3) {
-    rows.push(images.slice(i, i + 3));
+  for (let i = 0; i < processedImages.length; i += 3) {
+    rows.push(processedImages.slice(i, i + 3));
   }
 
   return (

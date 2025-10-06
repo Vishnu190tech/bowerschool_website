@@ -250,11 +250,10 @@ export default function PastEventsManagement() {
                 key={tab}
                 type="button"
                 onClick={() => setActiveTab(tab)}
-                className={`py-2 px-1 border-b-2 font-medium text-sm capitalize transition-colors ${
-                  activeTab === tab
-                    ? 'border-[#4242ff] text-[#4242ff]'
-                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-                }`}
+                className={`py-2 px-1 border-b-2 font-medium text-sm capitalize transition-colors ${activeTab === tab
+                  ? 'border-[#4242ff] text-[#4242ff]'
+                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                  }`}
               >
                 {tab === 'basic' ? 'Basic Info' : tab}
               </button>
@@ -749,7 +748,7 @@ export default function PastEventsManagement() {
 
       {/* Create Modal */}
       {isCreateModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 bg-opacity-50">
           <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto p-6">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">Create Past Event</h2>
             <EventForm
@@ -762,7 +761,7 @@ export default function PastEventsManagement() {
 
       {/* Edit Modal */}
       {isEditModalOpen && selectedEvent && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/10 bg-opacity-50">
           <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto p-6">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">Edit Past Event</h2>
             <EventForm

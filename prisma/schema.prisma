@@ -132,3 +132,63 @@ model PastEvent {
   @@index([date])
   @@index([isPublished])
 }
+
+// Masterclass model for managing masterclasses
+model Masterclass {
+  id                   String   @id @default(cuid())
+  slug                 String   @unique
+  title                String
+  subtitle             String?
+  description          String   @db.Text
+  date                 DateTime
+  time                 String?
+  category             String   @default("BowerClass")
+  videoThumbnail       String?  // Thumbnail image URL
+  videoUrl             String?  // Main video URL
+
+  // Learning and content
+  learningOutcomes     Json?    // Array of learning outcomes
+  galleryImages        Json?    // Array of gallery image URLs
+  prerequisites        String?  @db.Text
+  duration             String?
+  level                String?  // Beginner, Intermediate, Advanced
+
+  // Student portal configuration
+  studentPortalConfig  Json?    // Config for student portal section
+  assignmentDetails    Json?    // Assignment submission details
+  registrationCode     String?  // Code for student portal access
+
+  // Instructors and resources
+  instructors          Json?    // Array of instructors/mentors
+  resources            Json?    // Additional resources and links
+
+  // Registration and capacity
+  maxStudents          Int?
+  registeredCount      Int      @default(0)
+  price                Float?
+  registrationOpen     Boolean  @default(true)
+  registrationLink     String?
+
+  // Status flags
+  isPublished          Boolean  @default(false)
+  isFeatured           Boolean  @default(false)
+
+  // Additional metadata
+  tags                 Json?    // Array of tags
+  highlights           Json?    // Key highlights
+  testimonials         Json?    // Student testimonials
+  networkStats         Json?    // Bower network statistics displayed on masterclass page
+
+  // SEO fields
+  metaTitle            String?
+  metaDescription      String?
+
+  // Timestamps
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+
+  @@index([slug])
+  @@index([category])
+  @@index([date])
+  @@index([isPublished])
+}

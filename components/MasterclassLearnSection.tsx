@@ -9,14 +9,24 @@ interface MasterclassLearnSectionProps {
   description?: string;
   buttonText?: string;
   buttonLink?: string;
+  learningOutcomes?: string[] | any;
 }
 
 const MasterclassLearnSection = ({
   title = 'You will learn',
   description = 'Build real-world skills in ideation, validation, business modeling, and pitching — without spending a bomb.',
   buttonText = 'Register for free',
-  buttonLink = '/register'
+  buttonLink = '/register',
+  learningOutcomes
 }: MasterclassLearnSectionProps) => {
+  // Parse learning outcomes if they exist
+  const outcomes = Array.isArray(learningOutcomes) ? learningOutcomes :
+    (learningOutcomes && typeof learningOutcomes === 'object' ? Object.values(learningOutcomes) : []);
+
+  // Use outcomes to enhance description if available
+  const displayDescription = outcomes.length > 0
+    ? outcomes.join(' • ')
+    : description;
   return (
     <section className="w-full bg-[#f4f4ff] py-16 md:py-20 px-4 md:px-10 lg:px-20">
       <div className="max-w-[1440px] mx-auto">
@@ -43,7 +53,7 @@ const MasterclassLearnSection = ({
               className="text-[18px] md:text-[20px] text-[#4b5563] leading-[27px] md:leading-[30px]"
               style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
             >
-              {description}
+              {displayDescription}
             </p>
 
             <motion.button

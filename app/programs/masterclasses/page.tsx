@@ -11,6 +11,7 @@ import BEATResourcesSection from "@/components/BEATResourcesSection";
 import HeroSection from "@/components/HeroSection";
 import ContactFormSection from "@/components/ContactFormSection";
 import ScholarshipFormSection from "@/components/ScholarshipFormSection";
+import MasterclassesHighlights from "@/components/MasterclassesHighlights";
 
 export default function MasterclassesPage() {
   return (
@@ -19,10 +20,12 @@ export default function MasterclassesPage() {
       <main className="flex-1">
         <MasterclassListingHero />
 
+
+
         <MasterclassLearnSection />
 
         <StudentPitchSection />
-        <BEATResourcesSection />
+        <MasterclassesHighlights />
 
 
         <MasterclassSection />

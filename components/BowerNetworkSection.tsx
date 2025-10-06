@@ -4,8 +4,21 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 
-const BowerNetworkSection = () => {
-  const stats = [
+interface NetworkStat {
+  title: string;
+  description: string;
+}
+
+interface BowerNetworkSectionProps {
+  stats?: NetworkStat[];
+  sectionTitle?: string;
+}
+
+const BowerNetworkSection = ({
+  stats: customStats,
+  sectionTitle = "Inside The Bower Network"
+}: BowerNetworkSectionProps) => {
+  const defaultStats = [
     {
       title: '100+ Builders in the Bower Network',
       description: 'From teen entrepreneurs to working professionals, our alumni are launching ventures, scaling ideas, and shaping the future of business and innovation.'
@@ -18,7 +31,9 @@ const BowerNetworkSection = () => {
       title: 'Dozens of Collaborations in Motion',
       description: 'From co-built ventures to peer mentoring and pitch teams, alumni continue to create with—and for—each other.'
     }
-  ]
+  ];
+
+  const stats = customStats && customStats.length > 0 ? customStats : defaultStats;
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -45,7 +60,7 @@ const BowerNetworkSection = () => {
     visible: {
       opacity: 1,
       scale: 1,
-      transition: { 
+      transition: {
         duration: 0.6,
         type: "spring" as const,
         stiffness: 100
@@ -76,25 +91,25 @@ const BowerNetworkSection = () => {
         viewport={{ once: true }}
       >
         <div className="flex flex-col lg:flex-row gap-8 md:gap-12 lg:gap-20 items-center">
-          
+
           {/* Left Content */}
-          <motion.div 
+          <motion.div
             className="flex-1 max-w-[500px]"
             variants={itemVariants}
           >
             <h2 className="text-[28px] md:text-[38px] lg:text-[44px] font-semibold text-gray-900 leading-tight tracking-[-1px] md:tracking-[-1.4px] lg:tracking-[-1.76px] capitalize">
-              Inside The Bower Network
+              {sectionTitle}
             </h2>
           </motion.div>
 
           {/* Right Stats Card */}
-          <motion.div 
+          <motion.div
             className="flex-1 max-w-[700px] w-full"
             variants={cardVariants}
           >
             <div className="backdrop-blur-[22px] bg-white/40 rounded-[8px] md:rounded-[10px] border border-white p-4 md:p-6 lg:p-8">
               {stats.map((stat, index) => (
-                <motion.div 
+                <motion.div
                   key={index}
                   variants={itemVariants}
                 >
@@ -103,13 +118,13 @@ const BowerNetworkSection = () => {
                     <h3 className="text-[18px] md:text-[22px] lg:text-[24px] font-semibold text-gray-900 mb-3 md:mb-4 lg:mb-5 tracking-[-0.72px] md:tracking-[-0.88px] lg:tracking-[-0.96px]">
                       {stat.title}
                     </h3>
-                    
+
                     {/* Description */}
                     <p className="text-[14px] md:text-[16px] lg:text-[18px] text-gray-600 leading-[21px] md:leading-[24px] lg:leading-[27px]">
                       {stat.description}
                     </p>
                   </div>
-                  
+
                   {/* Divider */}
                   {index < stats.length - 1 && (
                     <div className="border-t border-gray-300">

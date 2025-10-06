@@ -1,12 +1,13 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import { useMasterclasses } from '@/hooks/useEvents';
 
 interface Masterclass {
-  id: number;
+  id: number | string;
   title: string;
   date: string;
   image: string;
@@ -16,34 +17,71 @@ interface Masterclass {
 interface OtherMasterclassesSectionProps {
   title?: string;
   masterclasses?: Masterclass[];
+  currentSlug?: string;
 }
 
 const OtherMasterclassesSection = ({
   title = 'Other Masterclass By Bower',
-  masterclasses = [
-    {
-      id: 1,
-      title: 'Innovation Fest 2025',
-      date: 'July 15, 2025',
-      image: '/59a3e41c2b4801f75e2a8fdd542b15e36bbfbf72.png',
-      link: '/programs/masterclasses/innovation-fest-2025'
-    },
-    {
-      id: 2,
-      title: 'Innovation Fest 2025',
-      date: 'July 15, 2025',
-      image: '/1064367165141086184320185daa9b91e6ed31d5.png',
-      link: '/programs/masterclasses/innovation-fest-2025'
-    },
-    {
-      id: 3,
-      title: 'Innovation Fest 2025',
-      date: 'July 15, 2025',
-      image: '/2a5c1364991bf39b57e28c0398f9a0b6e19fa869.png',
-      link: '/programs/masterclasses/innovation-fest-2025'
-    }
-  ]
+  masterclasses,
+  currentSlug
 }: OtherMasterclassesSectionProps) => {
+  const { data: dbMasterclasses } = useMasterclasses();
+  const [displayMasterclasses, setDisplayMasterclasses] = useState<Masterclass[]>([]);
+
+  useEffect(() => {
+    if (dbMasterclasses && dbMasterclasses.length > 0) {
+      // Filter out current masterclass and only show published ones
+      const filteredMasterclasses = dbMasterclasses
+        .filter(mc => mc.slug !== currentSlug && mc.isPublished)
+        .slice(0, 3)
+        .map(mc => ({
+          id: mc.id,
+          title: mc.title,
+          date: new Date(mc.date).toLocaleDateString('en-US', {
+            month: 'long',
+            day: 'numeric',
+            year: 'numeric'
+          }),
+          image: mc.videoThumbnail || '/59a3e41c2b4801f75e2a8fdd542b15e36bbfbf72.png',
+          link: `/programs/masterclasses/${mc.slug}`
+        }));
+
+      setDisplayMasterclasses(filteredMasterclasses);
+    } else if (masterclasses) {
+      setDisplayMasterclasses(masterclasses);
+    } else {
+      // Default masterclasses if no data
+      setDisplayMasterclasses([
+        {
+          id: 1,
+          title: 'Innovation Fest 2025',
+          date: 'July 15, 2025',
+          image: '/59a3e41c2b4801f75e2a8fdd542b15e36bbfbf72.png',
+          link: '/programs/masterclasses/innovation-fest-2025'
+        },
+        {
+          id: 2,
+          title: 'Growth Hacking Strategies',
+          date: 'August 15, 2025',
+          image: '/1064367165141086184320185daa9b91e6ed31d5.png',
+          link: '/programs/masterclasses/growth-hacking'
+        },
+        {
+          id: 3,
+          title: 'Fundraising 101',
+          date: 'September 3, 2025',
+          image: '/2a5c1364991bf39b57e28c0398f9a0b6e19fa869.png',
+          link: '/programs/masterclasses/fundraising-101'
+        }
+      ]);
+    }
+  }, [dbMasterclasses, masterclasses, currentSlug]);
+
+  // Don't render if no masterclasses to show
+  if (displayMasterclasses.length === 0) {
+    return null;
+  }
+
   return (
     <section className="relative w-full bg-[#1c1b1e] py-10 px-4 md:px-10 lg:px-20 overflow-hidden">
       {/* Background gradient */}
@@ -99,7 +137,7 @@ const OtherMasterclassesSection = ({
 
           {/* Masterclass Cards */}
           <div className="relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-[18.444px]">
-            {masterclasses.map((masterclass, index) => (
+            {displayMasterclasses.map((masterclass, index) => (
               <motion.div
                 key={masterclass.id}
                 initial={{ opacity: 0, scale: 0.95 }}

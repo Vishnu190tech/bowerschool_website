@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { LockClosedIcon } from '@heroicons/react/24/solid';
+import AssignmentSubmissionPopup from './AssignmentSubmissionPopup';
 
 interface MasterclassStudentPortalProps {
   title?: string;
@@ -12,23 +13,41 @@ interface MasterclassStudentPortalProps {
   buttonText?: string;
   supportText?: string;
   onSubmit?: (code: string) => void;
+  config?: any;
+  assignmentDetails?: any;
+  registrationCode?: string;
 }
 
 const MasterclassStudentPortal = ({
-  title = 'Student Portal',
-  subtitle = 'Attended this session? Enter your reg code to access exclusive content',
-  placeholder = 'Enter Registration Code',
-  buttonText = 'Unlock Portal',
-  supportText = "Haven't received your code? Contact support.",
-  onSubmit
+  title,
+  subtitle,
+  placeholder,
+  buttonText,
+  supportText,
+  onSubmit,
+  config,
+  assignmentDetails,
+  registrationCode
 }: MasterclassStudentPortalProps) => {
+  // Use config values if provided, otherwise use defaults
+  const portalTitle = config?.title || title || 'Student Portal';
+  const portalSubtitle = config?.subtitle || subtitle || 'Attended this session? Enter your reg code to access exclusive content';
+  const portalPlaceholder = config?.placeholder || placeholder || 'Enter Registration Code';
+  const portalButtonText = config?.buttonText || buttonText || 'Unlock Portal';
+  const portalSupportText = config?.supportText || supportText || "Haven't received your code? Contact support.";
   const [code, setCode] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!code.trim()) return;
 
+    // Show the assignment submission popup
+    setShowPopup(true);
+  };
+
+  const handlePopupSubmit = async (file: File | null, uploadMethod: 'drive' | 'computer') => {
     setIsLoading(true);
 
     // Call the onSubmit callback if provided
@@ -36,7 +55,16 @@ const MasterclassStudentPortal = ({
       await onSubmit(code);
     }
 
+    // Handle file submission logic here
+    console.log('File submitted:', file);
+    console.log('Upload method:', uploadMethod);
+    console.log('Registration code:', code);
+
     setIsLoading(false);
+    setShowPopup(false);
+
+    // You can add success notification here
+    alert('Assignment submitted successfully!');
   };
 
   return (
@@ -85,7 +113,7 @@ const MasterclassStudentPortal = ({
                   className="text-[48px] md:text-[64px] lg:text-[80px] font-bold text-[#111827] leading-[0.9] tracking-[-4px] mb-3"
                   style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
                 >
-                  {title}
+                  {portalTitle}
                 </motion.h1>
 
                 <motion.p
@@ -95,7 +123,7 @@ const MasterclassStudentPortal = ({
                   className="text-[20px] md:text-[26px] lg:text-[30px] font-semibold text-[#4b5563] tracking-[-1.2px]"
                   style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
                 >
-                  {subtitle}
+                  {portalSubtitle}
                 </motion.p>
               </div>
 
@@ -111,7 +139,7 @@ const MasterclassStudentPortal = ({
                     type="text"
                     value={code}
                     onChange={(e) => setCode(e.target.value)}
-                    placeholder={placeholder}
+                    placeholder={portalPlaceholder}
                     className="w-full h-[70px] md:h-[75px] lg:h-[81px] px-5 py-4 bg-white/10 backdrop-blur-lg border border-white rounded-[10px] text-[18px] md:text-[19px] lg:text-[20px] text-[#111827] placeholder-[#505050] focus:outline-none focus:border-[#4242ff] focus:shadow-[4px_4px_12px_0px_#4242ff] transition-all duration-200"
                     style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
                   />
@@ -132,7 +160,7 @@ const MasterclassStudentPortal = ({
                   className="text-[18px] font-medium"
                   style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
                 >
-                  {isLoading ? 'Unlocking...' : buttonText}
+                  {isLoading ? 'Unlocking...' : portalButtonText}
                 </span>
               </motion.button>
 
@@ -144,7 +172,7 @@ const MasterclassStudentPortal = ({
                 className="text-[18px] md:text-[19px] lg:text-[20px] text-[#505050]"
                 style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
               >
-                {supportText}
+                {portalSupportText}
               </motion.p>
             </form>
           </div>
@@ -171,6 +199,14 @@ const MasterclassStudentPortal = ({
           }
         }
       `}</style>
+
+      {/* Assignment Submission Popup */}
+      <AssignmentSubmissionPopup
+        isOpen={showPopup}
+        onClose={() => setShowPopup(false)}
+        onSubmit={handlePopupSubmit}
+        assignmentDetails={assignmentDetails}
+      />
     </section>
   );
 };

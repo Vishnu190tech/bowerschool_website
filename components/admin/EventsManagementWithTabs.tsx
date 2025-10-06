@@ -1,12 +1,13 @@
 'use client';
 
 import { useState } from 'react';
-import { CalendarIcon, ClockIcon, FolderIcon } from '@heroicons/react/24/outline';
+import { CalendarIcon, ClockIcon, FolderIcon, AcademicCapIcon } from '@heroicons/react/24/outline';
 import EventsManagementEnhanced from './EventsManagementEnhanced';
 import PastEventsManagement from './PastEventsManagement';
+import MasterclassesManagement from './MasterclassesManagement';
 
 export default function EventsManagementWithTabs() {
-  const [activeTab, setActiveTab] = useState<'upcoming' | 'past'>('upcoming');
+  const [activeTab, setActiveTab] = useState<'upcoming' | 'past' | 'masterclasses'>('upcoming');
 
   return (
     <div className="space-y-6">
@@ -40,6 +41,19 @@ export default function EventsManagementWithTabs() {
               <ClockIcon className="w-5 h-5" />
               Past Events
             </button>
+            <button
+              onClick={() => setActiveTab('masterclasses')}
+              className={`
+                py-4 px-1 border-b-2 font-medium text-sm flex items-center gap-2 transition-colors
+                ${activeTab === 'masterclasses'
+                  ? 'border-[#4242ff] text-[#4242ff]'
+                  : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                }
+              `}
+            >
+              <AcademicCapIcon className="w-5 h-5" />
+              Masterclasses
+            </button>
           </nav>
         </div>
       </div>
@@ -48,6 +62,7 @@ export default function EventsManagementWithTabs() {
       <div>
         {activeTab === 'upcoming' && <EventsManagementEnhanced />}
         {activeTab === 'past' && <PastEventsManagement />}
+        {activeTab === 'masterclasses' && <MasterclassesManagement />}
       </div>
     </div>
   );
