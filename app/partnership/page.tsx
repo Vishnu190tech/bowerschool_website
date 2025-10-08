@@ -33,7 +33,7 @@ export default function partnerShipPage() {
 
       <VideoCarouselSection />
       <PartnerCTASection />
-      <Testimonials />
+      <Testimonials theme="scholarship" />
       <ContactFormSection />
 
       {/* <main className="flex-1 bg-white">

@@ -21,9 +21,9 @@ export default function mentorsPage() {
       <MeetOurLearnersSection />
       <StudentPitchSection />
 
-      <Testimonials />
+      <Testimonials theme="scholarship" />
 
-      <FAQSection />
+      <FAQSection theme="scholarship" />
       <ScholarshipFormSection />
 
       <Footer />

@@ -8,6 +8,8 @@ import EventDetailsSection from "@/components/EventDetailsSection";
 import EventScheduleSection from "@/components/EventScheduleSection";
 import EventLocationSection from "@/components/EventLocationSection";
 import { useEvent } from '@/hooks/useEvents';
+import ScholarshipFormSection from '@/components/ScholarshipFormSection';
+import Testimonials from '@/components/Testimonials';
 
 export default function EventsDetailsPage() {
   const params = useParams();
@@ -52,12 +54,12 @@ export default function EventsDetailsPage() {
   // Check if sections have data
   const hasSpeakers = event?.speakers && (
     typeof event.speakers === 'string' ? event.speakers.length > 2 : // More than just "[]"
-    Array.isArray(event.speakers) && event.speakers.length > 0
+      Array.isArray(event.speakers) && event.speakers.length > 0
   );
 
   const hasAgenda = event?.agenda && (
     typeof event.agenda === 'string' ? event.agenda.length > 2 : // More than just "{}"
-    typeof event.agenda === 'object' && Object.keys(event.agenda).length > 0
+      typeof event.agenda === 'object' && Object.keys(event.agenda).length > 0
   );
 
   const hasLocation = event?.location || event?.venue;
@@ -70,6 +72,10 @@ export default function EventsDetailsPage() {
         {hasSpeakers && <EventDetailsSection event={event} />}
         {hasAgenda && <EventScheduleSection event={event} />}
         {hasLocation && <EventLocationSection event={event} />}
+        <Testimonials theme="ug" />
+
+
+        <ScholarshipFormSection theme="ug" />
       </main>
       <Footer />
     </div>

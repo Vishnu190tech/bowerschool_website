@@ -172,12 +172,34 @@ const Testimonials = ({
   itemsPerPage = 3
 }: TestimonialsProps) => {
   const [currentPage, setCurrentPage] = useState(0)
+  const [screenSize, setScreenSize] = useState<'mobile' | 'tablet' | 'desktop'>('desktop')
   const currentTheme = TESTIMONIAL_THEMES[theme];
 
-  const totalPages = Math.ceil(testimonials.length / itemsPerPage)
+  // Detect screen size
+  React.useEffect(() => {
+    const checkScreenSize = () => {
+      const width = window.innerWidth
+      if (width < 768) {
+        setScreenSize('mobile')
+      } else if (width < 1024) {
+        setScreenSize('tablet')
+      } else {
+        setScreenSize('desktop')
+      }
+    }
+
+    checkScreenSize()
+    window.addEventListener('resize', checkScreenSize)
+
+    return () => window.removeEventListener('resize', checkScreenSize)
+  }, [])
+
+  // Use 1 item on mobile, 2 on tablet, 3 on desktop
+  const effectiveItemsPerPage = screenSize === 'mobile' ? 1 : screenSize === 'tablet' ? 2 : itemsPerPage
+  const totalPages = Math.ceil(testimonials.length / effectiveItemsPerPage)
   const currentTestimonials = testimonials.slice(
-    currentPage * itemsPerPage,
-    (currentPage + 1) * itemsPerPage
+    currentPage * effectiveItemsPerPage,
+    (currentPage + 1) * effectiveItemsPerPage
   )
 
   const nextPage = () => {
@@ -241,7 +263,7 @@ const Testimonials = ({
           <AnimatePresence mode="wait">
             <motion.div
               key={currentPage}
-              className="grid grid-cols-1 md:grid-cols-3 gap-8"
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
               initial={{ opacity: 0, x: 100 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -100 }}

@@ -21,6 +21,7 @@ interface ContactTheme {
   buttonText: string;
   buttonShadow: string;
   buttonTextShadow: string;
+  backgroundGrid: string;
 }
 
 const CONTACT_THEMES: Record<ThemeType, ContactTheme> = {
@@ -38,6 +39,7 @@ const CONTACT_THEMES: Record<ThemeType, ContactTheme> = {
     buttonText: '#ffffff',
     buttonShadow: '0px 0px 0px 1px #3232e6, 0px 1px 3px 0px rgba(0, 0, 0, 0.1)',
     buttonTextShadow: '#3232e6 0px 1px 3px',
+    backgroundGrid: '/39d2c8f8744f519996020faab038ed64f2942a33.svg',
   },
   lead: {
     primary: '#A8F326',
@@ -53,6 +55,7 @@ const CONTACT_THEMES: Record<ThemeType, ContactTheme> = {
     buttonText: '#000000',
     buttonShadow: '0px 0px 0px 1px #8FD920, 0px 1px 3px 0px rgba(0, 0, 0, 0.1)',
     buttonTextShadow: '#8FD920 0px 1px 3px',
+    backgroundGrid: '/39d2c8f8744f519996020faab038ed64f2942a33.svg',
   },
   seed: {
     primary: '#FF8829',
@@ -68,6 +71,7 @@ const CONTACT_THEMES: Record<ThemeType, ContactTheme> = {
     buttonText: '#ffffff',
     buttonShadow: '0px 0px 0px 1px #FF8829, 0px 1px 3px 0px rgba(0, 0, 0, 0.1)',
     buttonTextShadow: '#FF8829 0px 1px 3px',
+    backgroundGrid: '/e3f37f7c167982f4de1508adec8e58361d22c27b.svg',
   },
   ug: {
     primary: '#4242FF',
@@ -83,6 +87,7 @@ const CONTACT_THEMES: Record<ThemeType, ContactTheme> = {
     buttonText: '#ffffff',
     buttonShadow: '0px 0px 0px 1px #4242ff, 0px 1px 3px 0px rgba(0, 0, 0, 0.1)',
     buttonTextShadow: '#4242ff 0px 1px 3px',
+    backgroundGrid: '/39d2c8f8744f519996020faab038ed64f2942a33.svg',
   },
 };
 
@@ -92,6 +97,7 @@ interface ContactFormSectionProps {
   subtitle?: string;
   buttonText?: string;
   onSubmit?: (email: string) => void;
+  backgroundGrid?: string;
 }
 
 const ContactFormSection = ({
@@ -99,7 +105,8 @@ const ContactFormSection = ({
   title = 'Want to know more?',
   subtitle = 'Let us reach out to you',
   buttonText = 'I want to know more',
-  onSubmit
+  onSubmit,
+  backgroundGrid
 }: ContactFormSectionProps) => {
   const currentTheme = CONTACT_THEMES[theme];
   const [email, setEmail] = useState('');
@@ -125,7 +132,7 @@ const ContactFormSection = ({
       {/* Background Grid */}
       <div className="absolute inset-0 -top-1/4 -bottom-1/4">
         <Image
-          src="/39d2c8f8744f519996020faab038ed64f2942a33.svg"
+          src={backgroundGrid || currentTheme.backgroundGrid}
           alt=""
           fill
           className="object-cover"
@@ -133,14 +140,14 @@ const ContactFormSection = ({
       </div>
 
       {/* Background Circle */}
-      <div className="absolute top-[-214px] left-1/2 -translate-x-1/2 w-[400px] md:w-[600px] lg:w-[820px] h-[400px] md:h-[600px] lg:h-[820px]">
+      {theme === 'ug' && <div className="absolute top-[-214px] left-1/2 -translate-x-1/2 w-[400px] md:w-[600px] lg:w-[820px] h-[400px] md:h-[600px] lg:h-[820px]">
         <Image
           src="/540bbf1c49d15d10456954389965c466682043d7.svg"
           alt=""
           fill
           className="object-contain"
         />
-      </div>
+      </div>}
 
       {/* Content Container */}
       <div className="relative z-10 h-full flex items-center justify-center">

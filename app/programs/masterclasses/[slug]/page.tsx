@@ -116,6 +116,7 @@ const MasterclassDetailPage = () => {
         />
 
         <OtherMasterclassesSection currentSlug={slug} />
+        <ContactFormSection />
       </main>
 
       <Footer />

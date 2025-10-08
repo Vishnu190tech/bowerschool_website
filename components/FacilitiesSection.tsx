@@ -51,7 +51,7 @@ const FacilitiesSection = () => {
     visible: {
       opacity: 1,
       scale: 1,
-      transition: { 
+      transition: {
         duration: 0.5,
         type: "spring" as const,
         stiffness: 100
@@ -71,17 +71,9 @@ const FacilitiesSection = () => {
           className="opacity-60"
         />
       </div>
-      <div className="absolute bottom-20 right-20">
-        <Image
-          src="/82957d39896253685589cf9e82572758fa11bd32.svg"
-          alt=""
-          width={60}
-          height={60}
-          className="opacity-60"
-        />
-      </div>
 
-      <motion.div 
+
+      <motion.div
         className="container mx-auto px-8 md:px-20"
         variants={containerVariants}
         initial="hidden"
@@ -89,7 +81,7 @@ const FacilitiesSection = () => {
         viewport={{ once: true }}
       >
         {/* Header Section */}
-        <motion.div 
+        <motion.div
           className="text-center mb-16"
           variants={itemVariants}
         >
@@ -97,7 +89,7 @@ const FacilitiesSection = () => {
             Facilities at Bower
           </h2>
           <p className="text-[16px] md:text-[18px] text-[#121212]/80 max-w-3xl mx-auto leading-[28px]">
-            The building is LED Platinum certified with MERV 14 filtration ensuring the cleanest 
+            The building is LED Platinum certified with MERV 14 filtration ensuring the cleanest
             air quality — perfect for working and staying productive.
           </p>
         </motion.div>

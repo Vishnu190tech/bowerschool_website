@@ -15,6 +15,7 @@ import BEATCurriculumSection from "@/components/BEATCurriculumSection";
 import AdmissionStepsSection from "@/components/AdmissionStepsSection";
 import OverviewSection from "@/components/OverviewSection";
 import HeroCampusLife from "@/components/HeroCampusLife";
+import WhyPartnerWithSeedSection from "@/components/WhyPartnerWithSeedSection";
 
 export default function beatExamPage() {
   return (
@@ -30,14 +31,14 @@ export default function beatExamPage() {
         backgroundImage="/9147e6f29ea7d300da04bb310c1321a209f1b979.png"
       />
 
-      <OverviewSection />
+      <OverviewSection theme="ug" />
 
-      <AdmissionStepsSection />
+      <WhyPartnerWithSeedSection theme="ug" />
       <BEATCurriculumSection />
       <BEATResourcesSection />
       <ImportantDatesSection />
       <ContactFormSection />
-      <FAQSection />
+      <FAQSection theme="ug" />
 
       <Footer />
     </div>

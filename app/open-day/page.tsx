@@ -30,7 +30,7 @@ export default function openDayPage() {
       <CampusDaySection />
       <CampusLocationSection />
       <BEATResourcesSection />
-      <ClubsSection />
+      <ClubsSection theme="scholarship" />
       <BowerJourneySection />
 
       <Footer />

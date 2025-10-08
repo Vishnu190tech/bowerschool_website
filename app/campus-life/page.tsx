@@ -41,9 +41,9 @@ export default function alumniConnectPage() {
         <WellnessSection />
         <CampusLifeGallery />
 
-        <Testimonials />
+        <Testimonials theme="ug" />
         <ContactFormSection />
-        <FAQSection />
+        <FAQSection theme="ug" />
 
       </main>
       <Footer />
