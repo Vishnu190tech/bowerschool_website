@@ -41,21 +41,34 @@ export default function K12SchoolProgramPage() {
         <EmpoweringEducationSection currentPage="k12-school" />
         <ProgramNavigation />
 
-        <OurProgramsSection />
-        <OverviewSection />
+        <section id="about" className="scroll-mt-[30px] lg:scroll-mt-[40px]">
+          <OurProgramsSection />
+          <OverviewSection />
+        </section>
 
-        <SkillsProSection theme="seed" />
-        <ApplicationDeadlineSection />
-        <FindCourseSection />
-        <EvolvingEducationSection />
+        <section id="courses" className="scroll-mt-[30px] lg:scroll-mt-[40px]">
+          <FindCourseSection />
+        </section>
+
+        <section id="curriculum" className="scroll-mt-[30px] lg:scroll-mt-[40px]">
+          <SkillsProSection theme="seed" />
+          <EvolvingEducationSection />
+        </section>
+
+        <section id="timetable" className="scroll-mt-[30px] lg:scroll-mt-[40px]">
+          <StudentScheduleSection />
+          <ApplicationDeadlineSection />
+        </section>
+
+        <section id="mentors" className="scroll-mt-[30px] lg:scroll-mt-[40px]">
+          <MeetOurLearnersSection theme="seed" />
+          <HeroSection theme="seed" />
+          <TrustedBySchools />
+          <ProfileCard theme="seed" />
+        </section>
+
         {/* <ApplicationBanner /> */}
         {/* <WhyPartnerSection /> */}
-        <MeetOurLearnersSection theme="seed" />
-        <HeroSection theme="seed" />
-        <TrustedBySchools />
-        <StudentScheduleSection />
-
-        <ProfileCard theme="seed" />
 
         <NewsSection theme="seed" />
         <ContactFormSection theme="seed" />
@@ -63,7 +76,7 @@ export default function K12SchoolProgramPage() {
         <ScholarshipFormSection theme="seed" />
 
       </main>
-      <Footer />
+      <Footer theme="seed" />
     </div>
   );
 }

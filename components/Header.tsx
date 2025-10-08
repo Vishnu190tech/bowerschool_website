@@ -55,7 +55,7 @@ export default function Header() {
       hasDropdown: true,
       dropdownItems: [
         { name: 'Upcoming Events', href: '/events#upcoming' },
-        { name: 'Past Events', href: '/events#pastevents' },
+        { name: 'Past Events', href: '/events#past' },
         { name: 'Masterclasses', href: '/events/masterclasses' },
       ]
     },
@@ -238,7 +238,7 @@ export default function Header() {
               exit={{ opacity: 0, height: 0 }}
               className="lg:hidden overflow-hidden border-t border-white/10"
             >
-              <div className="py-4 space-y-2 bg-[#020101]/50 backdrop-blur-md rounded-b-lg">
+              <div className="py-4 space-y-2 bg-[#020101]/50 backdrop-blur-md rounded-lg mb-2">
                 {navItems.map((item) => (
                   <div key={item.name}>
                     {item.hasDropdown ? (

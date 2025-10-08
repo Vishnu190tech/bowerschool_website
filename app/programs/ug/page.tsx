@@ -45,28 +45,45 @@ export default function UGProgramPage() {
         />
         <ProgramNavigation />
 
-        <NumbersSection theme="ug" />
-        <LearningComparisonSection theme="ug" />
-        <StudentPitchSection />
-        <WhyPartnerWithSeedSection theme="ug" />
-        <MeetOurLearnersSection />
-        <CurriculumSection />
-        <StudentScheduleSection />
+        <section id="about" className="scroll-mt-[30px] lg:scroll-mt-[40px]">
+          <NumbersSection theme="ug" />
+          <LearningComparisonSection theme="ug" />
+          <StudentPitchSection />
+        </section>
+
+        <section id="courses" className="scroll-mt-[30px] lg:scroll-mt-[40px]">
+          <WhyPartnerWithSeedSection theme="ug" />
+        </section>
+
+        <section id="mentors" className="scroll-mt-[30px] lg:scroll-mt-[40px]">
+          <MeetOurLearnersSection />
+          <ProfileCard theme="ug" />
+        </section>
+
+        <section id="curriculum" className="scroll-mt-[30px] lg:scroll-mt-[40px]">
+          <CurriculumSection />
+          <SkillsProSection theme="ug" />
+        </section>
+
+        <section id="learning-outcomes" className="scroll-mt-[30px] lg:scroll-mt-[40px]">
+          <HowItWorks theme="ug" />
+        </section>
+
+        <section id="timetable" className="scroll-mt-[30px] lg:scroll-mt-[40px]">
+          <StudentScheduleSection />
+          <CourseFeeSection theme="ug" />
+        </section>
 
         <HeroSection />
-        <SkillsProSection theme="ug" />
         {/* <SkillsProSectionTwo /> */}
 
-        <ProfileCard theme="ug" />
         <ContactFormSection />
         <BowerGlimpseSection theme="ug" />
         <Testimonials theme="ug" />
-        <HowItWorks theme="ug" />
-        <CourseFeeSection theme="ug" />
         <FAQSection theme="ug" />
         <ScholarshipFormSection theme="ug" />
       </main>
-      <Footer />
+      <Footer theme="ug" />
     </div>
   );
 }

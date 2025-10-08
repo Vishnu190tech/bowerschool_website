@@ -1,9 +1,40 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-export default function Footer() {
+// Theme Configuration
+type ThemeType = 'scholarship' | 'lead' | 'seed' | 'ug';
+
+interface FooterTheme {
+  gradient: string;
+}
+
+const FOOTER_THEMES: Record<ThemeType, FooterTheme> = {
+  scholarship: {
+    gradient: 'linear-gradient(to bottom, #0a0a2e, #0a0a2e, #05050e)',
+  },
+  lead: {
+    gradient: 'linear-gradient(to bottom, #0d1f0a, #0d1f0a, #05050e)',
+  },
+  seed: {
+    gradient: 'linear-gradient(to bottom, #1a0f08, #1a0f08, #05050e)',
+  },
+  ug: {
+    gradient: 'linear-gradient(to bottom, #0a0a2e, #0a0a2e, #05050e)',
+  },
+};
+
+interface FooterProps {
+  theme?: ThemeType;
+}
+
+export default function Footer({ theme = 'ug' }: FooterProps) {
+  const currentTheme = FOOTER_THEMES[theme];
+
   return (
-    <footer className="relative w-full bg-gradient-to-b from-[#060620] via-[#060620] to-[#05050e] px-4 py-12 md:px-8 md:py-16 lg:px-20 lg:py-20">
+    <footer
+      className="relative w-full px-4 py-12 md:px-8 md:py-16 lg:px-20 lg:py-20"
+      style={{ background: currentTheme.gradient }}
+    >
       <div className="mx-auto max-w-7xl">
         {/* Desktop Layout */}
         <div className="hidden lg:flex flex-col lg:flex-row gap-8 lg:gap-32">

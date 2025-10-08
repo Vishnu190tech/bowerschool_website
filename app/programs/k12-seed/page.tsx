@@ -58,23 +58,38 @@ export default function K12ProgramPage() {
         />
         {/* <EmpoweringEducationSection /> */}
         <ProgramNavigation />
-        <NumbersSection />
 
-        <SkillsProSectionTwo />
-        <ApplicationDeadlineSection />
+        <section id="about" className="scroll-mt-[30px] lg:scroll-mt-[40px]">
+          <NumbersSection />
+          <SkillsProSectionTwo />
+        </section>
+
+        <section id="courses" className="scroll-mt-[30px] lg:scroll-mt-[40px]">
+          <WhyPartnerWithSeedSection theme="seed" />
+        </section>
+
+        <section id="curriculum" className="scroll-mt-[30px] lg:scroll-mt-[40px]">
+          <LearningExecutionSection />
+          <CertificateSection />
+        </section>
+
+        <section id="timetable" className="scroll-mt-[30px] lg:scroll-mt-[40px]">
+          <ApplicationDeadlineSection />
+          <CourseFeeSection theme="seed" />
+        </section>
+
+        <section id="learning-outcomes" className="scroll-mt-[30px] lg:scroll-mt-[40px]">
+          <StudentPitchVideoSection />
+        </section>
+
+        <section id="mentors" className="scroll-mt-[30px] lg:scroll-mt-[40px]">
+          <MeetOurLearnersSection theme="seed" />
+          <ProfileCard theme="seed" />
+        </section>
+
         {/* <ApplicationBanner /> */}
         {/* <WhyPartnerSection /> */}
-        <WhyPartnerWithSeedSection theme="seed" />
-        <LearningExecutionSection />
-
-        <MeetOurLearnersSection theme="seed" />
         <ContactFormSection theme="seed" />
-
-        <StudentPitchVideoSection />
-
-        <CertificateSection />
-        <ProfileCard theme="seed" />
-        <CourseFeeSection theme="seed" />
         <ClubsSection theme="seed" />
         <Testimonials theme="seed" />
         <BowerGlimpseSection theme="seed" />
@@ -82,7 +97,7 @@ export default function K12ProgramPage() {
         <ScholarshipFormSection theme="seed" />
 
       </main>
-      <Footer />
+      <Footer theme="seed" />
     </div>
   );
 }

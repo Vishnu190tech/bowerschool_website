@@ -53,32 +53,46 @@ export default function UGProgramPage() {
         />
         <EmpoweringEducationLeadSection />
         <ProgramNavigation />
-        <NumbersSection theme="lead" />
-        <EvolvingEducationSection theme="lead" />
-        <LogoTicker />
+
+        <section id="about" className="scroll-mt-[30px] lg:scroll-mt-[40px]">
+          <NumbersSection theme="lead" />
+          <EvolvingEducationSection theme="lead" />
+          <LogoTicker />
+        </section>
 
         {/* <SkillsProSectionTwo /> */}
 
         {/* <ApplicationBanner /> */}
         {/* <WhyPartnerSection /> */}
-        <WhyPartnerWithSeedSection theme="lead" />
-        <GuestSpeakerSectionTwo />
-        <MeetOurLearnersSection theme="lead" />
+        <section id="courses" className="scroll-mt-[30px] lg:scroll-mt-[40px]">
+          <WhyPartnerWithSeedSection theme="lead" />
+        </section>
 
-        <LearningExecutionSection theme="lead" />
-        <ApplicationDeadlineSection theme="lead" />
+        <section id="mentors" className="scroll-mt-[30px] lg:scroll-mt-[40px]">
+          <GuestSpeakerSectionTwo />
+          <MeetOurLearnersSection theme="lead" />
+          <ProfileCard theme="lead" />
+        </section>
 
+        <section id="curriculum" className="scroll-mt-[30px] lg:scroll-mt-[40px]">
+          <LearningExecutionSection theme="lead" />
+          <SkillsProSection theme="lead" />
+        </section>
+
+        <section id="learning-outcomes" className="scroll-mt-[30px] lg:scroll-mt-[40px]">
+          <HowToBecomeLeaderSection />
+          <CertificateSection theme="lead" />
+        </section>
+
+        <section id="timetable" className="scroll-mt-[30px] lg:scroll-mt-[40px]">
+          <ApplicationDeadlineSection theme="lead" />
+          <CourseFeeSection theme="lead" />
+        </section>
 
         <StudentPitchVideoSection theme="lead" />
 
         <HeroSection theme="lead" mode="light" />
-        <HowToBecomeLeaderSection />
-        <CertificateSection theme="lead" />
-        <SkillsProSection theme="lead" />
-        <CourseFeeSection theme="lead" />
 
-
-        <ProfileCard theme="lead" />
         <ClubsSection theme="lead" />
 
         <Testimonials theme="lead" />
@@ -86,7 +100,7 @@ export default function UGProgramPage() {
         <FAQSection theme="lead" />
         <ScholarshipFormSection theme="lead" />
       </main>
-      <Footer />
+      <Footer theme="lead" />
     </div>
   );
 }

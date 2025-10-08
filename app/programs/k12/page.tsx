@@ -41,38 +41,53 @@ export default function K12ProgramPage() {
         <EmpoweringEducationSection currentPage="k12" />
         <ProgramNavigation />
 
-        <OurProgramsSection
-          programs={[
-            {
-              id: 'year-program',
-              title: 'Year Program',
-              description: 'A 12-week bootcamp (Sat & Sun) teaching ideation to pitch with real-world projects.',
-              iconPath: '/25c12ee12b6162728fe43a156c0b57a7936d1f7b.svg'
-            },
-            {
-              id: 'coco-accelerator',
-              title: 'COCO Accelerator',
-              description: 'A 4-week hybrid program to build proof-of-concepts with masterclasses and labs.',
-              iconPath: '/bulb-light-svgrepo-com-1.png'
-            }
-          ]}
-        />
-        <WhatIsSEEDSection />
-        <OverviewSection />
-        <HowItWorks />
+        <section id="about" className="scroll-mt-[30px] lg:scroll-mt-[40px]">
+          <OurProgramsSection
+            programs={[
+              {
+                id: 'year-program',
+                title: 'Year Program',
+                description: 'A 12-week bootcamp (Sat & Sun) teaching ideation to pitch with real-world projects.',
+                iconPath: '/25c12ee12b6162728fe43a156c0b57a7936d1f7b.svg'
+              },
+              {
+                id: 'coco-accelerator',
+                title: 'COCO Accelerator',
+                description: 'A 4-week hybrid program to build proof-of-concepts with masterclasses and labs.',
+                iconPath: '/bulb-light-svgrepo-com-1.png'
+              }
+            ]}
+          />
+          <WhatIsSEEDSection />
+          <OverviewSection />
+        </section>
 
-        <SkillsProSection theme="seed" />
-        <StudentScheduleSection />
-        <ApplicationDeadlineSection />
+        <section id="courses" className="scroll-mt-[30px] lg:scroll-mt-[40px]">
+          <HowItWorks />
+        </section>
 
+        <section id="curriculum" className="scroll-mt-[30px] lg:scroll-mt-[40px]">
+          <SkillsProSection theme="seed" />
+          <KnowWhatTheyLearnSection />
+        </section>
 
-        <WhyPartnerWithSeedSection theme="seed" />
-        <KnowWhatTheyLearnSection />
-        <EvolvingEducationSection theme="seed" />
-        <MeetOurLearnersSection theme="seed" />
-        <HeroSection theme="seed" mode="light" />
-        <TrustedBySchools />
-        <ProfileCard theme="seed" />
+        <section id="timetable" className="scroll-mt-[30px] lg:scroll-mt-[40px]">
+          <StudentScheduleSection />
+          <ApplicationDeadlineSection />
+        </section>
+
+        <section id="learning-outcomes" className="scroll-mt-[30px] lg:scroll-mt-[40px]">
+          <WhyPartnerWithSeedSection theme="seed" />
+          <EvolvingEducationSection theme="seed" />
+        </section>
+
+        <section id="mentors" className="scroll-mt-[30px] lg:scroll-mt-[40px]">
+          <MeetOurLearnersSection theme="seed" />
+          <HeroSection theme="seed" mode="light" />
+          <TrustedBySchools />
+          <ProfileCard theme="seed" />
+        </section>
+
         <Testimonials theme="seed" />
         <NewsSection theme="seed" />
         <ContactFormSection theme="seed" />
@@ -81,7 +96,7 @@ export default function K12ProgramPage() {
         <ScholarshipFormSection theme="seed" />
 
       </main>
-      <Footer />
+      <Footer theme="seed" />
     </div>
   );
 }

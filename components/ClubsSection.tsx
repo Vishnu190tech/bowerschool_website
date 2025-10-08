@@ -169,10 +169,10 @@ const ClubsSection = ({
 
   return (
     <section
-      className="w-full px-4 py-8 md:px-10 md:py-10 lg:px-10"
+      className="w-full px-4 py-8 md:px-10 md:py-10 lg:px-10 overflow-x-hidden"
       style={{ backgroundColor: currentTheme.bgColor }}
     >
-      <div className="max-w-[1440px] mx-auto">
+      <div className="max-w-[1440px] mx-auto overflow-x-hidden">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -204,14 +204,12 @@ const ClubsSection = ({
         </motion.div>
 
         {/* Clubs Carousel */}
-        <div className="relative">
+        <div className="relative overflow-hidden">
           {/* Carousel Container */}
           <div
             ref={scrollRef}
-            className="flex gap-4 overflow-x-auto scrollbar-hide scroll-smooth snap-x snap-mandatory"
+            className="flex gap-4 overflow-x-auto overflow-y-hidden [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden scroll-smooth snap-x snap-mandatory"
             style={{
-              scrollbarWidth: 'none',
-              msOverflowStyle: 'none',
               WebkitOverflowScrolling: 'touch'
             }}
           >
