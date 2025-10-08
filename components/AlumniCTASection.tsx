@@ -27,9 +27,9 @@ const AlumniCTASection = () => {
   }
 
   return (
-    <div className="bg-[#f4f4ff] py-20 md:py-24">
-      <motion.div 
-        className="container mx-auto px-8 md:px-20"
+    <div className="bg-[#f4f4ff] py-12 md:py-20 lg:py-24">
+      <motion.div
+        className="container mx-auto px-6 md:px-12 lg:px-20"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
@@ -39,7 +39,7 @@ const AlumniCTASection = () => {
           className="text-center max-w-6xl mx-auto"
           variants={textVariants}
         >
-          <h2 className="text-[32px] md:text-[44px] font-semibold leading-tight tracking-[-1.76px] capitalize">
+          <h2 className="text-[24px] md:text-[36px] lg:text-[44px] font-semibold leading-tight tracking-[-0.96px] md:tracking-[-1.44px] lg:tracking-[-1.76px] capitalize">
             <span className="text-gray-400">Bower Alumni Gain Access </span>
             <span className="text-gray-900">Exclusive Events, Venture Support, And Community While Giving Back </span>
             <span className="text-gray-400">And Building Beyond Graduation.</span>

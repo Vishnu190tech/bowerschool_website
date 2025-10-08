@@ -46,8 +46,17 @@ export default function Header() {
         { name: 'K-12 Seed', href: '/programs/k12-seed' },
         { name: 'UG Program', href: '/programs/ug' },
         { name: 'Lead', href: '/programs/lead' },
-        { name: 'Masterclasses', href: '/programs/masterclasses' },
 
+      ]
+    },
+
+    {
+      name: 'Events', href: '/events',
+      hasDropdown: true,
+      dropdownItems: [
+        { name: 'Upcoming Events', href: '/events#upcoming' },
+        { name: 'Past Events', href: '/events#pastevents' },
+        { name: 'Masterclasses', href: '/events/masterclasses' },
       ]
     },
     {
@@ -62,8 +71,7 @@ export default function Header() {
         { name: 'Partnership', href: '/partnership' },
         { name: 'Open Day', href: '/open-day' },
       ]
-    },
-    { name: 'Events', href: '/events' }
+    }
   ];
 
   return (

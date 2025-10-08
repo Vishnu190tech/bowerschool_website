@@ -18,7 +18,7 @@ const BuildDayHeroSection = ({ event }: BuildDayHeroSectionProps) => {
   const title = event?.title || 'Build Day';
   const subtitle = event?.subtitle || 'Startup Sprint Edition';
   return (
-    <section className="relative w-full h-[800px] overflow-hidden bg-[#1e1e1e]">
+    <section className="relative w-full h-[500px] md:h-[700px] lg:h-[800px] overflow-hidden bg-[#1e1e1e]">
       {/* Background layers */}
       <div className="absolute inset-0">
         {/* Stars background */}
@@ -72,21 +72,17 @@ const BuildDayHeroSection = ({ event }: BuildDayHeroSectionProps) => {
       </div>
 
       {/* Main content */}
-      <div className="relative z-10 h-full flex items-center justify-center px-20">
-        <motion.div 
+      <div className="relative z-10 h-full flex items-center justify-center px-6 md:px-12 lg:px-20">
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-center max-w-[1063px]"
+          className="text-center max-w-full md:max-w-[900px] lg:max-w-[1063px]"
         >
           <h1
-            className="text-[#f0f0ff]"
+            className="text-[#f0f0ff] text-[40px] md:text-[60px] lg:text-[80px] leading-[40px] md:leading-[60px] lg:leading-[80px] tracking-[-2px] md:tracking-[-3px] lg:tracking-[-4px] font-bold"
             style={{
-              fontFamily: 'var(--font-plus-jakarta)',
-              fontSize: '80px',
-              fontWeight: 700,
-              lineHeight: '80px',
-              letterSpacing: '-4px'
+              fontFamily: 'var(--font-plus-jakarta)'
             }}
           >
             <span className="block">{title}</span>

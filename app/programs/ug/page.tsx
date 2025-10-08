@@ -26,6 +26,7 @@ import FAQSection from "@/components/FAQSection";
 import ScholarshipFormSection from "@/components/ScholarshipFormSection";
 import SkillsProSectionTwo from "@/components/SkillsProSectionTwo";
 import NumbersSection from "@/components/NumbersSection";
+import ProgramNavigation from "@/components/ProgramNavigation";
 
 export default function UGProgramPage() {
   return (
@@ -42,6 +43,8 @@ export default function UGProgramPage() {
           backgroundImage="/bg-ug-page.png"
           theme="ug"
         />
+        <ProgramNavigation />
+
         <NumbersSection theme="ug" />
         <LearningComparisonSection theme="ug" />
         <StudentPitchSection />

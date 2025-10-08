@@ -178,6 +178,19 @@ export default function MeetOurLearnersSection({
     if (currentPage < totalPages) setCurrentPage(currentPage + 1);
   };
 
+  // Handle swipe gesture
+  const handleDragEnd = (_: any, info: { offset: { x: number } }) => {
+    const swipeThreshold = 50;
+
+    if (info.offset.x < -swipeThreshold) {
+      // Swiped left - go to next
+      handleNext();
+    } else if (info.offset.x > swipeThreshold) {
+      // Swiped right - go to previous
+      handlePrevious();
+    }
+  };
+
   return (
     <section
       className="w-full px-4 py-12 md:px-8 md:py-16 lg:px-20 lg:py-20"
@@ -310,6 +323,10 @@ export default function MeetOurLearnersSection({
                   }}
                   transition={{ duration: 0.3 }}
                   className="absolute inset-0"
+                  drag={index === currentIndex ? "x" : false}
+                  dragConstraints={{ left: 0, right: 0 }}
+                  dragElastic={0.2}
+                  onDragEnd={handleDragEnd}
                 >
                   <div
                     className="relative h-full rounded-3xl overflow-hidden bg-cover bg-center shadow-2xl"

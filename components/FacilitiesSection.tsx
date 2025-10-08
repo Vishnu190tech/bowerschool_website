@@ -60,7 +60,7 @@ const FacilitiesSection = () => {
   }
 
   return (
-    <div className="relative bg-[#f4f4ff] py-20 md:py-24 overflow-hidden">
+    <div className="relative bg-[#f4f4ff] py-12 md:py-20 lg:py-24 overflow-hidden">
       {/* Background Decorative Elements */}
       <div className="absolute top-20 left-20">
         <Image
@@ -74,7 +74,7 @@ const FacilitiesSection = () => {
 
 
       <motion.div
-        className="container mx-auto px-8 md:px-20"
+        className="container mx-auto px-6 md:px-12 lg:px-20"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
@@ -82,20 +82,20 @@ const FacilitiesSection = () => {
       >
         {/* Header Section */}
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-10 md:mb-14 lg:mb-16"
           variants={itemVariants}
         >
-          <h2 className="text-[38px] md:text-[44px] font-bold text-[#121212] mb-6 tracking-[-1.76px]">
+          <h2 className="text-[28px] md:text-[38px] lg:text-[44px] font-bold text-[#121212] mb-4 md:mb-5 lg:mb-6 tracking-[-1.12px] md:tracking-[-1.52px] lg:tracking-[-1.76px]">
             Facilities at Bower
           </h2>
-          <p className="text-[16px] md:text-[18px] text-[#121212]/80 max-w-3xl mx-auto leading-[28px]">
+          <p className="text-[14px] md:text-[16px] lg:text-[18px] text-[#121212]/80 max-w-3xl mx-auto leading-[22px] md:leading-[26px] lg:leading-[28px]">
             The building is LED Platinum certified with MERV 14 filtration ensuring the cleanest
             air quality — perfect for working and staying productive.
           </p>
         </motion.div>
 
         {/* Facilities Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5 lg:gap-6">
           {facilities.map((facility) => (
             <motion.div
               key={facility.id}
@@ -103,9 +103,9 @@ const FacilitiesSection = () => {
               whileHover={{ y: -5 }}
               className="group"
             >
-              <div className="bg-white rounded-2xl overflow-hidden shadow-[0px_4px_20px_0px_rgba(66,66,255,0.08)] hover:shadow-[0px_8px_30px_0px_rgba(66,66,255,0.15)] transition-all duration-300">
+              <div className="bg-white rounded-xl md:rounded-2xl overflow-hidden shadow-[0px_4px_20px_0px_rgba(66,66,255,0.08)] hover:shadow-[0px_8px_30px_0px_rgba(66,66,255,0.15)] transition-all duration-300">
                 {/* Image Container */}
-                <div className="relative h-[240px] overflow-hidden bg-gradient-to-br from-blue-50 to-purple-50">
+                <div className="relative h-[180px] md:h-[220px] lg:h-[240px] overflow-hidden bg-gradient-to-br from-blue-50 to-purple-50">
                   <Image
                     src={facility.image}
                     alt={facility.title}
@@ -115,11 +115,11 @@ const FacilitiesSection = () => {
                 </div>
 
                 {/* Content */}
-                <div className="p-6">
-                  <h3 className="text-[22px] font-semibold text-[#121212] mb-3">
+                <div className="p-4 md:p-5 lg:p-6">
+                  <h3 className="text-[18px] md:text-[20px] lg:text-[22px] font-semibold text-[#121212] mb-2 md:mb-3">
                     {facility.title}
                   </h3>
-                  <p className="text-[15px] text-[#121212]/70 leading-[24px]">
+                  <p className="text-[14px] md:text-[15px] text-[#121212]/70 leading-[20px] md:leading-[22px] lg:leading-[24px]">
                     {facility.description}
                   </p>
                 </div>

@@ -78,7 +78,7 @@ export default function Footer() {
                         { name: 'K-12 Seed program', href: '/programs/k12-seed' },
                         { name: 'UG Program', href: '/programs/ug' },
                         { name: 'PG Programs', href: '/programs/lead' },
-                        { name: 'Masterclasses', href: '/programs/masterclasses' }
+                        { name: 'Masterclasses', href: '/events/masterclasses' }
                       ].map((item) => (
                         <li key={item.name}>
                           <Link href={item.href} className="text-sm font-medium text-gray-300 hover:text-white transition-colors">
@@ -124,20 +124,20 @@ export default function Footer() {
                 <div className="flex gap-3">
                   {/* App Logo */}
                   <div className="w-32 h-32 rounded-2xl overflow-hidden bg-white flex items-center justify-center">
-                    <Image 
-                      src="/4da2cf3f0adbadaa077d17f23c78a83c8cb16c66.png" 
-                      alt="Bower App Logo" 
-                      width={128} 
+                    <Image
+                      src="/4da2cf3f0adbadaa077d17f23c78a83c8cb16c66.png"
+                      alt="Bower App Logo"
+                      width={128}
                       height={128}
                       className="object-cover"
                     />
                   </div>
                   {/* QR Code */}
                   <div className="w-32 h-32 rounded-2xl overflow-hidden">
-                    <Image 
-                      src="/3b8f869964d6a535f57d63dc93b6cea93b9ba91a.png" 
-                      alt="QR Code" 
-                      width={128} 
+                    <Image
+                      src="/3b8f869964d6a535f57d63dc93b6cea93b9ba91a.png"
+                      alt="QR Code"
+                      width={128}
                       height={128}
                       className="object-cover"
                     />
@@ -166,13 +166,13 @@ export default function Footer() {
                   <p className="text-base font-medium text-white opacity-80">(community@bowerschool.com)</p>
                 </div>
               </div>
-              
+
               {/* Map */}
               <div className="w-full aspect-[305/166] rounded-2xl overflow-hidden">
-                <Image 
-                  src="/18ae764d23dbb8dc3f38f6940b769e031822ec7a.png" 
-                  alt="Location Map" 
-                  width={305} 
+                <Image
+                  src="/18ae764d23dbb8dc3f38f6940b769e031822ec7a.png"
+                  alt="Location Map"
+                  width={305}
                   height={166}
                   className="w-full h-full object-cover"
                 />
@@ -266,7 +266,7 @@ export default function Footer() {
                   { name: 'K-12 Seed program', href: '/programs/k12-seed' },
                   { name: 'UG Program', href: '/programs/ug' },
                   { name: 'PG Programs', href: '/programs/lead' },
-                  { name: 'Masterclasses', href: '/programs/masterclasses' }
+                  { name: 'Masterclasses', href: '/events/masterclasses' }
                 ].map((item) => (
                   <li key={item.name}>
                     <Link href={item.href} className="text-sm text-gray-300 hover:text-white block py-1">
@@ -282,20 +282,20 @@ export default function Footer() {
           <div className="flex gap-3 mb-8">
             {/* App Logo */}
             <div className="w-24 h-24 rounded-xl overflow-hidden bg-white flex items-center justify-center">
-              <Image 
-                src="/4da2cf3f0adbadaa077d17f23c78a83c8cb16c66.png" 
-                alt="Bower App Logo" 
-                width={96} 
+              <Image
+                src="/4da2cf3f0adbadaa077d17f23c78a83c8cb16c66.png"
+                alt="Bower App Logo"
+                width={96}
                 height={96}
                 className="object-cover"
               />
             </div>
             {/* QR Code */}
             <div className="w-24 h-24 rounded-xl overflow-hidden">
-              <Image 
-                src="/3b8f869964d6a535f57d63dc93b6cea93b9ba91a.png" 
-                alt="QR Code" 
-                width={96} 
+              <Image
+                src="/3b8f869964d6a535f57d63dc93b6cea93b9ba91a.png"
+                alt="QR Code"
+                width={96}
                 height={96}
                 className="object-cover"
               />
@@ -339,10 +339,10 @@ export default function Footer() {
 
           {/* Map Mobile */}
           <div className="w-full aspect-[16/9] rounded-xl overflow-hidden mb-8">
-            <Image 
-              src="/18ae764d23dbb8dc3f38f6940b769e031822ec7a.png" 
-              alt="Location Map" 
-              width={400} 
+            <Image
+              src="/18ae764d23dbb8dc3f38f6940b769e031822ec7a.png"
+              alt="Location Map"
+              width={400}
               height={225}
               className="w-full h-full object-cover"
             />

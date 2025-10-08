@@ -33,7 +33,7 @@ const MasterclassHeroSection = ({
   return (
     <>
       {/* Hero Section */}
-      <section className="relative w-full h-[700px] bg-black overflow-hidden">
+      <section className="relative w-full h-[500px] md:h-[600px] lg:h-[700px] bg-black overflow-hidden">
         {/* Background Elements */}
         <div className="absolute inset-0">
           {/* Dark gradient overlay */}
@@ -80,14 +80,14 @@ const MasterclassHeroSection = ({
         </div>
 
         {/* Main Content */}
-        <div className="relative z-20 h-full flex flex-col items-center justify-center px-4 md:px-10 lg:px-20 pb-48">
+        <div className="relative z-20 h-full flex flex-col items-center justify-center px-4 md:px-10 lg:px-20 pb-32 md:pb-40 lg:pb-48">
           <div className="max-w-[1440px] w-full mx-auto">
             {/* Breadcrumb */}
             <motion.p
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="text-center text-[18px] text-white mb-4"
+              className="text-center text-[14px] md:text-[16px] lg:text-[18px] text-white mb-3 md:mb-4"
               style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
             >
               Programs &gt; Masterclass &gt;{' '}
@@ -99,7 +99,7 @@ const MasterclassHeroSection = ({
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-[40px] md:text-[60px] lg:text-[80px] font-bold text-white text-center tracking-[-4px] mb-3"
+              className="text-[32px] md:text-[50px] lg:text-[80px] font-bold text-white text-center tracking-[-1.5px] md:tracking-[-3px] lg:tracking-[-4px] mb-2 md:mb-3"
               style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
             >
               {title}
@@ -110,7 +110,7 @@ const MasterclassHeroSection = ({
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-[20px] md:text-[24px] font-semibold text-[#c3c3c3] text-center tracking-[-0.96px]"
+              className="text-[16px] md:text-[20px] lg:text-[24px] font-semibold text-[#c3c3c3] text-center tracking-[-0.64px] md:tracking-[-0.8px] lg:tracking-[-0.96px]"
               style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
             >
               This session concluded on {sessionDate}
@@ -120,13 +120,13 @@ const MasterclassHeroSection = ({
       </section>
 
       {/* Video Section */}
-      <section className="relative bg-gradient-to-b from-black via-black to-white -mt-[300px] pb-20 z-30">
+      <section className="relative bg-gradient-to-b from-black via-[#6e6e8c] to-[#f4f4ff] -mt-[200px] md:-mt-[250px] lg:-mt-[300px] pb-12 md:pb-16 lg:pb-20 z-30">
         <div className="max-w-[1280px] mx-auto px-4 md:px-10 lg:px-20">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7, delay: 0.3 }}
-            className="relative w-full h-[400px] md:h-[500px] lg:h-[600px] rounded-[20px] overflow-hidden group cursor-pointer"
+            className="relative w-full h-[300px] md:h-[450px] lg:h-[600px] rounded-[20px] overflow-hidden group cursor-pointer"
             onClick={handlePlayClick}
           >
             {/* Video Thumbnail */}
@@ -146,13 +146,13 @@ const MasterclassHeroSection = ({
                   className="relative"
                 >
                   {/* Outer circle */}
-                  <div className="absolute inset-0 w-[108px] h-[108px] bg-[#3232e6] opacity-50 rounded-[16px] border border-white" />
+                  <div className="absolute inset-0 w-[80px] h-[80px] md:w-[108px] md:h-[108px] bg-[#3232e6] opacity-50 rounded-[12px] md:rounded-[16px] border border-white" />
 
                   {/* Inner circle */}
-                  <div className="relative w-[90px] h-[90px] bg-[#3232e6] opacity-60 rounded-[16px] border border-white flex items-center justify-center ml-[9px] mt-[9px]">
+                  <div className="relative w-[66px] h-[66px] md:w-[90px] md:h-[90px] bg-[#3232e6] opacity-60 rounded-[12px] md:rounded-[16px] border border-white flex items-center justify-center ml-[7px] md:ml-[9px] mt-[7px] md:mt-[9px]">
                     {/* Play Icon */}
-                    <div className="w-16 h-16 flex items-center justify-center">
-                      <PlayIcon className="w-8 h-8 text-white ml-1" />
+                    <div className="w-12 h-12 md:w-16 md:h-16 flex items-center justify-center">
+                      <PlayIcon className="w-6 h-6 md:w-8 md:h-8 text-white ml-1" />
                     </div>
                   </div>
                 </motion.div>

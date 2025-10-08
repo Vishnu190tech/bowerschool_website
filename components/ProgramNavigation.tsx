@@ -7,11 +7,13 @@ export default function ProgramNavigation() {
   const [isSticky, setIsSticky] = useState(false);
   const navRef = useRef<HTMLDivElement>(null);
   const [navOffsetTop, setNavOffsetTop] = useState(0);
+  const [navHeight, setNavHeight] = useState(0);
 
   useEffect(() => {
-    // Store the initial offset position
+    // Store the initial offset position and height
     if (navRef.current && navOffsetTop === 0) {
       setNavOffsetTop(navRef.current.offsetTop);
+      setNavHeight(navRef.current.offsetHeight);
     }
   }, [navOffsetTop]);
 
@@ -32,6 +34,7 @@ export default function ProgramNavigation() {
     window.addEventListener('resize', () => {
       if (navRef.current) {
         setNavOffsetTop(navRef.current.offsetTop);
+        setNavHeight(navRef.current.offsetHeight);
       }
     });
 
@@ -58,36 +61,68 @@ export default function ProgramNavigation() {
   };
 
   return (
-    <div
-      ref={navRef}
-      className={`${isSticky ? 'fixed top-[52px]  lg:top-[78px] left-0 right-0' : 'relative'
-        } z-40 bg-[#252525] w-full px-4 md:px-10 lg:px-[82px] py-1 md:py-1 transition-all duration-300`}
-    >
-      <nav className="max-w-[1440px] mx-auto">
-        <div className="flex flex-wrap items-center justify-center md:justify-between gap-2 md:gap-4 px-3 py-2 md:px-6 rounded-2xl md:rounded-[16px]">
-          {navItems.map((item) => (
-            <button
-              key={item.id}
-              onClick={() => handleNavClick(item.id)}
-              className={`
-                font-['Plus_Jakarta_Sans']
-                font-semibold
-                text-sm md:text-base lg:text-[18px]
-                text-white
-                whitespace-nowrap
-                transition-all
-                duration-200
-                hover:opacity-80
-                px-2 md:px-3
-                py-1 md:py-0
-                ${activeSection === item.id ? 'opacity-100' : 'opacity-70'}
-              `}
-            >
-              {item.label}
-            </button>
-          ))}
-        </div>
-      </nav>
-    </div>
+    <>
+      {/* Spacer to prevent content jump when nav becomes sticky */}
+      {isSticky && <div style={{ height: `${navHeight}px` }} />}
+
+      <div
+        ref={navRef}
+        className={`${isSticky ? 'fixed top-[52px] lg:top-[78px] left-0 right-0' : 'relative'
+          } z-40 bg-[#252525] w-full transition-all duration-300`}
+      >
+        <nav className="max-w-[1440px] mx-auto relative">
+          {/* Left Gradient Fade Indicator */}
+          <div className="absolute left-0 top-0 bottom-0 w-8 md:w-12 bg-gradient-to-r from-[#252525] to-transparent z-10 pointer-events-none" />
+
+          {/* Right Gradient Fade Indicator */}
+          <div className="absolute right-0 top-0 bottom-0 w-8 md:w-12 bg-gradient-to-l from-[#252525] to-transparent z-10 pointer-events-none" />
+
+          {/* Horizontal Scroll Container */}
+          <div className="overflow-x-auto overflow-y-hidden [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden scroll-smooth px-4 md:px-10 lg:px-[82px] ">
+            <div className="flex items-center justify-start md:justify-between gap-4 md:gap-6 lg:gap-8 min-w-max md:min-w-0 snap-x snap-mandatory md:snap-none">
+              {navItems.map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => handleNavClick(item.id)}
+                  className={`
+                  relative
+                  font-['Plus_Jakarta_Sans']
+                  font-semibold
+                  text-sm md:text-base lg:text-[18px]
+                  text-white
+                  whitespace-nowrap
+                  transition-all
+                  duration-300
+                  px-3 md:px-4
+                  py-2 md:py-2.5
+                  snap-center
+                  hover:scale-105
+                  ${activeSection === item.id ? 'opacity-100' : 'opacity-70 hover:opacity-90'}
+                `}
+                >
+                  {item.label}
+
+                  {/* Active Indicator - Bottom Border */}
+                  <span
+                    className={`
+                    absolute
+                    bottom-0
+                    left-0
+                    right-0
+                    h-[3px]
+                    bg-white
+                    rounded-t-full
+                    transition-all
+                    duration-300
+                    ${activeSection === item.id ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0'}
+                  `}
+                  />
+                </button>
+              ))}
+            </div>
+          </div>
+        </nav>
+      </div>
+    </>
   );
 }

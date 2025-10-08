@@ -5,7 +5,7 @@ This guide shows you how to update the existing program pages to use the new the
 ## Pages That Use ScholarshipFormSection
 
 Based on the codebase, these pages currently use the form:
-- `/app/programs/masterclasses/page.tsx`
+- `/app/events/masterclasses/page.tsx`
 - `/app/page.tsx` (homepage)
 - `/app/mentors/page.tsx`
 - `/app/programs/k12/page.tsx`
@@ -86,7 +86,7 @@ Based on the codebase, these pages currently use the form:
 - `/app/page.tsx`
 - `/app/programs/k12/page.tsx`
 - `/app/programs/k12-school/page.tsx`
-- `/app/programs/masterclasses/page.tsx`
+- `/app/events/masterclasses/page.tsx`
 - `/app/mentors/page.tsx`
 
 **Current**:

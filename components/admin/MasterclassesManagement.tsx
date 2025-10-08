@@ -360,7 +360,7 @@ export default function MasterclassesManagement() {
                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                   <div className="flex gap-2">
                     <a
-                      href={`/programs/masterclasses/${masterclass.slug}`}
+                      href={`/events/masterclasses/${masterclass.slug}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-green-600 hover:text-green-900"

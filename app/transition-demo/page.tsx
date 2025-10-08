@@ -78,7 +78,7 @@ export default function TransitionDemo() {
             </TransitionLink>
 
             <TransitionLink
-              href="/programs/masterclasses"
+              href="/events/masterclasses"
               transitionType="curtain-slide"
               className="block p-6 bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow"
             >

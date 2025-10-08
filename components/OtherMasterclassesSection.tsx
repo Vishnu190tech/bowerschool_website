@@ -43,7 +43,7 @@ const OtherMasterclassesSection = ({
             year: 'numeric'
           }),
           image: mc.videoThumbnail || '/59a3e41c2b4801f75e2a8fdd542b15e36bbfbf72.png',
-          link: `/programs/masterclasses/${mc.slug}`
+          link: `/events/masterclasses/${mc.slug}`
         }));
 
       setDisplayMasterclasses(filteredMasterclasses);
@@ -57,21 +57,21 @@ const OtherMasterclassesSection = ({
           title: 'Innovation Fest 2025',
           date: 'July 15, 2025',
           image: '/59a3e41c2b4801f75e2a8fdd542b15e36bbfbf72.png',
-          link: '/programs/masterclasses/innovation-fest-2025'
+          link: '/events/masterclasses/innovation-fest-2025'
         },
         {
           id: 2,
           title: 'Growth Hacking Strategies',
           date: 'August 15, 2025',
           image: '/1064367165141086184320185daa9b91e6ed31d5.png',
-          link: '/programs/masterclasses/growth-hacking'
+          link: '/events/masterclasses/growth-hacking'
         },
         {
           id: 3,
           title: 'Fundraising 101',
           date: 'September 3, 2025',
           image: '/2a5c1364991bf39b57e28c0398f9a0b6e19fa869.png',
-          link: '/programs/masterclasses/fundraising-101'
+          link: '/events/masterclasses/fundraising-101'
         }
       ]);
     }
@@ -115,7 +115,7 @@ const OtherMasterclassesSection = ({
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
           viewport={{ once: true }}
-          className="relative backdrop-blur-[60px] rounded-[24px] border-2 border-white shadow-[4px_4px_12px_0px_rgba(0,0,0,0.06)] p-4 md:p-6 overflow-hidden"
+          className="relative backdrop-blur-[60px] rounded-[24px] border-2 border-white/20 shadow-[4px_4px_12px_0px_rgba(0,0,0,0.06)] p-4 md:p-6 overflow-hidden"
         >
           {/* Decorative ellipses */}
           <div className="absolute -left-[430px] top-1/2 -translate-y-1/2 w-[738px] h-[738px] opacity-30 pointer-events-none">

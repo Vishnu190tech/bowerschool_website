@@ -247,10 +247,10 @@ const Testimonials = ({
       />
 
       {/* Main Content */}
-      <div className="relative z-10 container mx-auto px-8 md:px-8 py-20">
+      <div className="relative z-10 container mx-auto px-8 md:px-8 py-10 md:py-20">
         {/* Header */}
         <motion.h2
-          className="text-white text-4xl md:text-5xl font-bold text-center mb-20"
+          className="text-white text-4xl md:text-5xl font-bold text-center mb-10 md:mb-20"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -263,7 +263,7 @@ const Testimonials = ({
           <AnimatePresence mode="wait">
             <motion.div
               key={currentPage}
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
               initial={{ opacity: 0, x: 100 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -100 }}
@@ -272,7 +272,7 @@ const Testimonials = ({
               {currentTestimonials.map((testimonial, index) => (
                 <motion.div
                   key={testimonial.id}
-                  className="bg-gray-900/50 backdrop-blur-sm rounded-2xl p-6 border border-gray-800"
+                  className="bg-gray-900/50 backdrop-blur-sm rounded-2xl p-4 md:p-6 border border-gray-800"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
@@ -280,14 +280,14 @@ const Testimonials = ({
                 >
                   {/* Quote Icon */}
                   <div
-                    className="text-5xl mb-4 font-serif"
+                    className="text-4xl md:text-5xl md:mb-4 font-serif"
                     style={{ color: currentTheme.primary }}
                   >
                     "
                   </div>
 
                   {/* Testimonial Text */}
-                  <p className="text-gray-300 text-base leading-relaxed mb-8">
+                  <p className="text-gray-300 text-base leading-relaxed mb-6 md:mb-8">
                     {testimonial.text}
                   </p>
 
@@ -297,7 +297,7 @@ const Testimonials = ({
                   {/* Author Info */}
                   <div className="flex items-center gap-4">
                     <div
-                      className="relative w-14 h-14 rounded-full overflow-hidden border-2"
+                      className="relative w-12 h-12 md:w-14 md:h-14 rounded-full overflow-hidden border-2"
                       style={{ borderColor: currentTheme.border }}
                     >
                       <Image
@@ -328,7 +328,7 @@ const Testimonials = ({
         </div>
 
         {/* Navigation */}
-        <div className="flex items-center justify-between mt-16">
+        <div className="flex items-center justify-between mt-10 md:mt-16">
           {/* Page Indicator */}
           <div className="flex items-center gap-4 text-white">
             <span className="text-2xl font-bold">{currentPage + 1}</span>

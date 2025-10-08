@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline'
@@ -189,7 +189,32 @@ const LearningExecutionSection = ({
 }: LearningExecutionSectionProps) => {
   const [activeMonth, setActiveMonth] = useState(1)
   const [currentSlide, setCurrentSlide] = useState(0)
+  const [cardsPerView, setCardsPerView] = useState(3)
+  const [touchStart, setTouchStart] = useState(0)
+  const [touchEnd, setTouchEnd] = useState(0)
   const currentTheme = LEARNING_THEMES[theme];
+
+  // Update cards per view based on screen size
+  useEffect(() => {
+    const updateCardsPerView = () => {
+      if (window.innerWidth < 768) {
+        setCardsPerView(1) // Mobile: 1 card
+      } else if (window.innerWidth < 1024) {
+        setCardsPerView(2) // Tablet: 2 cards
+      } else {
+        setCardsPerView(3) // Desktop: 3 cards
+      }
+    }
+
+    updateCardsPerView()
+    window.addEventListener('resize', updateCardsPerView)
+    return () => window.removeEventListener('resize', updateCardsPerView)
+  }, [])
+
+  // Reset slide when cards per view changes or month changes
+  useEffect(() => {
+    setCurrentSlide(0)
+  }, [cardsPerView, activeMonth])
 
   const defaultMonths = [
     { id: 1, label: 'Month 1' },
@@ -227,7 +252,7 @@ const LearningExecutionSection = ({
       {
         id: 3,
         category: 'In class',
-        title: 'Finance',
+        title: 'Finance Fundamentals',
         points: [
           'Introduction to Financial Statements',
           'Budgeting & Forecasting by Creating a Start up Budget',
@@ -237,13 +262,46 @@ const LearningExecutionSection = ({
       },
       {
         id: 4,
-        category: 'In class',
-        title: 'Finance',
+        category: 'Workshop',
+        title: 'Business Communication',
         points: [
-          'Introduction to Financial Statements',
-          'Budgeting & Forecasting by Creating a Start up Budget',
-          'Financial Models',
-          'Advanced Financial Models to Calculate Start up\'s Valuation'
+          'Professional Email Writing',
+          'Presentation Skills & Public Speaking',
+          'Networking Strategies',
+          'Cross-Cultural Communication'
+        ]
+      },
+      {
+        id: 5,
+        category: 'Project',
+        title: 'Market Research',
+        points: [
+          'Customer Discovery Interviews',
+          'Competitive Analysis Framework',
+          'Market Sizing Techniques',
+          'User Persona Development'
+        ]
+      },
+      {
+        id: 6,
+        category: 'In class',
+        title: 'Legal Foundations',
+        points: [
+          'Business Structure Selection',
+          'Intellectual Property Protection',
+          'Contract Law Basics',
+          'Regulatory Compliance Overview'
+        ]
+      },
+      {
+        id: 7,
+        category: 'Workshop',
+        title: 'Agile Methodology',
+        points: [
+          'Scrum Framework Introduction',
+          'Sprint Planning & Execution',
+          'Daily Standups Best Practices',
+          'Retrospectives & Continuous Improvement'
         ]
       }
     ],
@@ -262,7 +320,7 @@ const LearningExecutionSection = ({
       {
         id: 2,
         category: 'In class',
-        title: 'Operations',
+        title: 'Operations Management',
         points: [
           'Process Optimization',
           'Supply Chain Management',
@@ -272,13 +330,57 @@ const LearningExecutionSection = ({
       },
       {
         id: 3,
-        category: 'In class',
+        category: 'Workshop',
         title: 'Human Resources',
         points: [
           'Talent Acquisition Strategies',
           'Performance Management',
           'Company Culture Building',
           'Employee Retention Programs'
+        ]
+      },
+      {
+        id: 4,
+        category: 'Project',
+        title: 'Brand Development',
+        points: [
+          'Brand Identity & Voice Creation',
+          'Logo & Visual Asset Design',
+          'Brand Story Development',
+          'Brand Guidelines Documentation'
+        ]
+      },
+      {
+        id: 5,
+        category: 'In class',
+        title: 'Social Media Strategy',
+        points: [
+          'Platform Selection & Optimization',
+          'Content Calendar Planning',
+          'Community Management',
+          'Social Media Analytics'
+        ]
+      },
+      {
+        id: 6,
+        category: 'Workshop',
+        title: 'Customer Success',
+        points: [
+          'Onboarding Best Practices',
+          'Customer Health Scoring',
+          'Retention Strategies',
+          'Feedback Loop Implementation'
+        ]
+      },
+      {
+        id: 7,
+        category: 'In class',
+        title: 'Email Marketing',
+        points: [
+          'Email List Building Techniques',
+          'Campaign Design & Copywriting',
+          'A/B Testing Strategies',
+          'Automation & Drip Campaigns'
         ]
       }
     ],
@@ -296,7 +398,7 @@ const LearningExecutionSection = ({
       },
       {
         id: 2,
-        category: 'In class',
+        category: 'Workshop',
         title: 'Innovation Management',
         points: [
           'Design Thinking Workshops',
@@ -315,6 +417,50 @@ const LearningExecutionSection = ({
           'Data-Driven Decision Making',
           'KPI Development & Tracking'
         ]
+      },
+      {
+        id: 4,
+        category: 'Project',
+        title: 'Product Launch Strategy',
+        points: [
+          'Go-to-Market Planning',
+          'Launch Campaign Development',
+          'Beta Testing & Feedback',
+          'Post-Launch Optimization'
+        ]
+      },
+      {
+        id: 5,
+        category: 'In class',
+        title: 'UX/UI Design Principles',
+        points: [
+          'User Research Methodologies',
+          'Wireframing & Prototyping',
+          'Usability Testing',
+          'Accessibility Standards'
+        ]
+      },
+      {
+        id: 6,
+        category: 'Workshop',
+        title: 'Cybersecurity Basics',
+        points: [
+          'Data Protection Fundamentals',
+          'Security Threat Identification',
+          'Privacy Compliance (GDPR, CCPA)',
+          'Incident Response Planning'
+        ]
+      },
+      {
+        id: 7,
+        category: 'In class',
+        title: 'Content Creation',
+        points: [
+          'Storytelling Techniques',
+          'Video Production Basics',
+          'Podcast Development',
+          'Multimedia Content Strategy'
+        ]
       }
     ],
     4: [
@@ -331,7 +477,7 @@ const LearningExecutionSection = ({
       },
       {
         id: 2,
-        category: 'In class',
+        category: 'Workshop',
         title: 'Exit Strategies',
         points: [
           'M&A Fundamentals',
@@ -350,13 +496,67 @@ const LearningExecutionSection = ({
           'Board Management',
           'Stakeholder Communication'
         ]
+      },
+      {
+        id: 4,
+        category: 'Project',
+        title: 'Fundraising Campaigns',
+        points: [
+          'Investor Outreach Strategy',
+          'Due Diligence Preparation',
+          'Cap Table Management',
+          'Investor Update Communications'
+        ]
+      },
+      {
+        id: 5,
+        category: 'In class',
+        title: 'Strategic Planning',
+        points: [
+          'Long-term Vision Development',
+          'OKR Framework Implementation',
+          'Scenario Planning',
+          'Competitive Positioning'
+        ]
+      },
+      {
+        id: 6,
+        category: 'Workshop',
+        title: 'Public Relations',
+        points: [
+          'Media Relations & Press Releases',
+          'Crisis Communication',
+          'Thought Leadership Building',
+          'PR Campaign Strategy'
+        ]
+      },
+      {
+        id: 7,
+        category: 'In class',
+        title: 'Advanced Financial Modeling',
+        points: [
+          'Revenue Forecasting Models',
+          'Cost Analysis & Optimization',
+          'Cash Flow Management',
+          'Financial Scenario Planning'
+        ]
+      },
+      {
+        id: 8,
+        category: 'Project',
+        title: 'Capstone Project',
+        points: [
+          'Comprehensive Business Plan',
+          'Final Pitch Presentation',
+          'Portfolio Development',
+          'Peer Review & Feedback'
+        ]
       }
     ]
   }
 
   const contentByMonth = customContent || defaultContentByMonth
   const currentContent = contentByMonth[activeMonth as keyof typeof contentByMonth] || contentByMonth[1]
-  const cardsPerView = 3
   const maxSlide = Math.max(0, currentContent.length - cardsPerView)
 
   const handlePrevious = () => {
@@ -365,6 +565,34 @@ const LearningExecutionSection = ({
 
   const handleNext = () => {
     setCurrentSlide(Math.min(maxSlide, currentSlide + 1))
+  }
+
+  // Handle touch start
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.targetTouches[0].clientX)
+    setTouchEnd(e.targetTouches[0].clientX)
+  }
+
+  // Handle touch move
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX)
+  }
+
+  // Handle touch end - detect swipe direction
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return
+
+    const distance = touchStart - touchEnd
+    const isLeftSwipe = distance > 50
+    const isRightSwipe = distance < -50
+
+    if (isLeftSwipe && currentSlide < maxSlide) {
+      handleNext()
+    }
+
+    if (isRightSwipe && currentSlide > 0) {
+      handlePrevious()
+    }
   }
 
   const containerVariants = {
@@ -455,10 +683,7 @@ const LearningExecutionSection = ({
             {months.map((month) => (
               <button
                 key={month.id}
-                onClick={() => {
-                  setActiveMonth(month.id)
-                  setCurrentSlide(0)
-                }}
+                onClick={() => setActiveMonth(month.id)}
                 className="px-4 md:px-6 py-2 md:py-2.5 rounded-full text-[14px] md:text-[16px] font-medium transition-all duration-300 border"
                 style={
                   activeMonth === month.id
@@ -479,7 +704,12 @@ const LearningExecutionSection = ({
           </div>
 
           {/* Content Cards */}
-          <div className="relative overflow-hidden">
+          <div
+            className="relative overflow-hidden"
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+          >
             <motion.div
               className="flex gap-3 py-4 px-2 md:gap-4 transition-transform duration-500"
               style={{

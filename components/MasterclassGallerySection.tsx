@@ -100,7 +100,7 @@ const MasterclassGallerySection = ({
   }
 
   return (
-    <section className="relative w-full overflow-hidden py-16 md:py-20 lg:py-[80px]">
+    <section className="relative w-full overflow-hidden py-12 md:py-16 lg:py-20 xl:py-[80px]">
       {/* Dark gradient background */}
       <div
         className="absolute inset-0"
@@ -110,7 +110,7 @@ const MasterclassGallerySection = ({
       />
 
       {/* Decorative elements */}
-      <div className="absolute inset-0 pointer-events-none">
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
         {/* Stars */}
         <div className="absolute inset-0 opacity-30">
           <Image
@@ -121,8 +121,8 @@ const MasterclassGallerySection = ({
           />
         </div>
 
-        {/* Light effects */}
-        <div className="absolute -left-[715px] top-[553px] w-[1693.86px] h-[1401.86px] mix-blend-hard-light opacity-40">
+        {/* Light effects - Adjusted for responsive */}
+        <div className="absolute -left-[50%] md:-left-[715px] top-[200px] md:top-[553px] w-[800px] md:w-[1693.86px] h-[600px] md:h-[1401.86px] mix-blend-hard-light opacity-40">
           <div className="relative w-full h-full rotate-180">
             <Image
               src="/f679bbd5d53183467be7afe8a376d2c7888eca1f.svg"
@@ -133,7 +133,7 @@ const MasterclassGallerySection = ({
           </div>
         </div>
 
-        <div className="absolute -left-[715px] top-[553px] w-[1693.86px] h-[1401.86px] mix-blend-hard-light opacity-40">
+        <div className="absolute -right-[50%] md:-left-[715px] top-[400px] md:top-[553px] w-[800px] md:w-[1693.86px] h-[600px] md:h-[1401.86px] mix-blend-hard-light opacity-40">
           <div className="relative w-full h-full rotate-180">
             <Image
               src="/550033158f0bf4f1e2a65d2b744b33bfe26be74d.svg"
@@ -144,7 +144,7 @@ const MasterclassGallerySection = ({
           </div>
         </div>
 
-        <div className="absolute left-[261.99px] -top-[473px] w-[1693.86px] h-[1401.86px] mix-blend-hard-light opacity-40">
+        <div className="absolute left-[10%] md:left-[261.99px] -top-[200px] md:-top-[473px] w-[800px] md:w-[1693.86px] h-[600px] md:h-[1401.86px] mix-blend-hard-light opacity-40">
           <Image
             src="/9fd109337cdf39b5e6471ce5a4b9e65f204bc9da.svg"
             alt=""
@@ -155,21 +155,21 @@ const MasterclassGallerySection = ({
       </div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-[1440px] mx-auto px-4 md:px-10 lg:px-20">
+      <div className="relative z-10 max-w-[1440px] mx-auto px-4 md:px-8 lg:px-12 xl:px-20">
         {/* Title */}
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-[32px] md:text-[40px] lg:text-[44px] font-semibold text-white capitalize tracking-[-1.76px] mb-8 md:mb-12"
+          className="text-[24px] md:text-[32px] lg:text-[40px] xl:text-[44px] font-semibold text-white capitalize tracking-[-0.96px] md:tracking-[-1.28px] lg:tracking-[-1.6px] xl:tracking-[-1.76px] mb-6 md:mb-8 lg:mb-10 xl:mb-12"
           style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
         >
           {title}
         </motion.h2>
 
         {/* Image Grid */}
-        <div className="flex flex-col gap-6 md:gap-7">
+        <div className="flex flex-col gap-4 md:gap-5 lg:gap-6 xl:gap-7">
           {rows.map((row, rowIndex) => (
             <motion.div
               key={rowIndex}
@@ -177,7 +177,7 @@ const MasterclassGallerySection = ({
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: rowIndex * 0.1 }}
               viewport={{ once: true }}
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-7"
+              className="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5 lg:gap-6 xl:gap-7"
             >
               {row.map((image, imageIndex) => (
                 <div
@@ -185,7 +185,7 @@ const MasterclassGallerySection = ({
                   className="group cursor-pointer"
                 >
                   {/* Image Container */}
-                  <div className="relative h-[250px] md:h-[280px] lg:h-[300px] rounded-[16px] overflow-hidden mb-4 md:mb-[18px]">
+                  <div className="relative h-[140px] md:h-[230px] lg:h-[260px] xl:h-[280px] rounded-[12px] md:rounded-[14px] lg:rounded-[16px] overflow-hidden mb-3 md:mb-4 lg:mb-[18px]">
                     <motion.div
                       whileHover={{ scale: 1.05 }}
                       transition={{ duration: 0.3 }}
@@ -205,7 +205,7 @@ const MasterclassGallerySection = ({
                   {/* Image Title */}
                   <div className="text-white">
                     <h3
-                      className="text-[20px] md:text-[22px] lg:text-[24px] font-semibold tracking-[-0.96px] mb-1"
+                      className="text-[16px] md:text-[18px] lg:text-[20px] xl:text-[24px] font-semibold tracking-[-0.64px] md:tracking-[-0.72px] lg:tracking-[-0.8px] xl:tracking-[-0.96px] mb-1"
                       style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
                     >
                       {image.title}

@@ -57,7 +57,7 @@ const WellnessSection = () => {
   const stars = generateStars(150)
 
   return (
-    <div className="relative bg-[#0f0f1f] py-20 md:py-24 overflow-hidden ">
+    <div className="relative bg-[#0f0f1f] py-12 md:py-20 lg:py-24 overflow-hidden ">
       {/* Animated Stars Background */}
       <div className="absolute inset-0">
         {stars.map((star) => (
@@ -89,7 +89,7 @@ const WellnessSection = () => {
       <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-blue-600/10 rounded-full blur-[150px]" />
 
       <motion.div
-        className="relative z-10 container mx-auto px-8 md:px-20"
+        className="relative z-10 container mx-auto px-6 md:px-12 lg:px-20"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
@@ -97,25 +97,25 @@ const WellnessSection = () => {
       >
         {/* Header Section */}
         <motion.div
-          className="text-center mb-16"
+          className="text-center mb-10 md:mb-14 lg:mb-16"
           variants={itemVariants}
         >
-          <h2 className="text-[38px] md:text-[44px] font-bold text-white mb-6 tracking-[-1.76px]">
+          <h2 className="text-[28px] md:text-[38px] lg:text-[44px] font-bold text-white mb-4 md:mb-5 lg:mb-6 tracking-[-1.12px] md:tracking-[-1.52px] lg:tracking-[-1.76px]">
             Wellness At Bower
           </h2>
-          <p className="text-[16px] md:text-[18px] text-gray-400 max-w-4xl mx-auto leading-[28px]">
+          <p className="text-[14px] md:text-[16px] lg:text-[18px] text-gray-400 max-w-4xl mx-auto leading-[22px] md:leading-[26px] lg:leading-[28px]">
             From daily rituals to offbeat escapes, our wellness ecosystem supports every student's mental, physical, and emotional well-being.
           </p>
         </motion.div>
 
         {/* Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-5 lg:gap-6">
           {/* Left Large Card - Therapy & Counseling */}
           <motion.div
             className="lg:col-span-7"
             variants={cardVariants}
           >
-            <div className="relative h-[500px] rounded-2xl overflow-hidden group">
+            <div className="relative h-[350px] md:h-[450px] lg:h-[500px] rounded-xl md:rounded-2xl overflow-hidden group">
               <div className="absolute inset-0 bg-gradient-to-r from-gray-900/90 via-gray-900/70 to-transparent z-10" />
               <Image
                 src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=800&auto=format&fit=crop&q=60"
@@ -123,11 +123,11 @@ const WellnessSection = () => {
                 fill
                 className="object-cover"
               />
-              <div className="absolute bottom-0 left-0 p-8 z-20">
-                <h3 className="text-[28px] font-semibold text-white mb-3">
+              <div className="absolute bottom-0 left-0 p-5 md:p-6 lg:p-8 z-20">
+                <h3 className="text-[20px] md:text-[24px] lg:text-[28px] font-semibold text-white mb-2 md:mb-3">
                   On-Campus Therapy & Counseling
                 </h3>
-                <p className="text-[16px] text-gray-300 leading-relaxed max-w-md">
+                <p className="text-[14px] md:text-[15px] lg:text-[16px] text-gray-300 leading-relaxed max-w-md">
                   Access certified counselors for 1:1 mental health support — no stigma, no stress.
                 </p>
               </div>
@@ -135,11 +135,11 @@ const WellnessSection = () => {
           </motion.div>
 
           {/* Right Column - Two Cards */}
-          <div className="lg:col-span-5 space-y-6">
+          <div className="lg:col-span-5 space-y-4 md:space-y-5 lg:space-y-6">
             {/* Top Card - Campus Spaces */}
             <motion.div
               variants={cardVariants}
-              className="relative h-[240px] rounded-2xl overflow-hidden group"
+              className="relative h-[180px] md:h-[220px] lg:h-[240px] rounded-xl md:rounded-2xl overflow-hidden group"
             >
               <div className="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/50 to-transparent z-10" />
               <Image
@@ -148,8 +148,8 @@ const WellnessSection = () => {
                 fill
                 className="object-cover"
               />
-              <div className="absolute bottom-0 left-0 p-6 z-20">
-                <p className="text-[16px] text-gray-300 leading-relaxed">
+              <div className="absolute bottom-0 left-0 p-4 md:p-5 lg:p-6 z-20">
+                <p className="text-[14px] md:text-[15px] lg:text-[16px] text-gray-300 leading-relaxed">
                   Unplug in peaceful campus spaces designed to slow you down.
                 </p>
               </div>
@@ -158,7 +158,7 @@ const WellnessSection = () => {
             {/* Bottom Card - Healthy Food */}
             <motion.div
               variants={cardVariants}
-              className="relative h-[240px] rounded-2xl overflow-hidden group"
+              className="relative h-[180px] md:h-[220px] lg:h-[240px] rounded-xl md:rounded-2xl overflow-hidden group"
             >
               <div className="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/50 to-transparent z-10" />
               <Image
@@ -167,8 +167,8 @@ const WellnessSection = () => {
                 fill
                 className="object-cover"
               />
-              <div className="absolute bottom-0 left-0 p-6 z-20">
-                <p className="text-[16px] text-gray-300 leading-relaxed">
+              <div className="absolute bottom-0 left-0 p-4 md:p-5 lg:p-6 z-20">
+                <p className="text-[14px] md:text-[15px] lg:text-[16px] text-gray-300 leading-relaxed">
                   Healthy food options that fuel focus and keep you energized.
                 </p>
               </div>

@@ -39,7 +39,7 @@ const JoinAlumniSection = () => {
   }
 
   return (
-    <div className="relative bg-white py-24 md:py-32 overflow-hidden">
+    <div className="relative bg-white py-16 md:py-24 lg:py-32 overflow-hidden">
       {/* Background Grid Pattern */}
       <div className="absolute inset-0">
         <Image
@@ -61,8 +61,8 @@ const JoinAlumniSection = () => {
         />
       </div>
 
-      <motion.div 
-        className="relative z-10 container mx-auto px-8 md:px-20"
+      <motion.div
+        className="relative z-10 container mx-auto px-6 md:px-12 lg:px-20"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
@@ -70,14 +70,14 @@ const JoinAlumniSection = () => {
       >
         <div className="max-w-4xl mx-auto text-center">
           {/* Content */}
-          <motion.div 
-            className="space-y-3 mb-20"
+          <motion.div
+            className="space-y-2 md:space-y-3 mb-12 md:mb-16 lg:mb-20"
             variants={itemVariants}
           >
-            <h2 className="text-[38px] md:text-[44px] font-semibold text-gray-900 tracking-[-1.76px] capitalize">
+            <h2 className="text-[28px] md:text-[38px] lg:text-[44px] font-semibold text-gray-900 tracking-[-1.12px] md:tracking-[-1.52px] lg:tracking-[-1.76px] capitalize">
               Join Alumni Network
             </h2>
-            <p className="text-[18px] md:text-[20px] text-gray-600 leading-[30px]">
+            <p className="text-[16px] md:text-[18px] lg:text-[20px] text-gray-600 leading-[24px] md:leading-[28px] lg:leading-[30px]">
               Reconnect, Reflect, Reignite
             </p>
           </motion.div>
@@ -87,7 +87,7 @@ const JoinAlumniSection = () => {
             variants={buttonVariants}
           >
             <motion.button
-              className="inline-flex items-center gap-2 px-6 py-3 bg-[#4242ff] text-white font-medium text-[18px] rounded-lg shadow-[0px_0px_0px_1px_#4242ff,0px_1px_3px_0px_rgba(0,0,0,0.1)] hover:bg-[#3535d9] transition-colors"
+              className="inline-flex items-center gap-2 px-5 py-2.5 md:px-6 md:py-3 bg-[#4242ff] text-white font-medium text-[16px] md:text-[18px] rounded-lg shadow-[0px_0px_0px_1px_#4242ff,0px_1px_3px_0px_rgba(0,0,0,0.1)] hover:bg-[#3535d9] transition-colors"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >

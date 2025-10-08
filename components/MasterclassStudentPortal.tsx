@@ -68,7 +68,7 @@ const MasterclassStudentPortal = ({
   };
 
   return (
-    <section className="relative w-full min-h-[600px] bg-[#f4f4ff] py-20 md:py-24 lg:py-32 overflow-hidden">
+    <section className="relative w-full min-h-[400px] md:min-h-[500px] lg:min-h-[600px] bg-[#f4f4ff] py-12 md:py-20 lg:py-24 xl:py-32 overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 pointer-events-none">
         {/* Grid Pattern */}
@@ -102,15 +102,15 @@ const MasterclassStudentPortal = ({
           className="flex items-center justify-center"
         >
           {/* Glass Card */}
-          <div className="w-full max-w-[984px] backdrop-blur-md bg-white/5 rounded-[24px] p-6 md:p-8 lg:p-[24px] border border-white/10">
-            <form onSubmit={handleSubmit} className="flex flex-col items-center gap-6">
+          <div className="w-full max-w-[984px] backdrop-blur-md bg-white/5 rounded-[16px] md:rounded-[20px] lg:rounded-[24px] p-4 md:p-6 lg:p-8 xl:p-[24px] border border-white/10">
+            <form onSubmit={handleSubmit} className="flex flex-col items-center gap-4 md:gap-5 lg:gap-6">
               {/* Header */}
               <div className="text-center max-w-[936px]">
                 <motion.h1
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.1 }}
-                  className="text-[48px] md:text-[64px] lg:text-[80px] font-bold text-[#111827] leading-[0.9] tracking-[-4px] mb-3"
+                  className="text-[32px] md:text-[48px] lg:text-[64px] xl:text-[80px] font-bold text-[#111827] leading-[0.9] tracking-[-1.5px] md:tracking-[-2.5px] lg:tracking-[-3.5px] xl:tracking-[-4px] mb-2 md:mb-3"
                   style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
                 >
                   {portalTitle}
@@ -120,7 +120,7 @@ const MasterclassStudentPortal = ({
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.2 }}
-                  className="text-[20px] md:text-[26px] lg:text-[30px] font-semibold text-[#4b5563] tracking-[-1.2px]"
+                  className="text-[16px] md:text-[20px] lg:text-[26px] xl:text-[30px] font-semibold text-[#4b5563] tracking-[-0.64px] md:tracking-[-0.8px] lg:tracking-[-1px] xl:tracking-[-1.2px]"
                   style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
                 >
                   {portalSubtitle}
@@ -140,7 +140,7 @@ const MasterclassStudentPortal = ({
                     value={code}
                     onChange={(e) => setCode(e.target.value)}
                     placeholder={portalPlaceholder}
-                    className="w-full h-[70px] md:h-[75px] lg:h-[81px] px-5 py-4 bg-white/10 backdrop-blur-lg border border-white rounded-[10px] text-[18px] md:text-[19px] lg:text-[20px] text-[#111827] placeholder-[#505050] focus:outline-none focus:border-[#4242ff] focus:shadow-[4px_4px_12px_0px_#4242ff] transition-all duration-200"
+                    className="w-full h-[56px] md:h-[65px] lg:h-[75px] xl:h-[81px] px-4 md:px-5 py-3 md:py-4 bg-white/10 backdrop-blur-lg border border-white rounded-[8px] md:rounded-[10px] text-[16px] md:text-[18px] lg:text-[19px] xl:text-[20px] text-[#111827] placeholder-[#505050] focus:outline-none focus:border-[#4242ff] focus:shadow-[4px_4px_12px_0px_#4242ff] transition-all duration-200"
                     style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
                   />
                 </div>
@@ -153,11 +153,11 @@ const MasterclassStudentPortal = ({
                 transition={{ duration: 0.5, delay: 0.4 }}
                 type="submit"
                 disabled={!code.trim() || isLoading}
-                className="flex items-center gap-2 px-4 py-2 bg-[#4242ff] text-white rounded-[8px] shadow-[0px_0px_0px_1px_#4242ff,0px_1px_3px_0px_rgba(0,0,0,0.1)] hover:bg-[#3232e6] disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 min-w-[240px] justify-center"
+                className="flex items-center gap-2 px-4 py-2 bg-[#4242ff] text-white rounded-[8px] shadow-[0px_0px_0px_1px_#4242ff,0px_1px_3px_0px_rgba(0,0,0,0.1)] hover:bg-[#3232e6] disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 min-w-[200px] md:min-w-[240px] justify-center"
               >
-                <LockClosedIcon className="w-5 h-5" />
+                <LockClosedIcon className="w-4 h-4 md:w-5 md:h-5" />
                 <span
-                  className="text-[18px] font-medium"
+                  className="text-[16px] md:text-[18px] font-medium"
                   style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
                 >
                   {isLoading ? 'Unlocking...' : portalButtonText}
@@ -169,7 +169,7 @@ const MasterclassStudentPortal = ({
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5, delay: 0.5 }}
-                className="text-[18px] md:text-[19px] lg:text-[20px] text-[#505050]"
+                className="text-[14px] md:text-[16px] lg:text-[18px] xl:text-[20px] text-[#505050]"
                 style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
               >
                 {portalSupportText}

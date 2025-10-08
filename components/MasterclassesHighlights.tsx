@@ -169,7 +169,7 @@ export default function MasterclassesHighlights() {
           Highlights From Our Past Masterclasses
         </h2>
 
-        <Link href="/programs/masterclasses">
+        <Link href="/events/masterclasses">
           <button
             className="backdrop-blur-[32px] backdrop-filter bg-gradient-to-r from-[rgba(17,24,39,0.05)] to-[rgba(17,24,39,0.05)] border border-white/50 rounded-lg h-10 sm:h-11 md:h-[44px] px-3 sm:px-4 flex gap-2 sm:gap-4 items-center justify-center relative overflow-hidden transition-all duration-200 hover:scale-105 active:scale-95"
             data-name="Secondary button xl (Dark Mode)"
@@ -202,7 +202,7 @@ export default function MasterclassesHighlights() {
           {/* Card 1 - Small */}
           {displayMasterclasses[0] && (
             <Link
-              href={displayMasterclasses[0].slug ? `/programs/masterclasses/${displayMasterclasses[0].slug}` : '#'}
+              href={displayMasterclasses[0].slug ? `/events/masterclasses/${displayMasterclasses[0].slug}` : '#'}
               className="w-full lg:w-[500px]"
             >
               <div
@@ -250,7 +250,7 @@ export default function MasterclassesHighlights() {
           {/* Card 2 - Large */}
           {displayMasterclasses[1] && (
             <Link
-              href={displayMasterclasses[1].slug ? `/programs/masterclasses/${displayMasterclasses[1].slug}` : '#'}
+              href={displayMasterclasses[1].slug ? `/events/masterclasses/${displayMasterclasses[1].slug}` : '#'}
               className="flex-1 w-full"
             >
               <div
@@ -303,7 +303,7 @@ export default function MasterclassesHighlights() {
           {/* Card 3 - Large */}
           {displayMasterclasses[2] && (
             <Link
-              href={displayMasterclasses[2].slug ? `/programs/masterclasses/${displayMasterclasses[2].slug}` : '#'}
+              href={displayMasterclasses[2].slug ? `/events/masterclasses/${displayMasterclasses[2].slug}` : '#'}
               className="flex-1 w-full"
             >
               <div
@@ -350,7 +350,7 @@ export default function MasterclassesHighlights() {
           {/* Card 4 - Small */}
           {displayMasterclasses[3] && (
             <Link
-              href={displayMasterclasses[3].slug ? `/programs/masterclasses/${displayMasterclasses[3].slug}` : '#'}
+              href={displayMasterclasses[3].slug ? `/events/masterclasses/${displayMasterclasses[3].slug}` : '#'}
               className="w-full lg:w-[500px]"
             >
               <div
