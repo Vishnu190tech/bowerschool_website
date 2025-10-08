@@ -101,7 +101,7 @@ const MasterclassDetailPage = () => {
         {/* Always show learning section - component has its own default data */}
         <MasterclassLearnSection learningOutcomes={masterclass.description} />
 
-        <BowerNetworkSection stats={(masterclass as any).networkStats} />
+        <BowerNetworkSection sectionTitle='Learning Outcomes' stats={(masterclass as any).networkStats} />
 
         {/* Show gallery only if images exist */}
         {masterclass.galleryImages && masterclass.galleryImages.length > 0 && (

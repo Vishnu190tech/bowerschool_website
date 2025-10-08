@@ -4,63 +4,149 @@ import React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 
-const LearningComparisonSection = () => {
-  const regularSchoolItems = [
-    {
-      title: 'From project-based learning',
-      description: 'Focus on hands-on tasks, collaboration, and real-world applications'
-    },
-    {
-      title: 'From personalized learning',
-      description: 'Tailored educational experiences that cater to individual student needs'
-    },
-    {
-      title: 'From experiential learning',
-      description: 'Learning through direct experience, reflection, and critical thinking'
-    },
-    {
-      title: 'From digital learning',
-      description: 'Integration of technology, online resources, and interactive tools in education'
-    },
-    {
-      title: 'From inquiry-based learning',
-      description: 'Encouragement of curiosity, questioning, and exploration in the learning process.Encouragement of curiosity, questioning, and exploration in the learning process'
-    },
-    {
-      title: 'From competency-based learning',
-      description: 'Progression based on mastery of skills rather than time spent on subjects.Encouragement of curiosity, questioning, and exploration in the learning process'
-    }
-  ];
+// Theme Configuration
+type ThemeType = 'scholarship' | 'lead' | 'seed' | 'ug';
 
-  const bowerItems = [
-    {
-      title: 'From project-based learning',
-      description: 'Focus on real-world applications, teamwork, and problem-solving skills'
-    },
-    {
-      title: 'From inquiry-based learning',
-      description: 'Encouragement of curiosity, critical thinking, and research-driven exploration'
-    },
-    {
-      title: 'From experiential learning',
-      description: 'Learning through hands-on experiences, internships, and real-life challenges'
-    },
-    {
-      title: 'From collaborative learning',
-      description: 'Peer interaction, group projects, and shared perspectives to enhance understanding'
-    },
-    {
-      title: 'From personalized learning',
-      description: 'Tailoring education to individual strengths, interests, and learning paces'
-    },
-    {
-      title: 'From competency-based education',
-      description: 'Advancement based on mastery of skills rather than time spent in class'
-    }
-  ];
+interface ComparisonTheme {
+  primary: string;
+  secondary: string;
+  bgColor: string;
+  cardBg: string;
+  borderColor: string;
+  gradientBg: string;
+}
+
+const COMPARISON_THEMES: Record<ThemeType, ComparisonTheme> = {
+  scholarship: {
+    primary: '#3232e6',
+    secondary: '#4242FF',
+    bgColor: '#252525',
+    cardBg: '#202020',
+    borderColor: 'rgba(50, 50, 230, 0.6)',
+    gradientBg: `linear-gradient(133.203deg, rgba(255, 255, 255, 0.2) 2.6545%, rgba(255, 255, 255, 0) 44.796%),
+                radial-gradient(ellipse at center, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.3) 73.997%, rgba(0, 0, 0, 0) 100%),
+                linear-gradient(90deg, #3232e6 0%, #3232e6 100%)`,
+  },
+  lead: {
+    primary: '#A8F326',
+    secondary: '#8FD920',
+    bgColor: '#252525',
+    cardBg: '#202020',
+    borderColor: 'rgba(168, 243, 38, 0.6)',
+    gradientBg: `linear-gradient(133.203deg, rgba(255, 255, 255, 0.2) 2.6545%, rgba(255, 255, 255, 0) 44.796%),
+                radial-gradient(ellipse at center, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.3) 73.997%, rgba(0, 0, 0, 0) 100%),
+                linear-gradient(90deg, #A8F326 0%, #A8F326 100%)`,
+  },
+  seed: {
+    primary: '#FF8829',
+    secondary: '#FFBF29',
+    bgColor: '#252525',
+    cardBg: '#202020',
+    borderColor: 'rgba(255, 136, 41, 0.6)',
+    gradientBg: `linear-gradient(133.203deg, rgba(255, 255, 255, 0.2) 2.6545%, rgba(255, 255, 255, 0) 44.796%),
+                radial-gradient(ellipse at center, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.3) 73.997%, rgba(0, 0, 0, 0) 100%),
+                linear-gradient(90deg, #FF8829 0%, #FF8829 100%)`,
+  },
+  ug: {
+    primary: '#4242FF',
+    secondary: '#3232e6',
+    bgColor: '#252525',
+    cardBg: '#202020',
+    borderColor: 'rgba(66, 66, 255, 0.6)',
+    gradientBg: `linear-gradient(133.203deg, rgba(255, 255, 255, 0.2) 2.6545%, rgba(255, 255, 255, 0) 44.796%),
+                radial-gradient(ellipse at center, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.3) 73.997%, rgba(0, 0, 0, 0) 100%),
+                linear-gradient(90deg, #4242FF 0%, #4242FF 100%)`,
+  },
+};
+
+// Item Interface
+interface ComparisonItem {
+  title: string;
+  description: string;
+}
+
+// Component Props Interface
+interface LearningComparisonSectionProps {
+  theme?: ThemeType;
+  mainTitle?: string;
+  subtitle?: string;
+  leftColumnTitle?: string;
+  rightColumnTitle?: string;
+  leftItems?: ComparisonItem[];
+  rightItems?: ComparisonItem[];
+}
+
+// Default Items Data
+const DEFAULT_LEFT_ITEMS: ComparisonItem[] = [
+  {
+    title: 'From project-based learning',
+    description: 'Focus on hands-on tasks, collaboration, and real-world applications'
+  },
+  {
+    title: 'From personalized learning',
+    description: 'Tailored educational experiences that cater to individual student needs'
+  },
+  {
+    title: 'From experiential learning',
+    description: 'Learning through direct experience, reflection, and critical thinking'
+  },
+  {
+    title: 'From digital learning',
+    description: 'Integration of technology, online resources, and interactive tools in education'
+  },
+  {
+    title: 'From inquiry-based learning',
+    description: 'Encouragement of curiosity, questioning, and exploration in the learning process.Encouragement of curiosity, questioning, and exploration in the learning process'
+  },
+  {
+    title: 'From competency-based learning',
+    description: 'Progression based on mastery of skills rather than time spent on subjects.Encouragement of curiosity, questioning, and exploration in the learning process'
+  }
+];
+
+const DEFAULT_RIGHT_ITEMS: ComparisonItem[] = [
+  {
+    title: 'From project-based learning',
+    description: 'Focus on real-world applications, teamwork, and problem-solving skills'
+  },
+  {
+    title: 'From inquiry-based learning',
+    description: 'Encouragement of curiosity, critical thinking, and research-driven exploration'
+  },
+  {
+    title: 'From experiential learning',
+    description: 'Learning through hands-on experiences, internships, and real-life challenges'
+  },
+  {
+    title: 'From collaborative learning',
+    description: 'Peer interaction, group projects, and shared perspectives to enhance understanding'
+  },
+  {
+    title: 'From personalized learning',
+    description: 'Tailoring education to individual strengths, interests, and learning paces'
+  },
+  {
+    title: 'From competency-based education',
+    description: 'Advancement based on mastery of skills rather than time spent in class'
+  }
+];
+
+const LearningComparisonSection = ({
+  theme = 'ug',
+  mainTitle = 'Rewriting The Future of Learning',
+  subtitle = "We're not just following the old playbook—we're rewriting it for today's learners.",
+  leftColumnTitle = 'Regular School Curriculum:',
+  rightColumnTitle = 'Bower',
+  leftItems = DEFAULT_LEFT_ITEMS,
+  rightItems = DEFAULT_RIGHT_ITEMS
+}: LearningComparisonSectionProps) => {
+  const currentTheme = COMPARISON_THEMES[theme];
 
   return (
-    <section className="relative w-full bg-[#252525] px-4 py-8 md:px-10 md:py-12 lg:p-20 overflow-hidden">
+    <section
+      className="relative w-full px-4 py-8 md:px-10 md:py-12 lg:p-20 overflow-hidden"
+      style={{ backgroundColor: currentTheme.bgColor }}
+    >
       {/* Background decorations */}
       {/* Stars background */}
       <div className="absolute -left-full -right-full top-1/2 -translate-y-1/2 h-[1438px]">
@@ -111,7 +197,7 @@ const LearningComparisonSection = () => {
               letterSpacing: '-1.76px'
             }}
           >
-            Rewriting The Future of Learning
+            {mainTitle}
           </h2>
           <p
             className="text-[#aaaab9] text-[16px] md:text-[18px] lg:text-[20px] leading-[1.5]"
@@ -120,7 +206,7 @@ const LearningComparisonSection = () => {
               fontWeight: 400
             }}
           >
-            We're not just following the old playbook—we're rewriting it for today's learners.
+            {subtitle}
           </p>
         </motion.div>
 
@@ -131,7 +217,8 @@ const LearningComparisonSection = () => {
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
-            className="flex-1 bg-[#202020] rounded-2xl lg:rounded-3xl p-4 md:p-5 lg:p-6 border-2 border-transparent"
+            className="flex-1 rounded-2xl lg:rounded-3xl p-4 md:p-5 lg:p-6 border-2 border-transparent"
+            style={{ backgroundColor: currentTheme.cardBg }}
           >
             <h3
               className="text-[#f0f0ff] mb-4 md:mb-6 lg:mb-8 text-[24px] md:text-[28px] lg:text-[30px] leading-tight"
@@ -141,10 +228,10 @@ const LearningComparisonSection = () => {
                 letterSpacing: '-1.2px'
               }}
             >
-              Regular School Curriculum:
+              {leftColumnTitle}
             </h3>
             <div className="flex flex-col gap-4">
-              {regularSchoolItems.map((item, index) => (
+              {leftItems.map((item, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, y: 20 }}
@@ -184,12 +271,11 @@ const LearningComparisonSection = () => {
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
-            className="flex-1 rounded-2xl lg:rounded-3xl p-4 md:p-5 lg:p-6 border-2 border-[#4242ff]/60 backdrop-blur-[30px]"
+            className="flex-1 rounded-2xl lg:rounded-3xl p-4 md:p-5 lg:p-6 border-2 backdrop-blur-[30px]"
             style={{
-              background: `linear-gradient(133.203deg, rgba(255, 255, 255, 0.2) 2.6545%, rgba(255, 255, 255, 0) 44.796%),
-                          radial-gradient(ellipse at center, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.3) 73.997%, rgba(0, 0, 0, 0) 100%),
-                          linear-gradient(90deg, #4242ff 0%, #4242ff 100%)`,
-              backgroundColor: 'rgba(32, 32, 32, 0.2)'
+              background: currentTheme.gradientBg,
+              backgroundColor: 'rgba(32, 32, 32, 0.2)',
+              borderColor: currentTheme.borderColor
             }}
           >
             <h3
@@ -200,10 +286,10 @@ const LearningComparisonSection = () => {
                 letterSpacing: '-1.2px'
               }}
             >
-              Bower
+              {rightColumnTitle}
             </h3>
             <div className="flex flex-col gap-4">
-              {bowerItems.map((item, index) => (
+              {rightItems.map((item, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, y: 20 }}

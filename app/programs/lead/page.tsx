@@ -49,11 +49,12 @@ export default function UGProgramPage() {
           modeLabel="Mode"
           modeValue="Hybrid"
           startDate="April 5th, 2025"
+          theme="lead"
         />
         <EmpoweringEducationLeadSection />
         <ProgramNavigation />
-        <NumbersSection />
-        <EvolvingEducationSection />
+        <NumbersSection theme="lead" />
+        <EvolvingEducationSection theme="lead" />
         <LogoTicker />
 
         {/* <SkillsProSectionTwo /> */}
@@ -62,23 +63,23 @@ export default function UGProgramPage() {
         {/* <WhyPartnerSection /> */}
         <WhyPartnerWithSeedSection theme="lead" />
         <GuestSpeakerSectionTwo />
-        <MeetOurLearnersSection />
+        <MeetOurLearnersSection theme="lead" />
 
-        <LearningExecutionSection />
-        <ApplicationDeadlineSection />
+        <LearningExecutionSection theme="lead" />
+        <ApplicationDeadlineSection theme="lead" />
 
 
-        <StudentPitchVideoSection />
+        <StudentPitchVideoSection theme="lead" />
 
-        <HeroSection />
+        <HeroSection theme="lead" mode="light" />
         <HowToBecomeLeaderSection />
-        <CertificateSection />
+        <CertificateSection theme="lead" />
         <SkillsProSection theme="lead" />
         <CourseFeeSection theme="lead" />
 
 
         <ProfileCard theme="lead" />
-        <ClubsSection />
+        <ClubsSection theme="lead" />
 
         <Testimonials theme="lead" />
         <BowerGlimpseSection theme="lead" />

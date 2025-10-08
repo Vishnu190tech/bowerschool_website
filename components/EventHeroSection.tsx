@@ -208,7 +208,7 @@ export default function EventHeroSection({ event }: EventHeroSectionProps) {
 
               {/* Title */}
               <h1
-                className="font-['Plus_Jakarta_Sans'] text-[28px] xs:text-[32px] sm:text-[36px] md:text-[48px] lg:text-[60px] xl:text-[80px] font-bold leading-[1.1] sm:leading-normal text-[#f5f9ff] max-w-[825px] tracking-[-1.2px] sm:tracking-[-1.5px] md:tracking-[-2px] lg:tracking-[-4px]"
+                className="font-['Plus_Jakarta_Sans'] text-[28px] xs:text-[32px] sm:text-[36px] md:text-[48px] lg:text-[60px] xl:text-[70px] font-bold leading-[1.1] sm:leading-normal text-[#f5f9ff] max-w-[825px] tracking-[-1.2px] sm:tracking-[-1.5px] md:tracking-[-2px] lg:tracking-[-4px]"
                 data-node-id="2293:46711"
               >
                 {event?.title || 'Tech Startup Expo'}

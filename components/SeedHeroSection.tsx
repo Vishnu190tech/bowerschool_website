@@ -1,6 +1,69 @@
 import Image from 'next/image';
 
+// Theme Configuration
+type ThemeType = 'scholarship' | 'lead' | 'seed' | 'ug';
+
+interface HeroTheme {
+  primary: string;
+  secondary: string;
+  bgColor: string;
+  cardBg: string;
+  cardBorder: string;
+  cardShadow: string;
+  labelColor: string;
+  valueColor: string;
+  dividerColor: string;
+}
+
+const HERO_THEMES: Record<ThemeType, HeroTheme> = {
+  scholarship: {
+    primary: '#3232e6',
+    secondary: '#4242FF',
+    bgColor: '#f0f0ff',
+    cardBg: '#f5f6ff',
+    cardBorder: 'rgba(50, 50, 230, 0.4)',
+    cardShadow: '8px 8px 24px 0px rgba(50, 50, 230, 0.08)',
+    labelColor: '#6a6a6a',
+    valueColor: '#1a2555',
+    dividerColor: '#c4c4c4',
+  },
+  lead: {
+    primary: '#A8F326',
+    secondary: '#8FD920',
+    bgColor: '#f5ffd9',
+    cardBg: '#f9ffe6',
+    cardBorder: 'rgba(168, 243, 38, 0.4)',
+    cardShadow: '8px 8px 24px 0px rgba(168, 243, 38, 0.08)',
+    labelColor: '#6a6a6a',
+    valueColor: '#2d3a15',
+    dividerColor: '#c4c4c4',
+  },
+  seed: {
+    primary: '#FF8829',
+    secondary: '#FFBF29',
+    bgColor: '#fbede3',
+    cardBg: '#ffffff',
+    cardBorder: 'rgba(107, 110, 105, 0.4)',
+    cardShadow: '8px 8px 24px 0px rgba(75, 118, 0, 0.08)',
+    labelColor: '#6a6a6a',
+    valueColor: '#2c360d',
+    dividerColor: '#c4c4c4',
+  },
+  ug: {
+    primary: '#4242FF',
+    secondary: '#3232e6',
+    bgColor: '#f0f0ff',
+    cardBg: '#f5f6ff',
+    cardBorder: 'rgba(66, 66, 255, 0.4)',
+    cardShadow: '8px 8px 24px 0px rgba(66, 66, 255, 0.08)',
+    labelColor: '#6a6a6a',
+    valueColor: '#1a2555',
+    dividerColor: '#c4c4c4',
+  },
+};
+
 interface SeedHeroSectionProps {
+  theme?: ThemeType;
   breadcrumb?: string;
   title?: string;
   duration?: string;
@@ -9,9 +72,12 @@ interface SeedHeroSectionProps {
   modeValue?: string;
   startDate?: string;
   backgroundImage?: string;
+  lightEffectTop?: string;
+  lightEffectBottom?: string;
 }
 
 export default function SeedHeroSection({
+  theme = 'seed',
   breadcrumb = "",
   title = "Start Young. Think Big. Build Now.",
   duration = "3 Weeks",
@@ -19,10 +85,16 @@ export default function SeedHeroSection({
   modeLabel = "Grades",
   modeValue = "9th-12th",
   startDate = "April 5th, 2025",
-  backgroundImage = "/ed0e7f65e37080d626b88b7c3b47ccad17c1f97a.png"
+  backgroundImage = "/ed0e7f65e37080d626b88b7c3b47ccad17c1f97a.png",
+  lightEffectTop = "/926c61495727893ab8924c9feec67bb80968ea3a.svg",
+  lightEffectBottom = "/6d6ac35d93001a2b4a6b683eeb3cb5711cdb0549.svg"
 }: SeedHeroSectionProps) {
+  const currentTheme = HERO_THEMES[theme];
   return (
-    <section className="relative w-full min-h-[800px] md:h-[750px] lg:h-[890px] pb-6 md:pb-8 lg:pb-[50px]">
+    <section
+      className="relative w-full min-h-[800px] md:h-[750px] lg:h-[890px] pb-6 md:pb-8 lg:pb-[50px]"
+      style={{ backgroundColor: currentTheme.bgColor }}
+    >
       {/* Background Container */}
       <div className="absolute inset-0 h-[550px] md:h-[700px] lg:h-[800px] overflow-hidden">
         {/* Background image with subtle overlay */}
@@ -59,7 +131,7 @@ export default function SeedHeroSection({
         {/* Light effects - Hidden on mobile for performance */}
         <div className="hidden md:block absolute h-[1401.86px] w-[1693.86px] left-[144.95px] top-[-979px]">
           <Image
-            src="/926c61495727893ab8924c9feec67bb80968ea3a.svg"
+            src={lightEffectTop}
             alt=""
             fill
             className="object-contain"
@@ -69,7 +141,7 @@ export default function SeedHeroSection({
         <div className="hidden md:block absolute h-[1401.86px] w-[1693.86px] left-[153.95px] top-[127px]">
           <div className="rotate-180 relative w-full h-full">
             <Image
-              src="/6d6ac35d93001a2b4a6b683eeb3cb5711cdb0549.svg"
+              src={lightEffectBottom}
               alt=""
               fill
               className="object-contain"
@@ -109,7 +181,14 @@ export default function SeedHeroSection({
 
       {/* Info Card - Floating at bottom with proper spacing */}
       <div className="absolute bottom-[80px] md:bottom-6 lg:bottom-[30px] left-1/2 -translate-x-1/2 z-20 w-[calc(100%-2rem)] md:w-[80vh] lg:w-full lg:max-w-[1440px] lg:px-20">
-        <div className="bg-white rounded-[16px] px-4 md:px-6 lg:px-10 py-4 md:py-5 border border-[rgba(107,110,105,0.4)] shadow-[8px_8px_24px_0px_rgba(75,118,0,0.08)] flex flex-col md:flex-row justify-between items-center gap-4 md:gap-6 lg:gap-9">
+        <div
+          className="rounded-[16px] px-4 md:px-6 lg:px-10 py-4 md:py-5 border flex flex-col md:flex-row justify-between items-center gap-4 md:gap-6 lg:gap-9"
+          style={{
+            backgroundColor: currentTheme.cardBg,
+            borderColor: currentTheme.cardBorder,
+            boxShadow: currentTheme.cardShadow
+          }}
+        >
           {/* Logo Icon */}
           <div className="relative w-[48px] h-[48px] md:w-[60px] md:h-[60px] lg:w-[72px] lg:h-[72px] flex-shrink-0">
             <Image
@@ -179,71 +258,104 @@ export default function SeedHeroSection({
             {/* Duration */}
             <div className="flex flex-col gap-1 text-center md:text-left">
               <span
-                className="text-[12px] md:text-[14px] text-[#6a6a6a] font-normal leading-[18px] md:leading-[20px]"
-                style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+                className="text-[12px] md:text-[14px] font-normal leading-[18px] md:leading-[20px]"
+                style={{
+                  fontFamily: "'Plus Jakarta Sans', sans-serif",
+                  color: currentTheme.labelColor
+                }}
               >
                 Duration
               </span>
               <span
-                className="text-[18px] md:text-[20px] lg:text-[24px] text-[#2c360d] font-semibold tracking-[-0.72px] md:tracking-[-0.8px] lg:tracking-[-0.96px]"
-                style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+                className="text-[18px] md:text-[20px] lg:text-[24px] font-semibold tracking-[-0.72px] md:tracking-[-0.8px] lg:tracking-[-0.96px]"
+                style={{
+                  fontFamily: "'Plus Jakarta Sans', sans-serif",
+                  color: currentTheme.valueColor
+                }}
               >
                 {duration}
               </span>
             </div>
 
             {/* Divider */}
-            <div className="h-[1px] w-full md:h-[60px] md:w-[1px] lg:h-[76px] bg-[#c4c4c4]" />
+            <div
+              className="h-[1px] w-full md:h-[60px] md:w-[1px] lg:h-[76px]"
+              style={{ backgroundColor: currentTheme.dividerColor }}
+            />
 
             {/* Location */}
             <div className="flex flex-col gap-1 text-center md:text-left">
               <span
-                className="text-[12px] md:text-[14px] text-[#6a6a6a] font-normal leading-[18px] md:leading-[20px]"
-                style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+                className="text-[12px] md:text-[14px] font-normal leading-[18px] md:leading-[20px]"
+                style={{
+                  fontFamily: "'Plus Jakarta Sans', sans-serif",
+                  color: currentTheme.labelColor
+                }}
               >
                 Location
               </span>
               <span
-                className="text-[18px] md:text-[20px] lg:text-[24px] text-[#2c360d] font-semibold tracking-[-0.72px] md:tracking-[-0.8px] lg:tracking-[-0.96px]"
-                style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+                className="text-[18px] md:text-[20px] lg:text-[24px] font-semibold tracking-[-0.72px] md:tracking-[-0.8px] lg:tracking-[-0.96px]"
+                style={{
+                  fontFamily: "'Plus Jakarta Sans', sans-serif",
+                  color: currentTheme.valueColor
+                }}
               >
                 {location}
               </span>
             </div>
 
             {/* Divider */}
-            <div className="h-[1px] w-full md:h-[60px] md:w-[1px] lg:h-[76px] bg-[#c4c4c4]" />
+            <div
+              className="h-[1px] w-full md:h-[60px] md:w-[1px] lg:h-[76px]"
+              style={{ backgroundColor: currentTheme.dividerColor }}
+            />
 
             {/* Mode/Grades */}
             <div className="flex flex-col gap-1 text-center md:text-left">
               <span
-                className="text-[12px] md:text-[14px] text-[#6a6a6a] font-normal leading-[18px] md:leading-[20px]"
-                style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+                className="text-[12px] md:text-[14px] font-normal leading-[18px] md:leading-[20px]"
+                style={{
+                  fontFamily: "'Plus Jakarta Sans', sans-serif",
+                  color: currentTheme.labelColor
+                }}
               >
                 {modeLabel}
               </span>
               <span
-                className="text-[18px] md:text-[20px] lg:text-[24px] text-[#2c360d] font-semibold tracking-[-0.72px] md:tracking-[-0.8px] lg:tracking-[-0.96px]"
-                style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+                className="text-[18px] md:text-[20px] lg:text-[24px] font-semibold tracking-[-0.72px] md:tracking-[-0.8px] lg:tracking-[-0.96px]"
+                style={{
+                  fontFamily: "'Plus Jakarta Sans', sans-serif",
+                  color: currentTheme.valueColor
+                }}
               >
                 {modeValue}
               </span>
             </div>
 
             {/* Divider */}
-            <div className="h-[1px] w-full md:h-[60px] md:w-[1px] lg:h-[76px] bg-[#c4c4c4]" />
+            <div
+              className="h-[1px] w-full md:h-[60px] md:w-[1px] lg:h-[76px]"
+              style={{ backgroundColor: currentTheme.dividerColor }}
+            />
 
             {/* Start Date */}
             <div className="flex flex-col gap-1 text-center md:text-left">
               <span
-                className="text-[12px] md:text-[14px] text-[#6a6a6a] font-normal leading-[18px] md:leading-[20px]"
-                style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+                className="text-[12px] md:text-[14px] font-normal leading-[18px] md:leading-[20px]"
+                style={{
+                  fontFamily: "'Plus Jakarta Sans', sans-serif",
+                  color: currentTheme.labelColor
+                }}
               >
                 Start Date
               </span>
               <span
-                className="text-[18px] md:text-[20px] lg:text-[24px] text-[#2c360d] font-semibold tracking-[-0.72px] md:tracking-[-0.8px] lg:tracking-[-0.96px]"
-                style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+                className="text-[18px] md:text-[20px] lg:text-[24px] font-semibold tracking-[-0.72px] md:tracking-[-0.8px] lg:tracking-[-0.96px]"
+                style={{
+                  fontFamily: "'Plus Jakarta Sans', sans-serif",
+                  color: currentTheme.valueColor
+                }}
               >
                 {startDate}
               </span>

@@ -260,7 +260,7 @@ const FAQSection = ({
 
       {/* Main Content */}
       <motion.div
-        className="relative z-10 container mx-auto px-4 sm:px-6 md:px-10 lg:px-20 py-10 md:py-16 lg:py-20"
+        className="relative z-10 container mx-auto px-4 sm:px-6 md:px-8 lg:px-8 py-10 md:py-16 lg:py-20"
         variants={containerVariants}
         initial="hidden"
         animate="visible"

@@ -30,7 +30,7 @@ const WellnessSection = () => {
     visible: {
       opacity: 1,
       scale: 1,
-      transition: { 
+      transition: {
         duration: 0.5,
         type: "spring" as const,
         stiffness: 100
@@ -57,7 +57,7 @@ const WellnessSection = () => {
   const stars = generateStars(150)
 
   return (
-    <div className="relative bg-[#0f0f1f] py-20 md:py-24 overflow-hidden min-h-screen">
+    <div className="relative bg-[#0f0f1f] py-20 md:py-24 overflow-hidden ">
       {/* Animated Stars Background */}
       <div className="absolute inset-0">
         {stars.map((star) => (
@@ -88,7 +88,7 @@ const WellnessSection = () => {
       <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-purple-600/10 rounded-full blur-[150px]" />
       <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-blue-600/10 rounded-full blur-[150px]" />
 
-      <motion.div 
+      <motion.div
         className="relative z-10 container mx-auto px-8 md:px-20"
         variants={containerVariants}
         initial="hidden"
@@ -96,7 +96,7 @@ const WellnessSection = () => {
         viewport={{ once: true }}
       >
         {/* Header Section */}
-        <motion.div 
+        <motion.div
           className="text-center mb-16"
           variants={itemVariants}
         >
@@ -111,7 +111,7 @@ const WellnessSection = () => {
         {/* Content Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
           {/* Left Large Card - Therapy & Counseling */}
-          <motion.div 
+          <motion.div
             className="lg:col-span-7"
             variants={cardVariants}
           >

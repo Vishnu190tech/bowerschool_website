@@ -4,17 +4,120 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 
-const ContactFormSection = () => {
+// Theme Configuration
+type ThemeType = 'scholarship' | 'lead' | 'seed' | 'ug';
+
+interface ContactTheme {
+  primary: string;
+  secondary: string;
+  bgColor: string;
+  titleColor: string;
+  subtitleColor: string;
+  inputBg: string;
+  inputBorder: string;
+  inputShadow: string;
+  buttonBg: string;
+  buttonHoverBg: string;
+  buttonText: string;
+  buttonShadow: string;
+  buttonTextShadow: string;
+}
+
+const CONTACT_THEMES: Record<ThemeType, ContactTheme> = {
+  scholarship: {
+    primary: '#3232e6',
+    secondary: '#4242FF',
+    bgColor: '#dfdfff',
+    titleColor: '#111827',
+    subtitleColor: '#4b5563',
+    inputBg: 'rgba(255, 255, 255, 0.3)',
+    inputBorder: '#000000',
+    inputShadow: '4px 4px 12px 0px #3232e6',
+    buttonBg: '#3232e6',
+    buttonHoverBg: '#2525c4',
+    buttonText: '#ffffff',
+    buttonShadow: '0px 0px 0px 1px #3232e6, 0px 1px 3px 0px rgba(0, 0, 0, 0.1)',
+    buttonTextShadow: '#3232e6 0px 1px 3px',
+  },
+  lead: {
+    primary: '#A8F326',
+    secondary: '#8FD920',
+    bgColor: '#f5ffd9',
+    titleColor: '#111827',
+    subtitleColor: '#4b5563',
+    inputBg: 'rgba(255, 255, 255, 0.3)',
+    inputBorder: '#000000',
+    inputShadow: '4px 4px 12px 0px #A8F326',
+    buttonBg: '#8FD920',
+    buttonHoverBg: '#7ac01a',
+    buttonText: '#000000',
+    buttonShadow: '0px 0px 0px 1px #8FD920, 0px 1px 3px 0px rgba(0, 0, 0, 0.1)',
+    buttonTextShadow: '#8FD920 0px 1px 3px',
+  },
+  seed: {
+    primary: '#FF8829',
+    secondary: '#FFBF29',
+    bgColor: '#fff4e6',
+    titleColor: '#111827',
+    subtitleColor: '#4b5563',
+    inputBg: 'rgba(255, 255, 255, 0.3)',
+    inputBorder: '#000000',
+    inputShadow: '4px 4px 12px 0px #FF8829',
+    buttonBg: '#FF8829',
+    buttonHoverBg: '#e67720',
+    buttonText: '#ffffff',
+    buttonShadow: '0px 0px 0px 1px #FF8829, 0px 1px 3px 0px rgba(0, 0, 0, 0.1)',
+    buttonTextShadow: '#FF8829 0px 1px 3px',
+  },
+  ug: {
+    primary: '#4242FF',
+    secondary: '#3232e6',
+    bgColor: '#dfdfff',
+    titleColor: '#111827',
+    subtitleColor: '#4b5563',
+    inputBg: 'rgba(255, 255, 255, 0.3)',
+    inputBorder: '#000000',
+    inputShadow: '4px 4px 12px 0px #4242ff',
+    buttonBg: '#4242ff',
+    buttonHoverBg: '#3232e6',
+    buttonText: '#ffffff',
+    buttonShadow: '0px 0px 0px 1px #4242ff, 0px 1px 3px 0px rgba(0, 0, 0, 0.1)',
+    buttonTextShadow: '#4242ff 0px 1px 3px',
+  },
+};
+
+interface ContactFormSectionProps {
+  theme?: ThemeType;
+  title?: string;
+  subtitle?: string;
+  buttonText?: string;
+  onSubmit?: (email: string) => void;
+}
+
+const ContactFormSection = ({
+  theme = 'ug',
+  title = 'Want to know more?',
+  subtitle = 'Let us reach out to you',
+  buttonText = 'I want to know more',
+  onSubmit
+}: ContactFormSectionProps) => {
+  const currentTheme = CONTACT_THEMES[theme];
   const [email, setEmail] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle form submission
-    console.log('Email submitted:', email);
+    if (onSubmit) {
+      onSubmit(email);
+    } else {
+      console.log('Email submitted:', email);
+    }
   };
 
   return (
-    <section className="relative w-full h-[400px] md:h-[500px] lg:h-[600px] bg-[#dfdfff] overflow-hidden">
+    <section
+      className="relative w-full h-[400px] md:h-[500px] lg:h-[600px] overflow-hidden"
+      style={{ backgroundColor: currentTheme.bgColor }}
+    >
       {/* Top and bottom borders */}
       <div className="absolute inset-x-0 top-0 h-px bg-white" />
       <div className="absolute inset-x-0 bottom-0 h-px bg-white" />
@@ -50,30 +153,39 @@ const ContactFormSection = () => {
           {/* Header */}
           <div className="text-center">
             <h2
-              className="text-[#111827] capitalize mb-2 md:mb-3 text-[28px] md:text-[36px] lg:text-[44px] leading-tight"
+              className="capitalize mb-2 md:mb-3 text-[28px] md:text-[36px] lg:text-[44px] leading-tight"
               style={{
                 fontFamily: 'var(--font-plus-jakarta)',
                 fontWeight: 600,
-                letterSpacing: '-1.76px'
+                letterSpacing: '-1.76px',
+                color: currentTheme.titleColor
               }}
             >
-              Want to know more?
+              {title}
             </h2>
             <p
-              className="text-[#4b5563] text-[16px] md:text-[17px] lg:text-[18px] leading-[1.5]"
+              className="text-[16px] md:text-[17px] lg:text-[18px] leading-[1.5]"
               style={{
                 fontFamily: 'var(--font-plus-jakarta)',
-                fontWeight: 400
+                fontWeight: 400,
+                color: currentTheme.subtitleColor
               }}
             >
-              Let us reach out to you
+              {subtitle}
             </p>
           </div>
 
           {/* Form */}
           <form onSubmit={handleSubmit} className="w-full flex flex-col items-center gap-4 md:gap-5 lg:gap-6">
             {/* Email Input */}
-            <div className="relative w-full h-[60px] md:h-[70px] lg:h-[81px] bg-white/30 backdrop-blur-lg rounded-[10px] border border-black shadow-[4px_4px_12px_0px_#4242ff]">
+            <div
+              className="relative w-full h-[60px] md:h-[70px] lg:h-[81px] backdrop-blur-lg rounded-[10px] border"
+              style={{
+                backgroundColor: currentTheme.inputBg,
+                borderColor: currentTheme.inputBorder,
+                boxShadow: currentTheme.inputShadow
+              }}
+            >
               <div className="absolute inset-[10px]">
                 <input
                   type="email"
@@ -95,20 +207,31 @@ const ContactFormSection = () => {
               type="submit"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="bg-[#4242ff] text-white px-3 md:px-4 py-2 h-10 md:h-11 rounded-lg flex items-center gap-2 shadow-[0px_0px_0px_1px_#4242ff,0px_1px_3px_0px_rgba(0,0,0,0.1)] hover:bg-[#3232e6] transition-colors"
+              className="px-3 md:px-4 py-2 h-10 md:h-11 rounded-lg flex items-center gap-2 transition-colors"
+              style={{
+                backgroundColor: currentTheme.buttonBg,
+                color: currentTheme.buttonText,
+                boxShadow: currentTheme.buttonShadow
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = currentTheme.buttonHoverBg;
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = currentTheme.buttonBg;
+              }}
             >
               <span
                 className="text-[14px] md:text-[16px] lg:text-[18px] font-medium whitespace-nowrap"
                 style={{
                   fontFamily: 'var(--font-plus-jakarta)',
-                  textShadow: '#4242ff 0px 1px 3px'
+                  textShadow: currentTheme.buttonTextShadow
                 }}
               >
-                I want to know more
+                {buttonText}
               </span>
               {/* Chevron Icon */}
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0">
-                <path d="M7.5 5L12.5 10L7.5 15" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                <path d="M7.5 5L12.5 10L7.5 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </motion.button>
           </form>

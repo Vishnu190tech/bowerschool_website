@@ -3,7 +3,83 @@
 import { useState } from 'react';
 import Image from 'next/image';
 
-export default function StudentPitchVideoSection() {
+// Theme Configuration
+type ThemeType = 'scholarship' | 'lead' | 'seed' | 'ug';
+
+interface VideoTheme {
+  primary: string;
+  secondary: string;
+  bgGradientFrom: string;
+  bgGradientTo: string;
+  titleColor: string;
+  playButtonBg: string;
+  playButtonBorder: string;
+  videoBorder: string;
+}
+
+const VIDEO_THEMES: Record<ThemeType, VideoTheme> = {
+  scholarship: {
+    primary: '#3232e6',
+    secondary: '#4242FF',
+    bgGradientFrom: '#010817',
+    bgGradientTo: '#000000',
+    titleColor: '#ffffff',
+    playButtonBg: '#3232e6',
+    playButtonBorder: '#ffffff',
+    videoBorder: '#ffffff',
+  },
+  lead: {
+    primary: '#A8F326',
+    secondary: '#8FD920',
+    bgGradientFrom: '#0a1501',
+    bgGradientTo: '#000000',
+    titleColor: '#ffffff',
+    playButtonBg: '#8FD920',
+    playButtonBorder: '#ffffff',
+    videoBorder: '#ffffff',
+  },
+  seed: {
+    primary: '#FF8829',
+    secondary: '#FFBF29',
+    bgGradientFrom: '#180b00',
+    bgGradientTo: '#120800',
+    titleColor: '#ffffff',
+    playButtonBg: '#ff8829',
+    playButtonBorder: '#ffffff',
+    videoBorder: '#ffffff',
+  },
+  ug: {
+    primary: '#4242FF',
+    secondary: '#3232e6',
+    bgGradientFrom: '#010817',
+    bgGradientTo: '#000000',
+    titleColor: '#ffffff',
+    playButtonBg: '#4242ff',
+    playButtonBorder: '#ffffff',
+    videoBorder: '#ffffff',
+  },
+};
+
+interface StudentPitchVideoSectionProps {
+  theme?: ThemeType;
+  title?: string;
+  videoThumbnail?: string;
+  videoUrl?: string;
+  lightsTopRight?: string;
+  lightsBottomLeft?: string;
+  starsBackground?: string;
+}
+
+export default function StudentPitchVideoSection({
+  theme = 'seed',
+  title = 'Watch our students pitch',
+  videoThumbnail = '/7433128edd2a264929a262701e6bb608ef33082e.png',
+  videoUrl = '/path-to-your-video.mp4',
+  lightsTopRight = '/d9a3709f628632a2c4a027c88dcc01d5950ec6fb.svg',
+  lightsBottomLeft = '/0057a6a496f675a63ba4c226b7cf6ff02344816b.svg',
+  starsBackground = '/4cba1214cc1e669a76355a119bbb18011d64d10a.svg'
+}: StudentPitchVideoSectionProps) {
+  const currentTheme = VIDEO_THEMES[theme];
   const [isPlaying, setIsPlaying] = useState(false);
 
   const handlePlayClick = () => {
@@ -12,12 +88,17 @@ export default function StudentPitchVideoSection() {
   };
 
   return (
-    <section className="relative bg-gradient-to-r from-[#180b00] to-[#120800] px-4 md:px-10 lg:px-20 py-8 md:py-10 overflow-hidden">
+    <section
+      className="relative px-4 md:px-10 lg:px-20 py-8 md:py-10 overflow-hidden"
+      style={{
+        background: `linear-gradient(to right, ${currentTheme.bgGradientFrom}, ${currentTheme.bgGradientTo})`
+      }}
+    >
       {/* Background Effects - Hidden on mobile */}
       {/* Lights Effect - Top Right */}
       <div className="hidden lg:block absolute h-[1401.86px] w-[1693.86px] right-[-300px] top-[-473px] mix-blend-hard-light pointer-events-none">
         <Image
-          src="/d9a3709f628632a2c4a027c88dcc01d5950ec6fb.svg"
+          src={lightsTopRight}
           alt=""
           fill
           className="object-contain"
@@ -28,7 +109,7 @@ export default function StudentPitchVideoSection() {
       <div className="hidden lg:block absolute h-[1401.86px] w-[1693.86px] left-[-715px] bottom-[-473px] mix-blend-hard-light pointer-events-none">
         <div className="rotate-180 relative w-full h-full">
           <Image
-            src="/0057a6a496f675a63ba4c226b7cf6ff02344816b.svg"
+            src={lightsBottomLeft}
             alt=""
             fill
             className="object-contain"
@@ -39,7 +120,7 @@ export default function StudentPitchVideoSection() {
       {/* Stars Background */}
       <div className="hidden md:block absolute h-[1438px] left-[-97.85%] right-[-97.85%] top-1/2 -translate-y-1/2 pointer-events-none">
         <Image
-          src="/4cba1214cc1e669a76355a119bbb18011d64d10a.svg"
+          src={starsBackground}
           alt=""
           fill
           className="object-contain"
@@ -51,10 +132,13 @@ export default function StudentPitchVideoSection() {
         <div className="flex flex-col gap-6 md:gap-8 items-center">
           {/* Title */}
           <h2
-            className="text-[32px] md:text-[56px] lg:text-[80px] text-white font-bold tracking-[-1.6px] md:tracking-[-2.8px] lg:tracking-[-4px] leading-tight text-center px-4"
-            style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+            className="text-[32px] md:text-[56px] lg:text-[80px] font-bold tracking-[-1.6px] md:tracking-[-2.8px] lg:tracking-[-4px] leading-tight text-center px-4"
+            style={{
+              fontFamily: "'Plus Jakarta Sans', sans-serif",
+              color: currentTheme.titleColor
+            }}
           >
-            Watch our students pitch
+            {title}
           </h2>
 
           {/* Video Container */}
@@ -63,11 +147,14 @@ export default function StudentPitchVideoSection() {
             <div
               className="absolute inset-0 bg-cover bg-center backdrop-blur-md"
               style={{
-                backgroundImage: `url('/7433128edd2a264929a262701e6bb608ef33082e.png')`
+                backgroundImage: `url('${videoThumbnail}')`
               }}
             >
-              {/* White Border */}
-              <div className="absolute inset-0 border-[6px] md:border-[8px] lg:border-[10px] border-white rounded-[16px] md:rounded-[20px] lg:rounded-[24px]" />
+              {/* Border */}
+              <div
+                className="absolute inset-0 border-[6px] md:border-[8px] lg:border-[10px] rounded-[16px] md:rounded-[20px] lg:rounded-[24px]"
+                style={{ borderColor: currentTheme.videoBorder }}
+              />
             </div>
 
             {/* Play Button */}
@@ -78,10 +165,22 @@ export default function StudentPitchVideoSection() {
                 aria-label="Play video"
               >
                 {/* Outer Circle - Less Opacity */}
-                <div className="absolute inset-0 bg-[#ff8829] opacity-50 rounded-[12px] md:rounded-[14px] lg:rounded-[16px] border border-white transition-all duration-300 group-hover:opacity-60 group-hover:scale-110" />
+                <div
+                  className="absolute inset-0 opacity-50 rounded-[12px] md:rounded-[14px] lg:rounded-[16px] border transition-all duration-300 group-hover:opacity-60 group-hover:scale-110"
+                  style={{
+                    backgroundColor: currentTheme.playButtonBg,
+                    borderColor: currentTheme.playButtonBorder
+                  }}
+                />
 
                 {/* Inner Circle - More Opacity */}
-                <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[54px] h-[54px] md:w-[70px] md:h-[70px] lg:w-[90px] lg:h-[90px] bg-[#ff8829] opacity-60 rounded-[12px] md:rounded-[14px] lg:rounded-[16px] border border-white transition-all duration-300 group-hover:opacity-70" />
+                <div
+                  className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[54px] h-[54px] md:w-[70px] md:h-[70px] lg:w-[90px] lg:h-[90px] opacity-60 rounded-[12px] md:rounded-[14px] lg:rounded-[16px] border transition-all duration-300 group-hover:opacity-70"
+                  style={{
+                    backgroundColor: currentTheme.playButtonBg,
+                    borderColor: currentTheme.playButtonBorder
+                  }}
+                />
 
                 {/* Play Icon */}
                 <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 md:w-12 md:h-12 lg:w-16 lg:h-16 flex items-center justify-center">
@@ -103,7 +202,7 @@ export default function StudentPitchVideoSection() {
                   className="w-full h-full object-cover rounded-[16px] md:rounded-[20px] lg:rounded-[24px]"
                   controls
                   autoPlay
-                  src="/path-to-your-video.mp4"
+                  src={videoUrl}
                 >
                   Your browser does not support the video tag.
                 </video>

@@ -4,6 +4,63 @@ import { motion } from 'framer-motion';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
 import { useState, useRef } from 'react';
 
+// Theme Configuration
+type ThemeType = 'scholarship' | 'lead' | 'seed' | 'ug';
+
+interface LearnersTheme {
+  primary: string;
+  secondary: string;
+  bgGradientFrom: string;
+  bgGradientTo: string;
+  cardGradient: string;
+  buttonBg: string;
+  buttonText: string;
+  buttonHoverBg: string;
+}
+
+const LEARNERS_THEMES: Record<ThemeType, LearnersTheme> = {
+  scholarship: {
+    primary: '#3232e6',
+    secondary: '#4242FF',
+    bgGradientFrom: '#010817',
+    bgGradientTo: '#000000',
+    cardGradient: 'linear-gradient(to bottom right, rgba(50, 50, 230, 0.2), rgba(66, 66, 255, 0.2))',
+    buttonBg: '#ffffff',
+    buttonText: '#111827',
+    buttonHoverBg: '#f3f4f6',
+  },
+  lead: {
+    primary: '#A8F326',
+    secondary: '#8FD920',
+    bgGradientFrom: '#0a1501',
+    bgGradientTo: '#000000',
+    cardGradient: 'linear-gradient(to bottom right, rgba(168, 243, 38, 0.2), rgba(143, 217, 32, 0.2))',
+    buttonBg: '#ffffff',
+    buttonText: '#111827',
+    buttonHoverBg: '#f3f4f6',
+  },
+  seed: {
+    primary: '#FF8829',
+    secondary: '#FFBF29',
+    bgGradientFrom: '#170c01',
+    bgGradientTo: '#000000',
+    cardGradient: 'linear-gradient(to bottom right, rgba(255, 136, 41, 0.2), rgba(255, 191, 41, 0.2))',
+    buttonBg: '#ffffff',
+    buttonText: '#111827',
+    buttonHoverBg: '#f3f4f6',
+  },
+  ug: {
+    primary: '#4242FF',
+    secondary: '#3232e6',
+    bgGradientFrom: '#010817',
+    bgGradientTo: '#000000',
+    cardGradient: 'linear-gradient(to bottom right, rgba(66, 66, 255, 0.2), rgba(50, 50, 230, 0.2))',
+    buttonBg: '#ffffff',
+    buttonText: '#111827',
+    buttonHoverBg: '#f3f4f6',
+  },
+};
+
 interface Learner {
   id: number;
   name: string;
@@ -13,7 +70,18 @@ interface Learner {
   hasConnectButton?: boolean;
 }
 
-const learners: Learner[] = [
+// Component Props Interface
+interface MeetOurLearnersSectionProps {
+  theme?: ThemeType;
+  title?: string;
+  subtitle?: string;
+  learners?: Learner[];
+  totalPages?: number;
+  cardsPerView?: number;
+}
+
+// Default Learners Data
+const DEFAULT_LEARNERS: Learner[] = [
   {
     id: 1,
     name: 'Yohanes Ridwan',
@@ -63,12 +131,18 @@ const learners: Learner[] = [
   }
 ];
 
-export default function MeetOurLearnersSection() {
+export default function MeetOurLearnersSection({
+  theme = 'ug',
+  title = 'Meet Our Learners',
+  subtitle = "Get to know the people who make Bower what it is, and what it's becoming.",
+  learners = DEFAULT_LEARNERS,
+  totalPages = 24,
+  cardsPerView = 4
+}: MeetOurLearnersSectionProps) {
+  const currentTheme = LEARNERS_THEMES[theme];
   const [currentPage, setCurrentPage] = useState(1);
   const [currentIndex, setCurrentIndex] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
-  const totalPages = 24; // As shown in Figma
-  const cardsPerView = 4; // Show 4 cards at a time on desktop
 
   const handlePrevious = () => {
     // Desktop carousel
@@ -105,7 +179,12 @@ export default function MeetOurLearnersSection() {
   };
 
   return (
-    <section className="w-full px-4 py-12 md:px-8 md:py-16 lg:px-20 lg:py-20 bg-gradient-to-br from-gray-900 to-black">
+    <section
+      className="w-full px-4 py-12 md:px-8 md:py-16 lg:px-20 lg:py-20"
+      style={{
+        background: `linear-gradient(to bottom right, ${currentTheme.bgGradientFrom}, ${currentTheme.bgGradientTo})`
+      }}
+    >
       <div className="max-w-[1440px] mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
@@ -115,7 +194,7 @@ export default function MeetOurLearnersSection() {
             transition={{ duration: 0.5 }}
             className="text-3xl md:text-4xl lg:text-[44px] font-bold text-white mb-3 tracking-[-1.76px]"
           >
-            Meet Our Learners
+            {title}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -123,7 +202,7 @@ export default function MeetOurLearnersSection() {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto"
           >
-            Get to know the people who make Bower what it is, and what it's becoming.
+            {subtitle}
           </motion.p>
         </div>
 
@@ -151,7 +230,10 @@ export default function MeetOurLearnersSection() {
 
                   {/* Content */}
                   <div className="absolute bottom-0 left-0 right-0 p-6">
-                    <div className="backdrop-blur-xl bg-gradient-to-br from-white/10 to-white/5 rounded-xl p-5 border border-white/20">
+                    <div
+                      className="backdrop-blur-xl rounded-xl p-5 border border-white/20"
+                      style={{ background: currentTheme.cardGradient }}
+                    >
                       <h3 className="text-2xl font-bold text-white mb-2">
                         {learner.name}
                       </h3>
@@ -159,7 +241,19 @@ export default function MeetOurLearnersSection() {
                         {learner.role}
                       </p>
                       {learner.hasConnectButton && (
-                        <button className="w-full bg-white text-gray-900 px-4 py-2.5 rounded-lg font-medium hover:bg-gray-100 transition-all duration-200 flex items-center justify-center gap-2 group">
+                        <button
+                          className="w-full px-4 py-2.5 rounded-lg font-medium transition-all duration-200 flex items-center justify-center gap-2 group"
+                          style={{
+                            backgroundColor: currentTheme.buttonBg,
+                            color: currentTheme.buttonText
+                          }}
+                          onMouseEnter={(e) => {
+                            e.currentTarget.style.backgroundColor = currentTheme.buttonHoverBg;
+                          }}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.style.backgroundColor = currentTheme.buttonBg;
+                          }}
+                        >
                           <span>Connect</span>
                           <svg className="w-5 h-5 text-[#0077b5]" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
@@ -226,7 +320,10 @@ export default function MeetOurLearnersSection() {
 
                     {/* Content */}
                     <div className="absolute bottom-0 left-0 right-0 p-6">
-                      <div className="backdrop-blur-2xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-2xl p-6 border border-white/30">
+                      <div
+                        className="backdrop-blur-2xl rounded-2xl p-6 border border-white/30"
+                        style={{ background: currentTheme.cardGradient }}
+                      >
                         <div className="flex items-start justify-between mb-3">
                           <h3 className="text-2xl font-bold text-white">
                             {learner.name}

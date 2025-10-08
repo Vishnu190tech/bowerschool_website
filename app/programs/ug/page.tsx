@@ -25,6 +25,7 @@ import HowItWorks from "@/components/HowItWorks";
 import FAQSection from "@/components/FAQSection";
 import ScholarshipFormSection from "@/components/ScholarshipFormSection";
 import SkillsProSectionTwo from "@/components/SkillsProSectionTwo";
+import NumbersSection from "@/components/NumbersSection";
 
 export default function UGProgramPage() {
   return (
@@ -39,10 +40,10 @@ export default function UGProgramPage() {
           modeValue="Grade 12"
           startDate="April 5th, 2025"
           backgroundImage="/bg-ug-page.png"
+          theme="ug"
         />
-        <BowerNetworkSection />
-
-        <LearningComparisonSection />
+        <NumbersSection theme="ug" />
+        <LearningComparisonSection theme="ug" />
         <StudentPitchSection />
         <WhyPartnerWithSeedSection theme="ug" />
         <MeetOurLearnersSection />
@@ -57,7 +58,7 @@ export default function UGProgramPage() {
         <ContactFormSection />
         <BowerGlimpseSection theme="ug" />
         <Testimonials theme="ug" />
-        <HowItWorks />
+        <HowItWorks theme="ug" />
         <CourseFeeSection theme="ug" />
         <FAQSection theme="ug" />
         <ScholarshipFormSection theme="ug" />

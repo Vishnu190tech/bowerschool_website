@@ -17,7 +17,7 @@ export default function ProgramNavigation() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const headerHeight = 72; // Height of the header
+      const headerHeight = 78; // Height of the header
       const scrollPosition = window.scrollY;
 
       // When scroll position reaches the nav's original position minus header height, make it sticky
@@ -60,9 +60,8 @@ export default function ProgramNavigation() {
   return (
     <div
       ref={navRef}
-      className={`${
-        isSticky ? 'fixed top-[72px] left-0 right-0' : 'relative'
-      } z-40 bg-[#252525] w-full px-4 md:px-10 lg:px-[82px] py-1 md:py-1 transition-all duration-300`}
+      className={`${isSticky ? 'fixed top-[52px]  lg:top-[78px] left-0 right-0' : 'relative'
+        } z-40 bg-[#252525] w-full px-4 md:px-10 lg:px-[82px] py-1 md:py-1 transition-all duration-300`}
     >
       <nav className="max-w-[1440px] mx-auto">
         <div className="flex flex-wrap items-center justify-center md:justify-between gap-2 md:gap-4 px-3 py-2 md:px-6 rounded-2xl md:rounded-[16px]">

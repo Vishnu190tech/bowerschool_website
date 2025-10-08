@@ -1,62 +1,165 @@
 import Image from 'next/image';
 
-export default function EvolvingEducationSection() {
-  const regularSchoolItems = [
-    {
-      title: 'From text book driven learning',
-      description: 'Emphasis on rote memorization, standard subjects, and exams'
-    },
-    {
-      title: 'From Limited Exposure to Life Skills',
-      description: 'Emphasis on rote memorization, standard subjects, and exams'
-    },
-    {
-      title: 'From One-Size-Fits-All Curriculum',
-      description: 'Same content for every student, regardless of interests or aspirations.'
-    },
-    {
-      title: 'From Teacher-Centric Classrooms',
-      description: 'Students are passive recipients of information.'
-    },
-    {
-      title: 'From Minimal Industry Exposure',
-      description: 'Little interaction with real-world professionals or problems.'
-    },
-    {
-      title: 'From Short-Term Academic Focus',
-      description: 'Emphasis on grades over long-term thinking.'
-    }
-  ];
+// Theme Configuration
+type ThemeType = 'scholarship' | 'lead' | 'seed' | 'ug';
 
-  const bowerItems = [
-    {
-      title: 'To Real-World Learning',
-      description: 'Hands-on projects that connect concepts to real challenges.'
-    },
-    {
-      title: 'To Future-Ready Skills',
-      description: 'Entrepreneurship, design thinking, and financial literacy from an early age.'
-    },
-    {
-      title: 'To Tailored Learning Paths',
-      description: 'Age-appropriate, modular content that evolves as students grow.'
-    },
-    {
-      title: 'To Student-Led Exploration',
-      description: 'Encourages curiosity, experimentation, and ownership of ideas.'
-    },
-    {
-      title: 'To Expert Mentorship & Immersion',
-      description: 'Sessions led by entrepreneurs and innovators.'
-    },
-    {
-      title: 'To Mindset for the Future',
-      description: 'Builds creativity, resilience, and a problem-solving attitude for life.'
-    }
-  ];
+interface EvolvingTheme {
+  primary: string;
+  secondary: string;
+  bgGradientFrom: string;
+  bgGradientTo: string;
+  cardBg: string;
+  rightCardBorder: string;
+  rightCardGradient: string;
+}
+
+const EVOLVING_THEMES: Record<ThemeType, EvolvingTheme> = {
+  scholarship: {
+    primary: '#3232e6',
+    secondary: '#4242FF',
+    bgGradientFrom: '#010817',
+    bgGradientTo: '#050812',
+    cardBg: '#202020',
+    rightCardBorder: 'rgba(50, 50, 230, 0.6)',
+    rightCardGradient: `
+      linear-gradient(133.538deg, rgba(255, 255, 255, 0.2) 2.6545%, rgba(255, 255, 255, 0) 44.796%),
+      radial-gradient(ellipse 999.65px 471.82px at 292.45px 118.25px, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 55.823%, rgba(0, 0, 0, 0.3) 73.997%, rgba(0, 0, 0, 0) 100%),
+      linear-gradient(36.4336deg, rgba(50, 50, 230, 0.4) 0.67386%, rgba(50, 50, 230, 0.16) 50.204%, rgba(50, 50, 230, 0.16) 98.79%)
+    `,
+  },
+  lead: {
+    primary: '#A8F326',
+    secondary: '#8FD920',
+    bgGradientFrom: '#0a1501',
+    bgGradientTo: '#080f03',
+    cardBg: '#202020',
+    rightCardBorder: 'rgba(168, 243, 38, 0.6)',
+    rightCardGradient: `
+      linear-gradient(133.538deg, rgba(255, 255, 255, 0.2) 2.6545%, rgba(255, 255, 255, 0) 44.796%),
+      radial-gradient(ellipse 999.65px 471.82px at 292.45px 118.25px, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 55.823%, rgba(0, 0, 0, 0.3) 73.997%, rgba(0, 0, 0, 0) 100%),
+      linear-gradient(36.4336deg, rgba(168, 243, 38, 0.4) 0.67386%, rgba(168, 243, 38, 0.16) 50.204%, rgba(168, 243, 38, 0.16) 98.79%)
+    `,
+  },
+  seed: {
+    primary: '#FF8829',
+    secondary: '#FFBF29',
+    bgGradientFrom: '#180b00',
+    bgGradientTo: '#120800',
+    cardBg: '#202020',
+    rightCardBorder: 'rgba(255, 136, 41, 0.6)',
+    rightCardGradient: `
+      linear-gradient(133.538deg, rgba(255, 255, 255, 0.2) 2.6545%, rgba(255, 255, 255, 0) 44.796%),
+      radial-gradient(ellipse 999.65px 471.82px at 292.45px 118.25px, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 55.823%, rgba(0, 0, 0, 0.3) 73.997%, rgba(0, 0, 0, 0) 100%),
+      linear-gradient(36.4336deg, rgba(255, 136, 41, 0.4) 0.67386%, rgba(255, 136, 41, 0.16) 50.204%, rgba(255, 136, 41, 0.16) 98.79%)
+    `,
+  },
+  ug: {
+    primary: '#4242FF',
+    secondary: '#3232e6',
+    bgGradientFrom: '#010817',
+    bgGradientTo: '#050812',
+    cardBg: '#202020',
+    rightCardBorder: 'rgba(66, 66, 255, 0.6)',
+    rightCardGradient: `
+      linear-gradient(133.538deg, rgba(255, 255, 255, 0.2) 2.6545%, rgba(255, 255, 255, 0) 44.796%),
+      radial-gradient(ellipse 999.65px 471.82px at 292.45px 118.25px, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 55.823%, rgba(0, 0, 0, 0.3) 73.997%, rgba(0, 0, 0, 0) 100%),
+      linear-gradient(36.4336deg, rgba(66, 66, 255, 0.4) 0.67386%, rgba(66, 66, 255, 0.16) 50.204%, rgba(66, 66, 255, 0.16) 98.79%)
+    `,
+  },
+};
+
+// Item Interface
+interface EducationItem {
+  title: string;
+  description: string;
+}
+
+// Component Props Interface
+interface EvolvingEducationSectionProps {
+  theme?: ThemeType;
+  mainTitle?: string;
+  highlightTitle?: string;
+  description?: string;
+  leftColumnTitle?: string;
+  rightColumnTitle?: string;
+  leftItems?: EducationItem[];
+  rightItems?: EducationItem[];
+}
+
+// Default Items Data
+const DEFAULT_LEFT_ITEMS: EducationItem[] = [
+  {
+    title: 'From text book driven learning',
+    description: 'Emphasis on rote memorization, standard subjects, and exams'
+  },
+  {
+    title: 'From Limited Exposure to Life Skills',
+    description: 'Emphasis on rote memorization, standard subjects, and exams'
+  },
+  {
+    title: 'From One-Size-Fits-All Curriculum',
+    description: 'Same content for every student, regardless of interests or aspirations.'
+  },
+  {
+    title: 'From Teacher-Centric Classrooms',
+    description: 'Students are passive recipients of information.'
+  },
+  {
+    title: 'From Minimal Industry Exposure',
+    description: 'Little interaction with real-world professionals or problems.'
+  },
+  {
+    title: 'From Short-Term Academic Focus',
+    description: 'Emphasis on grades over long-term thinking.'
+  }
+];
+
+const DEFAULT_RIGHT_ITEMS: EducationItem[] = [
+  {
+    title: 'To Real-World Learning',
+    description: 'Hands-on projects that connect concepts to real challenges.'
+  },
+  {
+    title: 'To Future-Ready Skills',
+    description: 'Entrepreneurship, design thinking, and financial literacy from an early age.'
+  },
+  {
+    title: 'To Tailored Learning Paths',
+    description: 'Age-appropriate, modular content that evolves as students grow.'
+  },
+  {
+    title: 'To Student-Led Exploration',
+    description: 'Encourages curiosity, experimentation, and ownership of ideas.'
+  },
+  {
+    title: 'To Expert Mentorship & Immersion',
+    description: 'Sessions led by entrepreneurs and innovators.'
+  },
+  {
+    title: 'To Mindset for the Future',
+    description: 'Builds creativity, resilience, and a problem-solving attitude for life.'
+  }
+];
+
+export default function EvolvingEducationSection({
+  theme = 'seed',
+  mainTitle = 'Young Minds Are Evolving',
+  highlightTitle = 'Their Education Must Too',
+  description = "With Bower's bespoke progressive curriculum designed for K12 students, young minds go beyond outdated lessons. We blend evolving business thinking with hands-on entrepreneurial action, turning curiosity into real-world skills. Because tomorrow's leaders need more than theory — they need experience.",
+  leftColumnTitle = 'Regular School Curriculum',
+  rightColumnTitle = "Curriculum Upgraded with Bower's Modules",
+  leftItems = DEFAULT_LEFT_ITEMS,
+  rightItems = DEFAULT_RIGHT_ITEMS
+}: EvolvingEducationSectionProps) {
+  const currentTheme = EVOLVING_THEMES[theme];
 
   return (
-    <section className="relative bg-gradient-to-r from-[#180b00] to-[#120800] px-4 md:px-10 lg:px-20 py-8 md:py-12 lg:py-20 overflow-hidden">
+    <section
+      className="relative px-4 md:px-10 lg:px-20 py-8 md:py-12 lg:py-20 overflow-hidden"
+      style={{
+        background: `linear-gradient(to right, ${currentTheme.bgGradientFrom}, ${currentTheme.bgGradientTo})`
+      }}
+    >
       {/* Background Effects */}
       {/* Stars Background - Hidden on Mobile */}
       <div
@@ -145,13 +248,13 @@ export default function EvolvingEducationSection() {
               className="text-[24px] md:text-[32px] lg:text-[40px] text-white font-semibold tracking-[-0.8px] md:tracking-[-1.2px] lg:tracking-[-1.6px] leading-[1.2] md:leading-[1.1] lg:leading-[40px]"
               style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
             >
-              Young Minds Are Evolving
+              {mainTitle}
             </h2>
             <h2
-              className="text-[26px] md:text-[36px] lg:text-[44px] text-[#ff8829] font-semibold tracking-[-1px] md:tracking-[-1.4px] lg:tracking-[-1.76px] leading-[1.2] md:leading-[1.1] lg:leading-[44px] capitalize"
-              style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+              className="text-[26px] md:text-[36px] lg:text-[44px] font-semibold tracking-[-1px] md:tracking-[-1.4px] lg:tracking-[-1.76px] leading-[1.2] md:leading-[1.1] lg:leading-[44px] capitalize"
+              style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", color: currentTheme.primary }}
             >
-              Their Education Must Too
+              {highlightTitle}
             </h2>
           </div>
           <div className="flex-1">
@@ -159,7 +262,7 @@ export default function EvolvingEducationSection() {
               className="text-[14px] md:text-[16px] lg:text-[18px] text-[#c3c3c3] font-normal leading-[1.5] md:leading-[1.5] lg:leading-[27px]"
               style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
             >
-              With Bower's bespoke progressive curriculum designed for K12 students, young minds go beyond outdated lessons. We blend evolving business thinking with hands-on entrepreneurial action, turning curiosity into real-world skills. Because tomorrow's leaders need more than theory — they need experience.
+              {description}
             </p>
           </div>
         </div>
@@ -167,15 +270,18 @@ export default function EvolvingEducationSection() {
         {/* Comparison Container */}
         <div className="flex flex-col lg:flex-row gap-4">
           {/* Regular School Curriculum */}
-          <div className="flex-1 bg-[#202020] rounded-[16px] md:rounded-[20px] lg:rounded-[24px] p-4 md:p-5 lg:p-6 border-2 border-transparent">
+          <div
+            className="flex-1 rounded-[16px] md:rounded-[20px] lg:rounded-[24px] p-4 md:p-5 lg:p-6 border-2 border-transparent"
+            style={{ backgroundColor: currentTheme.cardBg }}
+          >
             <h3
               className="text-[20px] md:text-[24px] lg:text-[30px] text-white font-semibold tracking-[-0.8px] md:tracking-[-1px] lg:tracking-[-1.2px] mb-4 md:mb-6 lg:mb-8"
               style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
             >
-              Regular School Curriculum
+              {leftColumnTitle}
             </h3>
             <div className="flex flex-col gap-3 md:gap-4 h-auto lg:h-[692px]">
-              {regularSchoolItems.map((item, index) => (
+              {leftItems.map((item, index) => (
                 <div
                   key={index}
                   className="backdrop-blur-[22px] bg-[rgba(32,32,32,0.5)] rounded-[8px] md:rounded-[10px] lg:rounded-[12px] p-2 md:p-2.5 lg:p-3 border border-[rgba(255,255,255,0.6)] flex-1"
@@ -199,24 +305,21 @@ export default function EvolvingEducationSection() {
 
           {/* Bower's Upgraded Curriculum */}
           <div
-            className="flex-1 backdrop-blur-[30px] bg-[rgba(32,32,32,0.2)] rounded-[16px] md:rounded-[20px] lg:rounded-[24px] border-2 border-transparent relative overflow-hidden"
+            className="flex-1 backdrop-blur-[30px] bg-[rgba(32,32,32,0.2)] rounded-[16px] md:rounded-[20px] lg:rounded-[24px] border-2 relative overflow-hidden"
             style={{
-              backgroundImage: `
-                linear-gradient(133.538deg, rgba(255, 255, 255, 0.2) 2.6545%, rgba(255, 255, 255, 0) 44.796%),
-                radial-gradient(ellipse 999.65px 471.82px at 292.45px 118.25px, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 55.823%, rgba(0, 0, 0, 0.3) 73.997%, rgba(0, 0, 0, 0) 100%),
-                linear-gradient(36.4336deg, rgba(255, 136, 41, 0.4) 0.67386%, rgba(255, 136, 41, 0.16) 50.204%, rgba(255, 136, 41, 0.16) 98.79%)
-              `
+              backgroundImage: currentTheme.rightCardGradient,
+              borderColor: currentTheme.rightCardBorder
             }}
           >
             <div className="p-4 md:p-5 lg:p-6">
               <h3
-                className="text-[20px] md:text-[24px] lg:text-[30px] text-[#ff8829] font-semibold tracking-[-0.8px] md:tracking-[-1px] lg:tracking-[-1.2px] mb-4 md:mb-6 lg:mb-8"
-                style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}
+                className="text-[20px] md:text-[24px] lg:text-[30px] font-semibold tracking-[-0.8px] md:tracking-[-1px] lg:tracking-[-1.2px] mb-4 md:mb-6 lg:mb-8"
+                style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", color: currentTheme.primary }}
               >
-                Curriculum Upgraded with Bower's Modules
+                {rightColumnTitle}
               </h3>
               <div className="flex flex-col gap-3 md:gap-4 h-auto lg:h-[692px]">
-                {bowerItems.map((item, index) => (
+                {rightItems.map((item, index) => (
                   <div
                     key={index}
                     className="backdrop-blur-[22px] bg-[rgba(32,32,32,0.5)] rounded-[8px] md:rounded-[10px] lg:rounded-[12px] p-2 md:p-2.5 lg:p-3 border border-[rgba(255,255,255,0.6)] flex-1"

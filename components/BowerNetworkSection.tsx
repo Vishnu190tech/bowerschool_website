@@ -84,13 +84,13 @@ const BowerNetworkSection = ({
       </div>
 
       <motion.div
-        className="relative z-10 container mx-auto px-4 md:px-8 lg:px-20"
+        className="relative z-10 container mx-auto px-4 md:px-8 lg:px-8"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
         viewport={{ once: true }}
       >
-        <div className="flex flex-col lg:flex-row gap-8 md:gap-12 lg:gap-20 items-center">
+        <div className="flex flex-col lg:flex-row gap-8 md:gap-8 lg:gap-8 items-center">
 
           {/* Left Content */}
           <motion.div
@@ -104,7 +104,7 @@ const BowerNetworkSection = ({
 
           {/* Right Stats Card */}
           <motion.div
-            className="flex-1 max-w-[700px] w-full"
+            className="flex-1  w-full"
             variants={cardVariants}
           >
             <div className="backdrop-blur-[22px] bg-white/40 rounded-[8px] md:rounded-[10px] border border-white p-4 md:p-6 lg:p-8">
@@ -113,7 +113,7 @@ const BowerNetworkSection = ({
                   key={index}
                   variants={itemVariants}
                 >
-                  <div className="py-4 md:py-6 lg:py-8 first:pt-0 last:pb-0">
+                  <div className="py-4 md:py-6 lg:py-4 mt-2 first:pt-0 last:pb-0">
                     {/* Title */}
                     <h3 className="text-[18px] md:text-[22px] lg:text-[24px] font-semibold text-gray-900 mb-3 md:mb-4 lg:mb-5 tracking-[-0.72px] md:tracking-[-0.88px] lg:tracking-[-0.96px]">
                       {stat.title}
@@ -128,13 +128,13 @@ const BowerNetworkSection = ({
                   {/* Divider */}
                   {index < stats.length - 1 && (
                     <div className="border-t border-gray-300">
-                      <Image
+                      {/* <Image
                         src="/d60a8e2a1678993cbc803df6307d6d8c81d99490.svg"
                         alt=""
                         width={652}
                         height={1}
                         className="w-full"
-                      />
+                      /> */}
                     </div>
                   )}
                 </motion.div>

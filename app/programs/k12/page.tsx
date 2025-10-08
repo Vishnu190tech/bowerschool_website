@@ -38,10 +38,25 @@ export default function K12ProgramPage() {
       <Header />
       <main className="flex-1 bg-gray-50">
         <EntrepreneurshipHero />
-        <EmpoweringEducationSection />
+        <EmpoweringEducationSection currentPage="k12" />
         <ProgramNavigation />
 
-        <OurProgramsSection />
+        <OurProgramsSection
+          programs={[
+            {
+              id: 'year-program',
+              title: 'Year Program',
+              description: 'A 12-week bootcamp (Sat & Sun) teaching ideation to pitch with real-world projects.',
+              iconPath: '/25c12ee12b6162728fe43a156c0b57a7936d1f7b.svg'
+            },
+            {
+              id: 'coco-accelerator',
+              title: 'COCO Accelerator',
+              description: 'A 4-week hybrid program to build proof-of-concepts with masterclasses and labs.',
+              iconPath: '/bulb-light-svgrepo-com-1.png'
+            }
+          ]}
+        />
         <WhatIsSEEDSection />
         <OverviewSection />
         <HowItWorks />
@@ -51,17 +66,16 @@ export default function K12ProgramPage() {
         <ApplicationDeadlineSection />
 
 
-
         <WhyPartnerWithSeedSection theme="seed" />
         <KnowWhatTheyLearnSection />
-        <EvolvingEducationSection />
-        <MeetOurLearnersSection />
-        <HeroSection />
+        <EvolvingEducationSection theme="seed" />
+        <MeetOurLearnersSection theme="seed" />
+        <HeroSection theme="seed" mode="light" />
         <TrustedBySchools />
         <ProfileCard theme="seed" />
         <Testimonials theme="seed" />
-        <NewsSection />
-        <ContactFormSection />
+        <NewsSection theme="seed" />
+        <ContactFormSection theme="seed" />
         <BowerGlimpseSection />
 
         <ScholarshipFormSection theme="seed" />

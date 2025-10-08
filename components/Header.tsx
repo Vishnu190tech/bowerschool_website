@@ -47,7 +47,6 @@ export default function Header() {
         { name: 'UG Program', href: '/programs/ug' },
         { name: 'Lead', href: '/programs/lead' },
         { name: 'Masterclasses', href: '/programs/masterclasses' },
-        { name: 'Masterclasses Details', href: '/programs/masterclasses/k12' },
 
       ]
     },

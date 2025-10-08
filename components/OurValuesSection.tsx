@@ -145,11 +145,11 @@ const OurValuesSection = () => {
               className="w-full"
             >
               <div
-                className="relative h-auto min-h-[250px] md:min-h-[280px] lg:h-[300px] p-4 md:p-5 lg:p-6 rounded-[16px] md:rounded-[20px] lg:rounded-[24px] border-2 border-white backdrop-blur-[60px] flex flex-col gap-4 md:gap-5 lg:gap-6"
-                  style={{
-                    background: 'radial-gradient(424.41px at 50% 102.02%, rgba(1, 1, 39, 0.2) 0%, rgba(1, 1, 75, 0.2) 25.5%, rgba(0, 0, 111, 0.2) 51%, rgba(1, 1, 75, 0.2) 75.5%, rgba(1, 1, 39, 0.2) 100%), #1c1b1e'
-                  }}
-                >
+                className="relative h-auto min-h-[250px] md:min-h-[280px] lg:h-[300px] p-4 md:p-5 lg:p-6 rounded-[16px] md:rounded-[20px] lg:rounded-[24px] border-2 border-white/20 backdrop-blur-[60px] flex flex-col gap-4 md:gap-5 lg:gap-6"
+                style={{
+                  background: 'radial-gradient(424.41px at 50% 102.02%, rgba(1, 1, 39, 0.2) 0%, rgba(1, 1, 75, 0.2) 25.5%, rgba(0, 0, 111, 0.2) 51%, rgba(1, 1, 75, 0.2) 75.5%, rgba(1, 1, 39, 0.2) 100%), #1c1b1e'
+                }}
+              >
                 {/* Icon Container */}
                 <div className="relative w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-[10px] md:rounded-[11px] lg:rounded-[12px] border border-[#303038] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)] flex items-center justify-center overflow-hidden flex-shrink-0">
                   <Image

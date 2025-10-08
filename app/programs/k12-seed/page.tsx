@@ -54,6 +54,7 @@ export default function K12ProgramPage() {
           modeLabel="Grades"
           modeValue="9th-12th"
           startDate="April 5th, 2025"
+          theme="seed"
         />
         {/* <EmpoweringEducationSection /> */}
         <ProgramNavigation />
@@ -66,17 +67,17 @@ export default function K12ProgramPage() {
         <WhyPartnerWithSeedSection theme="seed" />
         <LearningExecutionSection />
 
-        <MeetOurLearnersSection />
-        <ContactFormSection />
+        <MeetOurLearnersSection theme="seed" />
+        <ContactFormSection theme="seed" />
 
         <StudentPitchVideoSection />
 
         <CertificateSection />
         <ProfileCard theme="seed" />
         <CourseFeeSection theme="seed" />
-        <ClubsSection />
+        <ClubsSection theme="seed" />
         <Testimonials theme="seed" />
-        <BowerGlimpseSection />
+        <BowerGlimpseSection theme="seed" />
         <FAQSection theme="seed" />
         <ScholarshipFormSection theme="seed" />
 

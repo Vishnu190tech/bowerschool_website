@@ -4,11 +4,111 @@ import React, { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 
-const ClubsSection = () => {
+// Theme Configuration
+type ThemeType = 'scholarship' | 'lead' | 'seed' | 'ug';
+
+interface ClubsTheme {
+  primary: string;
+  secondary: string;
+  bgColor: string;
+  titleColor: string;
+  descriptionColor: string;
+  cardBadgeBg: string;
+  cardBadgeBorder: string;
+  cardTitleColor: string;
+  navButtonBg: string;
+  navButtonHoverBg: string;
+  navIconColor: string;
+  dotActive: string;
+  dotInactive: string;
+}
+
+const CLUBS_THEMES: Record<ThemeType, ClubsTheme> = {
+  scholarship: {
+    primary: '#3232e6',
+    secondary: '#4242FF',
+    bgColor: '#f0f0ff',
+    titleColor: '#1a2555',
+    descriptionColor: '#4b5563',
+    cardBadgeBg: '#26262b',
+    cardBadgeBorder: '#303038',
+    cardTitleColor: '#ffffff',
+    navButtonBg: 'rgba(255, 255, 255, 0.9)',
+    navButtonHoverBg: '#ffffff',
+    navIconColor: '#1a2555',
+    dotActive: '#3232e6',
+    dotInactive: '#d1d5db',
+  },
+  lead: {
+    primary: '#A8F326',
+    secondary: '#8FD920',
+    bgColor: '#f5ffd9',
+    titleColor: '#2d3a15',
+    descriptionColor: '#4b5563',
+    cardBadgeBg: '#26262b',
+    cardBadgeBorder: '#303038',
+    cardTitleColor: '#ffffff',
+    navButtonBg: 'rgba(255, 255, 255, 0.9)',
+    navButtonHoverBg: '#ffffff',
+    navIconColor: '#2d3a15',
+    dotActive: '#8FD920',
+    dotInactive: '#d1d5db',
+  },
+  seed: {
+    primary: '#FF8829',
+    secondary: '#FFBF29',
+    bgColor: '#fbede3',
+    titleColor: '#2c360d',
+    descriptionColor: '#4b5563',
+    cardBadgeBg: '#26262b',
+    cardBadgeBorder: '#303038',
+    cardTitleColor: '#ffffff',
+    navButtonBg: 'rgba(255, 255, 255, 0.9)',
+    navButtonHoverBg: '#ffffff',
+    navIconColor: '#2c360d',
+    dotActive: '#ff8829',
+    dotInactive: '#d1d5db',
+  },
+  ug: {
+    primary: '#4242FF',
+    secondary: '#3232e6',
+    bgColor: '#f0f0ff',
+    titleColor: '#1a2555',
+    descriptionColor: '#4b5563',
+    cardBadgeBg: '#26262b',
+    cardBadgeBorder: '#303038',
+    cardTitleColor: '#ffffff',
+    navButtonBg: 'rgba(255, 255, 255, 0.9)',
+    navButtonHoverBg: '#ffffff',
+    navIconColor: '#1a2555',
+    dotActive: '#4242ff',
+    dotInactive: '#d1d5db',
+  },
+};
+
+interface Club {
+  title: string;
+  image: string;
+}
+
+interface ClubsSectionProps {
+  theme?: ThemeType;
+  title?: string;
+  description?: string;
+  clubs?: Club[];
+}
+
+const ClubsSection = ({
+  theme = 'seed',
+  title = 'Join Our Clubs',
+  description = 'Learn, build, and grow alongside a driven community of founders, innovators, and change-makers.',
+  clubs: customClubs
+}: ClubsSectionProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const currentTheme = CLUBS_THEMES[theme];
 
-  const clubs = [
+  const defaultClubs: Club[] = [
     {
       title: 'Culinary',
       image: '/7d1b9c28b5522fa8031d28d99c8b1dc31ce2938b.png'
@@ -30,6 +130,8 @@ const ClubsSection = () => {
       image: '/01bea9dce56046cef948bcc4000004f1af4135f7.png'
     }
   ];
+
+  const clubs = customClubs || defaultClubs;
 
   const handleScroll = (direction: 'left' | 'right') => {
     if (scrollRef.current) {
@@ -66,7 +168,10 @@ const ClubsSection = () => {
   }, []);
 
   return (
-    <section className="w-full bg-[#f4f4ff] px-4 py-8 md:px-10 md:py-10 lg:px-10">
+    <section
+      className="w-full px-4 py-8 md:px-10 md:py-10 lg:px-10"
+      style={{ backgroundColor: currentTheme.bgColor }}
+    >
       <div className="max-w-[1440px] mx-auto">
         {/* Header */}
         <motion.div
@@ -76,23 +181,25 @@ const ClubsSection = () => {
           className="text-center mb-9"
         >
           <h2
-            className="text-[#111827] capitalize mb-3 text-[28px] md:text-[36px] lg:text-[44px] leading-tight"
+            className="capitalize mb-3 text-[28px] md:text-[36px] lg:text-[44px] leading-tight"
             style={{
               fontFamily: 'var(--font-plus-jakarta)',
               fontWeight: 600,
-              letterSpacing: '-1.76px'
+              letterSpacing: '-1.76px',
+              color: currentTheme.titleColor
             }}
           >
-            Join Our Clubs
+            {title}
           </h2>
           <p
-            className="text-[#4b5563] max-w-[800px] mx-auto text-[16px] md:text-[18px] lg:text-[20px] leading-[1.5] px-0 md:px-4 lg:px-0"
+            className="max-w-[800px] mx-auto text-[16px] md:text-[18px] lg:text-[20px] leading-[1.5] px-0 md:px-4 lg:px-0"
             style={{
               fontFamily: 'var(--font-plus-jakarta)',
-              fontWeight: 400
+              fontWeight: 400,
+              color: currentTheme.descriptionColor
             }}
           >
-            Learn, build, and grow alongside a driven community of founders, innovators, and change-makers.
+            {description}
           </p>
         </motion.div>
 
@@ -128,13 +235,20 @@ const ClubsSection = () => {
                 </div>
 
                 {/* Title Badge */}
-                <div className="absolute bottom-3 left-3 backdrop-blur-3xl bg-[#26262b] mix-blend-overlay rounded-xl border border-[#303038] shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)]">
+                <div
+                  className="absolute bottom-3 left-3 backdrop-blur-3xl mix-blend-overlay rounded-xl border shadow-[0px_4px_20px_0px_rgba(0,0,0,0.25)]"
+                  style={{
+                    backgroundColor: currentTheme.cardBadgeBg,
+                    borderColor: currentTheme.cardBadgeBorder
+                  }}
+                >
                   <div className="px-3 py-3">
                     <h3
-                      className="text-white text-[20px] md:text-[22px] lg:text-[24px] font-semibold"
+                      className="text-[20px] md:text-[22px] lg:text-[24px] font-semibold"
                       style={{
                         fontFamily: 'var(--font-plus-jakarta)',
-                        letterSpacing: '-0.96px'
+                        letterSpacing: '-0.96px',
+                        color: currentTheme.cardTitleColor
                       }}
                     >
                       {club.title}
@@ -148,21 +262,35 @@ const ClubsSection = () => {
           {/* Navigation Buttons - Hidden on mobile, visible on desktop */}
           <button
             onClick={() => handleScroll('left')}
-            className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 w-12 h-12 bg-white/90 backdrop-blur-sm rounded-full items-center justify-center shadow-lg hover:bg-white transition-all duration-200 z-10 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 w-12 h-12 backdrop-blur-sm rounded-full items-center justify-center shadow-lg transition-all duration-200 z-10 disabled:opacity-50 disabled:cursor-not-allowed"
+            style={{ backgroundColor: currentTheme.navButtonBg }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = currentTheme.navButtonHoverBg;
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = currentTheme.navButtonBg;
+            }}
             disabled={currentIndex === 0}
           >
             <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M15 18L9 12L15 6" stroke="#111827" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M15 18L9 12L15 6" stroke={currentTheme.navIconColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </button>
 
           <button
             onClick={() => handleScroll('right')}
-            className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 w-12 h-12 bg-white/90 backdrop-blur-sm rounded-full items-center justify-center shadow-lg hover:bg-white transition-all duration-200 z-10 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 w-12 h-12 backdrop-blur-sm rounded-full items-center justify-center shadow-lg transition-all duration-200 z-10 disabled:opacity-50 disabled:cursor-not-allowed"
+            style={{ backgroundColor: currentTheme.navButtonBg }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = currentTheme.navButtonHoverBg;
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = currentTheme.navButtonBg;
+            }}
             disabled={currentIndex === clubs.length - 1}
           >
             <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M9 18L15 12L9 6" stroke="#111827" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M9 18L15 12L9 6" stroke={currentTheme.navIconColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </button>
         </div>
@@ -181,9 +309,11 @@ const ClubsSection = () => {
                   setCurrentIndex(index);
                 }
               }}
-              className={`w-2 h-2 rounded-full transition-all duration-200 ${
-                currentIndex === index ? 'bg-[#4242ff] w-6' : 'bg-gray-300'
-              }`}
+              className="h-2 rounded-full transition-all duration-200"
+              style={{
+                width: currentIndex === index ? '24px' : '8px',
+                backgroundColor: currentIndex === index ? currentTheme.dotActive : currentTheme.dotInactive
+              }}
             />
           ))}
         </div>

@@ -49,10 +49,10 @@ const EntrepreneurshipHero = () => {
         animate="visible"
       >
         <div className="container mx-auto px-4 md:px-8 lg:px-4 xl:px-4 py-10 md:py-16 lg:py-20">
-          <div className="max-w-3xl">
+          <div className="max-w-3xl space-y-6">
             {/* Breadcrumb Navigation */}
             <motion.div
-              className="flex items-center gap-2 text-xs md:text-sm text-gray-300 mb-4 md:mb-6 lg:mb-8"
+              className="flex items-center gap-2 text-xs md:text-sm text-gray-300 "
               variants={itemVariants}
             >
               <span>Programs</span>
@@ -64,17 +64,17 @@ const EntrepreneurshipHero = () => {
 
             {/* Grade Badge */}
             <motion.div
-              className="inline-block mb-4 md:mb-6 lg:mb-8"
+              className="inline-block "
               variants={itemVariants}
             >
-              <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-3 md:px-4 py-1.5 md:py-2 text-white text-xs md:text-sm">
+              <div className="bg-orange-500/10 backdrop-blur-sm border border-orange-500/20 rounded-full px-3 md:px-4 py-1.5 md:py-2 text-white text-xs md:text-sm">
                 Offline Camps | Grade 3 - 12
               </div>
             </motion.div>
 
             {/* Main Heading */}
             <motion.h1
-              className="text-3xl md:text-4xl lg:text-5xl xl:text-5xl 2xl:text-5xl font-bold text-white leading-tight mb-4 md:mb-6 lg:mb-8"
+              className="text-3xl md:text-4xl lg:text-5xl xl:text-5xl 2xl:text-5xl font-bold text-white leading-tight "
               variants={itemVariants}
             >
               Early-Stage<br />
@@ -84,7 +84,7 @@ const EntrepreneurshipHero = () => {
 
             {/* Subheading */}
             <motion.p
-              className="text-base md:text-lg lg:text-xl xl:text-2xl text-gray-300 mb-6 md:mb-8 lg:mb-12 leading-relaxed"
+              className="text-base md:text-lg lg:text-xl xl:text-2xl text-gray-300  leading-relaxed"
               variants={itemVariants}
             >
               Shaping the next generation of entrepreneurs, business leaders, and change-makers.
@@ -97,7 +97,7 @@ const EntrepreneurshipHero = () => {
             >
               {/* Apply Now Button */}
               <motion.button
-                className="group px-6 md:px-8 py-3 md:py-4 bg-gradient-to-r from-[#ff8829] to-[#ff6b29] text-white font-semibold text-sm md:text-base rounded-full hover:shadow-xl transform transition-all duration-300 flex items-center justify-center gap-2"
+                className="group px-6 md:px-8 py-2 md:py-2 bg-gradient-to-r from-[#ff8829] to-[#ff6b29] text-white font-semibold text-sm md:text-base rounded-xl hover:shadow-xl transform transition-all duration-300 flex items-center justify-center gap-2"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -107,7 +107,7 @@ const EntrepreneurshipHero = () => {
 
               {/* Download Brochure Button */}
               <motion.button
-                className="px-6 md:px-8 py-3 md:py-4 bg-transparent border-2 border-white text-white font-semibold text-sm md:text-base rounded-full hover:bg-white hover:text-black transition-all duration-300"
+                className="px-6 md:px-8 py-2 md:py-2 bg-transparent border-2 border-white text-white font-semibold text-sm md:text-base rounded-xl hover:bg-white hover:text-black transition-all duration-300"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -117,7 +117,7 @@ const EntrepreneurshipHero = () => {
 
             {/* Additional Info */}
             <motion.div
-              className="mt-8 md:mt-12 lg:mt-16 flex flex-col sm:flex-row flex-wrap gap-4 md:gap-6 lg:gap-8"
+              className=" flex flex-col sm:flex-row flex-wrap gap-4 md:gap-6 lg:gap-8"
               variants={itemVariants}
             >
               <div className="flex items-center gap-2 md:gap-3">

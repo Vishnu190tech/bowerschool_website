@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 export default function EmpoweringEducationLeadSection() {
   return (
-    <section className="bg-[#f9f9f9] w-full py-6 md:py-7 lg:py-8 relative overflow-hidden">
+    <section className="bg-[#f5ffd9] w-full py-6 md:py-7 lg:py-8 relative overflow-hidden">
       <div className="container mx-auto px-4 md:px-10 lg:px-4 max-w-[1440px]">
         <div className="flex flex-col gap-6 md:gap-8 lg:gap-[42px] items-center justify-start">
           {/* Title Section */}
@@ -11,7 +11,7 @@ export default function EmpoweringEducationLeadSection() {
           {/* Cards Section with Wave Background */}
           <div className="relative w-full">
             {/* Wave Background */}
-            <div className="absolute h-[140px] left-1/2 top-[-2px] -translate-x-1/2 w-full max-w-[1440px] pointer-events-none hidden md:block">
+            {/* <div className="absolute h-[140px] left-1/2 top-[-2px] -translate-x-1/2 w-full max-w-[1440px] pointer-events-none hidden md:block">
               <Image
                 src="/19a0d24862ea5e7b4b0ef3e5f07f3c03a080875b.svg"
                 alt=""
@@ -19,7 +19,7 @@ export default function EmpoweringEducationLeadSection() {
                 height={140}
                 className="w-full h-full object-cover"
               />
-            </div>
+            </div> */}
 
             {/* Cards Grid */}
             <div className="relative flex flex-col md:flex-row gap-4 md:gap-5 lg:gap-[21px] items-stretch justify-center max-w-6xl mx-auto">

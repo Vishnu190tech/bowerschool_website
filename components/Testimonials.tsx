@@ -225,7 +225,7 @@ const Testimonials = ({
       />
 
       {/* Main Content */}
-      <div className="relative z-10 container mx-auto px-8 md:px-20 py-20">
+      <div className="relative z-10 container mx-auto px-8 md:px-8 py-20">
         {/* Header */}
         <motion.h2
           className="text-white text-4xl md:text-5xl font-bold text-center mb-20"

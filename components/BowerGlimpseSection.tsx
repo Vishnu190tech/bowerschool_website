@@ -9,6 +9,7 @@ type ThemeType = 'scholarship' | 'lead' | 'seed' | 'ug';
 interface GlimpseTheme {
   primary: string;
   secondary: string;
+  bgColor: string;
   buttonBorder: string;
   buttonBg: string;
   buttonText: string;
@@ -20,6 +21,7 @@ const GLIMPSE_THEMES: Record<ThemeType, GlimpseTheme> = {
   scholarship: {
     primary: '#3232e6',
     secondary: '#4242FF',
+    bgColor: '#f5f6ff',
     buttonBorder: '#3232e6',
     buttonBg: 'radial-gradient(ellipse at center, rgba(50, 50, 230, 0.1) 0%, rgba(50, 50, 230, 0) 100%)',
     buttonText: '#3232e6',
@@ -29,6 +31,7 @@ const GLIMPSE_THEMES: Record<ThemeType, GlimpseTheme> = {
   lead: {
     primary: '#A8F326',
     secondary: '#8FD920',
+    bgColor: '#f9ffe6',
     buttonBorder: '#8FD920',
     buttonBg: 'radial-gradient(ellipse at center, rgba(168, 243, 38, 0.1) 0%, rgba(168, 243, 38, 0) 100%)',
     buttonText: '#8FD920',
@@ -38,6 +41,7 @@ const GLIMPSE_THEMES: Record<ThemeType, GlimpseTheme> = {
   seed: {
     primary: '#FF8829',
     secondary: '#FFBF29',
+    bgColor: '#fff8f2',
     buttonBorder: '#ff8829',
     buttonBg: 'radial-gradient(ellipse at center, rgba(255, 136, 41, 0.1) 0%, rgba(255, 136, 41, 0) 100%)',
     buttonText: '#ff8829',
@@ -47,6 +51,7 @@ const GLIMPSE_THEMES: Record<ThemeType, GlimpseTheme> = {
   ug: {
     primary: '#4242FF',
     secondary: '#3232e6',
+    bgColor: '#f5f6ff',
     buttonBorder: '#4242FF',
     buttonBg: 'radial-gradient(ellipse at center, rgba(66, 66, 255, 0.1) 0%, rgba(66, 66, 255, 0) 100%)',
     buttonText: '#4242FF',
@@ -155,7 +160,10 @@ export default function BowerGlimpseSection({
   }, []);
 
   return (
-    <section className="relative bg-white px-4 md:px-10 lg:px-[60px] py-8 md:py-10 overflow-hidden">
+    <section
+      className="relative px-4 md:px-10 lg:px-[60px] py-8 md:py-10 overflow-hidden"
+      style={{ backgroundColor: currentTheme.bgColor }}
+    >
       <div className="max-w-[1440px] mx-auto flex flex-col gap-6 md:gap-8 lg:gap-[34px] items-center">
         {/* Header */}
         <div className="flex flex-col gap-3 items-center text-center px-4 md:px-0">

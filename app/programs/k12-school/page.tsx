@@ -38,7 +38,7 @@ export default function K12SchoolProgramPage() {
       <Header />
       <main className="flex-1 bg-gray-50">
         <EntrepreneurshipHero />
-        <EmpoweringEducationSection />
+        <EmpoweringEducationSection currentPage="k12-school" />
         <ProgramNavigation />
 
         <OurProgramsSection />
@@ -50,15 +50,15 @@ export default function K12SchoolProgramPage() {
         <EvolvingEducationSection />
         {/* <ApplicationBanner /> */}
         {/* <WhyPartnerSection /> */}
-        <MeetOurLearnersSection />
-        <HeroSection />
+        <MeetOurLearnersSection theme="seed" />
+        <HeroSection theme="seed" />
         <TrustedBySchools />
         <StudentScheduleSection />
 
         <ProfileCard theme="seed" />
 
-        <NewsSection />
-        <ContactFormSection />
+        <NewsSection theme="seed" />
+        <ContactFormSection theme="seed" />
 
         <ScholarshipFormSection theme="seed" />
 

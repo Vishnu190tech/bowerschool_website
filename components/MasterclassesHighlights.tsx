@@ -206,7 +206,7 @@ export default function MasterclassesHighlights() {
               className="w-full lg:w-[500px]"
             >
               <div
-                className="bg-gradient-to-r from-[#1c1b1e] to-[#1c1b1e] border-2 border-white rounded-xl sm:rounded-2xl md:rounded-3xl p-3 flex flex-col gap-3 sm:gap-4 w-full lg:h-[500px] relative overflow-hidden cursor-pointer transition-transform duration-200 hover:scale-[1.02]"
+                className="bg-gradient-to-r from-[#1c1b1e] to-[#1c1b1e] border-2 border-white/20 rounded-xl sm:rounded-2xl md:rounded-3xl p-3 flex flex-col gap-3 sm:gap-4 w-full lg:h-[500px] relative overflow-hidden cursor-pointer transition-transform duration-200 hover:scale-[1.02]"
                 data-name="Trekking Container"
                 data-node-id="415:86659"
                 style={{
@@ -254,7 +254,7 @@ export default function MasterclassesHighlights() {
               className="flex-1 w-full"
             >
               <div
-                className="bg-gradient-to-r from-[#1c1b1e] to-[#1c1b1e] border-2 border-white rounded-xl sm:rounded-2xl md:rounded-3xl p-3 flex flex-col gap-3 sm:gap-4 w-full lg:h-[500px] relative overflow-hidden cursor-pointer transition-transform duration-200 hover:scale-[1.02]"
+                className="bg-gradient-to-r from-[#1c1b1e] to-[#1c1b1e] border-2 border-white/20 rounded-xl sm:rounded-2xl md:rounded-3xl p-3 flex flex-col gap-3 sm:gap-4 w-full lg:h-[500px] relative overflow-hidden cursor-pointer transition-transform duration-200 hover:scale-[1.02]"
                 data-name="Trekking Container"
                 data-node-id="415:86664"
                 style={{
@@ -307,7 +307,7 @@ export default function MasterclassesHighlights() {
               className="flex-1 w-full"
             >
               <div
-                className="bg-gradient-to-r from-[#1c1b1e] to-[#1c1b1e] border-2 border-white rounded-xl sm:rounded-2xl md:rounded-3xl p-3 flex flex-col gap-3 sm:gap-4 w-full lg:h-[500px] relative overflow-hidden cursor-pointer transition-transform duration-200 hover:scale-[1.02]"
+                className="bg-gradient-to-r from-[#1c1b1e] to-[#1c1b1e] border-2 border-white/20 rounded-xl sm:rounded-2xl md:rounded-3xl p-3 flex flex-col gap-3 sm:gap-4 w-full lg:h-[500px] relative overflow-hidden cursor-pointer transition-transform duration-200 hover:scale-[1.02]"
                 data-name="Trekking Container"
                 data-node-id="415:86687"
                 style={{
@@ -354,7 +354,7 @@ export default function MasterclassesHighlights() {
               className="w-full lg:w-[500px]"
             >
               <div
-                className="bg-gradient-to-r from-[#1c1b1e] to-[#1c1b1e] border-2 border-white rounded-xl sm:rounded-2xl md:rounded-3xl p-3 flex flex-col gap-3 sm:gap-4 w-full lg:h-[500px] relative overflow-hidden cursor-pointer transition-transform duration-200 hover:scale-[1.02]"
+                className="bg-gradient-to-r from-[#1c1b1e] to-[#1c1b1e] border-2 border-white/20 rounded-xl sm:rounded-2xl md:rounded-3xl p-3 flex flex-col gap-3 sm:gap-4 w-full lg:h-[500px] relative overflow-hidden cursor-pointer transition-transform duration-200 hover:scale-[1.02]"
                 data-name="Trekking Container"
                 data-node-id="415:86681"
                 style={{
