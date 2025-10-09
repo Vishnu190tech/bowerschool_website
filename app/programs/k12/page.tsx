@@ -93,7 +93,7 @@ export default function K12ProgramPage() {
         <ContactFormSection theme="seed" />
         <BowerGlimpseSection />
 
-        <ScholarshipFormSection theme="seed" />
+        <ScholarshipFormSection theme="seed" page="k12" />
 
       </main>
       <Footer theme="seed" />

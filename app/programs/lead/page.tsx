@@ -51,7 +51,7 @@ export default function UGProgramPage() {
           startDate="April 5th, 2025"
           theme="lead"
         />
-        <EmpoweringEducationLeadSection />
+        <EmpoweringEducationLeadSection currentPage="lead" />
         <ProgramNavigation />
 
         <section id="about" className="scroll-mt-[30px] lg:scroll-mt-[40px]">
@@ -98,7 +98,7 @@ export default function UGProgramPage() {
         <Testimonials theme="lead" />
         <BowerGlimpseSection theme="lead" />
         <FAQSection theme="lead" />
-        <ScholarshipFormSection theme="lead" />
+        <ScholarshipFormSection theme="lead" page="lead" />
       </main>
       <Footer theme="lead" />
     </div>

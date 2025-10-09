@@ -81,7 +81,7 @@ export default function UGProgramPage() {
         <BowerGlimpseSection theme="ug" />
         <Testimonials theme="ug" />
         <FAQSection theme="ug" />
-        <ScholarshipFormSection theme="ug" />
+        <ScholarshipFormSection theme="ug" page="ug" />
       </main>
       <Footer theme="ug" />
     </div>

@@ -94,7 +94,7 @@ export default function K12ProgramPage() {
         <Testimonials theme="seed" />
         <BowerGlimpseSection theme="seed" />
         <FAQSection theme="seed" />
-        <ScholarshipFormSection theme="seed" />
+        <ScholarshipFormSection theme="seed" page="k12-seed" />
 
       </main>
       <Footer theme="seed" />

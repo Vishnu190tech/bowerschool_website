@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import { getAllUTMParams, storeUTMParams } from '@/lib/utils/utm-tracking';
 
 // Theme Configuration
 type ThemeType = 'scholarship' | 'lead' | 'seed' | 'ug';
@@ -24,11 +25,11 @@ const FORM_THEMES: Record<ThemeType, FormTheme> = {
     tint: 'bg-[#4242ff]/10 border-[#4242ff] text-[#4242ff]',
   },
   lead: {
-    primary: '#A8F326',
-    secondary: '#A8F326',
-    gradient: 'from-white/20 via-transparent to-[#A8F326]/16',
+    primary: '#78B808',
+    secondary: '#78B808',
+    gradient: 'from-white/20 via-transparent to-[#78B808]/16',
     hover: '#8FD920',
-    tint: 'bg-[#A8F326]/10 border-[#A8F326] text-[#A8F326]',
+    tint: 'bg-[#78B808]/10 border-[#78B808] text-[#78B808]',
   },
   seed: {
     primary: '#FF8829',
@@ -55,6 +56,7 @@ interface ScholarshipFormSectionProps {
   showCountdown?: boolean;
   privacyPolicyUrl?: string;
   termsOfUseUrl?: string;
+  page?: string; // Page identifier for Sales Department mapping
 }
 
 export default function ScholarshipFormSection({
@@ -65,6 +67,7 @@ export default function ScholarshipFormSection({
   showCountdown = true,
   privacyPolicyUrl = 'https://docs.tripleten.com/legal/confidential.html',
   termsOfUseUrl = 'https://docs.tripleten.com/legal/terms_of_use.html',
+  page = '',
 }: ScholarshipFormSectionProps) {
   const currentTheme = FORM_THEMES[theme];
   const [timeLeft, setTimeLeft] = useState({
@@ -80,11 +83,25 @@ export default function ScholarshipFormSection({
     mobile: '',
     consent: false
   });
+  const [countryCode, setCountryCode] = useState('+91'); // Default to India
 
   const [currentStep, setCurrentStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [duplicateFound, setDuplicateFound] = useState(false);
+  const [existingLeadInfo, setExistingLeadInfo] = useState<any>(null);
+  const [zohoLeadId, setZohoLeadId] = useState<string | null>(null);
+  const [utmParams, setUtmParams] = useState<any>({});
+
+  // Capture UTM parameters on component mount
+  useEffect(() => {
+    const params = getAllUTMParams();
+    if (Object.keys(params).length > 0) {
+      setUtmParams(params);
+      console.log('Captured UTM params:', params);
+    }
+  }, []);
 
   // Countdown timer effect
   useEffect(() => {
@@ -123,40 +140,77 @@ export default function ScholarshipFormSection({
       setIsSubmitting(true);
 
       try {
+        // Get the current URL with all parameters
+        const currentUrl = typeof window !== 'undefined' ? window.location.href : '';
+
         const response = await fetch(apiEndpoint, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
+            'Referer': currentUrl, // Pass current URL for UTM extraction
           },
           body: JSON.stringify({
             name: formData.name,
             email: formData.email,
-            mobile: formData.mobile,
+            mobile: `${countryCode}${formData.mobile}`, // Include country code with mobile
             consent: formData.consent,
-            formType: theme,
+            page: page, // Include page identifier
+            confirmUpdate: duplicateFound, // Include confirmation flag
+            zohoLeadId: zohoLeadId, // Include Zoho Lead ID if updating
+            utmParams: utmParams, // Include captured UTM params directly
           }),
         });
 
-        if (!response.ok) {
-          throw new Error('Failed to submit form');
+        const data = await response.json();
+
+        if (data.requiresConfirmation && data.duplicateFound) {
+          // Duplicate found, show confirmation dialog
+          setDuplicateFound(true);
+          setExistingLeadInfo(data.existingLead);
+          setZohoLeadId(data.zohoLeadId);
+          setSubmitError(
+            `A lead with email ${formData.email} already exists. Would you like to update the existing record?`
+          );
+          setIsSubmitting(false);
+          return;
         }
 
-        const data = await response.json();
-        setSubmitSuccess(true);
-        setCurrentStep(2);
+        if (data.success) {
+          setSubmitSuccess(true);
+          setCurrentStep(2);
 
-        // Reset form after 3 seconds
-        setTimeout(() => {
-          setFormData({ name: '', email: '', mobile: '', consent: false });
-          setCurrentStep(1);
-          setSubmitSuccess(false);
-        }, 3000);
+          // Reset form after 3 seconds
+          setTimeout(() => {
+            setFormData({ name: '', email: '', mobile: '', consent: false });
+            setCurrentStep(1);
+            setSubmitSuccess(false);
+            setDuplicateFound(false);
+            setExistingLeadInfo(null);
+            setZohoLeadId(null);
+          }, 3000);
+        } else if (!data.requiresConfirmation) {
+          throw new Error(data.error || 'Failed to submit form');
+        }
       } catch (error) {
         setSubmitError(error instanceof Error ? error.message : 'Something went wrong. Please try again.');
       } finally {
         setIsSubmitting(false);
       }
     }
+  };
+
+  const handleDuplicateConfirmation = async () => {
+    // Re-submit with confirmation flag
+    setDuplicateFound(true);
+    await handleSubmit(new Event('submit') as any);
+  };
+
+  const handleDuplicateCancel = () => {
+    // Reset duplicate state
+    setDuplicateFound(false);
+    setExistingLeadInfo(null);
+    setZohoLeadId(null);
+    setSubmitError(null);
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -282,9 +336,8 @@ export default function ScholarshipFormSection({
                   <div className="flex items-center justify-between w-full">
                     <div className="flex items-center gap-2 lg:flex-col lg:gap-4">
                       <div
-                        className={`w-8 h-8 lg:w-6 lg:h-6 rounded-full flex items-center justify-center text-sm lg:text-base border ${
-                          currentStep === 1 ? currentTheme.tint : 'border-gray-400 text-gray-400'
-                        }`}
+                        className={`w-8 h-8 lg:w-6 lg:h-6 rounded-full flex items-center justify-center text-sm lg:text-base border ${currentStep === 1 ? currentTheme.tint : 'border-gray-400 text-gray-400'
+                          }`}
                       >
                         1
                       </div>
@@ -300,9 +353,8 @@ export default function ScholarshipFormSection({
 
                     <div className="flex items-center gap-2 lg:flex-col lg:gap-4">
                       <div
-                        className={`w-8 h-8 lg:w-6 lg:h-6 rounded-full flex items-center justify-center text-sm lg:text-base border ${
-                          currentStep === 2 ? currentTheme.tint : 'border-gray-400 text-gray-400'
-                        }`}
+                        className={`w-8 h-8 lg:w-6 lg:h-6 rounded-full flex items-center justify-center text-sm lg:text-base border ${currentStep === 2 ? currentTheme.tint : 'border-gray-400 text-gray-400'
+                          }`}
                       >
                         2
                       </div>
@@ -348,20 +400,44 @@ export default function ScholarshipFormSection({
                         required
                       />
 
-                      <input
-                        type="tel"
-                        name="mobile"
-                        placeholder="Mobile"
-                        value={formData.mobile}
-                        onChange={handleInputChange}
+                      <div
+                        className="flex h-12 lg:h-[54px] bg-gray-50 border rounded-xl overflow-hidden"
                         style={{
                           borderColor: formData.mobile ? currentTheme.secondary : '#D1D5DB',
                         }}
-                        className="w-full h-12 lg:h-[54px] px-4 py-2 bg-gray-50 border rounded-xl text-sm text-gray-900 placeholder-gray-500 focus:outline-none transition-colors"
-                        onFocus={(e) => (e.target.style.borderColor = currentTheme.secondary)}
-                        onBlur={(e) => (e.target.style.borderColor = formData.mobile ? currentTheme.secondary : '#D1D5DB')}
-                        required
-                      />
+                      >
+                        {/* Country Code Selector */}
+                        <select
+                          value={countryCode}
+                          onChange={(e) => setCountryCode(e.target.value)}
+                          className="bg-gray-50 px-2 lg:px-3 border-r border-gray-300 text-sm text-gray-900 focus:outline-none cursor-pointer"
+                          style={{ borderRightColor: '#D1D5DB' }}
+                        >
+                          <option value="+91">🇮🇳 +91</option>
+                          <option value="+1">🇺🇸 +1</option>
+                          <option value="+44">🇬🇧 +44</option>
+                          <option value="+86">🇨🇳 +86</option>
+                          <option value="+81">🇯🇵 +81</option>
+                          <option value="+49">🇩🇪 +49</option>
+                          <option value="+33">🇫🇷 +33</option>
+                          <option value="+61">🇦🇺 +61</option>
+                          <option value="+971">🇦🇪 +971</option>
+                          <option value="+65">🇸🇬 +65</option>
+                        </select>
+
+                        {/* Mobile Number Input */}
+                        <input
+                          type="tel"
+                          name="mobile"
+                          placeholder="Mobile Number"
+                          value={formData.mobile}
+                          onChange={handleInputChange}
+                          className="flex-1 px-3 lg:px-4 py-2 bg-transparent text-sm text-gray-900 placeholder-gray-500 focus:outline-none"
+                          required
+                          pattern="[0-9]{10}"
+                          title="Please enter a 10-digit mobile number"
+                        />
+                      </div>
                     </div>
 
                     {/* Consent Checkbox */}
@@ -389,26 +465,66 @@ export default function ScholarshipFormSection({
 
                     {/* Submit Button */}
                     <div className="flex flex-col gap-2">
-                      <motion.button
-                        type="submit"
-                        disabled={isSubmitting}
-                        whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
-                        whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
-                        style={{
-                          backgroundColor: isSubmitting ? '#9CA3AF' : currentTheme.secondary,
-                        }}
-                        className="w-full h-12 lg:h-11 text-white text-base lg:text-lg font-medium rounded-xl shadow-lg transition-all disabled:cursor-not-allowed"
-                        onMouseEnter={(e) => {
-                          if (!isSubmitting) e.currentTarget.style.backgroundColor = currentTheme.hover;
-                        }}
-                        onMouseLeave={(e) => {
-                          if (!isSubmitting) e.currentTarget.style.backgroundColor = currentTheme.secondary;
-                        }}
-                      >
-                        {isSubmitting ? 'Submitting...' : submitSuccess ? 'Success!' : 'Submit'}
-                      </motion.button>
-                      {submitError && (
-                        <p className="text-xs text-red-600 text-center">{submitError}</p>
+                      {duplicateFound && submitError ? (
+                        // Duplicate confirmation buttons
+                        <>
+                          <div className="p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
+                            <p className="text-sm text-yellow-800 mb-3">{submitError}</p>
+                            {existingLeadInfo && (
+                              <div className="text-xs text-gray-600 mb-3">
+                                <p>Existing Lead Info:</p>
+                                <p>• Name: {existingLeadInfo.First_Name} {existingLeadInfo.Last_Name}</p>
+                                <p>• Mobile: {existingLeadInfo.Mobile}</p>
+                              </div>
+                            )}
+                            <div className="flex gap-2">
+                              <motion.button
+                                type="button"
+                                onClick={handleDuplicateConfirmation}
+                                whileHover={{ scale: 1.02 }}
+                                whileTap={{ scale: 0.98 }}
+                                style={{ backgroundColor: currentTheme.secondary }}
+                                className="flex-1 h-10 text-white text-sm font-medium rounded-lg shadow transition-all"
+                              >
+                                Yes, Update Existing
+                              </motion.button>
+                              <motion.button
+                                type="button"
+                                onClick={handleDuplicateCancel}
+                                whileHover={{ scale: 1.02 }}
+                                whileTap={{ scale: 0.98 }}
+                                className="flex-1 h-10 bg-gray-200 text-gray-700 text-sm font-medium rounded-lg shadow transition-all hover:bg-gray-300"
+                              >
+                                Cancel
+                              </motion.button>
+                            </div>
+                          </div>
+                        </>
+                      ) : (
+                        // Normal submit button
+                        <>
+                          <motion.button
+                            type="submit"
+                            disabled={isSubmitting}
+                            whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
+                            whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
+                            style={{
+                              backgroundColor: isSubmitting ? '#9CA3AF' : currentTheme.secondary,
+                            }}
+                            className="w-full h-12 lg:h-11 text-white text-base lg:text-lg font-medium rounded-xl shadow-lg transition-all disabled:cursor-not-allowed"
+                            onMouseEnter={(e) => {
+                              if (!isSubmitting) e.currentTarget.style.backgroundColor = currentTheme.hover;
+                            }}
+                            onMouseLeave={(e) => {
+                              if (!isSubmitting) e.currentTarget.style.backgroundColor = currentTheme.secondary;
+                            }}
+                          >
+                            {isSubmitting ? 'Submitting...' : submitSuccess ? 'Success!' : 'Submit'}
+                          </motion.button>
+                          {submitError && !duplicateFound && (
+                            <p className="text-xs text-red-600 text-center">{submitError}</p>
+                          )}
+                        </>
                       )}
                     </div>
 

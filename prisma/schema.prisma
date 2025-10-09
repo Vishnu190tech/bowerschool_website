@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider      = "prisma-client-js"
   binaryTargets = ["native", "linux-musl-openssl-3.0.x"]
@@ -11,72 +8,61 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// Admin model for admin login only
 model Admin {
-  id        String   @id @default(cuid())
-  email     String   @unique
-  username  String   @unique
+  id        String    @id @default(cuid())
+  email     String    @unique
+  username  String    @unique
   password  String
   firstName String?
   lastName  String?
-  isActive  Boolean  @default(true)
+  isActive  Boolean   @default(true)
   lastLogin DateTime?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
 }
 
-// Student model for student login/registration
 model Student {
-  id          String   @id @default(cuid())
+  id          String    @id @default(cuid())
   firstName   String
   lastName    String
-  email       String   @unique
+  email       String    @unique
   password    String
   phone       String?
   program     String?
   dateOfBirth DateTime?
-  isActive    Boolean  @default(true)
+  isActive    Boolean   @default(true)
   lastLogin   DateTime?
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
 }
 
-// Upcoming Event model for dynamic events
 model UpcomingEvent {
   id               String   @id @default(cuid())
   slug             String   @unique
   title            String
   subtitle         String?
-  description      String   @db.Text
+  description      String
   eventType        String
   date             DateTime
   time             String?
   location         String?
   venue            String?
-  category         String   // Meetups, Webinars, Workshops
-  tags             String[] // Array of tags
+  category         String
+  tags             String[]
   imageUrl         String?
   thumbnailUrl     String?
-  height           String   @default("medium") // tall, medium, short for masonry layout
-
-  // Additional fields
+  height           String   @default("medium")
   isPublished      Boolean  @default(false)
   isFeatured       Boolean  @default(false)
   capacity         Int?
   registeredCount  Int      @default(0)
   price            Float?
   registrationLink String?
-
-  // JSON fields for complex data
-  agenda           Json?    // Schedule/agenda details
-  speakers         Json?    // Speaker information
-  sponsors         Json?    // Sponsor information
-
-  // SEO fields
+  agenda           Json?
+  speakers         Json?
+  sponsors         Json?
   metaTitle        String?
   metaDescription  String?
-
-  // Timestamps
   createdAt        DateTime @default(now())
   updatedAt        DateTime @updatedAt
 
@@ -86,47 +72,38 @@ model UpcomingEvent {
   @@index([isPublished])
 }
 
-// Past Event model for historical events
 model PastEvent {
-  id               String   @id @default(cuid())
-  slug             String   @unique
-  title            String
-  subtitle         String?
-  description      String   @db.Text
-  eventType        String
-  date             DateTime
-  time             String?
-  location         String?
-  venue            String?
-  category         String   // Masterclass, Workshop, Fireside Chat, etc.
-  tags             String[] // Array of tags
-  imageUrl         String?  // Main event image URL
-  thumbnailUrl     String?  // Thumbnail for listings
-  videoUrl         String?  // Recording URL (YouTube, Vimeo, etc.)
-  galleryImages    Json?    // Array of image URLs for gallery
-
-  // Event details
-  speakers         Json?    // Speaker information with image URLs
-  agenda           Json?    // Event schedule/agenda
-  testimonials     Json?    // Attendee testimonials
-  stats            Json?    // Event statistics
-  resources        Json?    // Downloadable resources URLs
-
-  // Metadata
-  viewCount        Int      @default(0)
-  attendeeCount    Int?
-  duration         String?  // Event duration
-  isPublished      Boolean  @default(false)
-  isFeatured       Boolean  @default(false)
-  size             String   @default("small") // For grid layout: large, small
-
-  // SEO fields
-  metaTitle        String?
-  metaDescription  String?
-
-  // Timestamps
-  createdAt        DateTime @default(now())
-  updatedAt        DateTime @updatedAt
+  id              String   @id @default(cuid())
+  slug            String   @unique
+  title           String
+  subtitle        String?
+  description     String
+  eventType       String
+  date            DateTime
+  time            String?
+  location        String?
+  venue           String?
+  category        String
+  tags            String[]
+  imageUrl        String?
+  thumbnailUrl    String?
+  videoUrl        String?
+  galleryImages   Json?
+  speakers        Json?
+  agenda          Json?
+  testimonials    Json?
+  stats           Json?
+  resources       Json?
+  viewCount       Int      @default(0)
+  attendeeCount   Int?
+  duration        String?
+  isPublished     Boolean  @default(false)
+  isFeatured      Boolean  @default(false)
+  size            String   @default("small")
+  metaTitle       String?
+  metaDescription String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
 
   @@index([slug])
   @@index([category])
@@ -134,62 +111,265 @@ model PastEvent {
   @@index([isPublished])
 }
 
-// Masterclass model for managing masterclasses
 model Masterclass {
-  id                   String   @id @default(cuid())
-  slug                 String   @unique
-  title                String
-  subtitle             String?
-  description          String   @db.Text
-  date                 DateTime
-  time                 String?
-  category             String   @default("BowerClass")
-  videoThumbnail       String?  // Thumbnail image URL
-  videoUrl             String?  // Main video URL
-
-  // Learning and content
-  learningOutcomes     Json?    // Array of learning outcomes
-  galleryImages        Json?    // Array of gallery image URLs
-  prerequisites        String?  @db.Text
-  duration             String?
-  level                String?  // Beginner, Intermediate, Advanced
-
-  // Student portal configuration
-  studentPortalConfig  Json?    // Config for student portal section
-  assignmentDetails    Json?    // Assignment submission details
-  registrationCode     String?  // Code for student portal access
-
-  // Instructors and resources
-  instructors          Json?    // Array of instructors/mentors
-  resources            Json?    // Additional resources and links
-
-  // Registration and capacity
-  maxStudents          Int?
-  registeredCount      Int      @default(0)
-  price                Float?
-  registrationOpen     Boolean  @default(true)
-  registrationLink     String?
-
-  // Status flags
-  isPublished          Boolean  @default(false)
-  isFeatured           Boolean  @default(false)
-
-  // Additional metadata
-  tags                 Json?    // Array of tags
-  highlights           Json?    // Key highlights
-  testimonials         Json?    // Student testimonials
-  networkStats         Json?    // Bower network statistics displayed on masterclass page
-
-  // SEO fields
-  metaTitle            String?
-  metaDescription      String?
-
-  // Timestamps
-  createdAt            DateTime @default(now())
-  updatedAt            DateTime @updatedAt
+  id                  String   @id @default(cuid())
+  slug                String   @unique
+  title               String
+  subtitle            String?
+  description         String
+  date                DateTime
+  time                String?
+  category            String   @default("BowerClass")
+  videoThumbnail      String?
+  videoUrl            String?
+  learningOutcomes    Json?
+  galleryImages       Json?
+  prerequisites       String?
+  duration            String?
+  level               String?
+  studentPortalConfig Json?
+  assignmentDetails   Json?
+  registrationCode    String?
+  instructors         Json?
+  resources           Json?
+  maxStudents         Int?
+  registeredCount     Int      @default(0)
+  price               Float?
+  registrationOpen    Boolean  @default(true)
+  registrationLink    String?
+  isPublished         Boolean  @default(false)
+  isFeatured          Boolean  @default(false)
+  tags                Json?
+  highlights          Json?
+  testimonials        Json?
+  networkStats        Json?
+  metaTitle           String?
+  metaDescription     String?
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
 
   @@index([slug])
   @@index([category])
   @@index([date])
   @@index([isPublished])
+}
+
+model ZohoCredential {
+  id             String    @id @default(cuid())
+  clientId       String
+  clientSecret   String
+  accessToken    String?
+  refreshToken   String?
+  tokenExpiresAt DateTime?
+  redirectUri    String
+  scope          String[]
+  accountsUrl    String    @default("https://accounts.zoho.in")
+  apiDomain      String?
+  isActive       Boolean   @default(false)
+  lastSyncAt     DateTime?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+}
+
+model Lead {
+  id                    String             @id @default(cuid())
+  lastName              String
+  email                 String
+  leadSource            LeadSource         @default(ONLINESTORE)
+  firstName             String?
+  salutation            Salutation?
+  phone                 String?
+  mobile                String?
+  secondaryEmail        String?
+  leadStatus            LeadStatus         @default(INTERESTED)
+  leadSubStatus         LeadSubStatus?     @default(NONE)
+  grade                 Grade?
+  board                 Board?
+  academicStream        AcademicStream?
+  gender                Gender?
+  birthday              DateTime?
+  schoolInstitution     String?
+  parentGuardianName    String?
+  parentGuardianEmail   String?
+  parentGuardianPhone   String?
+  relationshipToStudent String?
+  occupation            String?
+  referrerName          String?
+  referrerEmail         String?
+  referrerPhone         String?
+  referralCode          String?
+  salesDepartment       SalesDepartment?   @default(NONE)
+  programInterested     ProgramInterested? @default(NONE)
+  utmSource             String?
+  utmMedium             String?
+  utmCampaign           String?
+  utmContent            String?
+  utmTerm               String?
+  otherSource           String?
+  street                String?
+  city                  String?
+  state                 String?
+  zipCode               String?
+  country               String?
+  emailOptOut           Boolean            @default(false)
+  whatsappOptOut        Boolean            @default(false)
+  description           String?
+  qualificationScore    Int?               @default(0)
+  engagementScore       Int?               @default(0)
+  lastActivityTime      DateTime?
+  zohoLeadId            String?
+  syncStatus            String             @default("pending")
+  syncError             String?
+  syncAttempts          Int                @default(0)
+  lastSyncAt            DateTime?
+  createdAt             DateTime           @default(now())
+  updatedAt             DateTime           @updatedAt
+  syncLogs              ZohoSyncLog[]
+
+  @@index([email])
+  @@index([syncStatus])
+  @@index([zohoLeadId])
+  @@index([leadStatus])
+  @@index([leadSource])
+  @@index([grade])
+  @@index([salesDepartment])
+  @@index([qualificationScore])
+  @@index([createdAt])
+}
+
+model ZohoSyncLog {
+  id         String   @id @default(cuid())
+  leadId     String
+  action     String
+  status     String
+  request    Json?
+  response   Json?
+  error      String?
+  httpStatus Int?
+  createdAt  DateTime @default(now())
+  lead       Lead     @relation(fields: [leadId], references: [id], onDelete: Cascade)
+
+  @@index([leadId])
+  @@index([status])
+  @@index([createdAt])
+}
+
+enum LeadSource {
+  NONE
+  PERFORMANCE_MARKETING
+  ADVERTISEMENT
+  COLD_CALL
+  EMPLOYEE_REFERRAL
+  EXTERNAL_REFERRAL
+  ONLINESTORE
+  PARTNER
+  PUBLIC_RELATIONS
+  SALES_MAIL_ALIAS
+  SEMINAR_PARTNER
+  SEMINAR_INTERNAL
+  TRADE_SHOW
+  WEB_DOWNLOAD
+  WEB_RESEARCH
+  CHAT
+  TWITTER
+  FACEBOOK
+  EDUCATIONAL_FAIRS_EXHIBITIONS
+  PRESS_PR
+  SCHOLARSHIP_PROGRAMS
+  EDUCATIONAL_PORTALS_AGGREGATORS
+  STUDENT_ALUMNI_NETWORK
+  COMPETITIONS_CHALLENGES
+  WORD_OF_MOUTH
+  INFLUENCERS_CONTENT_CREATORS
+  WHATSAPP_BOWER_SCHOOL
+}
+
+enum LeadStatus {
+  NONE
+  INTERESTED
+  CONTACTED
+  CONTACT_IN_FUTURE
+  ATTEMPTED_TO_CONTACT
+  LOST_LEAD
+  NOT_INTERESTED
+  JUNK_LEAD
+}
+
+enum LeadSubStatus {
+  NONE
+  ENROLLED_IN_CURRENT_BATCH
+  ENROLLED_IN_UPCOMING_BATCH
+  PAYMENT_PENDING
+  DOCUMENTS_PENDING
+  AWAITING_DECISION
+  ON_WAITLIST
+}
+
+enum Board {
+  NONE
+  ICSE
+  CBSE
+  IB
+  STATE_BOARD
+  NIOS
+  CAIE
+}
+
+enum Grade {
+  NONE
+  GRADE_3
+  GRADE_4
+  GRADE_5
+  GRADE_6
+  GRADE_7
+  GRADE_8
+  GRADE_9
+  GRADE_10
+  GRADE_11
+  GRADE_12
+}
+
+enum AcademicStream {
+  NONE
+  SCIENCE
+  COMMERCE
+  ARTS_HUMANITIES
+}
+
+enum Gender {
+  NONE
+  MALE
+  FEMALE
+  PREFER_NOT_TO_SAY
+}
+
+enum SalesDepartment {
+  NONE
+  K12
+  UG
+  PG
+  EDGE_AI_ONLINE_TEAM
+}
+
+enum ProgramInterested {
+  NONE
+  SRI_SAI_KOLLURU
+  RAHUL_BHARADWAJ
+  LEAD_VENTURE_BUILDING
+  LEAD_VENTURE_CAPITAL_PRIVATE_EQUITY
+  SEED_WEEKEND_SCHOOL
+  SEED_SUMMER_CAMP
+  SEED_WINTER_CAMP
+  SEED_B2B
+  BUILD_BBA_ENTREPRENEURSHIP
+  BUILD_BTECH_TECHNOLOGY
+}
+
+enum Salutation {
+  NONE
+  MR
+  MRS
+  MS
+  DR
+  PROF
 }
