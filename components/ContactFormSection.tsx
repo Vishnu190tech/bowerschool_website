@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import toast, { Toaster } from 'react-hot-toast';
 
 // Theme Configuration
 type ThemeType = 'scholarship' | 'lead' | 'seed' | 'ug';
@@ -110,21 +111,104 @@ const ContactFormSection = ({
 }: ContactFormSectionProps) => {
   const currentTheme = CONTACT_THEMES[theme];
   const [email, setEmail] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (onSubmit) {
-      onSubmit(email);
-    } else {
-      console.log('Email submitted:', email);
+
+    if (!email) {
+      toast.error('Please enter your email address');
+      return;
+    }
+
+    // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      toast.error('Please enter a valid email address');
+      return;
+    }
+
+    setIsLoading(true);
+    console.log('[ContactForm] Submitting email:', email);
+
+    try {
+      const response = await fetch('/api/zoho-campaigns/subscribe', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: email.trim().toLowerCase(), // Normalize email
+        }),
+      });
+
+      const data = await response.json();
+      console.log('[ContactForm] Response:', data);
+
+      if (data.success) {
+        // Success case
+        toast.success(data.message || 'Thank you! You have been successfully subscribed.');
+        setEmail(''); // Clear the form
+
+        // Call the onSubmit callback if provided
+        if (onSubmit) {
+          onSubmit(email);
+        }
+      } else if (data.isDuplicate) {
+        // Duplicate email - show as info, not error
+        toast(data.message || 'This email is already registered in our mailing list.', {
+          icon: 'ℹ️',
+          duration: 5000,
+        });
+      } else {
+        // Other errors
+        console.error('[ContactForm] Subscription failed:', data);
+        toast.error(data.message || 'Unable to subscribe at this moment. Please try again.');
+      }
+    } catch (error: any) {
+      console.error('[ContactForm] Network/Parse error:', error);
+
+      // Check if it's a network error
+      if (!navigator.onLine) {
+        toast.error('No internet connection. Please check your connection and try again.');
+      } else {
+        toast.error('Connection error. Please try again later.');
+      }
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
-    <section
-      className="relative w-full h-[400px] md:h-[500px] lg:h-[600px] overflow-hidden"
-      style={{ backgroundColor: currentTheme.bgColor }}
-    >
+    <>
+      <Toaster
+        position="top-center"
+        toastOptions={{
+          duration: 4000,
+          style: {
+            background: '#363636',
+            color: '#fff',
+          },
+          success: {
+            duration: 3000,
+            iconTheme: {
+              primary: currentTheme.primary,
+              secondary: '#fff',
+            },
+          },
+          error: {
+            duration: 4000,
+            iconTheme: {
+              primary: '#ff4b4b',
+              secondary: '#fff',
+            },
+          },
+        }}
+      />
+      <section
+        className="relative w-full h-[400px] md:h-[500px] lg:h-[600px] overflow-hidden"
+        style={{ backgroundColor: currentTheme.bgColor }}
+      >
       {/* Top and bottom borders */}
       <div className="absolute inset-x-0 top-0 h-px bg-white" />
       <div className="absolute inset-x-0 bottom-0 h-px bg-white" />
@@ -212,19 +296,26 @@ const ContactFormSection = ({
             {/* Submit Button */}
             <motion.button
               type="submit"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="px-3 md:px-4 py-2 h-10 md:h-11 rounded-lg flex items-center gap-2 transition-colors"
+              disabled={isLoading}
+              whileHover={!isLoading ? { scale: 1.02 } : {}}
+              whileTap={!isLoading ? { scale: 0.98 } : {}}
+              className={`px-3 md:px-4 py-2 h-10 md:h-11 rounded-lg flex items-center gap-2 transition-colors ${
+                isLoading ? 'opacity-70 cursor-not-allowed' : ''
+              }`}
               style={{
                 backgroundColor: currentTheme.buttonBg,
                 color: currentTheme.buttonText,
                 boxShadow: currentTheme.buttonShadow
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = currentTheme.buttonHoverBg;
+                if (!isLoading) {
+                  e.currentTarget.style.backgroundColor = currentTheme.buttonHoverBg;
+                }
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = currentTheme.buttonBg;
+                if (!isLoading) {
+                  e.currentTarget.style.backgroundColor = currentTheme.buttonBg;
+                }
               }}
             >
               <span
@@ -234,17 +325,25 @@ const ContactFormSection = ({
                   textShadow: currentTheme.buttonTextShadow
                 }}
               >
-                {buttonText}
+                {isLoading ? 'Submitting...' : buttonText}
               </span>
-              {/* Chevron Icon */}
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0">
-                <path d="M7.5 5L12.5 10L7.5 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
+              {/* Chevron Icon or Loading Spinner */}
+              {!isLoading ? (
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0">
+                  <path d="M7.5 5L12.5 10L7.5 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              ) : (
+                <svg className="animate-spin h-5 w-5 text-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+              )}
             </motion.button>
           </form>
         </motion.div>
       </div>
     </section>
+    </>
   );
 };
 

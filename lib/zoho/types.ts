@@ -308,7 +308,9 @@ export interface LeadWithDetails extends Lead {
 export const ZOHO_SCOPES = [
   'ZohoCRM.modules.leads.ALL',
   'ZohoCRM.modules.contacts.ALL',
-  'ZohoCRM.settings.ALL'
+  'ZohoCRM.settings.ALL',
+  'ZohoCampaigns.contact.ALL',
+  'ZohoCampaigns.campaign.ALL'
 ] as const;
 
 export type ZohoScope = typeof ZOHO_SCOPES[number];

@@ -203,7 +203,7 @@ export default function LeadManagement() {
         <div className="mb-6">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-lg font-semibold text-gray-900">Lead Management</h2>
-            <button
+            {/* <button
               onClick={handleSyncPending}
               disabled={isSyncing}
               className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed flex items-center gap-2"
@@ -219,7 +219,7 @@ export default function LeadManagement() {
                   Sync Pending Leads
                 </>
               )}
-            </button>
+            </button> */}
           </div>
 
           {/* Search and Filter */}

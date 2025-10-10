@@ -20,6 +20,21 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## 📚 Project Documentation
+
+This project includes comprehensive documentation for all integrations and features:
+
+- **[Documentation Index](./docs/README.md)** - Overview of all documentation
+- **[Zoho Campaigns Integration](./docs/ZOHO_CAMPAIGNS_INTEGRATION.md)** - Complete guide for email subscription integration
+- **[Quick Reference](./docs/ZOHO_CAMPAIGNS_QUICK_REFERENCE.md)** - Quick commands and troubleshooting
+
+### Key Integrations
+
+- ✅ **Zoho Campaigns** - Email subscription and mailing list management
+- ✅ **Zoho CRM** - Lead and contact management
+- ✅ **Prisma** - Database ORM
+- ✅ **OAuth 2.0** - Zoho authentication
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
