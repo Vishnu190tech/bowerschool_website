@@ -573,9 +573,9 @@ class ZohoAPIService {
         zohoProgramInterested
       });
 
-      // Map LeadSource and LeadStatus to Zoho values (using actual database enum values)
+      // Map LeadSource to Zoho values (using actual database enum values)
       const zohoLeadSource = mapLeadSourceToZoho('ONLINESTORE'); // Website
-      const zohoLeadStatus = mapLeadStatusToZoho('INTERESTED'); // Interested
+      // Note: leadStatus is intentionally left empty as per requirement
 
       // Prepare Zoho lead data
       const zohoLead: Partial<ZohoLead> = {
@@ -584,7 +584,7 @@ class ZohoAPIService {
         Email: formData.email,
         Phone: formData.mobile, // Send mobile number to Phone field instead of Mobile
         Lead_Source: zohoLeadSource, // Use mapped Zoho value for website
-        Lead_Status: zohoLeadStatus, // Use mapped Zoho value for interested
+        // Lead_Status: empty as per requirement
         Sales_Department: zohoSalesDepartment, // Use mapped Zoho value
         Sales_Caller: zohoProgramInterested, // Use mapped Zoho value for Program Interested
         Email_Opt_Out: !formData.consent,
@@ -688,7 +688,7 @@ class ZohoAPIService {
         email: formData.email,
         mobile: formData.mobile,
         leadSource: 'ONLINESTORE', // Use actual database enum value
-        leadStatus: 'INTERESTED', // Use actual database enum value
+        // leadStatus: intentionally left empty as per requirement
         salesDepartment: salesDepartment as any,
         programInterested: programInterested as any,
         emailOptOut: !formData.consent,

@@ -782,6 +782,11 @@
   dependencies:
     bcryptjs "*"
 
+"@types/canvas-confetti@^1.9.0":
+  version "1.9.0"
+  resolved "https://registry.yarnpkg.com/@types/canvas-confetti/-/canvas-confetti-1.9.0.tgz#d1077752e046413c9881fbb2ba34a70ebe3c1773"
+  integrity sha512-aBGj/dULrimR1XDZLtG9JwxX1b4HPRF6CX9Yfwh3NvstZEm1ZL7RBnel4keCPSqs1ANRu1u2Aoz9R+VmtjYuTg==
+
 "@types/crypto-js@^4.2.2":
   version "4.2.2"
   resolved "https://registry.yarnpkg.com/@types/crypto-js/-/crypto-js-4.2.2.tgz#771c4a768d94eb5922cc202a3009558204df0cea"
@@ -1307,6 +1312,11 @@ caniuse-lite@^1.0.30001579:
   version "1.0.30001741"
   resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001741.tgz#67fb92953edc536442f3c9da74320774aa523143"
   integrity sha512-QGUGitqsc8ARjLdgAfxETDhRbJ0REsP6O3I96TAth/mVjh2cYzN2u+3AzPP3aVSm2FehEItaJw1xd+IGBXWeSw==
+
+canvas-confetti@^1.9.3:
+  version "1.9.3"
+  resolved "https://registry.yarnpkg.com/canvas-confetti/-/canvas-confetti-1.9.3.tgz#ef4c857420ad8045ab4abe8547261c8cdf229845"
+  integrity sha512-rFfTURMvmVEX1gyXFgn5QMn81bYk70qa0HLzcIOSVEyl57n6o9ItHeBtUSWdvKAPY0xlvBHno4/v3QPrT83q9g==
 
 chalk@^4.0.0:
   version "4.1.2"

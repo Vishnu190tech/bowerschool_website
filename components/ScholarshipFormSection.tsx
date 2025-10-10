@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { getAllUTMParams, storeUTMParams } from '@/lib/utils/utm-tracking';
+import confetti from 'canvas-confetti';
 
 // Theme Configuration
 type ThemeType = 'scholarship' | 'lead' | 'seed' | 'ug';
@@ -83,6 +84,7 @@ export default function ScholarshipFormSection({
     mobile: '',
     consent: false
   });
+  const [selectedProgram, setSelectedProgram] = useState(page || ''); // Store selected program
   const [countryCode, setCountryCode] = useState('+91'); // Default to India
 
   const [currentStep, setCurrentStep] = useState(1);
@@ -93,6 +95,7 @@ export default function ScholarshipFormSection({
   const [existingLeadInfo, setExistingLeadInfo] = useState<any>(null);
   const [zohoLeadId, setZohoLeadId] = useState<string | null>(null);
   const [utmParams, setUtmParams] = useState<any>({});
+  const [isDeadlineExpired, setIsDeadlineExpired] = useState(false);
 
   // Capture UTM parameters on component mount
   useEffect(() => {
@@ -103,11 +106,45 @@ export default function ScholarshipFormSection({
     }
   }, []);
 
+  // Initialize countdown from deadline prop
+  useEffect(() => {
+    if (deadline) {
+      const deadlineDate = typeof deadline === 'string' ? new Date(deadline) : deadline;
+      const now = new Date();
+      const timeRemaining = deadlineDate.getTime() - now.getTime();
+
+      // Check if deadline has already passed
+      if (timeRemaining <= 0) {
+        setIsDeadlineExpired(true);
+        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+        return;
+      }
+
+      // Calculate time remaining
+      const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+      setTimeLeft({ days, hours, minutes, seconds });
+      setIsDeadlineExpired(false);
+    }
+  }, [deadline]);
+
   // Countdown timer effect
   useEffect(() => {
+    // Don't run timer if deadline is already expired
+    if (isDeadlineExpired) return;
+
     const timer = setInterval(() => {
       setTimeLeft(prevTime => {
         let { days, hours, minutes, seconds } = prevTime;
+
+        // Check if countdown has reached 0
+        if (days === 0 && hours === 0 && minutes === 0 && seconds === 0) {
+          setIsDeadlineExpired(true);
+          return prevTime;
+        }
 
         if (seconds > 0) {
           seconds--;
@@ -130,7 +167,39 @@ export default function ScholarshipFormSection({
     }, 1000);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [isDeadlineExpired]);
+
+  // Confetti effect on form submission success
+  useEffect(() => {
+    if (submitSuccess) {
+      // Trigger confetti celebration
+      const duration = 5000; // 5 seconds
+      const end = Date.now() + duration;
+
+      const colors = [currentTheme.primary, currentTheme.secondary, '#FFD700', '#FFF'];
+
+      (function frame() {
+        confetti({
+          particleCount: 3,
+          angle: 60,
+          spread: 55,
+          origin: { x: 0 },
+          colors: colors
+        });
+        confetti({
+          particleCount: 3,
+          angle: 120,
+          spread: 55,
+          origin: { x: 1 },
+          colors: colors
+        });
+
+        if (Date.now() < end) {
+          requestAnimationFrame(frame);
+        }
+      }());
+    }
+  }, [submitSuccess, currentTheme]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -154,7 +223,7 @@ export default function ScholarshipFormSection({
             email: formData.email,
             mobile: `${countryCode}${formData.mobile}`, // Include country code with mobile
             consent: formData.consent,
-            page: page, // Include page identifier
+            page: selectedProgram || page, // Use selectedProgram if available, fallback to page prop
             confirmUpdate: duplicateFound, // Include confirmation flag
             zohoLeadId: zohoLeadId, // Include Zoho Lead ID if updating
             utmParams: utmParams, // Include captured UTM params directly
@@ -178,16 +247,7 @@ export default function ScholarshipFormSection({
         if (data.success) {
           setSubmitSuccess(true);
           setCurrentStep(2);
-
-          // Reset form after 3 seconds
-          setTimeout(() => {
-            setFormData({ name: '', email: '', mobile: '', consent: false });
-            setCurrentStep(1);
-            setSubmitSuccess(false);
-            setDuplicateFound(false);
-            setExistingLeadInfo(null);
-            setZohoLeadId(null);
-          }, 3000);
+          // Note: Form no longer auto-resets - shows success screen instead
         } else if (!data.requiresConfirmation) {
           throw new Error(data.error || 'Failed to submit form');
         }
@@ -239,7 +299,7 @@ export default function ScholarshipFormSection({
           <div className="relative z-10 bg-white rounded-3xl shadow-[4px_4px_24px_0px_rgba(0,0,0,0.06)] p-4 md:p-6 min-h-[700px] lg:h-full max-w-[1360px] mx-auto">
             <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 h-full">
               {/* Left Content - Desktop Only */}
-              <div className="hidden lg:flex flex-col justify-between w-[700px]">
+              <div className="hidden lg:flex flex-col justify-start gap-16 w-[700px]">
                 <motion.h2
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -249,7 +309,7 @@ export default function ScholarshipFormSection({
                 </motion.h2>
 
                 {/* Desktop Countdown Timer */}
-                {showCountdown && (
+                {showCountdown && page && !isDeadlineExpired && (
                   <motion.div
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
@@ -291,7 +351,7 @@ export default function ScholarshipFormSection({
                 </h2>
 
                 {/* Mobile Countdown Timer */}
-                {showCountdown && (
+                {showCountdown && page && !isDeadlineExpired && (
                   <div className="grid grid-cols-4 gap-2 mb-6">
                     {[
                       { value: timeLeft.hours.toString().padStart(2, '0'), label: 'Hrs', order: 'first' },
@@ -331,45 +391,140 @@ export default function ScholarshipFormSection({
                 transition={{ delay: 0.3 }}
                 className={`flex-1 backdrop-blur-md bg-white lg:bg-white/70 rounded-3xl p-4 md:p-6 lg:border-2 lg:border-white lg:shadow-[4px_4px_12px_0px_rgba(66,66,255,0.08)] lg:bg-gradient-to-br lg:${currentTheme.gradient}`}
               >
-                <div className="flex flex-col gap-6 lg:gap-16 h-full lg:justify-center">
-                  {/* Form Stepper */}
-                  <div className="flex items-center justify-between w-full">
-                    <div className="flex items-center gap-2 lg:flex-col lg:gap-4">
-                      <div
-                        className={`w-8 h-8 lg:w-6 lg:h-6 rounded-full flex items-center justify-center text-sm lg:text-base border ${currentStep === 1 ? currentTheme.tint : 'border-gray-400 text-gray-400'
-                          }`}
-                      >
-                        1
-                      </div>
-                      <span
-                        className="text-sm lg:text-base"
-                        style={{ color: currentStep === 1 ? currentTheme.secondary : '#9CA3AF' }}
-                      >
-                        Contact
-                      </span>
-                    </div>
+                {submitSuccess ? (
+                  /* Success Screen - Show after form submission */
+                  <div className="flex flex-col items-center justify-center h-full gap-6 lg:gap-8 py-8">
+                    {/* Success Icon */}
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ type: "spring", stiffness: 200, damping: 15 }}
+                      className="w-20 h-20 lg:w-24 lg:h-24 rounded-full flex items-center justify-center"
+                      style={{ backgroundColor: currentTheme.secondary }}
+                    >
+                      <svg className="w-12 h-12 lg:w-14 lg:h-14 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                      </svg>
+                    </motion.div>
 
-                    <div className="flex-1 h-0 border-t border-dashed border-gray-300 mx-4"></div>
+                    {/* Success Message */}
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.2 }}
+                      className="text-center space-y-2"
+                    >
+                      <h3 className="text-2xl lg:text-3xl font-bold text-gray-900">
+                        Thank You!
+                      </h3>
+                      <p className="text-sm lg:text-base text-gray-600 max-w-md">
+                        Your information has been submitted successfully. Our team will contact you shortly.
+                      </p>
+                    </motion.div>
 
-                    <div className="flex items-center gap-2 lg:flex-col lg:gap-4">
-                      <div
-                        className={`w-8 h-8 lg:w-6 lg:h-6 rounded-full flex items-center justify-center text-sm lg:text-base border ${currentStep === 2 ? currentTheme.tint : 'border-gray-400 text-gray-400'
-                          }`}
+                    {/* Action Buttons */}
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.4 }}
+                      className="flex flex-col sm:flex-row gap-4 w-full max-w-md px-4"
+                    >
+                      {/* Download Brochure Button */}
+                      <motion.a
+                        href="/brochures/bower-school-prospectus.pdf"
+                        download
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        style={{ backgroundColor: currentTheme.secondary }}
+                        className="flex-1 flex items-center justify-center gap-2 px-6 py-4 rounded-xl text-white font-medium shadow-lg hover:shadow-xl transition-all"
                       >
-                        2
-                      </div>
-                      <span
-                        className="text-sm lg:text-base"
-                        style={{ color: currentStep === 2 ? currentTheme.secondary : '#9CA3AF' }}
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                        <span>Download Brochure</span>
+                      </motion.a>
+
+                      {/* WhatsApp Contact Button */}
+                      <motion.a
+                        href="https://wa.me/919876543210?text=Hi%2C%20I%20just%20submitted%20my%20details%20and%20would%20like%20to%20know%20more%20about%20Bower%20School%20programs"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="flex-1 flex items-center justify-center gap-2 px-6 py-4 rounded-xl text-white font-medium shadow-lg hover:shadow-xl transition-all"
+                        style={{ backgroundColor: '#25D366' }}
                       >
-                        Submit
-                      </span>
-                    </div>
+                        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                        </svg>
+                        <span>Contact on WhatsApp</span>
+                      </motion.a>
+                    </motion.div>
                   </div>
+                ) : (
+                  /* Form Content - Show initially */
+                  <div className="flex flex-col gap-6 lg:gap-16 h-full lg:justify-center">
+                    {/* Form Stepper */}
+                    <div className="flex items-center justify-between w-full">
+                      <div className="flex items-center gap-2 lg:flex-col lg:gap-4">
+                        <div
+                          className={`w-8 h-8 lg:w-6 lg:h-6 rounded-full flex items-center justify-center text-sm lg:text-base border ${currentStep === 1 ? currentTheme.tint : 'border-gray-400 text-gray-400'
+                            }`}
+                        >
+                          1
+                        </div>
+                        <span
+                          className="text-sm lg:text-base"
+                          style={{ color: currentStep === 1 ? currentTheme.secondary : '#9CA3AF' }}
+                        >
+                          Contact
+                        </span>
+                      </div>
 
-                  {/* Form */}
-                  <form onSubmit={handleSubmit} className="flex flex-col gap-4 lg:gap-8">
+                      <div className="flex-1 h-0 border-t border-dashed border-gray-300 mx-4"></div>
+
+                      <div className="flex items-center gap-2 lg:flex-col lg:gap-4">
+                        <div
+                          className={`w-8 h-8 lg:w-6 lg:h-6 rounded-full flex items-center justify-center text-sm lg:text-base border ${currentStep === 2 ? currentTheme.tint : 'border-gray-400 text-gray-400'
+                            }`}
+                        >
+                          2
+                        </div>
+                        <span
+                          className="text-sm lg:text-base"
+                          style={{ color: currentStep === 2 ? currentTheme.secondary : '#9CA3AF' }}
+                        >
+                          Submit
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Form */}
+                    <form onSubmit={handleSubmit} className="flex flex-col gap-4 lg:gap-8">
                     <div className="flex flex-col gap-3">
+                      {/* Program Selection Dropdown - Only show if page prop is not set */}
+                      {!page && (
+                        <select
+                          value={selectedProgram}
+                          onChange={(e) => setSelectedProgram(e.target.value)}
+                          style={{
+                            borderColor: selectedProgram ? currentTheme.secondary : '#D1D5DB',
+                          }}
+                          className="w-full h-12 lg:h-[54px] px-4 py-2 bg-gray-50 border rounded-xl text-sm text-gray-900 focus:outline-none transition-colors"
+                          onFocus={(e) => (e.target.style.borderColor = currentTheme.secondary)}
+                          onBlur={(e) => (e.target.style.borderColor = selectedProgram ? currentTheme.secondary : '#D1D5DB')}
+                          required
+                        >
+                          <option value="">Select Program</option>
+                          <option value="k12">K12 Program</option>
+                          <option value="k12-school">K12 School Program</option>
+                          <option value="k12-seed">K12 SEED Program</option>
+                          <option value="lead">LEAD Program</option>
+                          <option value="lead-vcpe">LEAD VCPE Program</option>
+                          <option value="ug">UG Program</option>
+                        </select>
+                      )}
+
                       <input
                         type="text"
                         name="name"
@@ -548,7 +703,8 @@ export default function ScholarshipFormSection({
                       </a>.
                     </p>
                   </form>
-                </div>
+                  </div>
+                )}
               </motion.div>
             </div>
           </div>
