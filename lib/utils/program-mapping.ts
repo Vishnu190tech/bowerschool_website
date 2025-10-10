@@ -21,6 +21,7 @@ export function getPageSalesDepartment(page: string): SalesDepartment {
     'ug': SalesDepartment.UG,
     'lead': SalesDepartment.PG,  // LEAD programs map to PG
     'lead-vc': SalesDepartment.PG,  // LEAD Venture Capital page
+    'lead-vcpe': SalesDepartment.PG,  // LEAD Venture Capital & Private Equity page
   };
 
   return mappings[page] || SalesDepartment.NONE;
@@ -63,8 +64,8 @@ export function getProgramMapping(page: string): ProgramMapping {
   } else if (page === 'lead') {
     // lead page maps to LEAD Venture Building
     programInterested = ProgramInterested.LEAD_VENTURE_BUILDING;
-  } else if (page === 'lead-vc') {
-    // lead-vc page maps to LEAD Venture Capital & Private Equity
+  } else if (page === 'lead-vc' || page === 'lead-vcpe') {
+    // lead-vc and lead-vcpe pages map to LEAD Venture Capital & Private Equity
     programInterested = ProgramInterested.LEAD_VENTURE_CAPITAL_PRIVATE_EQUITY;
   } else {
     // For all other pages, use default program for department
