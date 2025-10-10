@@ -94,7 +94,11 @@ export default function K12ProgramPage() {
         <Testimonials theme="seed" />
         <BowerGlimpseSection theme="seed" />
         <FAQSection theme="seed" />
-        <ScholarshipFormSection theme="seed" page="k12-seed" />
+        <ScholarshipFormSection
+          theme="seed"
+          page="k12-seed"
+          deadline={new Date('2025-10-25T23:59:59')}
+        />
 
       </main>
       <Footer theme="seed" />

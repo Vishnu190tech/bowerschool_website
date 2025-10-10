@@ -93,7 +93,11 @@ export default function K12ProgramPage() {
         <ContactFormSection theme="seed" />
         <BowerGlimpseSection />
 
-        <ScholarshipFormSection theme="seed" page="k12" />
+        <ScholarshipFormSection
+          theme="seed"
+          page="k12"
+          deadline={new Date('2025-10-25T23:59:59')}
+        />
 
       </main>
       <Footer theme="seed" />

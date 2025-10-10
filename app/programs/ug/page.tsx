@@ -81,7 +81,11 @@ export default function UGProgramPage() {
         <BowerGlimpseSection theme="ug" />
         <Testimonials theme="ug" />
         <FAQSection theme="ug" />
-        <ScholarshipFormSection theme="ug" page="ug" />
+        <ScholarshipFormSection
+          theme="ug"
+          page="ug"
+          deadline={new Date('2025-10-25T23:59:59')}
+        />
       </main>
       <Footer theme="ug" />
     </div>

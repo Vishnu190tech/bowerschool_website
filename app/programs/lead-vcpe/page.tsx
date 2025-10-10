@@ -98,7 +98,11 @@ export default function UGProgramPage() {
         <Testimonials theme="lead" />
         <BowerGlimpseSection theme="lead" />
         <FAQSection theme="lead" />
-        <ScholarshipFormSection theme="lead" page="lead-vc" />
+        <ScholarshipFormSection
+          theme="lead"
+          page="lead-vcpe"
+          deadline={new Date('2025-10-25T23:59:59')}
+        />
       </main>
       <Footer theme="lead" />
     </div>
